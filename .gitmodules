@@ -13,3 +13,6 @@
 [submodule "bundle/vim-rails"]
 	path = bundle/vim-rails
 	url = git://github.com/tpope/vim-rails.git
+[submodule "cocoa.vim"]
+	path = cocoa.vim
+	url = git://github.com/msanders/cocoa.vim.git
