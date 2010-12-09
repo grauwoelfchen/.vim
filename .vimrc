@@ -96,4 +96,6 @@ autocmd fileType php :set errorformat=%m\ in\ %f\ on\ line\ %l
 "" objc
 autocmd fileType objc set makeprg=xcodebuild
 
-
+""" mailapp
+let MailApp_bundle="~/.vim/bundle/MailApp.bundle/"
+let MailApp_from="Yasuhiro Asaka <y.grauwoelfchen@gmail.com>"
