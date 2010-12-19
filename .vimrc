@@ -1,11 +1,11 @@
-" Last modified Mon.22.Nov.2010
-"
+""" Last modified Sonn.19.Dez.2010
+"""
 
 "" basic
 set nocompatible
-set number
 set showmode
 set showcmd
+set autoread
 "" beep
 set vb t_vb=
 "" new line
@@ -21,18 +21,14 @@ set directory=~/Documents/.swap
 set history=100
 set hlsearch
 nmap <Esc><Esc> :<C-u>nohlsearch<Return>
-"""" nmap :nohlsearch
 set ignorecase
 set smartcase
 
 "" view
 set title
 set ruler
-
-"" color
+set number
 colorscheme ir_black
-
-"" invisible mark tab,line end
 """ set list
 set laststatus=2
 set showmatch
@@ -43,6 +39,8 @@ set wrap
 set statusline=%n\:%y%F\ \ %{(&fenc!=''?&fenc:&enc).'\ '.&ff.'\ '}%m%r%=
 highlight StatusLine term=NONE cterm=NONE ctermfg=gray ctermbg=black
 set autoindent
+set smartindent
+set cindent
 set expandtab
 set tabstop=2
 set softtabstop=2
@@ -65,12 +63,23 @@ set encoding=utf-8
 "" others
 """ undo
 set hidden
+""" set autochdir
+nnoremap <C-j> ;<C-w>j
+nnoremap <C-k> ;<C-k>j
+nnoremap <C-l> ;<C-l>j
+nnoremap <C-h> ;<C-h>j
+set noimdisable
+set iminsert=0 imsearch=0
+set noimcmdline
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+
 "" starting message
 set shortmess+=I
 set helplang=ja
 
 "" plugins
-"" pathhogen
+"" for pathhogen
+filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 "" ctag
@@ -82,19 +91,23 @@ let g:netrw_altv=1
 let g:netrw_winsize=""
 
 "" coding
+inoremap , ,<Space>
+autocmd BufWritePre * :%s/\s\+$//ge
+autocmd BufWritePre * :%s/\t/  /ge
 syntax on
 filetype on
 filetype indent on
 filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 "" ruby
-autocmd fileType ruby,eruby,haml,sass set omnifunc=rubycomplete#Complete
-autocmd fileType ruby,eruby,haml,sass let g:rubycomplete_rails = 1
+autocmd fileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd fileType ruby,eruby let g:rubycomplete_rails = 1
 "" python
 autocmd fileType python set omnifunc=pythoncomplete#Complete
 "" php
 autocmd fileType php set makeprg=php\ -l\ %
 autocmd fileType php set errorformat=%m\ in\ %f\ on\ line\ %l
-"""" autocmd fileType php setlocal dictionary=~/.vim/dict/php.dict
+"""" autocmd fileType php setl dictionary=~/.vim/dict/php.dict
 "" objc
 autocmd fileType objc set makeprg=xcodebuild
 
