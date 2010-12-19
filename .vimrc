@@ -84,14 +84,12 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 "" ctag
 """ let Tlist_Ctags_Cmd='/usr/bin/ctags'
-
 "" netrw
 """ let g:netrw_browse_split=2
 let g:netrw_altv=1
 let g:netrw_winsize=""
 
 "" coding
-inoremap , ,<Space>
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufWritePre * :%s/\t/  /ge
 syntax on
@@ -110,7 +108,6 @@ autocmd fileType php set errorformat=%m\ in\ %f\ on\ line\ %l
 """" autocmd fileType php setl dictionary=~/.vim/dict/php.dict
 "" objc
 autocmd fileType objc set makeprg=xcodebuild
-
-""" mailapp
+"" mailapp
 let MailApp_bundle="~/.vim/bundle/MailApp.bundle/"
 let MailApp_from="Yasuhiro Asaka <y.grauwoelfchen@gmail.com>"
