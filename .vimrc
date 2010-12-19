@@ -64,14 +64,6 @@ set encoding=utf-8
 """ undo
 set hidden
 """ set autochdir
-nnoremap <C-j> ;<C-w>j
-nnoremap <C-k> ;<C-k>j
-nnoremap <C-l> ;<C-l>j
-nnoremap <C-h> ;<C-h>j
-set noimdisable
-set iminsert=0 imsearch=0
-set noimcmdline
-inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
 "" starting message
 set shortmess+=I
