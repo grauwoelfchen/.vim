@@ -16,3 +16,6 @@
 [submodule "cocoa.vim"]
 	path = cocoa.vim
 	url = git://github.com/msanders/cocoa.vim.git
+[submodule "bundle/vim-ruby"]
+	path = bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git
