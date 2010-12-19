@@ -43,9 +43,9 @@ set wrap
 set statusline=%n\:%y%F\ \ %{(&fenc!=''?&fenc:&enc).'\ '.&ff.'\ '}%m%r%=
 highlight StatusLine term=NONE cterm=NONE ctermfg=gray ctermbg=black
 set autoindent
+set expandtab
 set tabstop=2
 set softtabstop=2
-set expandtab
 set shiftwidth=2
 set textwidth=0
 
@@ -77,7 +77,9 @@ call pathogen#helptags()
 """ let Tlist_Ctags_Cmd='/usr/bin/ctags'
 
 "" netrw
+""" let g:netrw_browse_split=2
 let g:netrw_altv=1
+let g:netrw_winsize=""
 
 "" coding
 syntax on
@@ -90,8 +92,8 @@ autocmd fileType ruby,eruby,haml,sass let g:rubycomplete_rails = 1
 "" python
 autocmd fileType python set omnifunc=pythoncomplete#Complete
 "" php
-autocmd fileType php :set makeprg=php\ -l\ %
-autocmd fileType php :set errorformat=%m\ in\ %f\ on\ line\ %l
+autocmd fileType php set makeprg=php\ -l\ %
+autocmd fileType php set errorformat=%m\ in\ %f\ on\ line\ %l
 """" autocmd fileType php setlocal dictionary=~/.vim/dict/php.dict
 "" objc
 autocmd fileType objc set makeprg=xcodebuild
