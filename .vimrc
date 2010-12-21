@@ -52,7 +52,6 @@ augroup END
 
 "" edit
 set wildmenu
-set autoindent
 set commentstring=\ #\ %s
 set foldlevel=0
 set paste
@@ -78,6 +77,7 @@ set helplang=ja
 filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
+filetype on
 "" ctag
 """ let Tlist_Ctags_Cmd='/usr/bin/ctags'
 "" netrw
@@ -90,6 +90,7 @@ let MailApp_from="Yasuhiro Asaka <y.grauwoelfchen@gmail.com>"
 
 
 "" programming
+set autoindent
 set smartindent
 set cindent
 set cinwords=if,else,while,do,for,switch,case
@@ -115,7 +116,8 @@ let g:rubycomplete_classes_in_global=1
 let g:rubycomplete_rails=1
 autocmd fileType ruby,eruby setl omnifunc=rubycomplete#Complete
 autocmd fileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd filetype ruby setl makeprg=ruby\ -c\ %
+autocmd filetype ruby.eruby setl makeprg=ruby\ -c\ %
+au BufRead,BufNewFile *.rb setfiletype ruby
 
 "" python
 autocmd fileType python setl omnifunc=pythoncomplete#Complete
@@ -137,8 +139,8 @@ autocmd syntax php setl fdm=syntax
 "" objc
 autocmd fileType objc setl makeprg=xcodebuild
 
+set filetype=ignored
 
 """ command
 """ rename current file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
-
