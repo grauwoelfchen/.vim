@@ -122,9 +122,9 @@ au BufRead,BufNewFile *.rb setfiletype ruby
 autocmd fileType python setl omnifunc=pythoncomplete#Complete
 
 "" php
-imap <C-P> <ESC> :call PhpDocSingle()<CR>i
-nmap <C-P> :call PhpDocSingle()<CR>
-vmap <C-P> :call PhpDocRange()<CR>
+autocmd fileType php imap <C-P> <ESC> :call PhpDocSingle()<CR>i
+autocmd fileType php nmap <C-P> :call PhpDocSingle()<CR>
+autocmd fileType php vmap <C-P> :call PhpDocRange()<CR>
 autocmd fileType php setl makeprg=php\ -l\ %
 autocmd fileType php setl errorformat=%m\ in\ %f\ on\ line\ %l
 autocmd filetype php setl errorformat=%m\ in\ %f\ on\ line\ %l
@@ -138,7 +138,7 @@ autocmd syntax php setl fdm=syntax
 "" objc
 autocmd fileType objc setl makeprg=xcodebuild
 
-set filetype=ignored
+"set filetype=ignored
 
 
 """ command
