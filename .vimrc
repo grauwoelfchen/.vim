@@ -95,9 +95,15 @@ set cindent
 set cinwords=if,else,while,do,for,switch,case
 syntax on
 filetype plugin indent on
+
 "" white space
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufWritePre * :%s/\t/  /ge
+
+"" pop
+"hi Pmenu guibg=#666666
+"hi PmenuSel guibg=#8cd0d3 guifg=#666666
+"hi PmenuSbar guibg=#333333
 
 "" dict [C-x, C-k]
 autocmd fileType ruby,eruby setl dictionary=~/.vim/dict/ruby.dict
@@ -144,3 +150,4 @@ autocmd fileType objc setl makeprg=xcodebuild
 """ command
 """ rename current file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
+
