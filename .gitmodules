@@ -19,3 +19,6 @@
 [submodule "bundle/vim-ruby"]
 	path = bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
+[submodule "bundle/vim-l9"]
+	path = bundle/vim-l9
+	url = https://github.com/clones/vim-l9.git
