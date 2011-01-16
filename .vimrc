@@ -78,7 +78,7 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 filetype on
 "" ctag
-"let Tlist_Ctags_Cmd='/usr/bin/ctags'
+let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 "" netrw
 "let g:netrw_browse_split=2
 let g:netrw_altv=1
@@ -96,14 +96,20 @@ set cinwords=if,else,while,do,for,switch,case
 syntax on
 filetype plugin indent on
 
+"" autocomlpop
+inoremap ,s <ESC>:AutoComplPopDisable<CR>a
+inoremap ,q <ESC>:AutoComplPopEnable<CR>a
+nnoremap ,s :AutoComplPopDisable<CR>
+nnoremap ,q :AutoComplPopEnable<CR>
+
+"" pop
+hi Pmenu guibg=#666666
+hi PmenuSel guibg=#8cd0d3 guifg=#666666
+hi PmenuSbar guibg=#333333
+
 "" white space
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufWritePre * :%s/\t/  /ge
-
-"" pop
-"hi Pmenu guibg=#666666
-"hi PmenuSel guibg=#8cd0d3 guifg=#666666
-"hi PmenuSbar guibg=#333333
 
 "" dict [C-x, C-k]
 autocmd fileType ruby,eruby setl dictionary=~/.vim/dict/ruby.dict
@@ -134,7 +140,6 @@ autocmd fileType php vmap <C-P> :call PhpDocRange()<CR>
 autocmd fileType php setl makeprg=php\ -l\ %
 autocmd fileType php setl errorformat=%m\ in\ %f\ on\ line\ %l
 autocmd filetype php setl errorformat=%m\ in\ %f\ on\ line\ %l
-"" syntax
 let php_sql_query=1
 let php_htmlInStrings=1
 let php_noShortTags=1
@@ -144,7 +149,7 @@ autocmd syntax php setl fdm=syntax
 "" objc
 autocmd fileType objc setl makeprg=xcodebuild
 
-"set filetype=ignored
+set filetype=ignored
 
 
 """ command
