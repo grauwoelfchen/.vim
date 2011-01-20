@@ -19,7 +19,7 @@ set directory=~/Documents/.swap
 """ search
 set history=100
 set hlsearch
-nmap <Esc><Esc> :<C-u>nohlsearch<Return>
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
 set ignorecase
 set smartcase
 
