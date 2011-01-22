@@ -1,4 +1,4 @@
-""" Last modified Sonn.19.Dez.2010
+""" Last modified Sun, 23. Jan. 2011
 """
 
 """ basic
@@ -6,6 +6,7 @@ set nocompatible
 set showmode
 set showcmd
 set autoread
+set ttyfast
 "" beep
 set vb t_vb=
 "" new line
@@ -14,6 +15,10 @@ set writebackup
 set backup
 set backupdir=~/Documents/.backup
 set directory=~/Documents/.swap
+"" IME
+set noimcmdline
+"" date
+inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
 
 
 """ search
@@ -22,6 +27,18 @@ set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 set ignorecase
 set smartcase
+"" help
+nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+
+
+""" move
+imap <C-e> <END>
+imap <C-a> <HOME>
+"" at insert mode
+imap <C-j> <Down>
+imap <C-k> <Up>
+imap <C-h> <Left>
+imap <C-l> <Right>
 
 
 """ view
@@ -48,10 +65,13 @@ augroup vimrc_autocmds
   autocmd BufEnter * highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
   autocmd BufEnter * match OverLength /\%81v.\+/
 augroup END
+"" visual
+set virtualedit+=block
 
 
 """ edit
 set wildmenu
+set complete+=k
 set commentstring=\ #\ %s
 set foldlevel=0
 "set paste
