@@ -2,7 +2,7 @@ if has('gui_macvim')
   set showtabline=2
   set lines=80
   set columns=168
-  let g:netrw_winsize=84
+  let g:netrw_winsize=""
   set transparency=10
   set antialias
   set imdisable
@@ -12,7 +12,9 @@ if has('gui_macvim')
   set guioptions-=R
   set guioptions-=l
   set guioptions-=L
+  map <silent> gw :macaction selectNextWindow:<Return>
+  map <silent> gW :macaction selectPreviousWindow:<Return>
   " full screen
   "set fuoptions=maxvert,maxhorz
-  "autocmd GUIEnter * set fullscreen 
+  "autocmd GUIEnter * set fullscreen
 endif
