@@ -1,24 +1,24 @@
-[submodule "bundle/cocoa.vim"]
-	path = bundle/cocoa.vim
-	url = git://github.com/msanders/cocoa.vim.git
-[submodule "bundle/vim-ref"]
-	path = bundle/vim-ref
-	url = git://github.com/thinca/vim-ref.git
-[submodule "bundle/vim-haml"]
-	path = bundle/vim-haml
-	url = git://github.com/tpope/vim-haml.git
-[submodule "bundle/git-vim"]
-	path = bundle/git-vim
-	url = git://github.com/motemen/git-vim.git
-[submodule "bundle/vim-rails"]
-	path = bundle/vim-rails
-	url = git://github.com/tpope/vim-rails.git
 [submodule "cocoa.vim"]
-	path = cocoa.vim
-	url = git://github.com/msanders/cocoa.vim.git
-[submodule "bundle/vim-ruby"]
-	path = bundle/vim-ruby
-	url = https://github.com/vim-ruby/vim-ruby.git
-[submodule "bundle/vim-l9"]
-	path = bundle/vim-l9
-	url = https://github.com/clones/vim-l9.git
+  path = bundle/cocoa.vim
+  url = git://github.com/msanders/cocoa.vim.git
+[submodule "vim-ref"]
+  path = bundle/vim-ref
+  url = git://github.com/thinca/vim-ref.git
+[submodule "vim-haml"]
+  path = bundle/vim-haml
+  url = git://github.com/tpope/vim-haml.git
+[submodule "git-vim"]
+  path = bundle/git-vim
+  url = git://github.com/motemen/git-vim.git
+[submodule "vim-rails"]
+  path = bundle/vim-rails
+  url = git://github.com/tpope/vim-rails.git
+[submodule "vim-ruby"]
+  path = bundle/vim-ruby
+  url = https://github.com/vim-ruby/vim-ruby.git
+[submodule "vim-l9"]
+  path = bundle/vim-l9
+  url = https://github.com/clones/vim-l9.git
+[submodule "snipmate.vim"]
+  path = bundle/snipmate.vim
+  url = https://github.com/msanders/snipmate.vim.git
