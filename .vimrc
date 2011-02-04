@@ -22,6 +22,7 @@ inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
 
 
 """ search
+set incsearch
 set history=100
 set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
