@@ -22,3 +22,6 @@
 [submodule "snipmate.vim"]
   path = bundle/snipmate.vim
   url = https://github.com/msanders/snipmate.vim.git
+[submodule "bundle/neocomplcache"]
+	path = bundle/neocomplcache
+	url = https://github.com/Shougo/neocomplcache.git

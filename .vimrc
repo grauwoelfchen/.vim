@@ -33,8 +33,8 @@ nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 
 
 """ move
-imap <C-e> <END>
-imap <C-a> <HOME>
+map <C-e> <END>
+map <C-a> <HOME>
 "" at insert mode
 imap <C-j> <Down>
 imap <C-k> <Up>
@@ -118,15 +118,19 @@ syntax on
 filetype plugin indent on
 
 "" autocomlpop
-inoremap ,s <ESC>:AutoComplPopDisable<CR>a
-inoremap ,q <ESC>:AutoComplPopEnable<CR>a
-nnoremap ,s :AutoComplPopDisable<CR>
-nnoremap ,q :AutoComplPopEnable<CR>
+"inoremap ,s <ESC>:AutoComplPopDisable<CR>a
+"inoremap ,q <ESC>:AutoComplPopEnable<CR>a
+"nnoremap ,s :AutoComplPopDisable<CR>
+"nnoremap ,q :AutoComplPopEnable<CR>
 
-"" pop
-hi Pmenu guibg=#666666
-hi PmenuSel guibg=#8cd0d3 guifg=#666666
-hi PmenuSbar guibg=#333333
+"" neocomplcache
+let g:neocomplcache_enable_at_startup=1
+let g:neocomplcache_auto_completion_start_length=2
+let g:neocomplcache_enable_smart_case=1
+let g:neocomplcache_enable_auto_select=1
+let g:neocomplcache_max_list=30
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+inoremap <expr><C-l><CR> neocomplcache#smart_close_popup()
 
 "" white space
 autocmd BufWritePre * :%s/\s\+$//ge
@@ -173,7 +177,12 @@ autocmd fileType objc setl makeprg=xcodebuild
 set filetype=ignored
 
 
+""" apps
+"" twitvim
+let twitvim_login = "grauwoelfchen:leonmame0718"
+
+
 """ command
-""" rename current file
+"" rename current file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 
