@@ -1,7 +1,7 @@
 if has('gui_macvim')
   set showtabline=2
   set lines=80
-  set columns=200
+  set columns=180
   let g:netrw_winsize=""
   set transparency=10
   set antialias
