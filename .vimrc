@@ -129,8 +129,8 @@ let g:neocomplcache_auto_completion_start_length=2
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_enable_auto_select=1
 let g:neocomplcache_max_list=30
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-inoremap <expr><C-l><CR> neocomplcache#smart_close_popup()
+inoremap <expr><C-x> neocomplcache#complete_common_string()
+inoremap <expr><C-x><CR> neocomplcache#smart_close_popup()
 
 "" white space
 autocmd BufWritePre * :%s/\s\+$//ge
@@ -175,6 +175,9 @@ autocmd syntax php setl fdm=syntax
 autocmd fileType objc setl makeprg=xcodebuild
 
 set filetype=ignored
+
+"" arduino
+autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 
 
 """ apps
