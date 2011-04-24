@@ -132,6 +132,39 @@ let g:neocomplcache_max_list=30
 inoremap <expr><C-x> neocomplcache#complete_common_string()
 inoremap <expr><C-x><CR> neocomplcache#smart_close_popup()
 
+"" zencoding
+let g:user_zen_expandabbr_key='<C-y>,'
+let g:user_zen_complete_tag=1
+let g:user_zen_settings={
+\  'lang': 'utf-8',
+\  'haml': {
+\    'extends': 'html',
+\  }
+\}
+
+""" unite.vim
+" let g:unite_enable_start_insert=1
+" buffers
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+" files
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" registers
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+" recent files
+nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+" buffers and files
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+" all
+nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+" window
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+
+
 "" white space
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufWritePre * :%s/\t/  /ge
@@ -177,6 +210,7 @@ autocmd fileType objc setl makeprg=xcodebuild
 set filetype=ignored
 
 "" arduino
+"au BufRead,BufNewFile *.pde setfiletype arduino
 autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 
 
