@@ -143,24 +143,26 @@ let g:user_zen_settings={
 \}
 
 """ unite.vim
-" let g:unite_enable_start_insert=1
+let g:unite_enable_start_insert=1
+let g:unite_split_rule="botright"
 " buffers
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,Ub :<C-u>Unite buffer<CR>
 " files
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,Uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " registers
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,Ur :<C-u>Unite -buffer-name=register register<CR>
 " recent files
-nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+nnoremap <silent> ,Um :<C-u>Unite file_mru<CR>
 " buffers and files
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+nnoremap <silent> ,Uu :<C-u>Unite buffer file_mru<CR>
 " all
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> ,Ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 " window
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+" quit
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
@@ -210,7 +212,6 @@ autocmd fileType objc setl makeprg=xcodebuild
 set filetype=ignored
 
 "" arduino
-"au BufRead,BufNewFile *.pde setfiletype arduino
 autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 
 
