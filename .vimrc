@@ -215,11 +215,6 @@ set filetype=ignored
 autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 
 
-""" apps
-"" twitvim
-let twitvim_login = "grauwoelfchen:leonmame0718"
-
-
 """ command
 "" rename current file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))

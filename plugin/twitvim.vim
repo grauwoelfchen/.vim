@@ -2,12 +2,12 @@
 " TwitVim - Post to Twitter from Vim
 " Based on Twitter Vim script by Travis Jeffery <eatsleepgolf@gmail.com>
 "
-" Version: 0.6.1
+" Version: 0.6.3
 " License: Vim license. See :help license
 " Language: Vim script
 " Maintainer: Po Shan Cheah <morton@mortonfox.com>
 " Created: March 28, 2008
-" Last updated: January 6, 2011
+" Last updated: April 22, 2011
 "
 " GetLatestVimScripts: 2204 1 twitvim.vim
 " ==============================================================
@@ -21,6 +21,9 @@ let loaded_twitvim = 1
 " Avoid side-effects from cpoptions setting.
 let s:save_cpo = &cpo
 set cpo&vim
+
+" User agent header string.
+let s:user_agent = 'TwitVim 0.6.3 2011-04-22'
 
 " Twitter character limit. Twitter used to accept tweets up to 246 characters
 " in length and display those in truncated form, but that is no longer the
@@ -104,6 +107,16 @@ endfunction
 " User config to disable the OAuth access token file.
 function! s:get_disable_token_file()
     return exists('g:twitvim_disable_token_file') ? g:twitvim_disable_token_file : 0
+endfunction
+
+" User config to enable the filter.
+function! s:get_filter_enable()
+    return exists('g:twitvim_filter_enable') ? g:twitvim_filter_enable : 0
+endfunction
+
+" User config for filter.
+function! s:get_filter_regex()
+    return exists('g:twitvim_filter_regex') ? g:twitvim_filter_regex : ''
 endfunction
 
 
@@ -255,6 +268,269 @@ endfunction
 " https Twitter API over cURL or Ruby.
 function! s:get_twitvim_cert_insecure()
     return exists('g:twitvim_cert_insecure') ? g:twitvim_cert_insecure : 0
+endfunction
+
+" === JSON parser ===
+
+let s:parse_string = {}
+
+function! s:set_parse_string(s)
+    let s:parse_string = { 'str' : a:s, 'ptr' : 0 }
+endfunction
+
+function! s:is_digit(c)
+    return a:c =~ '\d'
+endfunction
+
+function! s:is_hexdigit(c)
+    return a:c =~ '\x'
+endfunction
+
+function! s:is_alpha(c)
+    return a:c =~ '\a'
+endfunction
+
+" Get next character. If peek is true, don't advance string pointer.
+function! s:lookahead_char(peek)
+    let str = s:parse_string.str
+    let len = strlen(str)
+    let ptr = s:parse_string.ptr
+    if ptr >= len
+	return ''
+    endif
+    if str[ptr] == '\'
+	if ptr + 1 < len
+	    if stridx('"\/bfnrt', str[ptr + 1]) >= 0
+		let s = eval('"\'.str[ptr + 1].'"')
+		if !a:peek
+		    let s:parse_string.ptr = ptr + 2
+		endif
+		" Tokenizer needs to distinguish " from \" inside a string.
+		return '\'.s
+	    elseif str[ptr + 1] == 'u'
+		let s = ''
+		for i in range(ptr + 2, ptr + 5)
+		    if i < len && s:is_hexdigit(str[i])
+			let s .= str[i]
+		    endif
+		endfor
+		if s != ''
+		    let s2 = eval('"\u'.s.'"')
+		    if !a:peek
+			let s:parse_string.ptr = ptr + 2 + strlen(s)
+		    endif
+		    return s2
+		endif
+	    endif
+	endif
+    endif
+
+    " If we don't recognize any longer char tokens, just return the current
+    " char.
+    let s = str[ptr]
+    if !a:peek
+	let s:parse_string.ptr = ptr + 1
+    endif
+    return s
+endfunction
+
+function! s:getchar()
+    return s:lookahead_char(0)
+endfunction
+
+function! s:peekchar()
+    return s:lookahead_char(1)
+endfunction
+
+function! s:peekstr(n)
+    return strpart(s:parse_string.str, s:parse_string.ptr, a:n)
+endfunction
+
+function! s:parse_error_msg(what)
+    return printf("Parse error near '%s': %s", s:peekstr(30), a:what)
+endfunction
+
+" Get next token from JSON string.
+" Returns: [ tokentype, value ]
+function! s:get_token()
+    while 1
+	let c = s:getchar()
+
+	if c == ''
+	    return [ 'eof', '' ]
+	
+	elseif c == '"'
+	    let s = ''
+	    while 1
+		let c = s:getchar()
+		if c == '"' || c == ''
+		    return ['string', s]
+		endif
+		" Strip off the escaping backslash.
+		if c[0] == '\'
+		    let c = c[1]
+		endif
+		let s .= c
+	    endwhile
+
+	elseif stridx('{}[],:', c) >= 0
+	    return [ 'char', c ]
+
+	elseif s:is_alpha(c)
+	    let s = c
+	    while s:is_alpha(s:peekchar())
+		let c = s:getchar()
+		let s .= c
+	    endwhile
+	    return [ 'keyword', s ]
+
+	elseif s:is_digit(c) || c == '-'
+	    " number = [-]d[d...][.d[d...]][(e|E)[(-|+)]d[d...]]
+	    let mode = 'int'
+	    let s = c
+	    while 1
+		let c = s:peekchar()
+		if s:is_digit(c)
+		    let c = s:getchar()
+		    let s .= c
+		elseif c == '.' && mode == 'int'
+		    let mode = 'frac'
+		    let c = s:getchar()
+		    let s .= c
+		elseif (c == 'e' || c == 'E') && (mode == 'int' || mode == 'frac')
+		    let mode = 'exp'
+		    let c = s:getchar()
+		    let s .= c
+
+		    let c = s:peekchar()
+		    if c == '-' || c == '+'
+			let c = s:getchar()
+			let s .= c
+		    endif
+		else
+		    " Clean up some malformed floating-point numbers that Vim
+		    " would reject.
+		    let s = substitute(s, '^\.', '0.', '')
+		    let s = substitute(s, '-\.', '-0.', '')
+		    let s = substitute(s, '\.[eE]', '.0E', '')
+		    let s = substitute(s, '[-+eE.]$', '&0', '')
+
+		    " This takes care of the case where there is
+		    " an exponent but no frac part.
+		    if s =~ '[Ee]' && s != '\.'
+			let s = substitute(s, '[Ee]', '.0&', '')
+		    endif
+
+		    return ['number', eval(s)]
+		endif
+	    endwhile
+	endif
+    endwhile
+endfunction
+
+" value = string | number | object | array | true | false | null
+function! s:parse_value(tok)
+    let tok = a:tok
+    if tok[0] == 'string' || tok[0] == 'number'
+	return [ tok[1], s:get_token() ]
+    elseif tok == [ 'char', '{' ]
+	return s:parse_object(tok)
+    elseif tok == [ 'char', '[' ]
+	return s:parse_array(tok)
+    elseif tok[0] == 'keyword'
+	if tok[1] == 'true'
+	    return [ 1, s:get_token() ]
+	elseif tok[1] == 'false'
+	    return [ 0, s:get_token() ]
+	elseif tok[1] == 'null'
+	    return [ {}, s:get_token() ]
+	else
+	    throw s:parse_error_msg("unrecognized keyword '".tok[1]."'")
+	endif
+    elseif tok[0] == 'eof'
+	throw s:parse_error_msg("unexpected EOF")
+    endif
+endfunction
+
+" elements = value | value ',' elements
+function! s:parse_elements(tok)
+    let [ resultx, tok ] = s:parse_value(a:tok)
+    let result = [ resultx ]
+    if tok == [ 'char', ',' ]
+	let [ result2, tok ] = s:parse_elements(s:get_token())
+	call extend(result, result2)
+    endif
+    return [ result, tok ]
+endfunction
+
+" array = '[' ']' | '[' elements ']'
+function! s:parse_array(tok)
+    if a:tok == [ 'char', '[' ]
+	let tok = s:get_token()
+	if tok == [ 'char', ']' ]
+	    return [ [], s:get_token() ]
+	endif
+	let [ result, tok ] = s:parse_elements(tok)
+	if tok != [ 'char', ']' ]
+	    throw s:parse_error_msg("']' expected")
+	endif
+	return [ result, s:get_token() ]
+    else
+	throw s:parse_error_msg("'[' expected")
+    endif
+endfunction
+
+" pair = string ':' value
+function! s:parse_pair(tok)
+    if a:tok[0] == 'string'
+	let key = a:tok[1]
+	let tok = s:get_token()
+	if tok == [ 'char', ':' ]
+	    let [ result, tok ] = s:parse_value(s:get_token())
+	    return [ { key : result }, tok ]
+	else
+	    throw s:parse_error_msg("':' expected")
+	endif
+    else
+	throw s:parse_error_msg("string (key name) expected")
+    endif
+endfunction
+
+" members = pair | pair ',' members
+function! s:parse_members(tok)
+    let [ result, tok ] = s:parse_pair(a:tok)
+    if tok == [ 'char', ',' ]
+	let [ result2, tok ] = s:parse_members(s:get_token())
+	call extend(result, result2)
+    endif
+    return [ result, tok ]
+endfunction
+
+" object = '{' '}' | '{' members '}'
+function! s:parse_object(tok)
+    if a:tok == [ 'char', '{' ]
+	let tok = s:get_token()
+	if tok == [ 'char', '}' ]
+	    return [ {}, s:get_token() ]
+	endif
+	let [ result, tok ] = s:parse_members(tok)
+	if tok != [ 'char', '}' ]
+	    throw s:parse_error_msg("'}' expected")
+	endif
+	return [ result, s:get_token() ]
+    else
+	throw s:parse_error_msg("'{' expected")
+    endif
+endfunction
+
+function! s:parse_json(str)
+    try
+	call s:set_parse_string(a:str)
+	let [ result, tok ] = s:parse_object(s:get_token())
+	return result
+    catch /^Parse error/
+	echoerr v:exception
+    endtry
 endfunction
 
 " === XML helper functions ===
@@ -868,9 +1144,21 @@ function! s:curl_curl(url, login, proxy, proxylogin, parms)
 	endif
     endif
 
+    let got_json = 0
     for [k, v] in items(a:parms)
-	let curlcmd .= '-d "'.s:url_encode(k).'='.s:url_encode(v).'" '
+	if k == '__json'
+	    let got_json = 1
+	    let curlcmd .= '-d "'.substitute(v, '"', '\\"', 'g').'" '
+	else
+	    let curlcmd .= '-d "'.s:url_encode(k).'='.s:url_encode(v).'" '
+	endif
     endfor
+
+    if got_json
+	let curlcmd .= '-H "Content-Type: application/json" '
+    endif
+    
+    let curlcmd .= '-H "User-Agent: '.s:user_agent.'" '
 
     let curlcmd .= '"'.a:url.'"'
 
@@ -920,7 +1208,12 @@ def make_base64(s):
 try:
     url = vim.eval("a:url")
     parms = vim.eval("a:parms")
-    req = parms == {} and urllib2.Request(url) or urllib2.Request(url, urllib.urlencode(parms))
+
+    if parms.get('__json') is not None:
+	req = urllib2.Request(url, parms['__json'])
+	req.add_header('Content-Type', 'application/json')
+    else:
+	req = parms == {} and urllib2.Request(url) or urllib2.Request(url, urllib.urlencode(parms))
 
     login = vim.eval("a:login")
     if login != "":
@@ -936,6 +1229,8 @@ try:
     proxylogin = vim.eval("a:proxylogin")
     if proxylogin != "":
 	req.add_header('Proxy-Authorization', 'Basic %s' % make_base64(proxylogin))
+
+    req.add_header('User-Agent', vim.eval("s:user_agent"))
 
     f = urllib2.urlopen(req)
     out = ''.join(f.readlines())
@@ -1010,16 +1305,24 @@ my $login = VIM::Eval('a:login');
 if ($login ne '') {
     if ($login =~ /^OAuth /) {
 	$ua->default_header('Authorization' => $login);
-	# VIM::Msg($login, "ErrorMsg");
     }
     else {
 	$ua->default_header('Authorization' => 'Basic '.make_base64($login));
     }
 }
 
-# VIM::Msg($url, "ErrorMsg");
-# VIM::Msg(join(' ', keys(%parms)), "ErrorMsg");
-my $response = %parms ? $ua->post($url, \%parms) : $ua->get($url);
+$ua->default_header('User-Agent' => VIM::Eval("s:user_agent"));
+
+my $response;
+
+if (defined $parms{'__json'}) {
+    $response = $ua->post($url, 
+	'Content-Type' => 'application/json',
+	Content => $parms{'__json'});
+}
+else {
+    $response = %parms ? $ua->post($url, \%parms) : $ua->get($url);
+}
 if ($response->is_success) {
     my $output = $response->content;
     $output =~ s/'/''/g;
@@ -1125,6 +1428,10 @@ begin
 	path = "#{url.path}?#{url.query}"
 	if parms == {}
 	    req = Net::HTTP::Get.new(path)
+	elsif parms.has_key?('__json')
+	    req = Net::HTTP::Post.new(path)
+	    req.body = parms['__json']
+	    req.set_content_type('application/json')
 	else
 	    req = Net::HTTP::Post.new(path)
 	    req.set_form_data(parms)
@@ -1139,10 +1446,7 @@ begin
 	    end
 	end
 
-	#    proxylogin = VIM.evaluate('a:proxylogin')
-	#    if proxylogin != ''
-	#	req.add_field 'Proxy-Authorization', "Basic #{make_base64(proxylogin)}"
-	#    end
+	req['User-Agent'] = VIM.evaluate("s:user_agent")
 
 	http.request(req)
     }
@@ -1234,13 +1538,20 @@ if { $login != "" } {
     }
 }
 
+lappend headers "User-Agent" [::vim::expr "s:user_agent"]
+
 set parms [list]
 set keys [split [::vim::expr "keys(a:parms)"] "\n"]
 if { [llength $keys] > 0 } {
-    foreach key $keys {
-	lappend parms $key [::vim::expr "a:parms\['$key']"]
+    if { [lsearch -exact $keys "__json"] != -1 } {	
+	set query [::vim::expr "a:parms\['__json']"]
+	lappend headers "Content-Type" "application/json"
+    } else {
+	foreach key $keys {
+	    lappend parms $key [::vim::expr "a:parms\['$key']"]
+	}
+	set query [eval [concat ::http::formatQuery $parms]]
     }
-    set query [eval [concat ::http::formatQuery $parms]]
     set res [::http::geturl $url -headers $headers -query $query]
 } else {
     set res [::http::geturl $url -headers $headers]
@@ -1338,7 +1649,8 @@ endif
 
 " Each buffer record holds the following fields:
 "
-" buftype: Buffer type = dmrecv, dmsent, search, public, friends, user, replies, list, retweeted_by_me, retweeted_to_me, favorites
+" buftype: Buffer type = dmrecv, dmsent, search, public, friends, user, 
+"   replies, list, retweeted_by_me, retweeted_to_me, favorites
 " user: For user buffers if other than current user
 " list: List slug if displaying a Twitter list.
 " page: Keep track of pagination.
@@ -1353,7 +1665,8 @@ let s:curbuffer = {}
 
 " The info buffer record holds the following fields:
 "
-" buftype: profile, friends, followers, listmembers, listsubs, userlists, userlistmem, userlistsubs
+" buftype: profile, friends, followers, listmembers, listsubs, userlists, 
+"   userlistmem, userlistsubs, listinfo
 " next_cursor: Used for paging.
 " prev_cursor: Used for paging.
 " cursor: Used for refresh.
@@ -1802,6 +2115,10 @@ function! s:show_inreplyto()
     echo "Querying Twitter for in-reply-to tweet..."
 
     let url = s:get_api_root()."/statuses/show/".inreplyto.".xml"
+
+    " Include entities to get URL expansions for t.co.
+    let url = s:add_to_url(url, 'include_entities=true')
+
     let [error, output] = s:run_curl_oauth(url, s:ologin, s:get_proxy(), s:get_proxy_login(), {})
     if error != ''
 	let errormsg = s:xml_get_element(output, 'error')
@@ -2076,6 +2393,29 @@ function! s:info_getname()
     endif
 endfunction
 
+" Attempt to scrape deck.ly HTML to get the long tweet.
+function! s:get_deckly(url)
+    let [error, output] = s:run_curl(a:url, '', s:get_proxy(), s:get_proxy_login(), {})
+    if error != ''
+	call s:errormsg('Error getting deck.ly page: '.error)
+	return ''
+    endif
+    let matchres = matchlist(output, '<div\s\+id="deckly-post"[^>]\+>\(\_.*\)</div>')
+    if matchres == []
+	call s:errormsg('Could not find long post in deck.ly page.')
+	return ''
+    endif
+    let matchres = matchlist(matchres[1], '<p>\(\_.\{-}\)</p>')
+    if matchres == []
+	call s:errormsg('Could not find long post in deckly-post div.')
+	return ''
+    endif
+    let s = matchres[1]
+    let s = substitute(s, '<a\>[^>]\+>', '', 'g')
+    let s = substitute(s, '</a>', '', 'g')
+    return s
+endfunction
+
 " Call LongURL API on a shorturl to expand it.
 function! s:call_longurl(url)
     redraw
@@ -2092,7 +2432,17 @@ function! s:call_longurl(url)
 
 	let longurl = s:xml_get_element(output, 'long_url')
 	if longurl != ""
-	    return substitute(longurl, '<!\[CDATA\[\(.*\)]]>', '\1', '')
+	    let longurl = substitute(longurl, '<!\[CDATA\[\(.*\)]]>', '\1', '')
+
+	    " If it is a deck.ly URL, attempt to get the long tweet.
+	    if a:url =~? 'deck\.ly' && longurl =~? 'tweetdeck\.com/twitter'
+		let longpost = s:get_deckly(longurl)
+		if longpost != ''
+		    return longpost
+		endif
+	    endif
+
+	    return longurl
 	endif
 
 	let errormsg = s:xml_get_element(output, 'error')
@@ -2230,7 +2580,7 @@ function! s:twitter_win_syntax(wintype)
 
 	" Use the extra star at the end to recognize the title but hide the
 	" star.
-	syntax match twitterTitle /^.\+\*$/ contains=twitterTitleStar
+	syntax match twitterTitle /^\%(\w\+:\)\@!.\+\*$/ contains=twitterTitleStar
 	syntax match twitterTitleStar /\*$/ contained
 
 	highlight default link twitterUser Identifier
@@ -2387,8 +2737,54 @@ function! s:format_retweeted_status(item)
 	return ''
     endif
     let user = s:xml_get_element(rt, 'screen_name')
-    let text = s:convert_entity(s:xml_get_element(rt, 'text'))
+    let text = s:convert_entity(s:get_status_text(rt))
     return 'RT @'.user.': '.text
+endfunction
+
+" Replace all matching strings in a string. This is a non-regex version of substitute().
+function! s:str_replace_all(str, findstr, replstr)
+    let findlen = strlen(a:findstr)
+    let repllen = strlen(a:replstr)
+    let s = a:str
+
+    let idx = 0
+    while 1
+	let idx = stridx(s, a:findstr, idx)
+	if idx < 0
+	    break
+	endif
+	let s = strpart(s, 0, idx) . a:replstr . strpart(s, idx + findlen)
+	let idx += repllen
+    endwhile
+
+    return s
+endfunction
+
+" Get status text with t.co URL expansion.
+function! s:get_status_text(item)
+    let text = s:xml_get_element(a:item, 'text')
+
+    let entities = s:xml_get_element(a:item, 'entities')
+    let urls = s:xml_get_element(entities, 'urls')
+
+    " Twitter entities output currently has a url element inside each url
+    " element, so we handle that by only getting every other url element.
+    let matchcount = 1
+    while 1
+	let url = s:xml_get_nth(urls, 'url', matchcount * 2)
+	let expanded_url = s:xml_get_nth(urls, 'expanded_url', matchcount)
+
+	if url == '' || expanded_url == ''
+	    break
+	endif
+
+	" echomsg "Replacing ".url." with ".expanded_url." in ".text
+	let text = s:str_replace_all(text, url, expanded_url)
+
+	let matchcount += 1
+    endwhile
+
+    return text
 endfunction
 
 " Format XML status as a display line.
@@ -2402,7 +2798,7 @@ function! s:format_status_xml(item)
     let user = s:xml_get_element(item, 'screen_name')
     let text = s:format_retweeted_status(a:item)
     if text == ''
-	let text = s:convert_entity(s:xml_get_element(item, 'text'))
+	let text = s:convert_entity(s:get_status_text(item))
     endif
     let pubdate = s:time_filter(s:xml_get_element(item, 'created_at'))
 
@@ -2414,6 +2810,21 @@ endfunction
 function! s:get_in_reply_to(status)
     let rt = s:xml_get_element(a:status, 'retweeted_status')
     return rt != '' ? s:xml_get_element(rt, 'id') : s:xml_get_element(a:status, 'in_reply_to_status_id')
+endfunction
+
+" If the filter is enabled, test the current item against the filter. Returns
+" true if there is a match and the item should be excluded from the timeline.
+function! s:check_filter(item)
+    if s:get_filter_enable()
+	let filter = s:get_filter_regex()
+	if filter != ''
+	    let text = s:convert_entity(s:get_status_text(a:item))
+	    if match(text, filter) >= 0
+		return 1
+	    endif
+	endif
+    endif
+    return 0
 endfunction
 
 " Show a timeline from XML stream data.
@@ -2468,11 +2879,13 @@ function! s:show_timeline_xml(timeline, tline_name, username, page)
 	    break
 	endif
 
-	call add(s:curbuffer.statuses, s:xml_get_element(item, 'id'))
-	call add(s:curbuffer.inreplyto, s:get_in_reply_to(item))
+	if !s:check_filter(item)
+	    call add(s:curbuffer.statuses, s:xml_get_element(item, 'id'))
+	    call add(s:curbuffer.inreplyto, s:get_in_reply_to(item))
 
-	let line = s:format_status_xml(item)
-	call add(text, line)
+	    let line = s:format_status_xml(item)
+	    call add(text, line)
+	endif
 
 	let matchcount += 1
     endwhile
@@ -2503,6 +2916,9 @@ function! s:get_timeline(tline_name, username, page)
 
     " Include retweets.
     let url_fname = s:add_to_url(url_fname, 'include_rts=true')
+
+    " Include entities to get URL expansions for t.co.
+    let url_fname = s:add_to_url(url_fname, 'include_entities=true')
 
     " Twitter API allows you to specify a username for user_timeline to
     " retrieve another user's timeline.
@@ -2574,6 +2990,9 @@ function! s:get_list_timeline(username, listname, page)
 	let url = s:add_to_url(url, 'per_page='.tcount)
     endif
 
+    " Include entities to get URL expansions for t.co.
+    let url = s:add_to_url(url, 'include_entities=true')
+
     redraw
     echo "Sending list timeline request to Twitter..."
 
@@ -2643,7 +3062,7 @@ function! s:show_dm_xml(sent_or_recv, timeline, page)
 	call add(s:curbuffer.dmids, s:xml_get_element(item, 'id'))
 
 	let user = s:xml_get_element(item, a:sent_or_recv == 'sent' ? 'recipient_screen_name' : 'sender_screen_name')
-	let mesg = s:xml_get_element(item, 'text')
+	let mesg = s:get_status_text(item)
 	let date = s:time_filter(s:xml_get_element(item, 'created_at'))
 
 	call add(text, user.": ".s:convert_entity(mesg).' |'.date.'|')
@@ -2669,6 +3088,9 @@ function! s:Direct_Messages(mode, page)
     if a:page > 1
 	let url = s:add_to_url(url, 'page='.a:page)
     endif
+    
+    " Include entities to get URL expansions for t.co.
+    let url = s:add_to_url(url, 'include_entities=true')
 
     " Support count parameter.
     let tcount = s:get_count()
@@ -3043,6 +3465,44 @@ if !exists(":ReportSpamTwitter")
 endif
 
 
+" Enable/disable retweets from user.
+function! s:enable_retweets(user, enable)
+    if a:enable
+	let msg1 = "Enabling"
+	let msg2 = "Enabled"
+    else
+	let msg1 = "Disabling"
+	let msg2 = "Disabled"
+    endif
+    let msg3 = substitute(msg1, '^.', '\l&', '')
+
+    redraw
+    echo msg1." retweets for user ".a:user."..."
+
+    let url = s:get_api_root()."/friendships/update.xml"
+
+    let parms = {}
+    let parms['screen_name'] = a:user
+    let parms['retweets'] = a:enable ? 'true' : 'false'
+
+    let [error, output] = s:run_curl_oauth(url, s:ologin, s:get_proxy(), s:get_proxy_login(), parms)
+    if error != ''
+	let errormsg = s:xml_get_element(output, 'error')
+	call s:errormsg("Error ".msg3." retweets from user: ".(errormsg != '' ? errormsg : error))
+    else
+	redraw
+	echo msg2." retweets from user ".a:user."."
+    endif
+endfunction
+
+if !exists(":EnableRetweetsTwitter")
+    command -nargs=1 EnableRetweetsTwitter :call <SID>enable_retweets(<q-args>, 1)
+endif
+if !exists(":DisableRetweetsTwitter")
+    command -nargs=1 DisableRetweetsTwitter :call <SID>enable_retweets(<q-args>, 0)
+endif
+
+
 " Add user to a list or remove user from a list.
 function! s:add_to_list(remove, listname, username)
     let user = s:get_twitvim_username()
@@ -3122,9 +3582,10 @@ function! s:yesorno(s)
 endfunction
 
 " Process/format the user information.
-function! s:format_user_info(output)
+function! s:format_user_info(output, fship_output)
     let text = []
     let output = a:output
+    let fship_output = a:fship_output
 
     let name = s:convert_entity(s:xml_get_element(output, 'name'))
     let screen = s:xml_get_element(output, 'screen_name')
@@ -3143,6 +3604,14 @@ function! s:format_user_info(output)
 
     call add(text, 'Protected: '.s:yesorno(s:xml_get_element(output, 'protected')))
     call add(text, 'Following: '.s:yesorno(s:xml_get_element(output, 'following')))
+
+    let fship_source = s:xml_get_element(fship_output, 'source')
+    call add(text, 'Followed_by: '.s:yesorno(s:xml_get_element(fship_source, 'followed_by')))
+    call add(text, 'Blocked: '.s:yesorno(s:xml_get_element(fship_source, 'blocking')))
+    call add(text, 'Marked_spam: '.s:yesorno(s:xml_get_element(fship_source, 'marked_spam')))
+    call add(text, 'Retweets: '.s:yesorno(s:xml_get_element(fship_source, 'want_retweets')))
+    call add(text, 'Notifications: '.s:yesorno(s:xml_get_element(fship_source, 'notifications_enabled')))
+
     call add(text, '')
 
     let usernode = s:xml_remove_elements(output, 'status')
@@ -3154,10 +3623,12 @@ function! s:format_user_info(output)
 
     let statusnode = s:xml_get_element(output, 'status')
     if statusnode != ""
-	let status = s:xml_get_element(statusnode, 'text')
+	let status = s:get_status_text(statusnode)
 	let pubdate = s:time_filter(s:xml_get_element(statusnode, 'created_at'))
 	call add(text, 'Status: '.s:convert_entity(status).' |'.pubdate.'|')
     endif
+
+    " call add(text, fship_output)
 
     return text
 endfunction
@@ -3177,6 +3648,10 @@ function! s:get_user_info(username)
     echo "Querying Twitter for user information..."
 
     let url = s:get_api_root()."/users/show.xml?screen_name=".user
+
+    " Include entities to get URL expansions for t.co.
+    let url = s:add_to_url(url, 'include_entities=true')
+
     let [error, output] = s:run_curl_oauth(url, s:ologin, s:get_proxy(), s:get_proxy_login(), {})
     if error != ''
 	let errormsg = s:xml_get_element(output, 'error')
@@ -3184,9 +3659,17 @@ function! s:get_user_info(username)
 	return
     endif
 
+    let url = s:get_api_root()."/friendships/show.xml?target_screen_name=".user
+    let [error, fship_output] = s:run_curl_oauth(url, s:ologin, s:get_proxy(), s:get_proxy_login(), {})
+    if error != ''
+	let errormsg = s:xml_get_element(fship_output, 'error')
+	call s:errormsg("Error getting friendship info: ".(errormsg != '' ? errormsg : error))
+	return
+    endif
+
     call s:save_buffer(1)
     let s:infobuffer = {}
-    call s:twitter_wintext(s:format_user_info(output), "userinfo")
+    call s:twitter_wintext(s:format_user_info(output, fship_output), "userinfo")
     let s:infobuffer.buftype = 'profile'
     let s:infobuffer.next_cursor = 0
     let s:infobuffer.prev_cursor = 0
@@ -3200,6 +3683,75 @@ endfunction
 
 if !exists(":ProfileTwitter")
     command -nargs=? ProfileTwitter :call <SID>get_user_info(<q-args>)
+endif
+
+" Format the list information.
+function! s:format_list_info(output)
+    let text = []
+    let output = a:output
+    call add(text, 'Name: '.s:convert_entity(s:xml_get_element(output, 'full_name')))
+    call add(text, 'Description: '.s:convert_entity(s:xml_get_element(output, 'description')))
+    call add(text, '')
+    call add(text, 'Members: '.s:xml_get_element(output, 'member_count'))
+    call add(text, 'Subscribers: '.s:xml_get_element(output, 'subscriber_count'))
+    call add(text, '')
+    call add(text, 'Following: '.s:yesorno(s:xml_get_element(output, 'following')))
+    call add(text, 'Mode: '.s:xml_get_element(output, 'mode'))
+    return text
+endfunction
+
+" Call Twitter API to get list info.
+function! s:get_list_info(username, listname)
+    let user = a:username
+    if user == ''
+	let user = s:get_twitvim_username()
+	if user == ''
+	    call s:errormsg('Twitter login not set. Please specify a username.')
+	    return
+	endif
+    endif
+
+    let list = a:listname
+
+    redraw
+    echo 'Querying Twitter for information on list '.user.'/'.list.'...'
+
+    let url = s:get_api_root().'/'.user.'/lists/'.list.'.xml'
+    let [error, output] = s:run_curl_oauth(url, s:ologin, s:get_proxy(), s:get_proxy_login(), {})
+    if error != ''
+	let errormsg = s:xml_get_element(output, 'error')
+	call s:errormsg('Error getting information on list '.user.'/'.list.': '.(errormsg != '' ? errormsg : error))
+	return
+    endif
+
+    call s:save_buffer(1)
+    let s:infobuffer = {}
+    call s:twitter_wintext(s:format_list_info(output), "userinfo")
+    let s:infobuffer.buftype = 'listinfo'
+    let s:infobuffer.next_cursor = 0
+    let s:infobuffer.prev_cursor = 0
+    let s:infobuffer.cursor = 0
+    let s:infobuffer.user = user
+    let s:infobuffer.list = list
+    redraw
+    call s:save_buffer(1)
+    echo 'List information retrieved.'
+endfunction
+
+" Get info on a Twitter list. Need to do a little fiddling because the username
+" argument is optional.
+function! s:DoListInfo(arg1, ...)
+    let user = ''
+    let list = a:arg1
+    if a:0 > 0
+	let user = a:arg1
+	let list = a:1
+    endif
+    call s:get_list_info(user, list)
+endfunction
+
+if !exists(":ListInfoTwitter")
+    command -nargs=+ ListInfoTwitter :call <SID>DoListInfo(<f-args>)
 endif
 
 " Format a list of users, e.g. friends/followers list.
@@ -3247,7 +3799,7 @@ function! s:format_user_list(output, title, show_following)
 
 	let statusnode = s:xml_get_element(user, 'status')
 	if statusnode != ""
-	    let status = s:xml_get_element(statusnode, 'text')
+	    let status = s:get_status_text(statusnode)
 	    let pubdate = s:time_filter(s:xml_get_element(statusnode, 'created_at'))
 	    call add(text, 'Status: '.s:convert_entity(status).' |'.pubdate.'|')
 	endif
@@ -3288,6 +3840,9 @@ function! s:get_friends(cursor, user, followers)
     if a:user != ''
 	let url = s:add_to_url(url, 'screen_name='.a:user)
     endif
+
+    " Include entities to get URL expansions for t.co.
+    let url = s:add_to_url(url, 'include_entities=true')
 
     let [error, output] = s:run_curl_oauth(url, s:ologin, s:get_proxy(), s:get_proxy_login(), {})
     if error != ''
@@ -3337,6 +3892,10 @@ function! s:get_list_members(cursor, user, list, subscribers)
     echo "Querying Twitter for ".item."..."
 
     let url = s:get_api_root().'/'.user.'/'.a:list.query.'.xml?cursor='.a:cursor
+
+    " Include entities to get URL expansions for t.co.
+    let url = s:add_to_url(url, 'include_entities=true')
+
     let [error, output] = s:run_curl_oauth(url, s:ologin, s:get_proxy(), s:get_proxy_login(), {})
     if error != ''
 	let errormsg = s:xml_get_element(output, 'error')
@@ -3397,7 +3956,7 @@ function! s:format_list_list(output, title)
 	call add(text, 'List: '.name.' (Following: '.following.' Followers: '.followers.')')
 	let desc = s:convert_entity(s:xml_get_element(list, 'description'))
 	if desc != ""
-	    call add(text, desc)
+	    call add(text, 'Desc: '.desc)
 	endif
 	call add(text, '')
     endwhile
@@ -3476,6 +4035,8 @@ function! s:load_info(buftype, cursor, user, list)
 	call s:get_user_lists(a:cursor, a:user, 'subscriptions')
     elseif a:buftype == "profile"
 	call s:get_user_info(a:user)
+    elseif a:buftype == 'listinfo'
+	call s:get_list_info(a:user, a:list)
     endif
 endfunction
 
@@ -3848,8 +4409,43 @@ function! s:call_zima(url)
     return output
 endfunction
 
-" Call Goo.gl API to shorten a URL.
+let s:googl_api_key = 'AIzaSyDvAhCUJppsPnPHgazgKktMoYap-QXCy5c'
+
+" Call Goo.gl API (documented version) to shorten a URL.
 function! s:call_googl(url)
+    let url = 'https://www.googleapis.com/urlshortener/v1/url?key='.s:googl_api_key
+    let parms = { '__json' : '{ "longUrl" : "'.a:url.'" }' }
+
+    redraw
+    echo "Sending request to goo.gl..."
+
+    let [error, output] = s:run_curl(url, '', s:get_proxy(), s:get_proxy_login(), parms)
+
+    let result = s:parse_json(output)
+
+    if has_key(result, 'error') && has_key(result.error, 'message')
+	call s:errormsg("Error calling goo.gl API: ".result.error.message)
+	return ""
+    endif
+
+    if has_key(result, 'id')
+	redraw
+	echo "Received response from goo.gl."
+	return result.id
+    endif
+
+    if error != ''
+	call s:errormsg("Error calling goo.gl API: ".error)
+	return ""
+    endif
+
+    call s:errormsg("No result returned by goo.gl API.")
+    return ""
+endfunction
+
+
+" Call Goo.gl API (old version) to shorten a URL.
+function! s:_call_googl(url)
     let url = "http://goo.gl/api/url"
     let parms = { "url": a:url }
 
@@ -3858,17 +4454,17 @@ function! s:call_googl(url)
 
     let [error, output] = s:run_curl(url, '', s:get_proxy(), s:get_proxy_login(), parms)
 
-    let matchres = matchlist(output, '"error_message":"\([^"]*\)"')
-    if matchres != []
-	call s:errormsg("Error calling goo.gl API: ".matchres[1])
+    let result = s:parse_json(output)
+
+    if has_key(result, 'error_message')
+	call s:errormsg("Error calling goo.gl API: ".result.error_message)
 	return ""
     endif
 
-    let matchres = matchlist(output, '"short_url":"\([^"]*\)"')
-    if matchres != []
+    if has_key(result, 'short_url')
 	redraw
 	echo "Received response from goo.gl."
-	return matchres[1]
+	return result.short_url
     endif
 
     if error != ''
@@ -4035,6 +4631,16 @@ if !exists(":AGoogl")
 endif
 if !exists(":PGoogl")
     command -nargs=? PGoogl :call <SID>GetShortURL("cmdline", <q-args>, "call_googl")
+endif
+
+if !exists(":OldGoogl")
+    command -nargs=? OldGoogl :call <SID>GetShortURL("insert", <q-args>, "_call_googl")
+endif
+if !exists(":AOldGoogl")
+    command -nargs=? AOldGoogl :call <SID>GetShortURL("append", <q-args>, "_call_googl")
+endif
+if !exists(":POldGoogl")
+    command -nargs=? POldGoogl :call <SID>GetShortURL("cmdline", <q-args>, "_call_googl")
 endif
 
 if !exists(":Rgala")
