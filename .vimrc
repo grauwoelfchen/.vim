@@ -166,6 +166,9 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
+"" yankring
+let g:yankring_max_history=50
+let g:yankring_max_element_length=2097152 "2M
 
 "" white space
 autocmd BufWritePre * :%s/\s\+$//ge
@@ -214,9 +217,10 @@ set filetype=ignored
 "" arduino
 autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 
+
 """ apps
 "" twitvim
-let twitvim_count = 30
+let twitvim_count=30
 nnoremap ,tp :<C-u>PosttoTwitter<CR>
 nnoremap ,tf :<C-u>FriendsTwitter<CR><C-w>j
 nnoremap ,tu :<C-u>UserTwitter<CR><C-w>j
