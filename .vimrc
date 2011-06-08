@@ -223,6 +223,8 @@ nnoremap ,tu :<C-u>UserTwitter<CR><C-w>j
 nnoremap ,tr :<C-u>RepliesTwitter<CR><C-w>j
 nnoremap ,tn :<C-u>NextTwitter<CR>
 
+let g:yankring_max_history = 50
+let g:yankring_max_element_length = 2097152 "2M
 
 """ command
 "" rename current file
