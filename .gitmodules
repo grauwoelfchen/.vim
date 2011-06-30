@@ -43,3 +43,6 @@
 [submodule "bundle/unite-vim"]
 	path = bundle/unite-vim
 	url = https://github.com/Shougo/unite.vim.git
+[submodule "bundle/alignta.vim"]
+	path = bundle/alignta.vim
+	url = https://github.com/h1mesuke/vim-alignta.git
