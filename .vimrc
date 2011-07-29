@@ -117,20 +117,27 @@ set cinwords=if,else,while,do,for,switch,case
 syntax on
 filetype plugin indent on
 
-"" autocomlpop
-"inoremap ,s <ESC>:AutoComplPopDisable<CR>a
-"inoremap ,q <ESC>:AutoComplPopEnable<CR>a
-"nnoremap ,s :AutoComplPopDisable<CR>
-"nnoremap ,q :AutoComplPopEnable<CR>
-
 "" neocomplcache
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_auto_completion_start_length=2
+let g:NeoComplCache_keyword_completion_start_length=1
+let g:neocomplcache_enable_camel_case_completion=1
+let g:neocomplcache_enable_underbar_completion=1
+let g:NeoComplCache_min_keyword_length=3
+let g:NeoComplCache_min_syntax_length=3
 let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_enable_auto_select=1
-let g:neocomplcache_max_list=30
-inoremap <expr><C-x> neocomplcache#complete_common_string()
-inoremap <expr><C-x><CR> neocomplcache#smart_close_popup()
+let g:neocomplcache_max_list=20
+let g:neocomplcache_snippets_dir=$HOME.'/.vim/snippets'
+let g:neocomplcache_dictionary_filetype_lists={
+\  'default' : '',
+\  'ruby'    : $HOME.'/.vim/dict/ruby.dict',
+\  'php'     : $HOME.'/.vim/dict/php.dict'
+\}
+imap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g> neocomplcache#undo_completion()
+inoremap <expr><C-l> neocomplcache#complete_common_string()
 
 "" zencoding
 let g:user_zen_expandabbr_key='<C-y>,'
@@ -179,10 +186,10 @@ autocmd fileType ruby,eruby setl dictionary=~/.vim/dict/ruby.dict
 autocmd fileType php setl dictionary=~/.vim/dict/php.dict
 
 "" omnifunc [C-x, C-o]
-set omnifunc=syntaxcomplete#Complete
-autocmd fileType * let g:AutoComplPop_CompleteOption='.,w,b,u,t,i'
-autocmd fileType ruby let g:AutoComplPop_CompleteOption='.,w,b,u,t,i,k~/.vim/dict/ruby.dict'
-autocmd fileType php let g:AutoComplPop_CompleteOption='.,w,b,u,t,k~/.vim/dict/php.dict'
+"set omnifunc=syntaxcomplete#Complete
+"autocmd fileType * let g:AutoComplPop_CompleteOption='.,w,b,u,t,i'
+"autocmd fileType ruby let g:AutoComplPop_CompleteOption='.,w,b,u,t,i,k~/.vim/dict/ruby.dict'
+"autocmd fileType php let g:AutoComplPop_CompleteOption='.,w,b,u,t,k~/.vim/dict/php.dict'
 
 "" ruby
 let g:rubycomplete_buffer_loading=1
