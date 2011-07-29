@@ -173,6 +173,10 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
+"" buftabs
+noremap <f1> :bprev<CR>
+noremap <f2> :bnext<CR>
+
 "" yankring
 let g:yankring_max_history=50
 let g:yankring_max_element_length=2097152 "2M
