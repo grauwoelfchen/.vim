@@ -58,7 +58,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set textwidth=0
-set statusline=%n\:%y%F\ \ %{(&fenc!=''?&fenc:&enc).'\ '.&ff.'\ '}%m%r%=
+set statusline=%n\:%y%F\ \ %{(&fenc!=''?&fenc:&enc).'\ '.&ff.'\ '}%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 highlight Comment term=NONE cterm=NONE ctermfg=green
 highlight StatusLine term=NONE cterm=NONE ctermfg=gray ctermbg=black
 "" line length
