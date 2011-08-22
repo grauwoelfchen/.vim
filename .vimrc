@@ -10,7 +10,6 @@ set ttyfast
 "" beep
 set vb t_vb=
 "" new line
-set fileformats=unix,mac
 set writebackup
 set backup
 set backupdir=~/Documents/.backup
@@ -85,6 +84,11 @@ set whichwrap=b,s,h,l,<,>,[,]
 
 """ others
 set encoding=utf-8
+set fileencodings=utf-8
+set fileformats=unix,mac
+"set encoding=japan
+"set fileencodings=iso-2022-jp,euc-jp,cp932,ucs-bom,utf-8,default,latin1
+"set fileformats=dos,unix,mac
 "undo
 set hidden
 "set autochdir
