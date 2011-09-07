@@ -39,6 +39,8 @@ imap <C-j> <Down>
 imap <C-k> <Up>
 imap <C-h> <Left>
 imap <C-l> <Right>
+"" matchit.vim
+source $VIMRUNTIME/macros/matchit.vim
 
 
 """ view
