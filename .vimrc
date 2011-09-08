@@ -1,6 +1,8 @@
 """ Last modified Sun, 23. Jan. 2011
 """
 
+
+
 """ basic
 set nocompatible
 set showmode
@@ -82,6 +84,14 @@ set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
 "nnoremap j gj
 "nnoremap k gk
+function! MagicComment()
+  return "# -*- encoding: utf-8 -*-\<CR>"
+endfunction
+inoreabbrev <buffer> ## <C-R>=MagicComment()<CR>
+
+
+""" templates
+autocmd BufNewFile *.rb 0r ~/.vim/templates/rb.tpl
 
 
 """ others
