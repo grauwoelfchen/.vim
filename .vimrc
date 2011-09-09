@@ -1,8 +1,6 @@
 """ Last modified Sun, 23. Jan. 2011
 """
 
-
-
 """ basic
 set nocompatible
 set showmode
@@ -98,9 +96,6 @@ autocmd BufNewFile *.rb 0r ~/.vim/templates/rb.tpl
 set encoding=utf-8
 set fileencodings=utf-8
 set fileformats=unix,mac
-"set encoding=japan
-"set fileencodings=iso-2022-jp,euc-jp,cp932,ucs-bom,utf-8,default,latin1
-"set fileformats=dos,unix,mac
 "undo
 set hidden
 "set autochdir
