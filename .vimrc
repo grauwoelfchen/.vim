@@ -1,6 +1,8 @@
 """ Last modified Sun, 23. Jan. 2011
 """
 
+
+
 """ basic
 set nocompatible
 set showmode
@@ -10,7 +12,6 @@ set ttyfast
 "" beep
 set vb t_vb=
 "" new line
-set fileformats=unix,mac
 set writebackup
 set backup
 set backupdir=~/Documents/.backup
@@ -40,6 +41,8 @@ imap <C-j> <Down>
 imap <C-k> <Up>
 imap <C-h> <Left>
 imap <C-l> <Right>
+"" matchit.vim
+source $VIMRUNTIME/macros/matchit.vim
 
 
 """ view
@@ -81,10 +84,23 @@ set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
 "nnoremap j gj
 "nnoremap k gk
+function! MagicComment()
+  return "# -*- encoding: utf-8 -*-\<CR>"
+endfunction
+inoreabbrev <buffer> ## <C-R>=MagicComment()<CR>
+
+
+""" templates
+autocmd BufNewFile *.rb 0r ~/.vim/templates/rb.tpl
 
 
 """ others
 set encoding=utf-8
+set fileencodings=utf-8
+set fileformats=unix,mac
+"set encoding=japan
+"set fileencodings=iso-2022-jp,euc-jp,cp932,ucs-bom,utf-8,default,latin1
+"set fileformats=dos,unix,mac
 "undo
 set hidden
 "set autochdir
