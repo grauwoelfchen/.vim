@@ -27,6 +27,9 @@ set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 set ignorecase
 set smartcase
+"" grep
+set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
+set grepprg=grep\ -nh
 "" help
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 
