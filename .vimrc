@@ -44,6 +44,14 @@ imap <C-h> <Left>
 imap <C-l> <Right>
 "" matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
+"" showmarks
+:let g:showmarks_include="abcdefghijklmnopqlstuvwxyzABCDEFGHIJKLMNOPQLSTUVWXYZ"
+"" marks_corey.vim
+map md <Plug>Remove_all_signs
+map mm <Plug>Place_sign
+map mn <Plug>Goto_next_sign
+map mp <Plug>Goto_prev_sign
+map m. <Plug>Move_sign
 
 
 """ view
