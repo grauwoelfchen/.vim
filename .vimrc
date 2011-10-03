@@ -47,11 +47,11 @@ source $VIMRUNTIME/macros/matchit.vim
 "" showmarks
 :let g:showmarks_include="abcdefghijklmnopqlstuvwxyzABCDEFGHIJKLMNOPQLSTUVWXYZ"
 "" marks_corey.vim
-map <Leader>md <Plug>Remove_all_signs
-"map <Leader>mm <Plug>Place_sign
-map <Leader>mn <Plug>Goto_next_sign
-map <Leader>mp <Plug>Goto_prev_sign
-map <Leader>m. <Plug>Move_sign
+map md <Plug>Remove_all_signs
+map mm <Plug>Place_sign
+map mn <Plug>Goto_next_sign
+map mp <Plug>Goto_prev_sign
+map m. <Plug>Move_sign
 
 
 """ view
