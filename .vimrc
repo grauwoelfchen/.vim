@@ -27,6 +27,9 @@ set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 set ignorecase
 set smartcase
+"" grep
+set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
+set grepprg=grep\ -nh
 "" help
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 
@@ -41,6 +44,14 @@ imap <C-h> <Left>
 imap <C-l> <Right>
 "" matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
+"" showmarks
+:let g:showmarks_include="abcdefghijklmnopqlstuvwxyzABCDEFGHIJKLMNOPQLSTUVWXYZ"
+"" marks_corey.vim
+map md <Plug>Remove_all_signs
+map mm <Plug>Place_sign
+map mn <Plug>Goto_next_sign
+map mp <Plug>Goto_prev_sign
+map m. <Plug>Move_sign
 
 
 """ view
