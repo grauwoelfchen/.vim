@@ -200,8 +200,12 @@ noremap <f1> :bprev<CR>
 noremap <f2> :bnext<CR>
 
 "" yankring
-let g:yankring_max_history=50
+noremap <silent> <F7> :YRShow<CR>
+let g:yankring_history_dir=expand('$HOME/Documents/')
+let g:yankring_history_file='.yankring_history'
+let g:yankring_max_history=10
 let g:yankring_max_element_length=2097152 "2M
+let g:yankring_window_height=13
 
 "" white space
 autocmd BufWritePre * :%s/\s\+$//ge
