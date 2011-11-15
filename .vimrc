@@ -196,6 +196,8 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 "" buftabs
+let buftabs_only_basename=1
+let buftabs_in_statusline=1
 noremap <f1> :bprev<CR>
 noremap <f2> :bnext<CR>
 
