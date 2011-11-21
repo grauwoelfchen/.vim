@@ -236,6 +236,7 @@ au BufRead,BufNewFile *.rb setfiletype ruby
 autocmd fileType python setl omnifunc=pythoncomplete#Complete
 
 "" php
+autocmd BufNewFile,BufRead *.ctp, *.html set filetype=php
 autocmd fileType php imap ,pp<ESC> :call PhpDocSingle()<CR>i
 autocmd fileType php nmap ,pp :call PhpDocSingle()<CR>
 autocmd fileType php vmap ,pp :call PhpDocRange()<CR>
@@ -272,4 +273,3 @@ let g:yankring_max_element_length = 2097152 "2M
 """ command
 "" rename current file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
-
