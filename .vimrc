@@ -96,7 +96,7 @@ set whichwrap=b,s,h,l,<,>,[,]
 function! MagicComment()
   return "# -*- encoding: utf-8 -*-\<CR>"
 endfunction
-inoreabbrev <buffer> ## <C-R>=MagicComment()<CR>
+inoreabbrev <buffer> ##- <C-R>=MagicComment()<CR>
 
 
 """ templates
