@@ -96,7 +96,7 @@ set whichwrap=b,s,h,l,<,>,[,]
 function! MagicComment()
   return "# -*- encoding: utf-8 -*-\<CR>"
 endfunction
-inoreabbrev <buffer> ##- <C-R>=MagicComment()<CR>
+inoreabbrev <buffer> <Leader>## <C-R>=MagicComment()<CR>
 
 
 """ templates
@@ -203,7 +203,7 @@ noremap <silent> <F7> :YRShow<CR>
 let g:yankring_history_dir=expand('$HOME/Documents/')
 let g:yankring_history_file='.yankring_history'
 let g:yankring_max_history=10
-let g:yankring_max_element_length=2097152 "2M
+let g:yankring_max_element_length=1048576 "2M
 let g:yankring_window_height=13
 
 "" white space
