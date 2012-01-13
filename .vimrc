@@ -126,9 +126,6 @@ let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 "let g:netrw_browse_split=2
 let g:netrw_altv=1
 let g:netrw_winsize=""
-"" mailapp
-let MailApp_bundle="~/.vim/bundle/MailApp.bundle/"
-let MailApp_from="Yasuhiro Asaka <y.grauwoelfchen@gmail.com>"
 
 
 """ programming
