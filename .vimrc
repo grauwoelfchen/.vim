@@ -208,7 +208,7 @@ let g:yankring_window_height=13
 
 "" white space
 autocmd BufWritePre * :%s/\s\+$//ge
-autocmd BufWritePre * :%s/\t/  /ge
+"autocmd BufWritePre * :%s/\t/  /ge
 
 "" dict [C-x, C-k]
 autocmd fileType ruby,eruby setl dictionary=~/.vim/dict/ruby.dict
