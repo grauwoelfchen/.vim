@@ -239,7 +239,6 @@ autocmd fileType php nmap ,pp :call PhpDocSingle()<CR>
 autocmd fileType php vmap ,pp :call PhpDocRange()<CR>
 autocmd fileType php setl makeprg=php\ -l\ %
 autocmd fileType php setl errorformat=%m\ in\ %f\ on\ line\ %l
-autocmd filetype php setl errorformat=%m\ in\ %f\ on\ line\ %l
 let php_sql_query=1
 let php_htmlInStrings=1
 let php_noShortTags=1
