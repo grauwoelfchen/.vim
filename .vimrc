@@ -45,7 +45,7 @@ imap <C-l> <Right>
 "" matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 "" showmarks
-:let g:showmarks_include="abcdefghijklmnopqlstuvwxyzABCDEFGHIJKLMNOPQLSTUVWXYZ"
+let g:showmarks_include="abcdefghijklmnopqlstuvwxyzABCDEFGHIJKLMNOPQLSTUVWXYZ"
 "" marks_corey.vim
 map md <Plug>Remove_all_signs
 map mm <Plug>Place_sign
