@@ -88,7 +88,7 @@ set complete+=k
 set commentstring=\ #\ %s
 set foldlevel=0
 "set paste
-set clipboard+=unnamed
+set clipboard=unnamed,autoselect
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
 "nnoremap j gj
