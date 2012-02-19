@@ -213,6 +213,9 @@ let g:yankring_window_height=13
 "" dict [C-x, C-k]
 autocmd fileType ruby,eruby setl dictionary=~/.vim/dict/ruby.dict
 autocmd fileType php setl dictionary=~/.vim/dict/php.dict
+"" man
+nmap ,rf :<C-u>Ref refe <Space>
+
 
 "" omnifunc [C-x, C-o]
 "set omnifunc=syntaxcomplete#Complete
