@@ -231,6 +231,9 @@ let g:ref_alc_start_linenumber=40
 let g:rubycomplete_buffer_loading=1
 let g:rubycomplete_classes_in_global=1
 let g:rubycomplete_rails=1
+let ruby_fold=1
+nmap ]] ]m
+nmap [[ [m
 autocmd fileType ruby,eruby setl omnifunc=rubycomplete#Complete
 autocmd fileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd filetype ruby.eruby setl makeprg=ruby\ -c\ %
