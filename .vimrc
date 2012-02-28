@@ -12,8 +12,8 @@ set vb t_vb=
 "" new line
 set writebackup
 set backup
-set backupdir=~/Documents/.backup
-set directory=~/Documents/.swap
+set backupdir=~/Documents/.vim/.backup
+set directory=~/Documents/.vim/.swap
 "" IME
 set noimcmdline
 "" date
