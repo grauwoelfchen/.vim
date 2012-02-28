@@ -58,6 +58,7 @@ map m. <Plug>Move_sign
 set title
 set ruler
 set number
+set t_Co=256
 colorscheme ir_black
 "set list
 set laststatus=2
