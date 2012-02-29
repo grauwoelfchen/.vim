@@ -216,8 +216,6 @@ autocmd fileType ruby,eruby setl dictionary=~/.vim/dict/ruby.dict
 autocmd fileType php setl dictionary=~/.vim/dict/php.dict
 
 "" man
-""" ruby"
-nmap ,rr :<C-u>Ref refe<Space>
 """ alc"
 nmap ,ra :<C-u>Ref alc<Space>
 let g:ref_alc_start_linenumber=40
