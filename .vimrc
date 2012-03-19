@@ -1,4 +1,4 @@
-""" Last modified Sun, 23. Jan. 2011
+""" Mit.16.März.2012
 """
 
 """ basic
@@ -16,6 +16,7 @@ set backupdir=~/Documents/.vim/.backup
 set directory=~/Documents/.vim/.swap
 "" IME
 set noimcmdline
+set iminsert=0
 "" date
 inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
 
@@ -64,7 +65,6 @@ colorscheme ir_black
 set laststatus=2
 set showmatch
 set matchtime=2
-"highlight Comment ctermfg=green
 set wrap
 set expandtab
 set tabstop=2
@@ -95,7 +95,7 @@ set whichwrap=b,s,h,l,<,>,[,]
 "nnoremap j gj
 "nnoremap k gk
 function! MagicComment()
-  return "# -*- encoding: utf-8 -*-\<CR>"
+  return "# encoding: utf-8\<CR>"
 endfunction
 inoreabbrev <buffer> <Leader>## <C-R>=MagicComment()<CR>
 
@@ -107,7 +107,7 @@ autocmd BufNewFile *.rb 0r ~/.vim/templates/rb.tpl
 """ others
 "set encoding=utf-8
 "set fileencodings=utf-8
-set fileformats=unix,mac
+set fileformats=unix
 "undo
 set hidden
 "set autochdir
@@ -137,8 +137,8 @@ set cinwords=if,else,while,do,for,switch,case
 syntax on
 filetype plugin indent on
 
-"" neocomplcache
-let g:neocomplcache_enable_at_startup=1
+" neocomplcache
+"let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_auto_completion_start_length=2
 let g:NeoComplCache_keyword_completion_start_length=1
 let g:neocomplcache_enable_camel_case_completion=1
@@ -201,7 +201,7 @@ noremap <f2> :bnext<CR>
 
 "" yankring
 noremap <silent> <F7> :YRShow<CR>
-let g:yankring_history_dir=expand('$HOME/Documents/')
+let g:yankring_history_dir=expand('$HOME/Documents/.vim/')
 let g:yankring_history_file='.yankring_history'
 let g:yankring_max_history=10
 let g:yankring_max_element_length=1048576 "2M
@@ -212,8 +212,8 @@ let g:yankring_window_height=13
 "autocmd BufWritePre * :%s/\t/  /ge
 
 "" dict [C-x, C-k]
-autocmd fileType ruby,eruby setl dictionary=~/.vim/dict/ruby.dict
-autocmd fileType php setl dictionary=~/.vim/dict/php.dict
+"autocmd fileType ruby,eruby setl dictionary=~/.vim/dict/ruby.dict
+"autocmd fileType php setl dictionary=~/.vim/dict/php.dict
 
 "" man
 """ alc"
@@ -233,8 +233,8 @@ let g:rubycomplete_rails=1
 let ruby_fold=1
 nmap ]] ]m
 nmap [[ [m
-autocmd fileType ruby,eruby setl omnifunc=rubycomplete#Complete
-autocmd fileType ruby,eruby let g:rubycomplete_rails = 1
+"autocmd fileType ruby,eruby setl omnifunc=rubycomplete#Complete
+"autocmd fileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd filetype ruby.eruby setl makeprg=ruby\ -c\ %
 au BufRead,BufNewFile *.rb setfiletype ruby
 
@@ -263,16 +263,6 @@ set filetype=ignored
 autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 
 
-""" apps
-"" twitvim
-let twitvim_count=30
-nnoremap ,tp :<C-u>PosttoTwitter<CR>
-nnoremap ,tf :<C-u>FriendsTwitter<CR><C-w>j
-nnoremap ,tu :<C-u>UserTwitter<CR><C-w>j
-nnoremap ,tr :<C-u>RepliesTwitter<CR><C-w>j
-nnoremap ,tn :<C-u>NextTwitter<CR>
-
-
 """ command
 "" rename current file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
@@ -283,3 +273,31 @@ command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 "autocmd BufWritePost * checktime
 "set autoread
 
+
+"" no swap and backup
+"set nobackup
+"set noswapfile
+
+
+"" bundle plugin off
+"let g:pathogen_disabled = [
+"\ 'alignta.vim',
+"\ 'cocoa.vim',
+"\ 'fuzzyfinder',
+"\ 'git-vim',
+"\ 'neocomplcache',
+"\ 'nerdcommenter',
+"\ 'ri.vim',
+"\ 'snipmate.vim',
+"\ 'sudo.vim',
+"\ 'unite-vim',
+"\ 'vim-fugitive',
+"\ 'vim-haml',
+"\ 'vim-l9',
+"\ 'vim-rails',
+"\ 'vim-ref',
+"\ 'vim-ruby',
+"\ 'vim-surround',
+"\ 'yankring',
+"\ 'zencoding-vimbuz'
+"\]
