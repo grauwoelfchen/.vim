@@ -25,9 +25,11 @@ inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
 set incsearch
 set history=100
 set hlsearch
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
 set ignorecase
 set smartcase
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+nmap n nzz
+nmap N Nzz
 "" grep
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nh
