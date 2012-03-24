@@ -195,6 +195,16 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
+"" nerdcommenter
+let g:NERDCreateDefaultMappings=0
+let NERDSpaceDelims=1
+nmap <Leader>cc <Plug>NERDCommenterToggle
+vmap <Leader>cc <Plug>NERDCommenterToggle
+nmap <Leader>ca <Plug>NERDCommenterAppend
+nmap <leader>c$ <Plug>NERDCommenterToEOL
+vmap <Leader>cs <Plug>NERDCommenterSexy
+vmap <Leader>cb <Plug>NERDCommenterMinimal
+
 "" buftabs
 let buftabs_only_basename=1
 let buftabs_in_statusline=1
