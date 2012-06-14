@@ -140,13 +140,13 @@ syntax on
 filetype plugin indent on
 
 " neocomplcache
-"let g:neocomplcache_enable_at_startup=1
+let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_auto_completion_start_length=2
-let g:NeoComplCache_keyword_completion_start_length=1
+let g:neoComplCache_keyword_completion_start_length=1
 let g:neocomplcache_enable_camel_case_completion=1
 let g:neocomplcache_enable_underbar_completion=1
-let g:NeoComplCache_min_keyword_length=3
-let g:NeoComplCache_min_syntax_length=3
+let g:neoComplCache_min_keyword_length=3
+let g:neoComplCache_min_syntax_length=3
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_max_list=20
 let g:neocomplcache_snippets_dir=$HOME.'/.vim/snippets'
@@ -156,8 +156,8 @@ let g:neocomplcache_dictionary_filetype_lists={
 \  'php'     : $HOME.'/.vim/dict/php.dict'
 \}
 imap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
+imap <C-x> <Plug>(neocomplcache_snippets_expand)
+smap <C-x> <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 
@@ -313,3 +313,7 @@ command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 "\ 'yankring',
 "\ 'zencoding-vimbuz'
 "\]
+
+
+"" dev
+noremap <Space>s. :<C-u>source $MYVIMRC<CR>
