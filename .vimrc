@@ -1,5 +1,5 @@
-""" Mit.16.März.2012
-"""
+""" Diens.26.Mai.2012
+""" stockhorn
 
 """ basic
 set nocompatible
@@ -140,9 +140,9 @@ syntax on
 filetype plugin indent on
 
 " neocomplcache
-let g:neocomplcache_enable_at_startup=1
+"let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_auto_completion_start_length=2
-let g:neoComplCache_keyword_completion_start_length=1
+let g:neoComplCache_keyword_completion_start_length=2
 let g:neocomplcache_enable_camel_case_completion=1
 let g:neocomplcache_enable_underbar_completion=1
 let g:neoComplCache_min_keyword_length=3
@@ -172,7 +172,7 @@ let g:user_zen_settings={
 \}
 
 """ unite.vim
-let g:unite_enable_start_insert=1
+"let g:unite_enable_start_insert=1
 let g:unite_split_rule="botright"
 " buffers
 nnoremap <silent> ,Ub :<C-u>Unite buffer<CR>
