@@ -140,7 +140,7 @@ syntax on
 filetype plugin indent on
 
 " neocomplcache
-"let g:neocomplcache_enable_at_startup=1
+let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_auto_completion_start_length=2
 let g:neoComplCache_keyword_completion_start_length=2
 let g:neocomplcache_enable_camel_case_completion=1
@@ -174,17 +174,11 @@ let g:user_zen_settings={
 """ unite.vim
 "let g:unite_enable_start_insert=1
 let g:unite_split_rule="botright"
-" buffers
 nnoremap <silent> ,Ub :<C-u>Unite buffer<CR>
-" files
 nnoremap <silent> ,Uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-" registers
 nnoremap <silent> ,Ur :<C-u>Unite -buffer-name=register register<CR>
-" recent files
 nnoremap <silent> ,Um :<C-u>Unite file_mru<CR>
-" buffers and files
 nnoremap <silent> ,Uu :<C-u>Unite buffer file_mru<CR>
-" all
 nnoremap <silent> ,Ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 " window
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
