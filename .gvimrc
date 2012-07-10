@@ -6,7 +6,7 @@ if has('gui_macvim')
   set transparency=10
   set antialias
   set imdisable
-  set guifont=Panic\ Sans:h12
+  set guifont=Panic\ Sans:h18
   set guioptions-=T
   set guioptions-=r
   set guioptions-=R
