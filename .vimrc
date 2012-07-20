@@ -129,6 +129,7 @@ let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 "let g:netrw_browse_split=2
 let g:netrw_altv=1
 let g:netrw_winsize=""
+let g:netrw_bufsettings="noma nomod nu nobl nowrap ro"
 
 
 """ programming
