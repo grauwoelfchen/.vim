@@ -149,12 +149,12 @@ let g:neoComplCache_min_keyword_length=3
 let g:neoComplCache_min_syntax_length=3
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_max_list=20
-let g:neocomplcache_snippets_dir=$HOME.'/.vim/snippets'
-let g:neocomplcache_dictionary_filetype_lists={
-\  'default' : '',
-\  'ruby'    : $HOME.'/.vim/dict/ruby.dict',
-\  'php'     : $HOME.'/.vim/dict/php.dict'
-\}
+"let g:neocomplcache_snippets_dir=$HOME.'/.vim/snippets'
+"let g:neocomplcache_dictionary_filetype_lists={
+"\  'default' : '',
+"\  'ruby'    : $HOME.'/.vim/dict/ruby.dict',
+"\  'php'     : $HOME.'/.vim/dict/php.dict'
+"\}
 imap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
 imap <C-x> <Plug>(neocomplcache_snippets_expand)
 smap <C-x> <Plug>(neocomplcache_snippets_expand)
