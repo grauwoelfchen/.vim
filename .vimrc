@@ -1,5 +1,5 @@
-""" Diens.26.Mai.2012
-""" stockhorn
+"============================================================================
+"Last Change: Sonn. 12 Aug. 2012
 
 """ basic
 set nocompatible
@@ -115,16 +115,6 @@ set hidden
 "set autochdir
 "starting message
 set shortmess+=I
-
-
-""" plugins
-"" pathhogen
-filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-filetype on
-"" ctag
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 "" netrw
 "let g:netrw_browse_split=2
 let g:netrw_altv=1
@@ -132,15 +122,38 @@ let g:netrw_winsize=""
 let g:netrw_bufsettings="noma nomod nu nobl nowrap ro"
 
 
-""" programming
+""" programming & plugins
 set autoindent
 set smartindent
 set cindent
 set cinwords=if,else,while,do,for,switch,case
+
+"" pathhogen
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 syntax on
 filetype plugin indent on
 
-" neocomplcache
+"" ctags
+let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+
+"" white space
+"autocmd BufWritePre * :%s/\s\+$//ge
+"autocmd BufWritePre * :%s/\t/  /ge
+
+"" dict [C-x, C-k]
+"autocmd fileType ruby,eruby setl dictionary=~/.vim/dict/ruby.dict
+"autocmd fileType php setl dictionary=~/.vim/dict/php.dict
+
+"" omnifunc [C-x, C-o]
+"set omnifunc=syntaxcomplete#Complete
+"autocmd fileType * let g:AutoComplPop_CompleteOption='.,w,b,u,t,i'
+"autocmd fileType ruby let g:AutoComplPop_CompleteOption='.,w,b,u,t,i,k~/.vim/dict/ruby.dict'
+"autocmd fileType php let g:AutoComplPop_CompleteOption='.,w,b,u,t,k~/.vim/dict/php.dict'
+
+"" neocomplcache
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_auto_completion_start_length=2
 let g:neoComplCache_keyword_completion_start_length=2
@@ -172,7 +185,7 @@ let g:user_zen_settings={
 \  }
 \}
 
-""" unite.vim
+"" unite.vim
 "let g:unite_enable_start_insert=1
 let g:unite_split_rule="botright"
 nnoremap <silent> ,Ub :<C-u>Unite buffer<CR>
@@ -181,12 +194,12 @@ nnoremap <silent> ,Ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,Um :<C-u>Unite file_mru<CR>
 nnoremap <silent> ,Uu :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> ,Ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-" window
+"" window
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-" quit
+"" quit
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
@@ -213,20 +226,6 @@ let g:yankring_history_file='.yankring_history'
 let g:yankring_max_history=10
 let g:yankring_max_element_length=1048576 "2M
 let g:yankring_window_height=13
-
-"" white space
-"autocmd BufWritePre * :%s/\s\+$//ge
-"autocmd BufWritePre * :%s/\t/  /ge
-
-"" dict [C-x, C-k]
-"autocmd fileType ruby,eruby setl dictionary=~/.vim/dict/ruby.dict
-"autocmd fileType php setl dictionary=~/.vim/dict/php.dict
-
-"" omnifunc [C-x, C-o]
-"set omnifunc=syntaxcomplete#Complete
-"autocmd fileType * let g:AutoComplPop_CompleteOption='.,w,b,u,t,i'
-"autocmd fileType ruby let g:AutoComplPop_CompleteOption='.,w,b,u,t,i,k~/.vim/dict/ruby.dict'
-"autocmd fileType php let g:AutoComplPop_CompleteOption='.,w,b,u,t,k~/.vim/dict/php.dict'
 
 "" ruby
 let g:rubycomplete_buffer_loading=1
@@ -258,52 +257,46 @@ autocmd syntax php setl fdm=syntax
 
 "" objc
 autocmd fileType objc setl makeprg=xcodebuild
-
-set filetype=ignored
+"set filetype=ignored
 
 "" arduino
 autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 
-
-""" command
-"" rename current file
-command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
-
+"" bundle plugin off
+"let g:pathogen_disabled = [
+"\ 'neocomplcache',
+"\ 'nerdcommenter',
+"\ 'unite-vim',
+"\]
 
 "" for samba bug ;-(
 "autocmd BufWritePost * sleep 1
 "autocmd BufWritePost * checktime
 "set autoread
 
+"" command
+"" rename current file
+command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 
 "" no swap and backup
 "set nobackup
 "set noswapfile
 
 
-"" bundle plugin off
-"let g:pathogen_disabled = [
-"\ 'alignta.vim',
-"\ 'cocoa.vim',
-"\ 'fuzzyfinder',
-"\ 'git-vim',
-"\ 'neocomplcache',
-"\ 'nerdcommenter',
-"\ 'ri.vim',
-"\ 'snipmate.vim',
-"\ 'sudo.vim',
-"\ 'unite-vim',
-"\ 'vim-fugitive',
-"\ 'vim-haml',
-"\ 'vim-l9',
-"\ 'vim-rails',
-"\ 'vim-ref',
-"\ 'vim-ruby',
-"\ 'vim-surround',
-"\ 'yankring',
-"\ 'zencoding-vimbuz'
-"\]
-
-
 "" dev
 noremap <Space>s. :<C-u>source $MYVIMRC<CR>
+"" Load settings for each location.
+let g:loaded_vimrc = 0
+augroup vimrc-local
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+function! s:vimrc_local(loc)
+  let files = findfile('.vimrc.local', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction
+if g:loaded_vimrc == 0
+  call s:vimrc_local(getcwd())
+endif
