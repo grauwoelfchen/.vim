@@ -61,13 +61,13 @@ set title
 set ruler
 set number
 set t_Co=256
-augroup guicolorscheme
+augroup GuiColorScheme
   autocmd!
   runtime! bundle/vim-guicolorscheme/plugin/guicolorscheme.vim
   autocmd ColorScheme * GuiColorScheme gr_black
 augroup END
 colorscheme gr_black
-"set list
+"set list listchars=tab:^_,trail:_
 set laststatus=2
 set showmatch
 set matchtime=2
@@ -81,7 +81,7 @@ set statusline=%n\:%y%F\ \ %{(&fenc!=''?&fenc:&enc).'\ '.&ff.'\ '}%m%r%{fugitive
 highlight Comment term=NONE cterm=NONE ctermfg=green
 highlight StatusLine term=NONE cterm=NONE ctermfg=gray ctermbg=black
 "" line length
-augroup vimrc_autocmds
+augroup HighlightOverLength
   autocmd BufEnter * highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
   autocmd BufEnter * match OverLength /\%81v.\+/
 augroup END
@@ -146,6 +146,11 @@ let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 "" white space
 "autocmd BufWritePre * :%s/\s\+$//ge
 "autocmd BufWritePre * :%s/\t/  /ge
+augroup HighlightTrailingSpaces
+  autocmd!
+  autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
+  autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
+augroup END
 
 "" dict [C-x, C-k]
 "autocmd fileType ruby,eruby setl dictionary=~/.vim/dict/ruby.dict
