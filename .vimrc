@@ -1,5 +1,4 @@
-"============================================================================
-"Last Change: Sonn. 12 Aug. 2012
+" Last Change: Sun. 12 Aug. 2012
 
 """ basic
 set nocompatible
@@ -62,7 +61,12 @@ set title
 set ruler
 set number
 set t_Co=256
-colorscheme ir_black
+augroup guicolorscheme
+  autocmd!
+  runtime! bundle/vim-guicolorscheme/plugin/guicolorscheme.vim
+  autocmd ColorScheme * GuiColorScheme gr_black
+augroup END
+colorscheme gr_black
 "set list
 set laststatus=2
 set showmatch
@@ -155,20 +159,24 @@ let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 
 "" neocomplcache
 let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_auto_completion_start_length=2
-let g:neoComplCache_keyword_completion_start_length=2
+let g:neocomplcache_skip_completion_time=0.3
+let g:neocomplcache_auto_completion_start_length=3
+let g:neocomplcache_keyword_completion_start_length=3
 let g:neocomplcache_enable_camel_case_completion=1
 let g:neocomplcache_enable_underbar_completion=1
-let g:neoComplCache_min_keyword_length=3
-let g:neoComplCache_min_syntax_length=3
+let g:neocomplcache_min_keyword_length=3
+let g:neocomplcache_min_syntax_length=3
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_max_list=20
-"let g:neocomplcache_snippets_dir=$HOME.'/.vim/snippets'
-"let g:neocomplcache_dictionary_filetype_lists={
-"\  'default' : '',
-"\  'ruby'    : $HOME.'/.vim/dict/ruby.dict',
-"\  'php'     : $HOME.'/.vim/dict/php.dict'
+"let g:neocomplcache_omni_patterns={
+"\  'ruby' : ''
 "\}
+let g:neocomplcache_snippets_dir=$HOME.'/.vim/snippets'
+let g:neocomplcache_dictionary_filetype_lists={
+\  'default' : '',
+\  'ruby'    : $HOME.'/.vim/dict/ruby.dict',
+\  'php'     : $HOME.'/.vim/dict/php.dict'
+\}
 imap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
 imap <C-x> <Plug>(neocomplcache_snippets_expand)
 smap <C-x> <Plug>(neocomplcache_snippets_expand)
@@ -195,13 +203,13 @@ nnoremap <silent> ,Um :<C-u>Unite file_mru<CR>
 nnoremap <silent> ,Uu :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> ,Ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 "" window
-au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+autocmd FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+autocmd FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 "" quit
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 "" nerdcommenter
 let g:NERDCreateDefaultMappings=0
@@ -234,29 +242,37 @@ let g:rubycomplete_rails=1
 let ruby_fold=1
 nmap ]] ]m
 nmap [[ [m
-"autocmd fileType ruby,eruby setl omnifunc=rubycomplete#Complete
-"autocmd fileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd filetype ruby.eruby setl makeprg=ruby\ -c\ %
-au BufRead,BufNewFile *.rb setfiletype ruby
+"autocmd FileType ruby,eruby setl omnifunc=rubycomplete#Complete
+"autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd Filetype ruby.eruby setl makeprg=ruby\ -c\ %
+autocmd BufRead,BufNewFile *.rb setfiletype ruby
+augroup rbsyntaxcheck
+  autocmd!
+  autocmd BufWrite *.rb w !ruby -c
+augroup END
 
 "" python
-autocmd fileType python setl omnifunc=pythoncomplete#Complete
+autocmd FileType python setl omnifunc=pythoncomplete#Complete
 
 "" php
 autocmd BufNewFile,BufRead *.ctp, *.html set filetype=php
-autocmd fileType php imap ,pp<ESC> :call PhpDocSingle()<CR>i
-autocmd fileType php nmap ,pp :call PhpDocSingle()<CR>
-autocmd fileType php vmap ,pp :call PhpDocRange()<CR>
-autocmd fileType php setl makeprg=php\ -l\ %
-autocmd fileType php setl errorformat=%m\ in\ %f\ on\ line\ %l
+autocmd FileType php imap ,pp<ESC> :call PhpDocSingle()<CR>i
+autocmd FileType php nmap ,pp :call PhpDocSingle()<CR>
+autocmd FileType php vmap ,pp :call PhpDocRange()<CR>
+autocmd FileType php setl makeprg=php\ -l\ %
+autocmd FileType php setl errorformat=%m\ in\ %f\ on\ line\ %l
 let php_sql_query=1
 let php_htmlInStrings=1
 let php_noShortTags=1
 let php_folding=1
-autocmd syntax php setl fdm=syntax
+autocmd Syntax php setl fdm=syntax
+augroup phpsyntaxcheck
+  autocmd!
+  autocmd BufWrite *.php w !php -l
+augroup END
 
 "" objc
-autocmd fileType objc setl makeprg=xcodebuild
+autocmd FileType objc setl makeprg=xcodebuild
 "set filetype=ignored
 
 "" arduino
