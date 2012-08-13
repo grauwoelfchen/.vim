@@ -82,3 +82,12 @@
 	path = bundle/vim-gf-diff
 	url = https://github.com/kana/vim-gf-diff.git
   ignore = untracked
+[submodule "bundle/togetter-vim"]
+	path = bundle/togetter-vim
+	url = https://github.com/mattn/togetter-vim.git
+[submodule "bundle/webapi-vim"]
+	path = bundle/webapi-vim
+	url = https://github.com/mattn/webapi-vim.git
+[submodule "bundle/vim-guicolorscheme"]
+	path = bundle/vim-guicolorscheme
+	url = https://github.com/thinca/vim-guicolorscheme
