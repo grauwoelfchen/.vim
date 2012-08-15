@@ -26,9 +26,9 @@ set history=100
 set hlsearch
 set ignorecase
 set smartcase
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
-nmap n nzz
-nmap N Nzz
+nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap n nzz
+nnoremap N Nzz
 "" grep
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nh
@@ -37,13 +37,12 @@ nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 
 
 """ move
-map <C-e> <END>
-map <C-a> <HOME>
-"" at insert mode
-imap <C-j> <Down>
-imap <C-k> <Up>
-imap <C-h> <Left>
-imap <C-l> <Right>
+noremap <C-e> <END>
+noremap <C-a> <HOME>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
 "" matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 "" showmarks
@@ -95,6 +94,8 @@ set complete+=k
 set commentstring=\ #\ %s
 set foldlevel=0
 "set paste
+noremap qp `[v`]
+"noremap <expr> qp '`['.strpart(getregtype(), 0, 1).'`]'
 set clipboard=unnamed,autoselect
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
@@ -182,7 +183,7 @@ let g:neocomplcache_dictionary_filetype_lists={
 \  'ruby'    : $HOME.'/.vim/dict/ruby.dict',
 \  'php'     : $HOME.'/.vim/dict/php.dict'
 \}
-imap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
+inoremap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
 imap <C-x> <Plug>(neocomplcache_snippets_expand)
 smap <C-x> <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g> neocomplcache#undo_completion()
@@ -219,8 +220,7 @@ autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 "" nerdcommenter
 let g:NERDCreateDefaultMappings=0
 let NERDSpaceDelims=1
-nmap <Leader>cc <Plug>NERDCommenterToggle
-vmap <Leader>cc <Plug>NERDCommenterToggle
+map <Leader>cc <Plug>NERDCommenterToggle
 nmap <Leader>ca <Plug>NERDCommenterAppend
 nmap <leader>c$ <Plug>NERDCommenterToEOL
 vmap <Leader>cs <Plug>NERDCommenterSexy
@@ -245,8 +245,8 @@ let g:rubycomplete_buffer_loading=1
 let g:rubycomplete_classes_in_global=1
 let g:rubycomplete_rails=1
 let ruby_fold=1
-nmap ]] ]m
-nmap [[ [m
+nnoremap ]] ]m
+nnoremap [[ [m
 "autocmd FileType ruby,eruby setl omnifunc=rubycomplete#Complete
 "autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd Filetype ruby.eruby setl makeprg=ruby\ -c\ %
