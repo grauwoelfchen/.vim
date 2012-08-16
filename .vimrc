@@ -220,7 +220,7 @@ autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 "" nerdcommenter
 let g:NERDCreateDefaultMappings=0
 let NERDSpaceDelims=1
-map <Leader>cc <Plug>NERDCommenterToggle
+map  <Leader>cc <Plug>NERDCommenterToggle
 nmap <Leader>ca <Plug>NERDCommenterAppend
 nmap <leader>c$ <Plug>NERDCommenterToEOL
 vmap <Leader>cs <Plug>NERDCommenterSexy
