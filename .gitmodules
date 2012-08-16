@@ -94,3 +94,6 @@
 [submodule "bundle/hello-vim"]
 	path = bundle/hello-vim
 	url = https://github.com/grauwoelfchen/hello-vim.git
+[submodule "bundle/pinponpanpon-vim"]
+	path = bundle/pinponpanpon-vim
+	url = git@github.com:grauwoelfchen/pinponpanpon-vim.git
