@@ -54,7 +54,7 @@ source $VIMRUNTIME/macros/matchit.vim
 set title
 set ruler
 set number
-set t_Co=256
+"set t_Co=256
 augroup apply_gui_color_scheme
   autocmd!
   runtime! bundle/vim-guicolorscheme/plugin/guicolorscheme.vim
