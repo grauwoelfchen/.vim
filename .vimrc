@@ -1,4 +1,5 @@
 " Last Change: Sams. 18 Aug. 2012
+scriptencoding utf-8
 
 """ basic {{{
 set nocompatible
@@ -75,7 +76,6 @@ set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
 set statusline+=\ %m%r%{fugitive#head()}
 set statusline+=\ %03l,%02v\ %P
 set laststatus=2
-highlight StatusLine term=NONE cterm=NONE ctermfg=gray ctermbg=black
 augroup highlight_over_length
   autocmd BufEnter * highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
   autocmd BufEnter * match OverLength /\%81v.\+/
@@ -210,6 +210,12 @@ let g:yankring_window_height=13
 " \ 'neocomplcache',
 " \ 'unite-vim',
 " \]
+"" my plugins :)
+"" hello-vim
+let g:hello_say_words="Grüezi,Vim"
+let g:hello_say_voice="Alex"
+"" pinponpanpon-vim
+let g:pinponpanpon_area_name="さいたま市"
 " }}}
 
 """ filer {{{
@@ -219,6 +225,7 @@ let g:netrw_winsize=""
 let g:netrw_bufsettings="noma nomod nu nobl nowrap ro"
 "" samba ;-(
 " augroup on_samba
+  " autocmd!
   " autocmd BufWritePost * sleep 1
   " autocmd BufWritePost * checktime
   " set autoread
