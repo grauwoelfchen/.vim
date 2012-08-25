@@ -230,6 +230,11 @@ let g:yankring_window_height=13
 " \ 'neocomplcache',
 " \ 'unite-vim',
 " \]
+"" ri.vim
+"" split 0 => h, 1 => v
+nnoremap ,r :call ri#OpenSearchPrompt(0)<CR>
+nnoremap ,R :call ri#OpenSearchPrompt(1)<CR>
+nnoremap ,K :call ri#LookupNameUnderCursor()<CR>
 "" my plugins :)
 "" hello-vim
 let g:hello_say_words="Grüezi,Vim"
