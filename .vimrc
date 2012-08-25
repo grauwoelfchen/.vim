@@ -33,35 +33,45 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 "" grep
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
-set grepprg=grep\ -nh
+set grepprg=grep\ -nH
+augroup quickfix_open
+  autocmd!
+  autocmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) | copen | endif
+augroup END
 "" help
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 " }}}
 
 """ move {{{
-noremap <C-e> <END>
-noremap <C-a> <HOME>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+"" normal
+noremap <C-a> <Home>
+noremap <C-e> <End>
 " nnoremap j gj
 " nnoremap k gk
+"" insert
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+"" command
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <C-d> <Del>
 "" matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 " }}}
 
 """ view {{{
 set title
-set ruler
+" set ruler
 set number
-"set t_Co=256
-augroup apply_gui_color_scheme
-  autocmd!
-  runtime! bundle/vim-guicolorscheme/plugin/guicolorscheme.vim
-  autocmd ColorScheme * GuiColorScheme gr_black
-augroup END
-colorscheme gr_black
+" set t_Co=256
 " set list listchars=tab:^_,trail:_
 set showmatch
 set matchtime=2
@@ -71,11 +81,19 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set textwidth=0
+augroup apply_gui_color_scheme
+  autocmd!
+  runtime! bundle/vim-guicolorscheme/plugin/guicolorscheme.vim
+  autocmd ColorScheme * GuiColorScheme gr_black
+augroup END
+colorscheme gr_black
+"" right side
 set statusline=%=%y\ %n\ %f
 set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
 set statusline+=\ %m%r%{fugitive#head()}
 set statusline+=\ %03l,%02v\ %P
 set laststatus=2
+" set colorcolumn=80
 augroup highlight_over_length
   autocmd BufEnter * highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
   autocmd BufEnter * match OverLength /\%81v.\+/
@@ -105,7 +123,7 @@ set fileformats=unix
 " undo
 set hidden
 " set autochdir
-" starting message
+"" starting message
 set shortmess+=I
 "" template
 augroup apply_template
@@ -141,9 +159,9 @@ let g:neocomplcache_dictionary_filetype_lists={
 \  'ruby'    : $HOME.'/.vim/dict/ruby.dict',
 \  'php'     : $HOME.'/.vim/dict/php.dict'
 \}
-inoremap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
 imap <C-x> <Plug>(neocomplcache_snippets_expand)
 smap <C-x> <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 "" zencoding
@@ -188,12 +206,13 @@ vmap <Leader>cb <Plug>NERDCommenterMinimal
 let g:buftabs_only_basename=1
 let g:buftabs_in_statusline=1
 let g:buftabs_active_highlight_group="Visual"
-noremap <f1> :bprev<CR>
-noremap <f2> :bnext<CR>
+noremap <F1> :bprev<CR>
+noremap <F2> :bnext<CR>
 "" showmarks
 let g:showmarks_include="abcdefghijklmnopqlstuvwxyzABCDEFGHIJKLMNOPQLSTUVWXYZ"
 "" marks_corey.vim
 map md <Plug>Remove_all_signs
+"" as toggle
 map mm <Plug>Place_sign
 map mn <Plug>Goto_next_sign
 map mp <Plug>Goto_prev_sign
@@ -203,7 +222,8 @@ noremap <silent> <F7> :YRShow<CR>
 let g:yankring_history_dir=expand('$HOME/.vim/')
 let g:yankring_history_file='.yankring_history'
 let g:yankring_max_history=10
-let g:yankring_max_element_length=1048576 "2M
+"" 2M
+let g:yankring_max_element_length=1048576
 let g:yankring_window_height=13
 "" bundle plugin off
 " let g:pathogen_disabled = [
@@ -251,7 +271,7 @@ augroup highlight_trailing_spaces
   autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
-"" omnifunc [C-x, C-o]
+"" omnifunc
 " set omnifunc=syntaxcomplete#Complete
 " }}}
 
@@ -285,7 +305,7 @@ inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
 function! MagicComment()
   return "# encoding: utf-8\<CR>"
 endfunction
-inoreabbrev <buffer> <Leader>## <C-R>=MagicComment()<CR>
+inoremap <buffer> <Leader>## <C-R>=MagicComment()<CR>
 " }}}
 
 """ vim {{{
