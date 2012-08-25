@@ -1,5 +1,3 @@
-vim
-=====
+# .vim
 
-Personal vim settings by grauwoelfchen
-
+Personal vim settings of grauwoelfchen
