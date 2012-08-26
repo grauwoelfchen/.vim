@@ -1,29 +1,47 @@
-snippet describe
-abbr  describe do
-  describe '${1}' do
-      ${2}
-  end
-
-snippet  context
-abbr  context do
-  context '${1}' do
-      ${2}
-  end
-
-snippet  before
-abbr  before do
-  before do
-      ${1}
-  end
-
-snippet  it
-abbr  it do
-  it '${1}' do
-      ${2}
-  end
-
-snippet class
-abbr  class end
+# standard {{{
+snippet   req
+abbr      require
+prev_word '^'
+  require ${1:name}
+snippet   class
+abbr      class end
+prev_word '^'
   class ${1:name}
     ${2}
   end
+snippet   mod
+abbr      module end
+prev_word '^'
+  module ${1:name}
+    ${2}
+  end
+#}}}
+
+# rspec {{{
+snippet   desc
+abbr      describe do
+prev_word '^'
+  describe '${1}' do
+    ${2}
+  end
+snippet   cont
+abbr      context do
+prev_word '^'
+  context '${1}' do
+    ${2}
+  end
+snippet   bef
+abbr      before do
+prev_word '^'
+  before do
+    ${1}
+  end
+snippet   it
+abbr      it do
+prev_word '^'
+  it '${1}' do
+    ${2}
+  end
+#}}}
+
+# vim:ts=2:sw=2:sts=2:et:fdm=marker:ft=txt:

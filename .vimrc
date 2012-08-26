@@ -1,4 +1,4 @@
-" Last Change: Sams. 18 Aug. 2012
+" Last Change: Sun, 26. Aug. 2012
 scriptencoding utf-8
 
 """ basic {{{
@@ -7,7 +7,7 @@ set showmode
 set showcmd
 set autoread
 set ttyfast
-"" beep
+"" nobeep
 set vb t_vb=
 set writebackup
 set backup
@@ -49,12 +49,12 @@ noremap <C-e> <End>
 " nnoremap j gj
 " nnoremap k gk
 "" insert
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-inoremap <C-k> <Up>
-inoremap <C-j> <Down>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+" inoremap <C-a> <Home>
+" inoremap <C-e> <End>
+" inoremap <C-k> <Up>
+" inoremap <C-j> <Down>
+" inoremap <C-h> <Left>
+" inoremap <C-l> <Right>
 "" command
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -150,17 +150,26 @@ let g:neocomplcache_min_keyword_length=3
 let g:neocomplcache_min_syntax_length=3
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_max_list=20
-" let g:neocomplcache_omni_patterns={
-" \  'ruby' : ''
-" \}
 let g:neocomplcache_snippets_dir=$HOME.'/.vim/snippets'
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns={}
+endif
+" let g:neocomplcache_omni_patterns={
+" \  'ruby' : '[^.*\t]\.\w*\|\h\w*::'
+" \}
+if !exists('g:neocomplcache_dictionary_filetype_lists')
+  let g:neocomplcache_dictionary_filetype_lists={}
+endif
 let g:neocomplcache_dictionary_filetype_lists={
 \  'default' : '',
 \  'ruby'    : $HOME.'/.vim/dict/ruby.dict',
 \  'php'     : $HOME.'/.vim/dict/php.dict'
 \}
-imap <C-x> <Plug>(neocomplcache_snippets_expand)
-smap <C-x> <Plug>(neocomplcache_snippets_expand)
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+"" for selected default
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
+imap <C-x> <Plug>(neocomplcache_snippets_force_jump)
+nmap <C-x> <Plug>(neocomplcache_snippets_force_expand)
 inoremap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
@@ -259,7 +268,7 @@ let g:netrw_bufsettings="noma nomod nu nobl nowrap ro"
 
 """ programming {{{
 set autoindent
-set smartindent
+" set smartindent
 set cindent
 set cinwords=if,else,while,do,for,switch,case
 nnoremap ]] ]m
@@ -278,6 +287,20 @@ augroup highlight_trailing_spaces
 augroup END
 "" omnifunc
 " set omnifunc=syntaxcomplete#Complete
+" }}}
+
+""" function {{{
+"" rename current file
+command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
+"" date
+inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
+inoremap <expr> ,mu 'grauwoelfchen'
+inoremap <expr> ,me 'y.grauwoelfchen@gmail.com <Yasuhiro Asaka>'
+"" encoding
+function! MagicComment()
+  return "# encoding: utf-8\<CR><CR>"
+endfunction
+inoremap <buffer> <Leader>## <C-R>=MagicComment()<CR>
 " }}}
 
 """ filetype {{{
@@ -299,18 +322,6 @@ augroup END
 "" objc
 "" arduino
 "" svn
-" }}}
-
-""" function {{{
-"" rename current file
-command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
-"" date
-inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
-"" encoding
-function! MagicComment()
-  return "# encoding: utf-8\<CR>"
-endfunction
-inoremap <buffer> <Leader>## <C-R>=MagicComment()<CR>
 " }}}
 
 """ vim {{{
