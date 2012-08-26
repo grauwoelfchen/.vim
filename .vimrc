@@ -42,7 +42,7 @@ augroup END
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 " }}}
 
-""" move {{{
+""" movement {{{
 "" normal
 noremap <C-a> <Home>
 noremap <C-e> <End>
@@ -65,6 +65,8 @@ cnoremap <C-l> <Right>
 cnoremap <C-d> <Del>
 "" matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
+"" buffer
+set hidden
 " }}}
 
 """ view {{{
@@ -81,6 +83,8 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set textwidth=0
+"" starting message
+set shortmess+=I
 augroup apply_gui_color_scheme
   autocmd!
   runtime! bundle/vim-guicolorscheme/plugin/guicolorscheme.vim
@@ -100,7 +104,7 @@ augroup highlight_over_length
 augroup END
 " }}}
 
-""" edit {{{
+""" editing {{{
 set wildmenu
 set complete+=k
 set commentstring=\ #\ %s
@@ -115,21 +119,37 @@ set whichwrap=b,s,h,l,<,>,[,]
 set virtualedit+=block
 " }}}
 
-""" other {{{
-"" encoding
+""" encoding {{{
 set encoding=utf-8
 set fileencodings=utf-8
 set fileformats=unix
-" undo
-set hidden
-" set autochdir
-"" starting message
-set shortmess+=I
-"" template
+" }}}
+
+""" template {{{
 augroup apply_template
   autocmd!
   autocmd BufNewFile *.rb 0r ~/.vim/templates/rb.tpl
 augroup END
+" }}}
+
+""" command {{{
+if has('unix') && system('uname')=~'Darwin'
+  let s:os_type='mac'
+else
+  let s:os_type='linux'
+endif
+"" rename current file
+command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
+"" date
+inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
+"" me
+inoremap <expr> ,mu 'grauwoelfchen'
+inoremap <expr> ,me 'y.grauwoelfchen@gmail.com <Yasuhiro Asaka>'
+"" encoding
+function! PutMagicComment()
+  return "# encoding: utf-8\<CR><CR>"
+endfunction
+inoremap <buffer> <Leader>## <C-R>=PutMagicComment()<CR>
 " }}}
 
 """ plugin {{{
@@ -253,6 +273,7 @@ let g:pinponpanpon_area_name="さいたま市"
 " }}}
 
 """ filer {{{
+" set autochdir
 " let g:netrw_browse_split=2
 let g:netrw_altv=1
 let g:netrw_winsize=""
@@ -273,7 +294,12 @@ set cindent
 set cinwords=if,else,while,do,for,switch,case
 nnoremap ]] ]m
 nnoremap [[ [m
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+if s:os_type == 'linux'
+  let Tlist_Ctags_Cmd='/usr/bin/ctags'
+else
+  "" emacs on mac via brew
+  let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+end
 "" white space
 " augroup replace_white_space
   " autocmd!
@@ -287,20 +313,6 @@ augroup highlight_trailing_spaces
 augroup END
 "" omnifunc
 " set omnifunc=syntaxcomplete#Complete
-" }}}
-
-""" function {{{
-"" rename current file
-command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
-"" date
-inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
-inoremap <expr> ,mu 'grauwoelfchen'
-inoremap <expr> ,me 'y.grauwoelfchen@gmail.com <Yasuhiro Asaka>'
-"" encoding
-function! MagicComment()
-  return "# encoding: utf-8\<CR><CR>"
-endfunction
-inoremap <buffer> <Leader>## <C-R>=MagicComment()<CR>
 " }}}
 
 """ filetype {{{
