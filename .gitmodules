@@ -103,3 +103,6 @@
 [submodule "bundle/quickrun"]
 	path = bundle/quickrun
 	url = https://github.com/ujihisa/quickrun.git
+[submodule "bundle/neocomplcache-snippets-complete"]
+	path = bundle/neocomplcache-snippets-complete
+	url = https://github.com/Shougo/neocomplcache-snippets-complete
