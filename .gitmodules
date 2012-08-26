@@ -106,3 +106,6 @@
 [submodule "bundle/neocomplcache-snippets-complete"]
 	path = bundle/neocomplcache-snippets-complete
 	url = https://github.com/Shougo/neocomplcache-snippets-complete
+[submodule "bundle/unite-outline"]
+	path = bundle/unite-outline
+	url = https://github.com/h1mesuke/unite-outline.git
