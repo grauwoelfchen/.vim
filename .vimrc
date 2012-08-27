@@ -159,6 +159,11 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 syntax enable
 filetype plugin indent on
+"" bundle plugin off
+" let g:pathogen_disabled = [
+" \ 'neocomplcache',
+" \ 'unite-vim',
+" \]
 "" neocomplcache
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_skip_completion_time=0.3
@@ -206,10 +211,9 @@ let g:user_zen_settings={
 " let g:unite_enable_start_insert=1
 let g:unite_split_rule="botright"
 nnoremap <silent> ,Ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,Uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,Ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,Um :<C-u>Unite file_mru<CR>
-nnoremap <silent> ,Uu :<C-u>Unite buffer file_mru<CR>
+nnoremap <silent> ,Uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,Ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 augroup setup_unite_window
   autocmd!
@@ -254,11 +258,8 @@ let g:yankring_max_history=10
 "" 2M
 let g:yankring_max_element_length=1048576
 let g:yankring_window_height=13
-"" bundle plugin off
-" let g:pathogen_disabled = [
-" \ 'neocomplcache',
-" \ 'unite-vim',
-" \]
+"" vimfiler
+nnoremap <silent> ,fd :<C-u>VimFilerBufferDir -quit<CR>
 "" ri.vim
 "" split 0 => h, 1 => v
 nnoremap ,r :call ri#OpenSearchPrompt(0)<CR>
@@ -272,7 +273,7 @@ let g:hello_say_voice="Alex"
 let g:pinponpanpon_area_name="さいたま市"
 " }}}
 
-""" filer {{{
+""" filesystem {{{
 " set autochdir
 " let g:netrw_browse_split=2
 let g:netrw_altv=1
