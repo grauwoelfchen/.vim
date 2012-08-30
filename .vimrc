@@ -304,8 +304,8 @@ vmap <Leader>cb <Plug>NERDCommenterMinimal
 let g:buftabs_only_basename=1
 let g:buftabs_in_statusline=1
 let g:buftabs_active_highlight_group="Visual"
-noremap <F1> :bprev<CR>
-noremap <F2> :bnext<CR>
+noremap <Leader>bp :bprev<CR>
+noremap <Leader>bn :bnext<CR>
 "" showmarks
 let g:showmarks_include="abcdefghijklmnopqlstuvwxyzABCDEFGHIJKLMNOPQLZTUVWXYZ"
 let g:showmarks_textlower="*"
