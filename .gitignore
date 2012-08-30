@@ -4,3 +4,5 @@
 .swap
 .yankring_history_v2.txt
 doc/tags
+bundle/*
+!bundle/neobundle.vim
