@@ -275,11 +275,11 @@ let g:user_zen_settings={
 "" unite
 " let g:unite_enable_start_insert=1
 let g:unite_split_rule="botright"
-nnoremap <silent> ,Ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,Ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,Um :<C-u>Unite file_mru<CR>
-nnoremap <silent> ,Uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,Ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> ,b :<C-u>Unite buffer<CR>
+nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,m :<C-u>Unite file_mru<CR>
+nnoremap <silent> ,f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 augroup setup_unite_window
   autocmd!
   autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
