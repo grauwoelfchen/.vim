@@ -18,6 +18,87 @@ set directory=$HOME/.vim/.swap
 "" IME
 set noimcmdline
 set iminsert=0
+if has('unix') && system('uname')=~'Darwin'
+  let s:os_type='mac'
+else
+  let s:os_type='linux'
+endif
+" }}}
+
+""" bundle {{{
+filetype off
+"" neobundle
+if &runtimepath !~ '/neobundle.vim'
+  set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
+endif
+call neobundle#rc(expand("$HOME/.vim/bundle/"))
+NeoBundle 'danchoi/ri.vim'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'grauwoelfchen/hello-vim'
+NeoBundle 'grauwoelfchen/pinponpanpon-vim', {
+\  'depends': [
+\    'mattn/webapi-vim'
+\  ]
+\}
+NeoBundle 'h1mesuke/vim-alignta'
+NeoBundle 'kana/vim-gf-user'
+NeoBundle 'kana/vim-gf-diff'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/togetter-vim', {
+\  'depends': [
+\    'mattn/webapi-vim'
+\  ]
+\}
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'motemen/git-vim'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'sudo.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimshell', {
+\  'depends': [
+\    'Shougo/vimproc'
+\  ]
+\}
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-haml'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-guicolorscheme'
+NeoBundle 'ujihisa/quickrun'
+NeoBundle 'vim-ruby/vim-ruby'
+"" vim-scripts
+NeoBundle 'AutoClose'
+NeoBundle 'buftabs'
+NeoBundle 'ShowMarks'
+NeoBundle 'YankRing.vim'
+NeoBundle 'PDV--phpDocumentor-for-Vim'
+NeoBundle 'taglist.vim'
+if s:os_type == 'mac'
+  NeoBundle 'msanders/cocoa.vim'
+end
+""
+NeoBundle 'https://bitbucket.org/ns9tks/vim-l9/'
+NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder', {
+\  'depends': [
+\    'https://bitbucket.org/ns9tks/vim-l9/'
+\  ]
+\}
+if neobundle#exists_not_installed_bundles()
+  echomsg 'Not installed bundles : ' .
+        \ string(neobundle#get_not_installed_bundle_names())
+  echomsg 'Please execute ":NeoBundleInstall" command.'
+" finish
+endif
+filetype plugin indent on
+syntax enable
 " }}}
 
 """ search {{{
@@ -42,7 +123,7 @@ augroup END
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 " }}}
 
-""" movement {{{
+""" move {{{
 "" normal
 noremap <C-a> <Home>
 noremap <C-e> <End>
@@ -104,7 +185,7 @@ augroup highlight_over_length
 augroup END
 " }}}
 
-""" editing {{{
+""" edit {{{
 set wildmenu
 set complete+=k
 set commentstring=\ #\ %s
@@ -128,16 +209,11 @@ set fileformats=unix
 """ template {{{
 augroup apply_template
   autocmd!
-  autocmd BufNewFile *.rb 0r ~/.vim/templates/rb.tpl
+  autocmd BufNewFile *.rb 0r $HOME/.vim/templates/rb.tpl
 augroup END
 " }}}
 
 """ command {{{
-if has('unix') && system('uname')=~'Darwin'
-  let s:os_type='mac'
-else
-  let s:os_type='linux'
-endif
 "" rename current file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 "" date
@@ -153,17 +229,6 @@ inoremap <buffer> <Leader>## <C-R>=PutMagicComment()<CR>
 " }}}
 
 """ plugin {{{
-"" pathhogen
-filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-syntax enable
-filetype plugin indent on
-"" bundle plugin off
-" let g:pathogen_disabled = [
-" \ 'neocomplcache',
-" \ 'unite-vim',
-" \]
 "" neocomplcache
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_skip_completion_time=0.3
@@ -242,14 +307,13 @@ let g:buftabs_active_highlight_group="Visual"
 noremap <F1> :bprev<CR>
 noremap <F2> :bnext<CR>
 "" showmarks
-let g:showmarks_include="abcdefghijklmnopqlstuvwxyzABCDEFGHIJKLMNOPQLSTUVWXYZ"
-"" marks_corey.vim
-map md <Plug>Remove_all_signs
-"" as toggle
-map mm <Plug>Place_sign
-map mn <Plug>Goto_next_sign
-map mp <Plug>Goto_prev_sign
-map m. <Plug>Move_sign
+let g:showmarks_include="abcdefghijklmnopqlstuvwxyzABCDEFGHIJKLMNOPQLZTUVWXYZ"
+let g:showmarks_textlower="*"
+highlight SignColumn ctermfg=white ctermbg=black cterm=none
+highlight default ShowMarksHLl ctermfg=red ctermbg=black cterm=none
+highlight default ShowMarksHLu ctermfg=red ctermbg=black cterm=none
+highlight default ShowMarksHLo ctermfg=red ctermbg=black cterm=none
+highlight default ShowMarksHLm ctermfg=red ctermbg=black cterm=none
 "" yankring
 noremap <silent> <F7> :YRShow<CR>
 let g:yankring_history_dir=expand('$HOME/.vim/')

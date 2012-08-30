@@ -1,9 +1,8 @@
-#!/usr/bin/ruby -w
+#!/usr/bin/ruby
+# encoding: utf-8
 
-#
-# ruby make_ruby_dict.rb  /usr/share/ri/1.8/system/*/*.yaml > ruby.dict
-#
-
+# Usage:
+#   ruby make_ruby_dict.rb  /usr/share/ri/1.8/system/*/*.yaml > ruby.dict
 ary = []
 ARGV.each do |arg|
   File.open(arg) do |io|
@@ -18,7 +17,6 @@ ARGV.each do |arg|
     end
   end
 end
-
 ary.uniq.sort.each do |line|
   puts line
 end
