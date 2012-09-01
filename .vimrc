@@ -406,6 +406,7 @@ augroup END
 " }}}
 
 """ vim {{{
+let g:vim_indent_cont = 0
 noremap <Space>s. :<C-u>source $MYVIMRC<CR>
 augroup fold_vimrc
   autocmd!
