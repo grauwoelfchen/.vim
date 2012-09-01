@@ -144,11 +144,12 @@ set hidden
 " }}}
 
 """ view {{{
-set title
+" set title
 " set ruler
 set number
 " set t_Co=256
-" set list listchars=tab:^_,trail:_
+" set list
+set listchars=tab:^_,trail:_
 set showmatch
 set matchtime=2
 set wrap
