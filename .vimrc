@@ -127,15 +127,8 @@ nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 "" normal
 noremap <C-a> <Home>
 noremap <C-e> <End>
-" nnoremap j gj
-" nnoremap k gk
-"" insert
-" inoremap <C-a> <Home>
-" inoremap <C-e> <End>
-" inoremap <C-k> <Up>
-" inoremap <C-j> <Down>
-" inoremap <C-h> <Left>
-" inoremap <C-l> <Right>
+nnoremap j gj
+nnoremap k gk
 "" command
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
