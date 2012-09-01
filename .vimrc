@@ -192,6 +192,9 @@ set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
 "" visual
 set virtualedit+=block
+"" inc/dec number
+noremap <M-i> <C-a>
+noremap <M-d> <C-x>
 " }}}
 
 """ encoding {{{
