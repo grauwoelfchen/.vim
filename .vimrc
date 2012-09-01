@@ -220,7 +220,7 @@ inoremap <expr> ,mu 'grauwoelfchen'
 inoremap <expr> ,me 'y.grauwoelfchen@gmail.com <Yasuhiro Asaka>'
 "" encoding
 function! PutMagicComment()
-  return "# encoding: utf-8\<CR><CR>"
+  return "# encoding: utf-8\<CR>\<CR>"
 endfunction
 inoremap <buffer> <Leader>## <C-R>=PutMagicComment()<CR>
 " }}}
