@@ -64,6 +64,7 @@ NeoBundle 'Shougo/vimshell', {
 \    'Shougo/vimproc'
 \  ]
 \}
+NeoBundle 'tacroe/unite-mark'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'tpope/vim-rails'
@@ -72,6 +73,7 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-guicolorscheme'
+NeoBundle 'tsukkee/unite-help'
 NeoBundle 'ujihisa/quickrun'
 NeoBundle 'vim-ruby/vim-ruby'
 "" vim-scripts
@@ -272,20 +274,24 @@ let g:user_zen_settings={
 let g:unite_split_rule="botright"
 nnoremap <silent> ,b :<C-u>Unite buffer<CR>
 nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,m :<C-u>Unite file_mru<CR>
-nnoremap <silent> ,f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,f :<C-u>Unite file_mru<CR>
+nnoremap <silent> ,d :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-augroup setup_unite_window
+"" sources
+nnoremap <silent> ,h :<C-u>Unite -start-insert help<CR>
+nnoremap <silent> ,g :<C-u>UniteWithCursorWord help<CR>
+nnoremap <silent> ,m :<C-u>Unite mark<CR>
+augroup setup_unite_spilt
   autocmd!
-  autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-  autocmd FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-  autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-  autocmd FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+  autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-k> unite#do_action('split')
+  autocmd FileType unite inoremap <silent> <buffer> <expr> <C-k> unite#do_action('split')
+  autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-h> unite#do_action('vsplit')
+  autocmd FileType unite inoremap <silent> <buffer> <expr> <C-h> unite#do_action('vsplit')
 augroup END
 augroup setup_unite_close
   autocmd!
-  autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-  autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+  autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+  autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 augroup END
 "" nerdcommenter
 let g:NERDCreateDefaultMappings=0
