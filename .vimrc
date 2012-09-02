@@ -382,15 +382,15 @@ augroup END
 " }}}
 
 """ filetype {{{
-augroup handle_ruby
+augroup handle_as_lisp
   autocmd!
-  autocmd BufNewFile,BufRead *.eruby setlocal filetype=ruby
+  autocmd BufNewFile,BufRead .stumpwmrc setlocal filetype=lisp
 augroup END
-augroup handle_php
+augroup handle_as_php
   autocmd!
   autocmd BufNewFile,BufRead *.ctp, *.html setlocal filetype=php
 augroup END
-augroup handle_arduino
+augroup handle_as_arduino
   autocmd!
   autocmd BufNewFile,BufRead *.pde setlocal filetype=arduino
 augroup END
