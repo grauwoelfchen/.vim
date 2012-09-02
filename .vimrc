@@ -7,8 +7,8 @@ set showmode
 set showcmd
 set autoread
 set ttyfast
-"" nobeep
-set vb t_vb=
+set vb t_vb= "nobeep
+set hidden "buffer
 set writebackup
 set backup
 set backupdir=$HOME/.vim/.backup
@@ -98,7 +98,6 @@ if neobundle#exists_not_installed_bundles()
 " finish
 endif
 filetype plugin indent on
-syntax enable
 " }}}
 
 """ search {{{
@@ -139,8 +138,6 @@ cnoremap <C-l> <Right>
 cnoremap <C-d> <Del>
 "" matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
-"" buffer
-set hidden
 " }}}
 
 """ view {{{
@@ -148,8 +145,8 @@ set hidden
 " set ruler
 set number
 " set t_Co=256
-" set list
 set listchars=tab:^_,trail:_
+" set list
 set showmatch
 set matchtime=2
 set wrap
@@ -160,6 +157,7 @@ set shiftwidth=2
 set textwidth=0
 "" starting message
 set shortmess+=I
+syntax enable
 augroup apply_gui_color_scheme
   autocmd!
   runtime! bundle/vim-guicolorscheme/plugin/guicolorscheme.vim
@@ -377,8 +375,6 @@ augroup highlight_trailing_spaces
   autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
-"" omnifunc
-" set omnifunc=syntaxcomplete#Complete
 " }}}
 
 """ filetype {{{
@@ -407,7 +403,7 @@ let g:vim_indent_cont = 0
 noremap <Space>s. :<C-u>source $MYVIMRC<CR>
 augroup fold_vimrc
   autocmd!
-  autocmd FileType vim setl foldmethod=marker
+  autocmd FileType vim setlocal foldmethod=marker
 augroup END
 "" load settings for each location.
 let g:loaded_vimrc = 0
