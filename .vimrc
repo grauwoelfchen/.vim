@@ -1,4 +1,4 @@
-" Last Change: Sun, 26. Aug. 2012
+" Last Change: Sat, 08. Sep. 2012
 scriptencoding utf-8
 
 """ basic {{{
@@ -222,7 +222,7 @@ inoremap <expr> ,me 'y.grauwoelfchen@gmail.com <Yasuhiro Asaka>'
 function! PutMagicComment()
   return "# encoding: utf-8\<CR>\<CR>"
 endfunction
-inoremap <buffer> <Leader>## <C-R>=PutMagicComment()<CR>
+inoremap <Leader>## <C-R>=PutMagicComment()<CR>
 " }}}
 
 """ plugin {{{
