@@ -40,6 +40,10 @@ if version >= 700
   hi Pmenu          guifg=#f6f3e8     guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
   hi PmenuSel       guifg=#000000     guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
   hi Search         guifg=NONE        guibg=NONE        gui=underline ctermfg=NONE        ctermbg=NONE        cterm=underline
+  hi TabLineNumber     guifg=red      guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi TabLineSelNumber  guifg=red      guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi TabLine           guifg=gray     guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi TabLineSel        guifg=white    guibg=darkgray    gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 endif
 
 " Syntax highlighting

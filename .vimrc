@@ -156,32 +156,30 @@ augroup END
 " set ruler
 "" tabline
 function! s:tab_label(n)
-  let title = gettabvar(a:n, 'title')
-  if title !=# ''
-    return title
-  endif
-  let bufnrs = tabpagebuflist(a:n)
-  let hl = a:n is tabpagenr() ? '%#TabLineSel#' : '%#Tabline#'
-  let nu = len(bufnrs)
-  if nu is 1
-    let nu = ''
-  endif
-  let md = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
-  let sp = (nu.md) ==# '' ? '' : ' '
+  let bufnrs   = tabpagebuflist(a:n)
   let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]
-  let fn = pathshorten(bufname(curbufnr))
-  let label = nu.md.sp.fn
-  return '%'.a:n.'T'.hl.label.'%T%#TablineFill#'
+  let hl = a:n ==? tabpagenr() ? 'TabLineSel' : 'TabLine'
+  echo hl
+  let bufs = len(bufnrs)
+  if bufs == 1
+    let bufs = ''
+  else
+    let bufs = '%#'.hl.'Number#'.bufs
+  end
+  let updated = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
+  let blank = (bufs.updated) ==? '' ? '' : ' '
+  let fname = pathshorten(bufname(curbufnr))
+  return '%'.a:n.'T'.bufs.updated.blank.'%#'.hl.'#'.fname.'%T%#TablineFill#'
 endfunction
-function! MakeTabline()
-  let titles = map(range(1, tabpagenr('$')), 's:tab_label(v:val)')
+function! MakeTabLine()
+  let labels = map(range(1, tabpagenr('$')), 's:tab_label(v:val)')
   let separator = " | "
-  let tabs = ' ' . join(titles, separator).separator."%#TablineFill#%T"
+  let tabs = ' ' . join(labels, separator).separator."%#TablineFill#%T"
   let info = fnamemodify(getcwd(), ':~').' « '.system('hostname')[:-2]. ' » '
   return tabs.'%='.info
 endfunction
 set showtabline=2
-set tabline=%!MakeTabline()
+set tabline=%!MakeTabLine()
 
 set number
 " set t_Co=256
