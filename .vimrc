@@ -29,7 +29,7 @@ endif
 filetype off
 "" neobundle
 if &runtimepath !~ '/neobundle.vim'
-  set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
+  set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
 call neobundle#rc(expand("$HOME/.vim/bundle/"))
 NeoBundle 'danchoi/ri.vim'
@@ -52,7 +52,6 @@ NeoBundle 'mattn/togetter-vim', {
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'motemen/git-vim'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'sudo.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neocomplcache-snippets-complete'
 NeoBundle 'Shougo/unite.vim'
@@ -70,15 +69,16 @@ NeoBundle 'tpope/vim-haml'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-markdown'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-guicolorscheme'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
 NeoBundle 'tsukkee/unite-help'
-NeoBundle 'ujihisa/quickrun'
+NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'vim-ruby/vim-ruby'
 "" vim-scripts
 NeoBundle 'AutoClose'
 NeoBundle 'buftabs'
+NeoBundle 'sudo.vim'
 NeoBundle 'ShowMarks'
 NeoBundle 'YankRing.vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
@@ -95,7 +95,7 @@ NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder', {
 \}
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
-        \ string(neobundle#get_not_installed_bundle_names())
+  \  string(neobundle#get_not_installed_bundle_names())
   echomsg 'Please execute ":NeoBundleInstall" command.'
 " finish
 endif
@@ -118,7 +118,8 @@ set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nH
 augroup quickfix_open
   autocmd!
-  autocmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) | copen | endif
+  autocmd QuickfixCmdPost make,grep,vimgrep
+  \  if len(getqflist()) | copen | endif
 augroup END
 "" help
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
@@ -140,6 +141,14 @@ cnoremap <C-l> <Right>
 cnoremap <C-d> <Del>
 "" matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
+"" last position
+augroup jump_to_last_pos
+  autocmd!
+  autocmd BufReadPost *
+  \  if line("'\"") && line("'\"") <= line('$')
+  \  | execute 'normal! g`"'
+  \  | endif
+augroup END
 " }}}
 
 """ view {{{
@@ -174,7 +183,8 @@ set statusline+=\ %03l,%02v\ %P
 set laststatus=2
 " set colorcolumn=80
 augroup highlight_over_length
-  autocmd BufEnter * highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
+  autocmd BufEnter *
+  \  highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
   autocmd BufEnter * match OverLength /\%81v.\+/
 augroup END
 " }}}
@@ -276,7 +286,8 @@ nnoremap <silent> ,b :<C-u>Unite buffer<CR>
 nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,f :<C-u>Unite file_mru<CR>
 nnoremap <silent> ,d :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> ,a :<C-u>UniteWithBufferDir
+\  -buffer-name=files buffer file_mru bookmark file<CR>
 "" sources
 nnoremap <silent> ,h :<C-u>Unite -start-insert help<CR>
 nnoremap <silent> ,g :<C-u>UniteWithCursorWord help<CR>
@@ -323,6 +334,22 @@ let g:yankring_max_history=10
 "" 2M
 let g:yankring_max_element_length=1048576
 let g:yankring_window_height=13
+"" quickrun
+let g:quickrun_config={}
+let g:quickrun_config['*'] = {
+\  'hook/time/enable'          : 1,
+\  'runner'                    : 'vimproc',
+\  'runner/vimproc/updatetime' : 10,
+\  'split'                     : 'below',
+\}
+let g:quickrun_config['markdown']={
+\  'command'   : 'redcarpet',
+\  'outputter' : 'browser',
+\}
+let g:quickrun_config['ruby.rspec']={
+\  'cmdopt'  : "rspec --format progress --profile --line_number %{line('.')}",
+\  'exec'    : "bundle exec %o",
+\}
 "" vimfiler
 nnoremap <silent> ,fd :<C-u>VimFilerBufferDir -quit<CR>
 "" ri.vim
@@ -378,7 +405,8 @@ let Tlist_Exit_OnlyWindow=1
 " augroup END
 augroup highlight_trailing_spaces
   autocmd!
-  autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
+  autocmd VimEnter,WinEnter,ColorScheme *
+  \  highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
 " }}}
@@ -388,9 +416,9 @@ augroup handle_as_lisp
   autocmd!
   autocmd BufNewFile,BufRead .stumpwmrc setlocal filetype=lisp
 augroup END
-augroup handle_as_php
+augroup handle_as_spec
   autocmd!
-  autocmd BufNewFile,BufRead *.ctp, *.html setlocal filetype=php
+  autocmd BufNewFile,BufRead *_spec.rb setlocal filetype=ruby.rspec
 augroup END
 augroup handle_as_arduino
   autocmd!
