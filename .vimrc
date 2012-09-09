@@ -151,9 +151,38 @@ augroup jump_to_last_pos
 augroup END
 " }}}
 
-""" view {{{
+""" appearance {{{
 " set title
 " set ruler
+"" tabline
+function! s:tab_label(n)
+  let title = gettabvar(a:n, 'title')
+  if title !=# ''
+    return title
+  endif
+  let bufnrs = tabpagebuflist(a:n)
+  let hl = a:n is tabpagenr() ? '%#TabLineSel#' : '%#Tabline#'
+  let nu = len(bufnrs)
+  if nu is 1
+    let nu = ''
+  endif
+  let md = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
+  let sp = (nu.md) ==# '' ? '' : ' '
+  let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]
+  let fn = pathshorten(bufname(curbufnr))
+  let label = nu.md.sp.fn
+  return '%'.a:n.'T'.hl.label.'%T%#TablineFill#'
+endfunction
+function! MakeTabline()
+  let titles = map(range(1, tabpagenr('$')), 's:tab_label(v:val)')
+  let separator = " | "
+  let tabs = ' ' . join(titles, separator).separator."%#TablineFill#%T"
+  let info = fnamemodify(getcwd(), ':~').' « '.system('hostname')[:-2]. ' » '
+  return tabs.'%='.info
+endfunction
+set showtabline=2
+set tabline=%!MakeTabline()
+
 set number
 " set t_Co=256
 set listchars=tab:^_,trail:_
@@ -176,7 +205,7 @@ augroup apply_gui_color_scheme
 augroup END
 colorscheme gr_black
 "" right side
-set statusline=%=%y\ %n\ %f
+set statusline=%=%y\ %n\ %{pathshorten(expand('%f'))}
 set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
 set statusline+=\ %m%r%{fugitive#head()}
 set statusline+=\ %03l,%02v\ %P
@@ -434,7 +463,7 @@ augroup END
 
 """ vim {{{
 let g:vim_indent_cont = 0
-noremap <Space>s. :<C-u>source $MYVIMRC<CR>
+noremap <Space>r :<C-u>source $MYVIMRC<CR>
 augroup fold_vimrc
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
