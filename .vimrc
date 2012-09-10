@@ -43,6 +43,7 @@ NeoBundle 'grauwoelfchen/pinponpanpon-vim', {
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
+NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/togetter-vim', {
 \  'depends': [
@@ -50,12 +51,25 @@ NeoBundle 'mattn/togetter-vim', {
 \  ]
 \}
 NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/ctrlp-launcher', {
+\  'depends': [
+\    'kien/ctrlp.vim'
+\  ]
+\}
 NeoBundle 'motemen/git-vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/neocomplcache-snippets-complete', {
+\  'depends': [
+\    'Shougo/neocomplcache'
+\  ]
+\}
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/unite-outline', {
+\  'depends': [
+\   'Shougo/unite.vim'
+\  ]
+\}
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell', {
@@ -63,16 +77,29 @@ NeoBundle 'Shougo/vimshell', {
 \    'Shougo/vimproc'
 \  ]
 \}
-NeoBundle 'tacroe/unite-mark'
+NeoBundle 'tacroe/unite-mark', {
+\  'depends': [
+\    'Shougo/unite.vim'
+\  ]
+\}
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'thinca/vim-guicolorscheme'
-NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-quickrun', {
+\  'depends': [
+\    'Shougo/vimproc'
+\  ]
+\}
 NeoBundle 'thinca/vim-ref'
-NeoBundle 'tsukkee/unite-help'
+NeoBundle 'tsukkee/unite-help', {
+\  'depends': [
+\    'Shougo/unite.vim',
+\    'tyru/open-browser.vim'
+\  ]
+\}
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'vim-ruby/vim-ruby'
 "" vim-scripts
@@ -159,7 +186,6 @@ function! s:tab_label(n)
   let bufnrs   = tabpagebuflist(a:n)
   let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]
   let hl = a:n ==? tabpagenr() ? 'TabLineSel' : 'TabLine'
-  echo hl
   let bufs = len(bufnrs)
   if bufs == 1
     let bufs = ''
@@ -297,6 +323,8 @@ nmap <C-x> <Plug>(neocomplcache_snippets_force_expand)
 inoremap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
+"" ctrlp-launcher
+nnoremap <C-e> :<C-u>CtrlPLauncher<CR>
 "" zencoding
 let g:user_zen_expandabbr_key='<C-y>,'
 let g:user_zen_complete_tag=1
