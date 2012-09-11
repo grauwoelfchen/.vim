@@ -385,13 +385,15 @@ highlight default ShowMarksHLm ctermfg=red ctermbg=black cterm=none
 noremap <silent> <F7> :YRShow<CR>
 let g:yankring_history_dir=expand('$HOME/.vim/')
 let g:yankring_history_file='.yankring_history'
+let g:yankring_replace_n_pkey='<M-p>'
+let g:yankring_replace_n_nkey='<M-n>'
 let g:yankring_max_history=10
 "" 2M
 let g:yankring_max_element_length=1048576
 let g:yankring_window_height=13
 "" quickrun
 let g:quickrun_config={}
-let g:quickrun_config['*'] = {
+let g:quickrun_config['*']={
 \  'hook/time/enable'          : 1,
 \  'runner'                    : 'vimproc',
 \  'runner/vimproc/updatetime' : 10,
@@ -409,8 +411,8 @@ let g:quickrun_config['ruby.rspec']={
 nnoremap <silent> ,fd :<C-u>VimFilerBufferDir -quit<CR>
 "" ri.vim
 "" split 0 => h, 1 => v
-nnoremap ,r :call ri#OpenSearchPrompt(0)<CR>
-nnoremap ,R :call ri#OpenSearchPrompt(1)<CR>
+nnoremap ,i :call ri#OpenSearchPrompt(0)<CR>
+nnoremap ,I :call ri#OpenSearchPrompt(1)<CR>
 nnoremap ,K :call ri#LookupNameUnderCursor()<CR>
 "" my plugins :)
 "" hello-vim
