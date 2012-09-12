@@ -51,35 +51,43 @@ NeoBundle 'mattn/togetter-vim', {
 \  ]
 \}
 NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/ctrlp-launcher', {
+NeoBundle 'mattn/ctrlp-gist', {
 \  'depends': [
-\    'kien/ctrlp.vim'
+\    'kien/ctrlp.vim',
+\    'mattn/webapi-vim',
+\    'mattn/gist-vim'
 \  ]
 \}
+NeoBundle 'mattn/ctrlp-launcher', {
+\  'depends': [
+\    'kien/ctrlp.vim',
+\  ]
+\}
+NeoBundle 'mattn/gist-vim'
 NeoBundle 'motemen/git-vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neocomplcache-snippets-complete', {
 \  'depends': [
-\    'Shougo/neocomplcache'
+\    'Shougo/neocomplcache',
 \  ]
 \}
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline', {
 \  'depends': [
-\   'Shougo/unite.vim'
+\   'Shougo/unite.vim',
 \  ]
 \}
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell', {
 \  'depends': [
-\    'Shougo/vimproc'
+\    'Shougo/vimproc',
 \  ]
 \}
 NeoBundle 'tacroe/unite-mark', {
 \  'depends': [
-\    'Shougo/unite.vim'
+\    'Shougo/unite.vim',
 \  ]
 \}
 NeoBundle 'tpope/vim-fugitive'
@@ -90,14 +98,14 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'thinca/vim-guicolorscheme'
 NeoBundle 'thinca/vim-quickrun', {
 \  'depends': [
-\    'Shougo/vimproc'
+\    'Shougo/vimproc',
 \  ]
 \}
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'tsukkee/unite-help', {
 \  'depends': [
 \    'Shougo/unite.vim',
-\    'tyru/open-browser.vim'
+\    'tyru/open-browser.vim',
 \  ]
 \}
 NeoBundle 'tyru/open-browser.vim'
@@ -117,7 +125,7 @@ end
 NeoBundle 'https://bitbucket.org/ns9tks/vim-l9/'
 NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder', {
 \  'depends': [
-\    'https://bitbucket.org/ns9tks/vim-l9/'
+\    'https://bitbucket.org/ns9tks/vim-l9/',
 \  ]
 \}
 if neobundle#exists_not_installed_bundles()
@@ -325,6 +333,8 @@ inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 "" ctrlp-launcher
 nnoremap <C-e> :<C-u>CtrlPLauncher<CR>
+"" ctrlp-gist
+nnoremap <C-g> :<C-u>CtrlPGist<CR>
 "" zencoding
 let g:user_zen_expandabbr_key='<C-y>,'
 let g:user_zen_complete_tag=1
