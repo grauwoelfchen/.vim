@@ -43,6 +43,7 @@ NeoBundle 'grauwoelfchen/pinponpanpon-vim', {
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
+NeoBundle 'kana/vim-smartinput'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/togetter-vim', {
@@ -109,7 +110,6 @@ NeoBundle 'tsukkee/unite-help', {
 \    'tyru/open-browser.vim',
 \  ]
 \}
-NeoBundle 'rdpate/vim-autoclose'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'vim-ruby/vim-ruby'
 "" vim-scripts
