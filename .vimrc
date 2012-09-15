@@ -43,6 +43,7 @@ NeoBundle 'grauwoelfchen/pinponpanpon-vim', {
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
+NeoBundle 'kana/vim-smartinput'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/togetter-vim', {
@@ -85,6 +86,7 @@ NeoBundle 'Shougo/vimshell', {
 \    'Shougo/vimproc',
 \  ]
 \}
+
 NeoBundle 'tacroe/unite-mark', {
 \  'depends': [
 \    'Shougo/unite.vim',
@@ -112,7 +114,6 @@ NeoBundle 'rhysd/open-pdf.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'vim-ruby/vim-ruby'
 "" vim-scripts
-NeoBundle 'AutoClose'
 NeoBundle 'buftabs'
 NeoBundle 'sudo.vim'
 NeoBundle 'ShowMarks'
@@ -144,7 +145,7 @@ set history=100
 set hlsearch
 set ignorecase
 set smartcase
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <silent><M-h> :nohlsearch<Cr>
 nnoremap \* nzzzv
 nnoremap \# Nzzzv
 nnoremap n nzzzv
@@ -158,7 +159,7 @@ augroup quickfix_open
   \  if len(getqflist()) | copen | endif
 augroup END
 "" help
-nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Cr>
 " }}}
 
 """ move {{{
@@ -292,9 +293,9 @@ inoremap <expr> ,mu 'grauwoelfchen'
 inoremap <expr> ,me 'y.grauwoelfchen@gmail.com <Yasuhiro Asaka>'
 "" encoding
 function! PutMagicComment()
-  return "# encoding: utf-8\<CR>\<CR>"
+  return "# encoding: utf-8\<Cr>\<Cr>"
 endfunction
-inoremap <Leader>## <C-R>=PutMagicComment()<CR>
+inoremap <Leader>## <C-r>=PutMagicComment()<Cr>
 " }}}
 
 """ plugin {{{
@@ -324,12 +325,12 @@ let g:neocomplcache_dictionary_filetype_lists={
 \  'ruby'    : $HOME.'/.vim/dict/ruby.dict',
 \  'php'     : $HOME.'/.vim/dict/php.dict'
 \}
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
+imap <C-k> <plug>(neocomplcache_snippets_expand)
 "" for selected default
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
-imap <C-x> <Plug>(neocomplcache_snippets_force_jump)
-nmap <C-x> <Plug>(neocomplcache_snippets_force_expand)
-inoremap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
+smap <C-k> <plug>(neocomplcache_snippets_expand)
+imap <C-x> <plug>(neocomplcache_snippets_force_jump)
+nmap <C-x> <plug>(neocomplcache_snippets_force_expand)
+inoremap <expr><C-x><Cr> neocomplcache#smart_close_popup()."\<Cr>"
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 "" gist-vim
@@ -363,9 +364,9 @@ function! s:gist_show(sbj)
 endfunction
 command! -nargs=0 -range=% GistShowEmbedTag :call s:gist_show('embed_tag')
 "" ctrlp-launcher
-nnoremap <C-e> :<C-u>CtrlPLauncher<CR>
+nnoremap <C-e> :<C-u>CtrlPLauncher<Cr>
 "" ctrlp-gist
-nnoremap <C-g> :<C-u>CtrlPGist<CR>
+nnoremap <C-g> :<C-u>CtrlPGist<Cr>
 "" zencoding
 let g:user_zen_expandabbr_key='<C-y>,'
 let g:user_zen_complete_tag=1
@@ -378,16 +379,16 @@ let g:user_zen_settings={
 "" unite
 " let g:unite_enable_start_insert=1
 let g:unite_split_rule="botright"
-nnoremap <silent> ,b :<C-u>Unite buffer<CR>
-nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,f :<C-u>Unite file_mru<CR>
-nnoremap <silent> ,d :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,b :<C-u>Unite buffer<Cr>
+nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<Cr>
+nnoremap <silent> ,f :<C-u>Unite file_mru<Cr>
+nnoremap <silent> ,d :<C-u>UniteWithBufferDir -buffer-name=files file<Cr>
 nnoremap <silent> ,a :<C-u>UniteWithBufferDir
-\  -buffer-name=files buffer file_mru bookmark file<CR>
+\  -buffer-name=files buffer file_mru bookmark file<Cr>
 "" sources
-nnoremap <silent> ,h :<C-u>Unite -start-insert help<CR>
-nnoremap <silent> ,g :<C-u>UniteWithCursorWord help<CR>
-nnoremap <silent> ,m :<C-u>Unite mark<CR>
+nnoremap <silent> ,h :<C-u>Unite -start-insert help<Cr>
+nnoremap <silent> ,g :<C-u>UniteWithCursorWord help<Cr>
+nnoremap <silent> ,m :<C-u>Unite mark<Cr>
 augroup setup_unite_spilt
   autocmd!
   autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-k> unite#do_action('split')
@@ -397,23 +398,23 @@ augroup setup_unite_spilt
 augroup END
 augroup setup_unite_close
   autocmd!
-  autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-  autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+  autocmd FileType unite nnoremap <silent> <buffer> <Esc><Esc> :q<Cr>
+  autocmd FileType unite inoremap <silent> <buffer> <Esc><Esc> <Esc>:q<Cr>
 augroup END
 "" nerdcommenter
 let g:NERDCreateDefaultMappings=0
 let g:NERDSpaceDelims=1
-map  <Leader>cc <Plug>NERDCommenterToggle
-nmap <Leader>ca <Plug>NERDCommenterAppend
-nmap <leader>c$ <Plug>NERDCommenterToEOL
-vmap <Leader>cs <Plug>NERDCommenterSexy
-vmap <Leader>cb <Plug>NERDCommenterMinimal
+map  <Leader>cc <plug>NERDCommenterToggle
+nmap <Leader>ca <plug>NERDCommenterAppend
+nmap <leader>c$ <plug>NERDCommenterToEOL
+vmap <Leader>cs <plug>NERDCommenterSexy
+vmap <Leader>cb <plug>NERDCommenterMinimal
 "" buftabs
 let g:buftabs_only_basename=1
 let g:buftabs_in_statusline=1
 let g:buftabs_active_highlight_group="Visual"
-noremap <Leader>bp :bprev<CR>
-noremap <Leader>bn :bnext<CR>
+noremap <Leader>bp :bprev<Cr>
+noremap <Leader>bn :bnext<Cr>
 "" showmarks
 let g:showmarks_include="abcdefghijklmnopqlstuvwxyzABCDEFGHIJKLMNOPQLZTUVWXYZ"
 let g:showmarks_textlower="*"
@@ -423,7 +424,7 @@ highlight default ShowMarksHLu ctermfg=red ctermbg=black cterm=none
 highlight default ShowMarksHLo ctermfg=red ctermbg=black cterm=none
 highlight default ShowMarksHLm ctermfg=red ctermbg=black cterm=none
 "" yankring
-noremap <silent> <F7> :YRShow<CR>
+noremap <silent> <F7> :YRShow<Cr>
 let g:yankring_history_dir=expand('$HOME/.vim/')
 let g:yankring_history_file='.yankring_history'
 let g:yankring_replace_n_pkey='<M-p>'
@@ -449,12 +450,12 @@ let g:quickrun_config['ruby.rspec']={
 \  'exec'    : "bundle exec %o",
 \}
 "" vimfiler
-nnoremap <silent> ,fd :<C-u>VimFilerBufferDir -quit<CR>
+nnoremap <silent> ,fd :<C-u>VimFilerBufferDir -quit<Cr>
 "" ri.vim
 "" split 0 => h, 1 => v
-nnoremap ,i :call ri#OpenSearchPrompt(0)<CR>
-nnoremap ,I :call ri#OpenSearchPrompt(1)<CR>
-nnoremap ,K :call ri#LookupNameUnderCursor()<CR>
+nnoremap ,i :call ri#OpenSearchPrompt(0)<Cr>
+nnoremap ,I :call ri#OpenSearchPrompt(1)<Cr>
+nnoremap ,K :call ri#LookupNameUnderCursor()<Cr>
 "" my plugins :)
 "" hello-vim
 let g:hello_say_words="Grüezi,Vim"
@@ -532,7 +533,7 @@ augroup END
 
 """ vim {{{
 let g:vim_indent_cont = 0
-noremap <Space>r :<C-u>source $MYVIMRC<CR>
+noremap <Space>r :<C-u>source $MYVIMRC<Cr>
 augroup fold_vimrc
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
