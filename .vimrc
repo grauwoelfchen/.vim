@@ -331,6 +331,36 @@ nmap <C-x> <Plug>(neocomplcache_snippets_force_expand)
 inoremap <expr><C-x><CR> neocomplcache#smart_close_popup()."\<CR>"
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
+"" gist-vim
+if s:os_type == 'osx'
+  let g:gist_clip_command='pbcopy'
+else
+  let g:gist_clip_command='xclip -selection clipboard'
+endif
+let g:gist_detect_filetype=1
+let g:gist_open_browser_after_post=1
+let g:gist_open_browser_command='w3m %URL%'
+"" show embed tag of current gist
+function! s:gist_show_embed_tag()
+  if exists('b:gist')
+    let info = b:gist
+    if len(info) != 0
+      return '<script src="https://gist.github.com/'.info['id'].'.js?file='.info['filename'].'"></script>'
+    endif
+  endif
+endfunction
+function! s:gist_show(sbj)
+  let obj = function('s:gist_show_'.a:sbj)()
+  if len(obj) != 0
+    copen
+    setlocal buftype=nofile bufhidden=hide noswapfile
+    setlocal modifiable
+    silent %d _
+    call setline(1, obj)
+    setlocal nomodifiable
+  endif
+endfunction
+command! -nargs=0 -range=% GistShowEmbedTag :call s:gist_show('embed_tag')
 "" ctrlp-launcher
 nnoremap <C-e> :<C-u>CtrlPLauncher<CR>
 "" ctrlp-gist
