@@ -108,6 +108,7 @@ NeoBundle 'tsukkee/unite-help', {
 \    'tyru/open-browser.vim',
 \  ]
 \}
+NeoBundle 'rhysd/open-pdf.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'vim-ruby/vim-ruby'
 "" vim-scripts
