@@ -184,6 +184,11 @@ cnoremap <C-n> <Down>
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <C-d> <Del>
+"" quickfix
+nnoremap Q q
+nnoremap qj :cnext<Return>
+nnoremap qk :cprevious<Return>
+
 "" matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 "" last position
@@ -257,6 +262,14 @@ augroup highlight_over_length
   \  highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
   autocmd BufEnter * match OverLength /\%81v.\+/
 augroup END
+"" quickfix
+augroup auto_close_qucik_fix
+  autocmd!
+  autocmd WinEnter *
+  \ if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' |
+  \ quit | endif
+augroup END
+
 " }}}
 
 """ edit {{{
