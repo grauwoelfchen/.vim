@@ -161,11 +161,6 @@ nnoremap N Nzzzv
 "" grep
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nH
-augroup quickfix_open
-  autocmd!
-  autocmd QuickfixCmdPost make,grep,vimgrep
-  \  if len(getqflist()) | copen | endif
-augroup END
 "" help
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Return>
 " }}}
@@ -188,7 +183,6 @@ cnoremap <C-d> <Del>
 nnoremap Q q
 nnoremap qj :cnext<Return>
 nnoremap qk :cprevious<Return>
-
 "" matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 "" last position
@@ -263,13 +257,17 @@ augroup highlight_over_length
   autocmd BufEnter * match OverLength /\%81v.\+/
 augroup END
 "" quickfix
-augroup auto_close_qucik_fix
+augroup quickfix_open
+  autocmd!
+  autocmd QuickfixCmdPost make,grep,vimgrep
+  \  if len(getqflist()) | copen | endif
+augroup END
+augroup quickfix_close
   autocmd!
   autocmd WinEnter *
   \ if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' |
   \ quit | endif
 augroup END
-
 " }}}
 
 """ edit {{{
