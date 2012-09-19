@@ -64,10 +64,18 @@ NeoBundle 'mattn/ctrlp-launcher', {
 \    'kien/ctrlp.vim',
 \  ]
 \}
-NeoBundle 'mattn/gist-vim'
+NeoBundle 'mattn/gist-vim', {
+\  'depends': [
+\    'mattn/webapi-vim'
+\  ]
+\}
 NeoBundle 'motemen/git-vim'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache', {
+\ 'depends': [
+\   'Shougo/vimproc',
+\ ]
+\}
 NeoBundle 'Shougo/neocomplcache-snippets-complete', {
 \  'depends': [
 \    'Shougo/neocomplcache',
@@ -216,7 +224,6 @@ function! MakeTabLine()
 endfunction
 set showtabline=2
 set tabline=%!MakeTabLine()
-
 set number
 " set t_Co=256
 set listchars=tab:^_,trail:_
