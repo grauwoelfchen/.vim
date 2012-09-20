@@ -171,6 +171,8 @@ noremap <C-a> <Home>
 noremap <C-e> <End>
 nnoremap j gj
 nnoremap k gk
+"" insert
+inoremap <C-a> <Nop>
 "" command
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -181,6 +183,7 @@ cnoremap <C-l> <Right>
 cnoremap <C-d> <Del>
 "" quickfix
 nnoremap Q q
+nnoremap q <Nop>
 nnoremap qj :cnext<Return>
 nnoremap qk :cprevious<Return>
 "" matchit.vim
