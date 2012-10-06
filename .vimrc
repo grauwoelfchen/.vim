@@ -465,6 +465,7 @@ let g:quickrun_config['*']={
 let g:quickrun_config['markdown']={
 \  'command'   : 'redcarpet',
 \  'outputter' : 'browser',
+\  'exec'      : "%c %s",
 \}
 let g:quickrun_config['ruby.rspec']={
 \  'cmdopt'  : "rspec --format progress --profile --line_number %{line('.')}",
