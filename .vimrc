@@ -300,7 +300,8 @@ set fileformats=unix
 """ template {{{
 augroup apply_template
   autocmd!
-  autocmd BufNewFile *.rb 0r $HOME/.vim/templates/rb.tpl
+  autocmd BufNewFile *.erl 0r $HOME/.vim/templates/erl.tpl
+  autocmd BufNewFile *.rb  0r $HOME/.vim/templates/rb.tpl
 augroup END
 " }}}
 
