@@ -82,7 +82,7 @@ NeoBundle 'Shougo/neocomplcache', {
 \   'Shougo/vimproc',
 \ ]
 \}
-NeoBundle 'Shougo/neocomplcache-snippets-complete', {
+NeoBundle 'Shougo/neosnippet', {
 \  'depends': [
 \    'Shougo/neocomplcache',
 \  ]
@@ -338,7 +338,6 @@ let g:neocomplcache_min_keyword_length=3
 let g:neocomplcache_min_syntax_length=3
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_max_list=20
-let g:neocomplcache_snippets_dir=$HOME.'/.vim/snippets'
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns={}
 endif
@@ -353,14 +352,14 @@ let g:neocomplcache_dictionary_filetype_lists={
 \  'ruby'    : $HOME.'/.vim/dict/ruby.dict',
 \  'php'     : $HOME.'/.vim/dict/php.dict'
 \}
-imap <C-k> <plug>(neocomplcache_snippets_expand)
-"" for selected default
-smap <C-k> <plug>(neocomplcache_snippets_expand)
-imap <C-x> <plug>(neocomplcache_snippets_force_jump)
-nmap <C-x> <plug>(neocomplcache_snippets_force_expand)
 inoremap <expr><C-x><Return> neocomplcache#smart_close_popup()."\<Return>"
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
+"" neosnippet
+let g:neosnippet#snippets_directory=$HOME.'/.vim/snippets'
+smap <C-k> <plug>(neosnippet_expand_or_jump)
+imap <C-x> <plug>(neosnippet_expand_or_jump)
+nmap <C-x> <plug>(neosnippet_expand_or_jump)
 "" gist-vim
 if s:os_type == 'osx'
   let g:gist_clip_command='pbcopy'
