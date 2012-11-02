@@ -69,6 +69,12 @@ NeoBundle 'mattn/gist-vim', {
 \    'mattn/webapi-vim'
 \  ]
 \}
+NeoBundle 'mattn/unite-advent_calendar', {
+\  'depends': [
+\    'mattn/webapi-vim',
+\    'tyru/open-browser.vim',
+\  ]
+\}
 NeoBundle 'motemen/git-vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'Shougo/neocomplcache', {
