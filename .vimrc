@@ -138,12 +138,6 @@ if s:os_type == 'mac'
   NeoBundle 'msanders/cocoa.vim'
 end
 ""
-NeoBundle 'https://bitbucket.org/ns9tks/vim-l9/'
-NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder', {
-\  'depends': [
-\    'https://bitbucket.org/ns9tks/vim-l9/',
-\  ]
-\}
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
