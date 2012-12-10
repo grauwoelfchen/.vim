@@ -134,6 +134,7 @@ NeoBundle 'ShowMarks'
 NeoBundle 'YankRing.vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'taglist.vim'
+NeoBundle 'MultipleSearch'
 if s:os_type == 'mac'
   NeoBundle 'msanders/cocoa.vim'
 end
