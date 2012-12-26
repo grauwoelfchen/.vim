@@ -93,7 +93,12 @@ NeoBundle 'Shougo/unite-outline', {
 \   'Shougo/unite.vim',
 \  ]
 \}
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+\  'build': {
+\    'unix': 'make -f make_unix.mak',
+\    'mac' : 'make -f make_mac.mak'
+\  }
+\}
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell', {
 \  'depends': [
