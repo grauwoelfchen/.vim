@@ -541,7 +541,7 @@ augroup END
 """ filetype {{{
 augroup handle_as_lisp
   autocmd!
-  autocmd BufNewFile,BufRead .stumpwmrc setlocal filetype=lisp
+  autocmd BufNewFile,BufRead .stumpwmrc,.clisprc setlocal filetype=lisp
 augroup END
 augroup handle_as_spec
   autocmd!
