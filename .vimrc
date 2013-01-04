@@ -143,7 +143,8 @@ NeoBundle 'MultipleSearch'
 if s:os_type == 'mac'
   NeoBundle 'msanders/cocoa.vim'
 end
-""
+"" mercurial
+NeoBundle 'https://bitbucket.org/kovisoft/slimv'
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
@@ -477,6 +478,10 @@ let g:quickrun_config['ruby.rspec']={
 \  'cmdopt'  : "rspec --format progress --profile --line_number %{line('.')}",
 \  'exec'    : "bundle exec %o",
 \}
+"" slimv
+let g:slimv_swank_cmd =
+\  '!screen -dmS eval clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp'
+"\  '!xterm -e clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
 "" vimfiler
 nnoremap <silent> ,fd :<C-u>VimFilerBufferDir -quit<Return>
 "" ri.vim
