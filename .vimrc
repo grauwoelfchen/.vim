@@ -1,4 +1,4 @@
-" Last Change: Dies, 08. Jan. 2013
+" Last Change: Diens, 08. Jan. 2013
 scriptencoding utf-8
 
 """ basic {{{
