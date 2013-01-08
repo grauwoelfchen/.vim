@@ -319,7 +319,7 @@ command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
 "" me
 inoremap <expr> ,mu 'grauwoelfchen'
-inoremap <expr> ,me 'y.grauwoelfchen@gmail.com <Yasuhiro Asaka>'
+inoremap <expr> ,me 'grauwoelfchen@gmail.com <Yasuhiro Asaka>'
 "" encoding
 function! PutMagicComment()
   return "# encoding: utf-8\<Return>\<Return>"
