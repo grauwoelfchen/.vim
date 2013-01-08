@@ -1,4 +1,4 @@
-" Last Change: Sat, 08. Sep. 2012
+" Last Change: Dies, 08. Jan. 2013
 scriptencoding utf-8
 
 """ basic {{{
@@ -19,7 +19,7 @@ set directory=$HOME/.vim/.swap
 set noimcmdline
 set iminsert=0
 if has('unix') && system('uname')=~'Darwin'
-  let s:os_type='mac'
+  let s:os_type='osx'
 else
   let s:os_type='linux'
 endif
@@ -140,7 +140,7 @@ NeoBundle 'YankRing.vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'taglist.vim'
 NeoBundle 'MultipleSearch'
-if s:os_type == 'mac'
+if s:os_type == 'osx'
   NeoBundle 'msanders/cocoa.vim'
 end
 "" mercurial
@@ -520,11 +520,11 @@ set cinwords=if,else,while,do,for,switch,case
 nnoremap ]] ]m
 nnoremap [[ [m
 "" ctags
-if s:os_type == 'linux'
-  let Tlist_Ctags_Cmd='/usr/bin/ctags'
-else
-  "" emacs on mac via brew
+if s:os_type == 'osx'
+  "" via brew
   let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+else
+  let Tlist_Ctags_Cmd='/usr/bin/ctags'
 end
 let Tlist_Show_One_File=1
 let Tlist_Use_Horiz_Window=1
