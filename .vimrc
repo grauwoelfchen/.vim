@@ -18,6 +18,8 @@ set directory=$HOME/.vim/.swap
 "" IME
 set noimcmdline
 set iminsert=0
+" completion
+set wildmode=list:longest
 if has('unix') && system('uname')=~'Darwin'
   let s:os_type='osx'
 else
