@@ -533,6 +533,7 @@ let Tlist_Show_One_File=1
 let Tlist_Use_Horiz_Window=1
 let Tlist_Exit_OnlyWindow=1
 "" white space
+nnoremap <Leader>ss ma:%s/  *$//<CR>`a<ESC>
 " augroup replace_white_space
   " autocmd!
   " autocmd BufWritePre * :%s/\s\+$//ge
