@@ -34,6 +34,13 @@ if &runtimepath !~ '/neobundle.vim'
   set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
 call neobundle#rc(expand("$HOME/.vim/bundle/"))
+NeoBundle 'choplin/unite-vim_hacks', {
+\  'depends': [
+\    'mattn/webapi-vim',
+\    'mattn/wwwrenderer-vim',
+\    'thinca/vim-openbuf'
+\  ]
+\}
 NeoBundle 'danchoi/ri.vim'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'grauwoelfchen/hello-vim'
