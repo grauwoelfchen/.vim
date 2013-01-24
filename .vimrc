@@ -53,6 +53,8 @@ NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
 NeoBundle 'kana/vim-smartinput'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/togetter-vim', {
