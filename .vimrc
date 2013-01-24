@@ -291,6 +291,7 @@ set foldlevel=0
 noremap qp `[v`]
 " noremap <expr> qp '`['.strpart(getregtype(), 0, 1).'`]'
 set clipboard=unnamed,autoselect
+set clipboard=autoselect
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
 "" visual
