@@ -43,8 +43,15 @@ NeoBundle 'choplin/unite-vim_hacks', {
 \}
 NeoBundle 'danchoi/ri.vim'
 NeoBundle 'ervandew/supertab'
-NeoBundle 'grauwoelfchen/hello-vim'
-NeoBundle 'grauwoelfchen/pinponpanpon-vim', {
+NeoBundleLazy 'grauwoelfchen/hello-vim', {
+\  'autoload' : {
+\    'commands' : [ 'Say' ]
+\  },
+\}
+NeoBundleLazy 'grauwoelfchen/pinponpanpon-vim', {
+\  'autoload' : {
+\    'commands' : [ 'PinponPanpon' ]
+\  },
 \  'depends': [
 \    'mattn/webapi-vim'
 \  ]
@@ -56,26 +63,39 @@ NeoBundle 'kana/vim-smartinput'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'mattn/togetter-vim', {
+NeoBundleLazy 'mattn/zencoding-vim'
+autocmd FileType html NeoBundleSource zencoding-vim
+NeoBundleLazy 'mattn/togetter-vim', {
+\  'autoload' : {
+\    'commands' : [ 'TogetterRecent', 'TogetterHot' ]
+\  },
 \  'depends': [
 \    'mattn/webapi-vim'
 \  ]
 \}
 NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/ctrlp-gist', {
+NeoBundleLazy 'mattn/ctrlp-gist', {
+\  'autoload' : {
+\    'commands' : [ 'CtrlPGist' ]
+\  },
 \  'depends': [
 \    'kien/ctrlp.vim',
 \    'mattn/webapi-vim',
 \    'mattn/gist-vim'
 \  ]
 \}
-NeoBundle 'mattn/ctrlp-launcher', {
+NeoBundleLazy 'mattn/ctrlp-launcher', {
+\  'autoload' : {
+\    'commands' : [ 'CtrlPLauncher' ]
+\  },
 \  'depends': [
 \    'kien/ctrlp.vim',
 \  ]
 \}
-NeoBundle 'mattn/gist-vim', {
+NeoBundleLazy 'mattn/gist-vim', {
+\  'autoload' : {
+\    'commands' : [ 'Gist' ]
+\  },
 \  'depends': [
 \    'mattn/webapi-vim'
 \  ]
@@ -110,8 +130,18 @@ NeoBundle 'Shougo/vimproc', {
 \    'mac' : 'make -f make_mac.mak'
 \  }
 \}
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimshell', {
+NeoBundleLazy 'Shougo/vimfiler', {
+\  'autoload' : {
+\    'commands' : [ 'VimFilerBufferDir' ]
+\  },
+\  'depends': [
+\    'Shougo/unite.vim'
+\  ],
+\ }
+NeoBundleLazy 'Shougo/vimshell', {
+\  'autoload' : {
+\    'commands' : [ 'VimShell' ]
+\  },
 \  'depends': [
 \    'Shougo/vimproc',
 \  ]
@@ -123,10 +153,13 @@ NeoBundle 'tacroe/unite-mark', {
 \  ]
 \}
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-haml'
-NeoBundle 'tpope/vim-rails'
+NeoBundleLazy 'tpope/vim-haml'
+autocmd FileType haml NeoBundleSource vim-haml
+NeoBundleLazy 'tpope/vim-rails'
+autocmd FileType ruby NeoBundleSource vim-rails
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-markdown'
+NeoBundleLazy 'tpope/vim-markdown'
+autocmd FileType markdown NeoBundleSource vim-markdown
 NeoBundle 'thinca/vim-guicolorscheme'
 NeoBundle 'thinca/vim-quickrun', {
 \  'depends': [
@@ -142,7 +175,8 @@ NeoBundle 'tsukkee/unite-help', {
 \}
 NeoBundle 'rhysd/open-pdf.vim'
 NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'vim-ruby/vim-ruby'
+NeoBundleLazy 'vim-ruby/vim-ruby'
+autocmd FileType ruby NeoBundleSource vim-ruby
 "" vim-scripts
 NeoBundle 'buftabs'
 NeoBundle 'sudo.vim'
@@ -155,7 +189,8 @@ if s:os_type == 'osx'
   NeoBundle 'msanders/cocoa.vim'
 end
 "" mercurial
-NeoBundle 'https://bitbucket.org/kovisoft/slimv'
+NeoBundleLazy 'https://bitbucket.org/kovisoft/slimv'
+autocmd FileType lisp NeoBundleSource slimv
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
