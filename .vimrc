@@ -494,7 +494,7 @@ let g:slimv_swank_cmd =
 \  '!screen -dmS eval clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp'
 "\  '!xterm -e clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
 "" vimfiler
-nnoremap <silent> ,fd :<C-u>VimFilerBufferDir -quit<Return>
+nnoremap <silent> <leader>fd :<C-u>VimFilerBufferDir -quit<Return>
 "" ri.vim
 "" split 0 => h, 1 => v
 nnoremap ,i :call ri#OpenSearchPrompt(0)<Return>
@@ -556,6 +556,10 @@ augroup END
 " }}}
 
 """ filetype {{{
+augroup handle_as_markdown
+  autocmd!
+  autocmd BufNewFile,BufRead *.md,*.markdown,*.mkd setlocal filetype=markdown
+augroup END
 augroup handle_as_lisp
   autocmd!
   autocmd BufNewFile,BufRead .stumpwmrc,.clisprc setlocal filetype=lisp
