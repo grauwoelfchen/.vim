@@ -42,6 +42,7 @@ NeoBundle 'choplin/unite-vim_hacks', {
 \  ]
 \}
 NeoBundle 'danchoi/ri.vim'
+NeoBundle 'deris/columnjump'
 NeoBundle 'ervandew/supertab'
 NeoBundleLazy 'grauwoelfchen/hello-vim', {
 \  'autoload' : {
@@ -376,6 +377,9 @@ inoremap <Leader>## <C-r>=PutMagicComment()<Return>
 " }}}
 
 """ plugin {{{
+"" columnjump
+nmap <c-k> <Plug>(columnjump-backward)
+nmap <c-j> <Plug>(columnjump-forward)
 "" neocomplcache
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_skip_completion_time=0.3
