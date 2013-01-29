@@ -1,0 +1,10 @@
+dropbox											VimShell $HOME/Dropbox
+htop												!htop
+tune power on								!tune power on
+tune power off							!tune power off
+tune play "Drone Zone"			!tune play 14
+tune play "Groove Salad"		!tune play 16
+tune volume up							!tune vol up
+tune volume down						!tune vol down
+open URL										call feedkeys(':OpenBrowser http')
+task												copen | setl ma | lcd $HOME/Documents/workspace | call setline(1, split(system('sc'), "\n")) | setl bt=nofile bh=hide noswf | setl noma
