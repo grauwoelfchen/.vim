@@ -63,6 +63,7 @@ NeoBundle 'kana/vim-gf-diff'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundleLazy 'mattn/zencoding-vim'
 autocmd FileType html NeoBundleSource zencoding-vim
@@ -522,6 +523,10 @@ let g:quickrun_config['*']={
 \  'runner/vimproc/updatetime' : 10,
 \  'split'                     : 'below',
 \}
+let g:quickrun_config['coffee']={
+\  'command' : 'coffee',
+\  'exec'    : "%c -cbp %s",
+\}
 let g:quickrun_config['markdown']={
 \  'command'   : 'redcarpet',
 \  'outputter' : 'browser',
@@ -614,6 +619,7 @@ augroup handle_as_arduino
   autocmd!
   autocmd BufNewFile,BufRead *.pde setlocal filetype=arduino
 augroup END
+"" coffee
 "" ruby
 "" python
 "" php
