@@ -8,9 +8,4 @@ augroup handle_as_coffee
 augroup END
 " comfile
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
-setlocal splitright
-augroup coffee_make
-  autocmd!
-  autocmd BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
-augroup END
 " }}}
