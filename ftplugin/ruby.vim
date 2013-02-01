@@ -11,7 +11,7 @@ if &filetype == "ruby"
   setlocal makeprg=ruby\ -c\ %
   augroup syntax_check
     autocmd!
-    autocmd BufWritePost <buffer> silent make! -c % | redraw!
+    autocmd BufWritePost <buffer> silent make! -c % | cwindow | redraw!
   augroup END
 endif
 " }}}
