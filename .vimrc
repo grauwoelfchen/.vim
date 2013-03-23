@@ -186,6 +186,7 @@ NeoBundleLazy 'vim-ruby/vim-ruby'
 autocmd FileType ruby NeoBundleSource vim-ruby
 "" vim-scripts
 NeoBundle 'buftabs'
+NeoBundle 'pep8'
 NeoBundle 'sudo.vim'
 NeoBundle 'ShowMarks'
 NeoBundle 'YankRing.vim'
@@ -463,6 +464,8 @@ let g:user_zen_settings={
 \    'extends': 'html',
 \  }
 \}
+"" pep8
+let g:pep8_map='<F8>'
 "" unite
 " let g:unite_enable_start_insert=1
 let g:unite_split_rule="botright"
