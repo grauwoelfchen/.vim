@@ -557,6 +557,12 @@ let g:quickrun_config['ruby.rspec']={
 \  'cmdopt'  : "--format progress --profile --line_number %{line('.')}",
 \  'exec'    : "bundle exec %c %o",
 \}
+let g:quickrun_config['python']={
+\  'command'   : 'pep8',
+\  'cmdopt'    : '--first',
+\  'outputter' : 'quickfix',
+\  'exec'      : "%c %o %s",
+\}
 "" slimv
 let g:slimv_swank_cmd =
 \  '!screen -dmS eval clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp'
