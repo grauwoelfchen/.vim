@@ -543,16 +543,19 @@ let g:quickrun_config['_']={
 \}
 let g:quickrun_config['coffee']={
 \  'command' : 'coffee',
-\  'exec'    : "%c -cbp %s",
+\  'cmdopt'  : '-cbp',
+\  'exec'    : "%c %o %s",
 \}
 let g:quickrun_config['markdown']={
 \  'command'   : 'redcarpet',
+\  'cmdopt'    : '--parse-fenced-code-blocks --parse-tables --parse-autolink',
 \  'outputter' : 'browser',
-\  'exec'      : "%c --parse-fenced-code-blocks --parse-tables --parse-autolink %s",
+\  'exec'      : "%c %o %s",
 \}
 let g:quickrun_config['ruby.rspec']={
-\  'cmdopt'  : "rspec --format progress --profile --line_number %{line('.')}",
-\  'exec'    : "bundle exec %o",
+\  'command' : 'rspec',
+\  'cmdopt'  : "--format progress --profile --line_number %{line('.')}",
+\  'exec'    : "bundle exec %c %o",
 \}
 "" slimv
 let g:slimv_swank_cmd =
