@@ -34,6 +34,11 @@ if &runtimepath !~ '/neobundle.vim'
   set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
 call neobundle#rc(expand("$HOME/.vim/bundle/"))
+NeoBundle 'basyura/unite-rails', {
+\  'depends': [
+\   'Shougo/unite.vim',
+\  ]
+\}
 NeoBundle 'choplin/unite-vim_hacks', {
 \  'depends': [
 \    'mattn/webapi-vim',
@@ -467,7 +472,6 @@ nnoremap <silent> ,f :<C-u>Unite file_mru<Return>
 nnoremap <silent> ,d :<C-u>UniteWithBufferDir -buffer-name=files file<Return>
 nnoremap <silent> ,a :<C-u>UniteWithBufferDir
 \  -buffer-name=files buffer file_mru bookmark file<Return>
-"" sources
 nnoremap <silent> ,h :<C-u>Unite -start-insert help<Return>
 nnoremap <silent> ,g :<C-u>UniteWithCursorWord help<Return>
 nnoremap <silent> ,m :<C-u>Unite mark<Return>
@@ -483,6 +487,17 @@ augroup setup_unite_close
   autocmd FileType unite nnoremap <silent> <buffer> <Esc><Esc> :q<Return>
   autocmd FileType unite inoremap <silent> <buffer> <Esc><Esc> <Esc>:q<Return>
 augroup END
+"" unite-rails
+noremap ;rm :<C-u>Unite rails/model<Return>
+noremap ;rv :<C-u>Unite rails/view<Return>
+noremap ;rc :<C-u>Unite rails/controller<Return>
+noremap ;rh :<C-u>Unite rails/helper<Return>
+noremap ;rs :<C-u>Unite rails/stylesheet<Return>
+noremap ;rj :<C-u>Unite rails/javascript<Return>
+noremap ;rr :<C-u>Unite rails/route<Return>
+noremap ;rg :<C-u>Unite rails/gemfile<Return>
+noremap ;rt :<C-u>Unite rails/spec<Return>
+noremap ;ra :<C-u>Unite rails/rake<Return>
 "" nerdcommenter
 let g:NERDCreateDefaultMappings=0
 let g:NERDSpaceDelims=1
