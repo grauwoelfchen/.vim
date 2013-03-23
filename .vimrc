@@ -532,7 +532,7 @@ let g:yankring_max_element_length=1048576
 let g:yankring_window_height=13
 "" quickrun
 let g:quickrun_config={}
-let g:quickrun_config['*']={
+let g:quickrun_config['_']={
 \  'hook/time/enable'          : 1,
 \  'runner'                    : 'vimproc',
 \  'runner/vimproc/updatetime' : 10,
