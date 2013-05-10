@@ -409,9 +409,10 @@ if !exists('g:neocomplcache_dictionary_filetype_lists')
   let g:neocomplcache_dictionary_filetype_lists={}
 endif
 let g:neocomplcache_dictionary_filetype_lists={
-\  'default' : '',
-\  'ruby'    : $HOME.'/.vim/dict/ruby.dict',
-\  'php'     : $HOME.'/.vim/dict/php.dict'
+\  'default'  : '',
+\  'vimshell' : $HOME.'/.vimshell/command/history',
+\  'ruby'     : $HOME.'/.vim/dict/ruby.dict',
+\  'php'      : $HOME.'/.vim/dict/php.dict'
 \}
 inoremap <expr><C-x><Return> neocomplcache#smart_close_popup()."\<Return>"
 inoremap <expr><C-g> neocomplcache#undo_completion()
