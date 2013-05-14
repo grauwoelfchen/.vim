@@ -183,6 +183,7 @@ NeoBundle 'tsukkee/unite-help', {
 NeoBundle 'rhysd/open-pdf.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundleLazy 'vim-ruby/vim-ruby'
+NeoBundle 'wlangstroth/vim-racket'
 autocmd FileType ruby NeoBundleSource vim-ruby
 "" vim-scripts
 NeoBundle 'buftabs'
