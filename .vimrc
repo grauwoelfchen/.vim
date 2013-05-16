@@ -559,6 +559,11 @@ let g:quickrun_config['ruby.rspec']={
 \  'cmdopt'  : "--format progress --profile --line_number %{line('.')}",
 \  'exec'    : "bundle exec %c %o",
 \}
+let g:quickrun_config['lisp']={
+\  'command' : 'clisp',
+\  'cmdopt'  : "--silent -i",
+\  'exec'    : "%c %o %s",
+\}
 let g:quickrun_config['python']={
 \  'command'   : 'pep8',
 \  'cmdopt'    : '--first',
