@@ -322,6 +322,9 @@ augroup highlight_over_length
   \  highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
   autocmd BufEnter * match OverLength /\%81v.\+/
 augroup END
+"" split
+set splitbelow
+set splitright
 "" quickfix
 augroup quickfix_open
   autocmd!
@@ -541,7 +544,7 @@ let g:quickrun_config['_']={
 \  'hook/time/enable'          : 1,
 \  'runner'                    : 'vimproc',
 \  'runner/vimproc/updatetime' : 10,
-\  'split'                     : 'below',
+\  'split'                     : 'vertical',
 \}
 let g:quickrun_config['coffee']={
 \  'command' : 'coffee',
@@ -562,6 +565,11 @@ let g:quickrun_config['ruby.rspec']={
 let g:quickrun_config['lisp']={
 \  'command' : 'clisp',
 \  'cmdopt'  : "--silent -i",
+\  'exec'    : "%c %o %s",
+\}
+let g:quickrun_config['racket']={
+\  'command' : 'racket',
+\  'cmdopt'  : "-W info",
 \  'exec'    : "%c %o %s",
 \}
 let g:quickrun_config['python']={
