@@ -564,7 +564,7 @@ let g:quickrun_config['ruby.rspec']={
 \}
 let g:quickrun_config['lisp']={
 \  'command' : 'clisp',
-\  'cmdopt'  : "--silent -i",
+\  'cmdopt'  : "--silent",
 \  'exec'    : "%c %o %s",
 \}
 let g:quickrun_config['racket']={
