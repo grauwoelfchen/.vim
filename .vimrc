@@ -197,6 +197,8 @@ NeoBundle 'MultipleSearch'
 if s:os_type == 'osx'
   NeoBundle 'msanders/cocoa.vim'
 end
+"" source forge
+NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex'
 "" mercurial
 NeoBundleLazy 'https://bitbucket.org/kovisoft/slimv'
 autocmd FileType lisp NeoBundleSource slimv
@@ -538,6 +540,9 @@ let g:yankring_max_history=10
 "" 2M
 let g:yankring_max_element_length=1048576
 let g:yankring_window_height=13
+"" vim-latex
+let g:Tex_CompileRule_dvi = 'latex $*'
+let g:Tex_ViewRule_dvi = 'xdvi'
 "" quickrun
 let g:quickrun_config={}
 let g:quickrun_config['_']={
