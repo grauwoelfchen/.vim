@@ -583,6 +583,11 @@ let g:quickrun_config['python']={
 \  'outputter' : 'quickfix',
 \  'exec'      : "%c %o %s",
 \}
+let g:quickrun_config['html']={
+\  'command'   : 'cat',
+\  'outputter' : 'browser',
+\  'exec'      : "%c %s",
+\}
 "" slimv
 let g:slimv_swank_cmd =
 \  '!screen -dmS eval clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp'
