@@ -15,6 +15,8 @@ if has('gui_macvim')
   map <silent> gw :macaction selectNextWindow:<Return>
   map <silent> gW :macaction selectPreviousWindow:<Return>
   " full screen
-  "set fuoptions=maxvert,maxhorz
-  "autocmd GUIEnter * set fullscreen
+  set fuoptions=maxvert,maxhorz
+  autocmd GUIEnter * set fullscreen
+  " IME off
+  inoremap <silent> <ESC><ESC>:set iminsert=0<Return>
 endif
