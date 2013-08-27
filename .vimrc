@@ -71,7 +71,10 @@ NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundleLazy 'mattn/zencoding-vim'
-autocmd FileType html NeoBundleSource zencoding-vim
+augroup zencoding-vim
+  autocmd!
+  autocmd FileType html NeoBundleSource zencoding-vim
+augroup END
 NeoBundleLazy 'mattn/togetter-vim', {
 \  'autoload' : {
 \    'commands' : [ 'TogetterRecent', 'TogetterHot' ]
@@ -153,7 +156,11 @@ NeoBundleLazy 'Shougo/vimshell', {
 \    'Shougo/vimproc',
 \  ]
 \}
-
+NeoBundleLazy 'slim-template/vim-slim'
+augroup vim-slim
+  autocmd!
+  autocmd FileType slim NeoBundleSource vim-slim
+augroup END
 NeoBundle 'tacroe/unite-mark', {
 \  'depends': [
 \    'Shougo/unite.vim',
@@ -161,12 +168,21 @@ NeoBundle 'tacroe/unite-mark', {
 \}
 NeoBundle 'tpope/vim-fugitive'
 NeoBundleLazy 'tpope/vim-haml'
-autocmd FileType haml NeoBundleSource vim-haml
+augroup vim-haml
+  autocmd!
+  autocmd FileType haml NeoBundleSource vim-haml
+augroup END
 NeoBundleLazy 'tpope/vim-rails'
-autocmd FileType ruby NeoBundleSource vim-rails
+augroup vim-rails
+  autocmd!
+  autocmd FileType ruby NeoBundleSource vim-rails
+augroup END
 NeoBundle 'tpope/vim-surround'
 NeoBundleLazy 'tpope/vim-markdown'
-autocmd FileType markdown NeoBundleSource vim-markdown
+augroup vim-markdown
+  autocmd!
+  autocmd FileType markdown NeoBundleSource vim-markdown
+augroup END
 NeoBundle 'thinca/vim-guicolorscheme'
 NeoBundle 'thinca/vim-quickrun', {
 \  'depends': [
@@ -183,8 +199,11 @@ NeoBundle 'tsukkee/unite-help', {
 NeoBundle 'rhysd/open-pdf.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundleLazy 'vim-ruby/vim-ruby'
+augroup vim-ruby
+  autocmd!
+  autocmd FileType ruby NeoBundleSource vim-ruby
+augroup END
 NeoBundle 'wlangstroth/vim-racket'
-autocmd FileType ruby NeoBundleSource vim-ruby
 "" vim-scripts
 NeoBundle 'buftabs'
 NeoBundle 'pep8'
@@ -201,12 +220,15 @@ end
 NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex'
 "" mercurial
 NeoBundleLazy 'https://bitbucket.org/kovisoft/slimv'
-autocmd FileType lisp NeoBundleSource slimv
+augroup slimv
+  autocmd!
+  autocmd FileType lisp NeoBundleSource slimv
+augroup END
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
   echomsg 'Please execute ":NeoBundleInstall" command.'
-" finish
+"  finish
 endif
 filetype plugin indent on
 " }}}
@@ -428,49 +450,6 @@ let g:neosnippet#snippets_directory=$HOME.'/.vim/snippets'
 smap <C-k> <plug>(neosnippet_expand_or_jump)
 imap <C-x> <plug>(neosnippet_expand_or_jump)
 nmap <C-x> <plug>(neosnippet_expand_or_jump)
-"" gist-vim
-if s:os_type == 'osx'
-  let g:gist_clip_command='pbcopy'
-else
-  let g:gist_clip_command='xclip -selection clipboard'
-endif
-let g:gist_detect_filetype=1
-let g:gist_open_browser_after_post=1
-let g:gist_open_browser_command='w3m %URL%'
-"" show embed tag of current gist
-function! s:gist_show_embed_tag()
-  if exists('b:gist')
-    let info = b:gist
-    if len(info) != 0
-      return '<script src="https://gist.github.com/'.info['id'].'.js?file='.info['filename'].'"></script>'
-    endif
-  endif
-endfunction
-function! s:gist_show(sbj)
-  let obj = function('s:gist_show_'.a:sbj)()
-  if len(obj) != 0
-    copen
-    setlocal buftype=nofile bufhidden=hide noswapfile
-    setlocal modifiable
-    silent %d _
-    call setline(1, obj)
-    setlocal nomodifiable
-  endif
-endfunction
-command! -nargs=0 -range=% GistShowEmbedTag :call s:gist_show('embed_tag')
-"" ctrlp-launcher
-nnoremap <C-e> :<C-u>CtrlPLauncher<Return>
-"" ctrlp-gist
-nnoremap <C-g> :<C-u>CtrlPGist<Return>
-"" zencoding
-let g:user_zen_expandabbr_key='<C-y>,'
-let g:user_zen_complete_tag=1
-let g:user_zen_settings={
-\  'lang': 'utf-8',
-\  'haml': {
-\    'extends': 'html',
-\  }
-\}
 "" pep8
 let g:pep8_map='<F8>'
 "" unite
@@ -588,10 +567,6 @@ let g:quickrun_config['html']={
 \  'outputter' : 'browser',
 \  'exec'      : "%c %s",
 \}
-"" slimv
-let g:slimv_swank_cmd =
-\  '!screen -dmS eval clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp'
-"\  '!xterm -e clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
 "" vimfiler
 nnoremap <silent> <leader>fd :<C-u>VimFilerBufferDir -quit<Return>
 "" ri.vim
@@ -599,12 +574,80 @@ nnoremap <silent> <leader>fd :<C-u>VimFilerBufferDir -quit<Return>
 nnoremap ,i :call ri#OpenSearchPrompt(0)<Return>
 nnoremap ,I :call ri#OpenSearchPrompt(1)<Return>
 nnoremap ,K :call ri#LookupNameUnderCursor()<Return>
+"" gist-vim
+let s:hooks = neobundle#get_hooks('gist-vim')
+function! s:hooks.on_source(hooks)
+  if s:os_type == 'osx'
+    let g:gist_clip_command='pbcopy'
+  else
+    let g:gist_clip_command='xclip -selection clipboard'
+  endif
+  let g:gist_detect_filetype=1
+  let g:gist_open_browser_after_post=1
+  let g:gist_open_browser_command='w3m %URL%'
+  "" show embed tag of current gist
+  function! s:gist_show_embed_tag()
+    if exists('b:gist')
+      let info = b:gist
+      if len(info) != 0
+        return '<script src="https://gist.github.com/'.info['id'].'.js?file='.info['filename'].'"></script>'
+      endif
+    endif
+  endfunction
+  function! s:gist_show(sbj)
+    let obj = function('s:gist_show_'.a:sbj)()
+    if len(obj) != 0
+      copen
+      setlocal buftype=nofile bufhidden=hide noswapfile
+      setlocal modifiable
+      silent %d _
+      call setline(1, obj)
+      setlocal nomodifiable
+    endif
+  endfunction
+  command! -nargs=0 -range=% GistShowEmbedTag :call s:gist_show('embed_tag')
+endfunction
+"" ctrlp-gist
+let s:hooks = neobundle#get_hooks('ctrlp-gist')
+function! s:hooks.on_source(hooks)
+  nnoremap <C-g> :<C-u>CtrlPGist<Return>
+endfunction
+"" ctrlp-launcher
+let s:hooks = neobundle#get_hooks('ctrlp-launcher')
+function! s:hooks.on_source(hooks)
+  nnoremap <C-e> :<C-u>CtrlPLauncher<Return>
+endfunction
+"" zencoding-vim
+let s:hooks = neobundle#get_hooks('zencoding-vim')
+function! s:hooks.on_source(hooks)
+  let g:user_zen_expandabbr_key='<C-y>,'
+  let g:user_zen_complete_tag=1
+  let g:user_zen_settings={
+  \  'lang': 'utf-8',
+  \  'haml': {
+  \    'extends': 'html',
+  \  }
+  \}
+endfunction
+"" slimv
+let s:hooks = neobundle#get_hooks('slimv')
+function! s:hooks.on_source(hooks)
+  let g:slimv_swank_cmd =
+  \  '!screen -dmS eval clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp'
+  "\  '!xterm -e clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
+endfunction
 "" my plugins :)
 "" hello-vim
-let g:hello_say_words="Grüezi,Vim"
-let g:hello_say_voice="Alex"
+let s:hooks = neobundle#get_hooks('hello-vim')
+function! s:hooks.on_source(hooks)
+  let g:hello_say_words="Grüezi,Vim"
+  let g:hello_say_voice="Alex"
+endfunction
 "" pinponpanpon-vim
-let g:pinponpanpon_area_name="さいたま市"
+let s:hooks = neobundle#get_hooks('pinponpanpon-vim')
+function! s:hooks.on_source(hooks)
+  let g:pinponpanpon_area_name="さいたま市"
+endfunction
 " }}}
 
 """ filesystem {{{
