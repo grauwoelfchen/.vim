@@ -608,15 +608,9 @@ function! s:hooks.on_source(hooks)
   command! -nargs=0 -range=% GistShowEmbedTag :call s:gist_show('embed_tag')
 endfunction
 "" ctrlp-gist
-let s:hooks = neobundle#get_hooks('ctrlp-gist')
-function! s:hooks.on_source(hooks)
-  nnoremap <C-g> :<C-u>CtrlPGist<Return>
-endfunction
+nnoremap <C-g> :<C-u>CtrlPGist<Return>
 "" ctrlp-launcher
-let s:hooks = neobundle#get_hooks('ctrlp-launcher')
-function! s:hooks.on_source(hooks)
-  nnoremap <C-e> :<C-u>CtrlPLauncher<Return>
-endfunction
+nnoremap <C-e> :<C-u>CtrlPLauncher<Return>
 "" zencoding-vim
 let s:hooks = neobundle#get_hooks('zencoding-vim')
 function! s:hooks.on_source(hooks)
