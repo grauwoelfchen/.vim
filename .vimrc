@@ -48,6 +48,7 @@ NeoBundle 'choplin/unite-vim_hacks', {
 \}
 NeoBundle 'danchoi/ri.vim'
 NeoBundle 'deris/columnjump'
+NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'ervandew/supertab'
 NeoBundleLazy 'grauwoelfchen/hello-vim', {
 \  'autoload' : {
