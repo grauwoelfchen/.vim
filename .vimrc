@@ -1,4 +1,4 @@
-" Last Change: Donners,24.Jan.2013
+" Last Change: 06.Sep.2013
 scriptencoding utf-8
 
 """ basic {{{
@@ -719,7 +719,8 @@ augroup END
 
 """ vim {{{
 let g:vim_indent_cont = 0
-noremap <Space>r :<C-u>source $MYVIMRC<Return>
+nnoremap <Space>. :<C-u>edit $MYVIMRC<Return>
+nnoremap <Space>.s :<C-u>source $MYVIMRC<Return>
 augroup fold_vimrc
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
