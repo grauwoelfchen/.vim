@@ -383,8 +383,9 @@ set whichwrap=b,s,h,l,<,>,[,]
 "" visual
 set virtualedit+=block
 "" inc/dec
-set nrformats+=alpha
-noremap <M-i> <C-a>
+set nrformats=
+"set nrformats+=alpha
+noremap <M-a> <C-a>
 noremap <M-d> <C-x>
 " }}}
 
