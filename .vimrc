@@ -204,6 +204,7 @@ augroup vim-ruby
   autocmd!
   autocmd FileType ruby NeoBundleSource vim-ruby
 augroup END
+NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'wlangstroth/vim-racket'
 "" vim-scripts
 NeoBundle 'buftabs'
@@ -249,7 +250,10 @@ nnoremap N Nzzzv
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nH
 "" help
-nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Return>
+" K man
+set helplang=en
+nnoremap <C-h> :<C-u>help<Space>
+nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><Return>
 " }}}
 
 """ move {{{
