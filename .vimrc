@@ -18,6 +18,8 @@ set directory=$HOME/.vim/.swap
 "" IME
 set noimcmdline
 set iminsert=0
+noremap ; :
+noremap : ;
 " completion
 set wildmode=list:longest
 if has('unix') && system('uname')=~'Darwin'
@@ -259,15 +261,17 @@ set grepprg=grep\ -nH
 set helplang=en
 nnoremap <C-h> :<C-u>help<Space>
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><Return>
-nnoremap <C-[> <C-t>
+nnoremap <C-t> <Nop>
+nnoremap <C-]><C-]> <C-t>
 " }}}
 
-""" move {{{
+""" motion {{{
+"" all
+noremap j gj
+noremap k gk
 "" normal
-noremap <C-a> <Home>
-noremap <C-e> <End>
-nnoremap j gj
-nnoremap k gk
+nnoremap <C-a> <Home>
+nnoremap <C-e> <End>
 "" insert
 inoremap <C-a> <Nop>
 "" command
@@ -383,7 +387,9 @@ set complete+=k
 set commentstring=\ #\ %s
 set foldlevel=0
 " set paste
-noremap qp `[v`]
+nnoremap gc `[v`]
+vnoremap gc :<C-u>normal gc<Return>
+onoremap gc :<C-u>normal gc<Return>
 " noremap <expr> qp '`['.strpart(getregtype(), 0, 1).'`]'
 set clipboard=unnamed,autoselect
 set clipboard=autoselect
@@ -417,6 +423,7 @@ augroup END
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 "" date
 inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
+inoremap <expr> ,dt strftime('%Y-%m-%dT%H:%M:%S')
 "" me
 inoremap <expr> ,mu 'grauwoelfchen'
 inoremap <expr> ,me 'grauwoelfchen@gmail.com <Yasuhiro Asaka>'
@@ -429,8 +436,8 @@ inoremap <Leader>## <C-r>=PutMagicComment()<Return>
 
 """ plugin {{{
 "" columnjump
-nmap <c-k> <Plug>(columnjump-backward)
-nmap <c-j> <Plug>(columnjump-forward)
+nmap <C-k> <Plug>(columnjump-backward)
+nmap <C-j> <Plug>(columnjump-forward)
 "" neocomplcache
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_skip_completion_time=0.3
