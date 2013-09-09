@@ -71,10 +71,10 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundleLazy 'mattn/zencoding-vim'
-augroup zencoding-vim
+NeoBundleLazy 'mattn/emmet-vim'
+augroup emmet-vim
   autocmd!
-  autocmd FileType html NeoBundleSource zencoding-vim
+  autocmd FileType html NeoBundleSource emmet-vim
 augroup END
 NeoBundleLazy 'mattn/togetter-vim', {
 \  'autoload' : {
@@ -206,6 +206,11 @@ augroup vim-ruby
 augroup END
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'wlangstroth/vim-racket'
+NeoBundleLazy 'wavded/vim-stylus'
+augroup vim-stylus
+  autocmd!
+  autocmd FileType stylus NeoBundleSource vim-stylus
+augroup END
 "" vim-scripts
 NeoBundle 'buftabs'
 NeoBundle 'pep8'
@@ -254,6 +259,7 @@ set grepprg=grep\ -nH
 set helplang=en
 nnoremap <C-h> :<C-u>help<Space>
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><Return>
+nnoremap <C-[> <C-t>
 " }}}
 
 """ move {{{
@@ -620,12 +626,12 @@ endfunction
 nnoremap <C-g> :<C-u>CtrlPGist<Return>
 "" ctrlp-launcher
 nnoremap <C-e> :<C-u>CtrlPLauncher<Return>
-"" zencoding-vim
-let s:hooks = neobundle#get_hooks('zencoding-vim')
+"" emmet-vim
+let s:hooks = neobundle#get_hooks('emmet-vim')
 function! s:hooks.on_source(hooks)
-  let g:user_zen_expandabbr_key='<C-y>,'
-  let g:user_zen_complete_tag=1
-  let g:user_zen_settings={
+  let g:user_emmet_expandabbr_key='<C-y>,'
+  let g:user_emmet_complete_tag=1
+  let g:user_emmet_settings={
   \  'lang': 'utf-8',
   \  'haml': {
   \    'extends': 'html',
