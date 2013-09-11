@@ -418,20 +418,29 @@ augroup apply_template
 augroup END
 " }}}
 
-""" command {{{
+""" command & other keymaps {{{
 "" rename current file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
+"" encoding
+function! PutMagicComment()
+  return "# encoding: utf-8\<Return>\<Return>"
+endfunction
+inoremap <Leader>## <C-r>=PutMagicComment()<Return>
 "" date
 inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
 inoremap <expr> ,dt strftime('%Y-%m-%dT%H:%M:%S')
 "" me
 inoremap <expr> ,mu 'grauwoelfchen'
 inoremap <expr> ,me 'grauwoelfchen@gmail.com <Yasuhiro Asaka>'
-"" encoding
-function! PutMagicComment()
-  return "# encoding: utf-8\<Return>\<Return>"
+"" umlaut & eszett (alternative keymaps)
+""" use digraph <C-k>[a,u,o]: in vim
+function! CopyChar(c)
+  redir @+> | execute 'echo "'.a:c.'"' | redir END
 endfunction
-inoremap <Leader>## <C-r>=PutMagicComment()<Return>
+nnoremap <expr> ,ua CopyChar('ä')
+nnoremap <expr> ,uu CopyChar('ü')
+nnoremap <expr> ,uo CopyChar('ö')
+nnoremap <expr> ,ss CopyChar('ß')
 " }}}
 
 """ plugin {{{
