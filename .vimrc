@@ -423,7 +423,7 @@ augroup END
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 "" encoding
 function! PutMagicComment()
-  return "# encoding: utf-8\<Return>\<Return>"
+  return "# encoding: utf-8"
 endfunction
 inoremap <Leader>## <C-r>=PutMagicComment()<Return>
 "" date
