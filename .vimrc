@@ -22,6 +22,7 @@ noremap ; :
 noremap : ;
 " completion
 set wildmode=list:longest
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar.gz,*.tgz
 if has('unix') && system('uname')=~'Darwin'
   let s:os_type='osx'
 else
@@ -644,6 +645,10 @@ function! s:hooks.on_source(hooks)
   endfunction
   command! -nargs=0 -range=% GistShowEmbedTag :call s:gist_show('embed_tag')
 endfunction
+""ctrlp
+let g:ctrlp_custom_ignore=
+\ '\v[\/]\.(git|hg|svn|bundle)'
+\ .'|node_modules|components$'
 "" ctrlp-gist
 nnoremap <C-g> :<C-u>CtrlPGist<Return>
 "" ctrlp-launcher
