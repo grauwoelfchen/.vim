@@ -447,6 +447,9 @@ nnoremap <expr> ,ss CopyChar('ß')
 "" columnjump
 nmap <C-k> <Plug>(columnjump-backward)
 nmap <C-j> <Plug>(columnjump-forward)
+"" surround
+nmap s  <Plug>Ysurround
+nmap ss <Plug>Yssurround
 "" neocomplcache
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_skip_completion_time=0.3
