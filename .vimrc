@@ -120,7 +120,7 @@ NeoBundle 'mattn/unite-advent_calendar', {
 \    'tyru/open-browser.vim',
 \  ]
 \}
-NeoBundle 'motemen/git-vim'
+"NeoBundle 'motemen/git-vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'Shougo/neocomplcache', {
 \ 'depends': [
@@ -612,6 +612,12 @@ nnoremap <silent> <leader>fd :<C-u>VimFilerBufferDir -quit<Return>
 nnoremap ,i :call ri#OpenSearchPrompt(0)<Return>
 nnoremap ,I :call ri#OpenSearchPrompt(1)<Return>
 nnoremap ,K :call ri#LookupNameUnderCursor()<Return>
+"" fugitive
+nnoremap <silent> <Leader>gd :<C-u>Gdiff<Return>
+nnoremap <silent> <Leader>gs :<C-u>Gstatus<Return>
+nnoremap <silent> <Leader>gl :<C-u>Glog<Return>
+nnoremap <silent> <Leader>gb :<C-u>Gbrowse<Return>
+nnoremap <silent> <Leader>gg :<C-u>Ggrep<Return>
 "" gist-vim
 let s:hooks = neobundle#get_hooks('gist-vim')
 function! s:hooks.on_source(hooks)
