@@ -74,6 +74,7 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'kmnk/vim-unite-giti'
 NeoBundleLazy 'mattn/emmet-vim'
 augroup emmet-vim
   autocmd!
@@ -219,7 +220,6 @@ NeoBundle 'buftabs'
 NeoBundle 'smartchr'
 NeoBundle 'pep8'
 NeoBundle 'sudo.vim'
-NeoBundle 'ShowMarks'
 NeoBundle 'YankRing.vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'taglist.vim'
@@ -539,14 +539,6 @@ let g:buftabs_in_statusline=1
 let g:buftabs_active_highlight_group="Visual"
 noremap <Leader>bp :bprev<Return>
 noremap <Leader>bn :bnext<Return>
-"" showmarks
-let g:showmarks_include="abcdefghijklmnopqlstuvwxyzABCDEFGHIJKLMNOPQLZTUVWXYZ"
-let g:showmarks_textlower="*"
-highlight SignColumn ctermfg=white ctermbg=black cterm=none
-highlight default ShowMarksHLl ctermfg=red ctermbg=black cterm=none
-highlight default ShowMarksHLu ctermfg=red ctermbg=black cterm=none
-highlight default ShowMarksHLo ctermfg=red ctermbg=black cterm=none
-highlight default ShowMarksHLm ctermfg=red ctermbg=black cterm=none
 "" yankring
 noremap <silent> <F7> :YRShow<Return>
 let g:yankring_history_dir=expand('$HOME/.vim/')
