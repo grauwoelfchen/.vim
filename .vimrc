@@ -324,7 +324,7 @@ function! MakeTabLine()
   let labels = map(range(1, tabpagenr('$')), 's:tab_label(v:val)')
   let separator = " | "
   let tabs = ' ' . join(labels, separator).separator."%#TablineFill#%T"
-  let host = vimproc#system('hostname')[:-2]
+  let host = hostname()
   let info = fnamemodify(getcwd(), ':~').' « '.host.' » '
   return tabs.'%='.info
 endfunction
