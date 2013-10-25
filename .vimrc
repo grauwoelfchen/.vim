@@ -324,8 +324,7 @@ function! MakeTabLine()
   let labels = map(range(1, tabpagenr('$')), 's:tab_label(v:val)')
   let separator = " | "
   let tabs = ' ' . join(labels, separator).separator."%#TablineFill#%T"
-  let host = hostname()
-  let info = fnamemodify(getcwd(), ':~').' « '.host.' » '
+  let info = fnamemodify(getcwd(), ':~').' « '.hostname().' » '
   return tabs.'%='.info
 endfunction
 set showtabline=2
