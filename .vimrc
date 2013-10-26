@@ -655,6 +655,8 @@ endfunction
 let g:ctrlp_custom_ignore=
 \ '\v[\/]\.(git|hg|svn|bundle)'
 \ .'|node_modules|components$'
+let g:ctrlp_open_new_file='t'
+let g:ctrlp_open_multiple_files='tj'
 "" ctrlp-gist
 nnoremap <C-g> :<C-u>CtrlPGist<Return>
 "" ctrlp-launcher
