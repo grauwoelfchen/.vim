@@ -31,19 +31,19 @@ hi ErrorMsg         guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=wh
 hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
 
 " Message displayed in lower left, such as --INSERT--
-hi ModeMsg          guifg=black       guibg=#C6C5FE     gui=BOLD      ctermfg=black       ctermbg=cyan        cterm=BOLD
+hi ModeMsg          guifg=gray       guibg=NONE        gui=BOLD      ctermfg=gray        ctermbg=NONE        cterm=BOLD
  " Vim 7.x specific colors
 if version >= 700
-  hi CursorLine     guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
-  hi CursorColumn   guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
-  hi MatchParen     guifg=#f6f3e8     guibg=#857b6f     gui=BOLD      ctermfg=white       ctermbg=darkgray    cterm=NONE
-  hi Pmenu          guifg=#f6f3e8     guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi PmenuSel       guifg=#000000     guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi Search         guifg=NONE        guibg=NONE        gui=underline ctermfg=NONE        ctermbg=NONE        cterm=underline
-  hi TabLineNumber     guifg=red      guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi TabLineSelNumber  guifg=red      guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi TabLine           guifg=gray     guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi TabLineSel        guifg=white    guibg=darkgray    gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi CursorLine       guifg=NONE     guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
+  hi CursorColumn     guifg=NONE     guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
+  hi MatchParen       guifg=#f6f3e8  guibg=#857b6f     gui=BOLD      ctermfg=white       ctermbg=darkgray    cterm=NONE
+  hi Pmenu            guifg=#f6f3e8  guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi PmenuSel         guifg=black    guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi Search           guifg=white    guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi TabLineNumber    guifg=red      guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi TabLineSelNumber guifg=red      guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi TabLine          guifg=gray     guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi TabLineSel       guifg=white    guibg=darkgray    gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 endif
 
 " Syntax highlighting
