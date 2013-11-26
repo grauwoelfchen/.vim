@@ -250,7 +250,8 @@ set history=100
 set hlsearch
 set ignorecase
 set smartcase
-nnoremap <silent><M-h> :nohlsearch<Return>
+nnoremap <silent> <M-h> :<C-u>nohlsearch<Return>
+nnoremap <silent> <M-l> :<C-u>nohlsearch<Return><C-l>
 nnoremap \* nzzzv
 nnoremap \# Nzzzv
 nnoremap n nzzzv
