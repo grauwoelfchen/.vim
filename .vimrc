@@ -453,7 +453,7 @@ nmap <C-j> <Plug>(columnjump-forward)
 nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
 "" smartchr
-inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
+inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
 "" neocomplcache
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_skip_completion_time=0.3
