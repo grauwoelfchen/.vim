@@ -14,10 +14,10 @@ let colors_name = "gr_black"
 hi Normal           guifg=#fffff0     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 hi NonText          guifg=#070707     guibg=black       gui=NONE      ctermfg=black       ctermbg=NONE        cterm=NONE
 hi Cursor           guifg=black       guibg=white       gui=NONE      ctermfg=black       ctermbg=white       cterm=reverse
-hi LineNr           guifg=#3D3D3D     guibg=black       gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
+hi LineNr           guifg=darkgray    guibg=black       gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
 hi VertSplit        guifg=#202020     guibg=#202020     gui=NONE      ctermfg=darkgray    ctermbg=darkgray    cterm=NONE
-hi StatusLine       guifg=darkgray    guibg=#202020     gui=italic    ctermfg=darkgray    ctermbg=darkgray    cterm=NONE
-hi StatusLineNC     guifg=black       guibg=#202020     gui=NONE      ctermfg=blue        ctermbg=darkgray    cterm=NONE
+hi StatusLine       guifg=gray        guibg=black       gui=NONE      ctermfg=blue        ctermbg=darkgray    cterm=NONE
+hi StatusLineNC     guifg=white       guibg=gray        gui=NONE      ctermfg=blue        ctermbg=darkgray    cterm=NONE
 hi Folded           guifg=#a0a8b0     guibg=#384048     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 hi Title            guifg=#f6f3e8     guibg=NONE        gui=bold      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 hi Visual           guifg=NONE        guibg=#262D51     gui=NONE      ctermfg=NONE        ctermbg=darkgray    cterm=NONE
@@ -34,16 +34,17 @@ hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=wh
 hi ModeMsg          guifg=gray       guibg=NONE        gui=BOLD      ctermfg=gray        ctermbg=NONE        cterm=BOLD
  " Vim 7.x specific colors
 if version >= 700
-  hi CursorLine       guifg=NONE     guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
-  hi CursorColumn     guifg=NONE     guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
-  hi MatchParen       guifg=#f6f3e8  guibg=#857b6f     gui=BOLD      ctermfg=white       ctermbg=darkgray    cterm=NONE
-  hi Pmenu            guifg=#f6f3e8  guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi PmenuSel         guifg=black    guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi Search           guifg=white    guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi TabLineNumber    guifg=red      guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi TabLineSelNumber guifg=red      guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi TabLine          guifg=gray     guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi TabLineSel       guifg=white    guibg=darkgray    gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi CursorLine       guifg=NONE      guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
+  hi CursorColumn     guifg=NONE      guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
+  hi MatchParen       guifg=#f6f3e8   guibg=#857b6f     gui=BOLD      ctermfg=white       ctermbg=darkgray    cterm=NONE
+  hi Pmenu            guifg=#f6f3e8   guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi PmenuSel         guifg=black     guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi Search           guifg=lightcyan guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi IncSearch        guifg=red       guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi TabLineNumber    guifg=red       guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi TabLineSelNumber guifg=red       guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi TabLine          guifg=gray      guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi TabLineSel       guifg=white     guibg=darkgray    gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 endif
 
 " Syntax highlighting
@@ -82,71 +83,62 @@ hi link SpecialComment  Special
 hi link Debug           Special
 
 
-" Special for Ruby
-hi rubyRegexp                  guifg=#B18A3D      guibg=NONE      gui=NONE      ctermfg=brown          ctermbg=NONE      cterm=NONE
-hi rubyRegexpDelimiter         guifg=#FF8000      guibg=NONE      gui=NONE      ctermfg=brown          ctermbg=NONE      cterm=NONE
-hi rubyEscape                  guifg=white        guibg=NONE      gui=NONE      ctermfg=cyan           ctermbg=NONE      cterm=NONE
-hi rubyInterpolationDelimiter  guifg=#00A0A0      guibg=NONE      gui=NONE      ctermfg=blue           ctermbg=NONE      cterm=NONE
-hi rubyControl                 guifg=#6699CC      guibg=NONE      gui=NONE      ctermfg=blue           ctermbg=NONE      cterm=NONE
-hi rubyGlobalVariable          guifg=#FFCCFF      guibg=NONE      gui=NONE      ctermfg=lightblue      ctermbg=NONE      cterm=NONE
-hi rubyStringDelimiter         guifg=#336633      guibg=NONE      gui=NONE      ctermfg=lightgreen     ctermbg=NONE      cterm=NONE
-hi rubySymbol                  guifg=#8FBC8F      guibg=NONE      gui=NONE      ctermfg=lightgreen     ctermbg=NONE      cterm=NONE
-hi rubyBoolean                 guifg=#6699CC      guibg=NONE      gui=NONE      ctermfg=blue           ctermbg=NONE      cterm=NONE
-hi rubyBeginEnd                guifg=#6699CC      guibg=NONE      gui=NONE      ctermfg=blue           ctermbg=NONE      cterm=NONE
-hi rubyConditional             guifg=#6699CC      guibg=NONE      gui=NONE      ctermfg=blue           ctermbg=NONE      cterm=NONE
+" Ruby
+hi rubyRegexp                 guifg=#B18A3D   guibg=NONE     gui=NONE      ctermfg=brown        ctermbg=NONE      cterm=NONE
+hi rubyRegexpDelimiter        guifg=#FF8000   guibg=NONE     gui=NONE      ctermfg=brown        ctermbg=NONE      cterm=NONE
+hi rubyEscape                 guifg=white     guibg=NONE     gui=NONE      ctermfg=cyan         ctermbg=NONE      cterm=NONE
+hi rubyInterpolationDelimiter guifg=#00A0A0   guibg=NONE     gui=NONE      ctermfg=blue         ctermbg=NONE      cterm=NONE
+hi rubyControl                guifg=#6699CC   guibg=NONE     gui=NONE      ctermfg=blue         ctermbg=NONE      cterm=NONE
+hi rubyGlobalVariable         guifg=#FFCCFF   guibg=NONE     gui=NONE      ctermfg=lightblue    ctermbg=NONE      cterm=NONE
+hi rubyStringDelimiter        guifg=#336633   guibg=NONE     gui=NONE      ctermfg=lightgreen   ctermbg=NONE      cterm=NONE
+hi rubySymbol                 guifg=#8FBC8F   guibg=NONE     gui=NONE      ctermfg=lightgreen   ctermbg=NONE      cterm=NONE
+hi rubyBoolean                guifg=#6699CC   guibg=NONE     gui=NONE      ctermfg=blue         ctermbg=NONE      cterm=NONE
+hi rubyBeginEnd               guifg=#6699CC   guibg=NONE     gui=NONE      ctermfg=blue         ctermbg=NONE      cterm=NONE
+hi rubyConditional            guifg=#6699CC   guibg=NONE     gui=NONE      ctermfg=blue         ctermbg=NONE      cterm=NONE
 "rubyInclude
 "rubyClassVariable
 "rubySharpBang
 "rubyAccess
 "rubyPredefinedVariable
 "rubyRepeatModifier
+hi link rubyClass            Keyword
+hi link rubyModule           Keyword
+hi link rubyKeyword          Keyword
+hi link rubyOperator         Operator
+hi link rubyIdentifier       Identifier
+hi link rubyInstanceVariable Identifier
+hi link rubyGlobalVariable   Identifier
+hi link rubyClassVariable    Identifier
+hi link rubyConstant         Type
+"hi link rubyArrayDelimiter   Special  " [ , , ]
+"hi link rubyCurlyBlock       Special  " { , , }
 
-hi link rubyClass             Keyword
-hi link rubyModule            Keyword
-hi link rubyKeyword           Keyword
-hi link rubyOperator          Operator
-hi link rubyIdentifier        Identifier
-hi link rubyInstanceVariable  Identifier
-hi link rubyGlobalVariable    Identifier
-hi link rubyClassVariable     Identifier
-hi link rubyConstant          Type
-"hi link rubyArrayDelimiter    Special  " [ , , ]
-"hi link rubyCurlyBlock        Special  " { , , }
+" Java
+hi javaDocSeeTag           guifg=#CCCCCC     guibg=NONE        gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
+hi javaDocSeeTag           guifg=#CCCCCC     guibg=NONE        gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
+hi javaClassDecl           guifg=#CCFFCC     guibg=NONE        gui=NONE      ctermfg=white       ctermbg=NONE        cterm=NONE
+hi link javaClassDecl      Type
+hi link javaScopeDecl      Identifier
+hi link javaCommentTitle   javaDocSeeTag
+hi link javaDocTags        javaDocSeeTag
+hi link javaDocParam       javaDocSeeTag
+hi link javaDocSeeTagParam javaDocSeeTag
 
+" XML
+hi link xmlTag     Keyword
+hi link xmlTagName Conditional
+hi link xmlEndTag  Identifier
 
-" Special for Java
-hi javaDocSeeTag              guifg=#CCCCCC     guibg=NONE        gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
-hi javaDocSeeTag              guifg=#CCCCCC     guibg=NONE        gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
-hi javaClassDecl              guifg=#CCFFCC     guibg=NONE        gui=NONE      ctermfg=white       ctermbg=NONE        cterm=NONE
+" HTML
+hi link htmlTag     Keyword
+hi link htmlTagName Conditional
+hi link htmlEndTag  Identifier
 
-hi link javaClassDecl         Type
-hi link javaScopeDecl         Identifier
-hi link javaCommentTitle      javaDocSeeTag
-hi link javaDocTags           javaDocSeeTag
-hi link javaDocParam          javaDocSeeTag
-hi link javaDocSeeTagParam    javaDocSeeTag
+" Javascript
+hi link javaScriptNumber Number
 
+" Python
+hi link pythonEscape Keyword
 
-" Special for XML
-hi link xmlTag          Keyword
-hi link xmlTagName      Conditional
-hi link xmlEndTag       Identifier
-
-
-" Special for HTML
-hi link htmlTag         Keyword
-hi link htmlTagName     Conditional
-hi link htmlEndTag      Identifier
-
-
-" Special for Javascript
-hi link javaScriptNumber      Number
-
-
-" Special for Python
-hi  link pythonEscape         Keyword
-
-
-" Special for CSharp
-hi  link csXmlTag             Keyword
-
+" CSharp
+hi link csXmlTag Keyword
