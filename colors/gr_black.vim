@@ -16,11 +16,11 @@ hi NonText          guifg=#070707     guibg=black       gui=NONE      ctermfg=bl
 hi Cursor           guifg=black       guibg=white       gui=NONE      ctermfg=black       ctermbg=white       cterm=reverse
 hi LineNr           guifg=darkgray    guibg=black       gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
 hi VertSplit        guifg=#202020     guibg=#202020     gui=NONE      ctermfg=darkgray    ctermbg=darkgray    cterm=NONE
-hi StatusLine       guifg=gray        guibg=black       gui=NONE      ctermfg=blue        ctermbg=darkgray    cterm=NONE
-hi StatusLineNC     guifg=white       guibg=gray        gui=NONE      ctermfg=blue        ctermbg=darkgray    cterm=NONE
+hi StatusLine       guifg=white       guibg=#444444     gui=NONE      ctermfg=gray        ctermbg=darkgray    cterm=NONE
+hi StatusLineNC     guifg=darkgray    guibg=black       gui=NONE      ctermfg=gray        ctermbg=darkgray    cterm=NONE
 hi Folded           guifg=#a0a8b0     guibg=#384048     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 hi Title            guifg=#f6f3e8     guibg=NONE        gui=bold      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-hi Visual           guifg=NONE        guibg=#262D51     gui=NONE      ctermfg=NONE        ctermbg=darkgray    cterm=NONE
+hi Visual           guifg=black       guibg=#FFCCCC     gui=NONE      ctermfg=NONE        ctermbg=darkgray    cterm=NONE
 hi SpecialKey       guifg=#808080     guibg=#343434     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 hi WildMenu         guifg=green       guibg=yellow      gui=NONE      ctermfg=black       ctermbg=yellow      cterm=NONE
 hi PmenuSbar        guifg=black       guibg=white       gui=NONE      ctermfg=black       ctermbg=white       cterm=NONE
@@ -29,23 +29,20 @@ hi Ignore           guifg=gray        guibg=black       gui=NONE      ctermfg=NO
 hi Error            guifg=NONE        guibg=NONE        gui=undercurl ctermfg=white       ctermbg=red         cterm=NONE     guisp=#FF6C60
 hi ErrorMsg         guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
 hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
-
 " Message displayed in lower left, such as --INSERT--
-hi ModeMsg          guifg=gray       guibg=NONE        gui=BOLD      ctermfg=gray        ctermbg=NONE        cterm=BOLD
- " Vim 7.x specific colors
-if version >= 700
-  hi CursorLine       guifg=NONE      guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
-  hi CursorColumn     guifg=NONE      guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
-  hi MatchParen       guifg=#f6f3e8   guibg=#857b6f     gui=BOLD      ctermfg=white       ctermbg=darkgray    cterm=NONE
-  hi Pmenu            guifg=#f6f3e8   guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi PmenuSel         guifg=black     guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi Search           guifg=lightcyan guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi IncSearch        guifg=red       guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi TabLineNumber    guifg=red       guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi TabLineSelNumber guifg=red       guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi TabLine          guifg=gray      guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi TabLineSel       guifg=white     guibg=darkgray    gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-endif
+hi ModeMsg          guifg=gray        guibg=NONE        gui=BOLD      ctermfg=gray        ctermbg=NONE        cterm=BOLD
+
+hi CursorLine       guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
+hi CursorColumn     guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
+hi MatchParen       guifg=#f6f3e8     guibg=#857b6f     gui=BOLD      ctermfg=white       ctermbg=darkgray    cterm=NONE
+hi Pmenu            guifg=#f6f3e8     guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi PmenuSel         guifg=black       guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi Search           guifg=lightcyan   guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi IncSearch        guifg=red         guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi TabLineNumber    guifg=red         guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi TabLineSelNumber guifg=red         guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi TabLine          guifg=gray        guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi TabLineSel       guifg=white       guibg=darkgray    gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 
 " Syntax highlighting
 hi Comment          guifg=#7C7C7C     guibg=NONE        gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
