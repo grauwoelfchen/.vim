@@ -23,10 +23,10 @@ noremap : ;
 " completion
 set wildmode=list:longest
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar.gz,*.tgz
-if has('unix') && system('uname')=~'Darwin'
-  let s:os_type='osx'
+if has('unix') && system('uname') =~ 'Darwin'
+  let s:os_type = 'osx'
 else
-  let s:os_type='linux'
+  let s:os_type = 'linux'
 endif
 " }}}
 
@@ -36,7 +36,7 @@ filetype off
 if &runtimepath !~ '/neobundle.vim'
   set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
-call neobundle#rc(expand("$HOME/.vim/bundle/"))
+call neobundle#rc(expand('$HOME/.vim/bundle/'))
 NeoBundle 'basyura/unite-rails', {
 \  'depends': [
 \   'Shougo/unite.vim',
@@ -231,8 +231,6 @@ end
 NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex'
 "" mercurial
 NeoBundleLazy 'https://bitbucket.org/kovisoft/slimv'
-let g:paredit_electric_return=0
-let g:slimv_indent_keylists=0
 augroup slimv
   autocmd!
   autocmd FileType lisp NeoBundleSource slimv
@@ -457,26 +455,26 @@ nmap ss <Plug>Yssurround
 "" smartchr
 inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
 "" neocomplcache
-let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_skip_completion_time=0.3
-let g:neocomplcache_auto_completion_start_length=3
-let g:neocomplcache_keyword_completion_start_length=3
-let g:neocomplcache_enable_camel_case_completion=1
-let g:neocomplcache_enable_underbar_completion=1
-let g:neocomplcache_min_keyword_length=3
-let g:neocomplcache_min_syntax_length=3
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_max_list=20
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_skip_completion_time = 0.3
+let g:neocomplcache_auto_completion_start_length = 3
+let g:neocomplcache_keyword_completion_start_length = 3
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_min_keyword_length = 3
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_max_list = 20
 if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns={}
+  let g:neocomplcache_omni_patterns = {}
 endif
-" let g:neocomplcache_omni_patterns={
+" let g:neocomplcache_omni_patterns = {
 " \  'ruby' : '[^.*\t]\.\w*\|\h\w*::'
 " \}
 if !exists('g:neocomplcache_dictionary_filetype_lists')
-  let g:neocomplcache_dictionary_filetype_lists={}
+  let g:neocomplcache_dictionary_filetype_lists = {}
 endif
-let g:neocomplcache_dictionary_filetype_lists={
+let g:neocomplcache_dictionary_filetype_lists = {
 \  'default'  : '',
 \  'vimshell' : $HOME.'/.vimshell/command/history',
 \  'ruby'     : $HOME.'/.vim/dict/ruby.dict',
@@ -486,15 +484,15 @@ inoremap <expr><C-x><Return> neocomplcache#smart_close_popup()."\<Return>"
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 "" neosnippet
-let g:neosnippet#snippets_directory=$HOME.'/.vim/snippets'
+let g:neosnippet#snippets_directory = $HOME.'/.vim/snippets'
 smap <C-k> <plug>(neosnippet_expand_or_jump)
 imap <C-x> <plug>(neosnippet_expand_or_jump)
 nmap <C-x> <plug>(neosnippet_expand_or_jump)
 "" pep8
-let g:pep8_map='<F8>'
+let g:pep8_map = '<F8>'
 "" unite
 " let g:unite_enable_start_insert=1
-let g:unite_split_rule="botright"
+let g:unite_split_rule = "botright"
 nnoremap <silent> ,b :<C-u>Unite buffer<Return>
 nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<Return>
 nnoremap <silent> ,f :<C-u>Unite file_mru<Return>
@@ -528,73 +526,73 @@ noremap ;rg :<C-u>Unite rails/gemfile<Return>
 noremap ;rt :<C-u>Unite rails/spec<Return>
 noremap ;ra :<C-u>Unite rails/rake<Return>
 "" nerdcommenter
-let g:NERDCreateDefaultMappings=0
-let g:NERDSpaceDelims=1
+let g:NERDCreateDefaultMappings = 0
+let g:NERDSpaceDelims = 1
 map  <Leader>cc <plug>NERDCommenterToggle
 nmap <Leader>ca <plug>NERDCommenterAppend
 nmap <leader>c$ <plug>NERDCommenterToEOL
 vmap <Leader>cs <plug>NERDCommenterSexy
 vmap <Leader>cb <plug>NERDCommenterMinimal
 "" buftabs
-let g:buftabs_only_basename=1
-let g:buftabs_in_statusline=1
-let g:buftabs_active_highlight_group="Visual"
+let g:buftabs_only_basename = 1
+let g:buftabs_in_statusline = 1
+let g:buftabs_active_highlight_group = 'Visual'
 noremap <Leader>bp :bprev<Return>
 noremap <Leader>bn :bnext<Return>
 "" yankring
 noremap <silent> <F7> :YRShow<Return>
-let g:yankring_history_dir=expand('$HOME/.vim/')
-let g:yankring_history_file='.yankring_history'
-let g:yankring_replace_n_pkey='<M-p>'
-let g:yankring_replace_n_nkey='<M-n>'
-let g:yankring_max_history=10
+let g:yankring_history_dir = expand('$HOME/.vim/')
+let g:yankring_history_file = '.yankring_history'
+let g:yankring_replace_n_pkey = '<M-p>'
+let g:yankring_replace_n_nkey = '<M-n>'
+let g:yankring_max_history = 10
 "" 2M
-let g:yankring_max_element_length=1048576
-let g:yankring_window_height=13
+let g:yankring_max_element_length = 1048576
+let g:yankring_window_height = 13
 "" vim-latex
 let g:Tex_CompileRule_dvi = 'latex $*'
 let g:Tex_ViewRule_dvi = 'xdvi'
 "" quickrun
-let g:quickrun_config={}
-let g:quickrun_config['_']={
+let g:quickrun_config = {}
+let g:quickrun_config['_'] = {
 \  'hook/time/enable'          : 1,
 \  'runner'                    : 'vimproc',
 \  'runner/vimproc/updatetime' : 10,
 \  'split'                     : 'vertical',
 \}
-let g:quickrun_config['coffee']={
+let g:quickrun_config['coffee'] = {
 \  'command' : 'coffee',
 \  'cmdopt'  : '-cbp',
 \  'exec'    : "%c %o %s",
 \}
-let g:quickrun_config['markdown']={
+let g:quickrun_config['markdown'] = {
 \  'command'   : 'redcarpet',
 \  'cmdopt'    : '--parse-fenced-code-blocks --parse-tables --parse-autolink',
 \  'outputter' : 'browser',
 \  'exec'      : "%c %o %s",
 \}
-let g:quickrun_config['ruby.rspec']={
+let g:quickrun_config['ruby.rspec'] = {
 \  'command' : 'rspec',
 \  'cmdopt'  : "--format progress --profile --line_number %{line('.')}",
 \  'exec'    : "bundle exec %c %o",
 \}
-let g:quickrun_config['lisp']={
+let g:quickrun_config['lisp'] = {
 \  'command' : 'clisp',
 \  'cmdopt'  : "--silent",
 \  'exec'    : "%c %o %s",
 \}
-let g:quickrun_config['racket']={
+let g:quickrun_config['racket'] = {
 \  'command' : 'racket',
 \  'cmdopt'  : "-W info",
 \  'exec'    : "%c %o %s",
 \}
-let g:quickrun_config['python']={
+let g:quickrun_config['python'] = {
 \  'command'   : 'pep8',
 \  'cmdopt'    : '--first',
 \  'outputter' : 'quickfix',
 \  'exec'      : "%c %o %s",
 \}
-let g:quickrun_config['html']={
+let g:quickrun_config['html'] = {
 \  'command'   : 'cat',
 \  'outputter' : 'browser',
 \  'exec'      : "%c %s",
@@ -616,13 +614,13 @@ nnoremap <silent> <Leader>gg :<C-u>Ggrep<Return>
 let s:hooks = neobundle#get_hooks('gist-vim')
 function! s:hooks.on_source(hooks)
   if s:os_type == 'osx'
-    let g:gist_clip_command='pbcopy'
+    let g:gist_clip_command = 'pbcopy'
   else
-    let g:gist_clip_command='xclip -selection clipboard'
+    let g:gist_clip_command = 'xclip -selection clipboard'
   endif
-  let g:gist_detect_filetype=1
-  let g:gist_open_browser_after_post=1
-  let g:gist_open_browser_command='w3m %URL%'
+  let g:gist_detect_filetype = 1
+  let g:gist_open_browser_after_post = 1
+  let g:gist_open_browser_command = 'w3m %URL%'
   "" show embed tag of current gist
   function! s:gist_show_embed_tag()
     if exists('b:gist')
@@ -646,11 +644,11 @@ function! s:hooks.on_source(hooks)
   command! -nargs=0 -range=% GistShowEmbedTag :call s:gist_show('embed_tag')
 endfunction
 ""ctrlp
-let g:ctrlp_custom_ignore=
+let g:ctrlp_custom_ignore =
 \ '\v[\/]\.(git|hg|svn|bundle)'
 \ .'|node_modules|components$'
-let g:ctrlp_open_new_file='t'
-let g:ctrlp_open_multiple_files='tj'
+let g:ctrlp_open_new_file = 't'
+let g:ctrlp_open_multiple_files = 'tj'
 "" ctrlp-gist
 nnoremap <C-g> :<C-u>CtrlPGist<Return>
 "" ctrlp-launcher
@@ -658,9 +656,9 @@ nnoremap <C-e> :<C-u>CtrlPLauncher<Return>
 "" emmet-vim
 let s:hooks = neobundle#get_hooks('emmet-vim')
 function! s:hooks.on_source(hooks)
-  let g:user_emmet_expandabbr_key='<C-y>,'
-  let g:user_emmet_complete_tag=1
-  let g:user_emmet_settings={
+  let g:user_emmet_expandabbr_key = '<C-y>,'
+  let g:user_emmet_complete_tag = 1
+  let g:user_emmet_settings = {
   \  'lang': 'utf-8',
   \  'haml': {
   \    'extends': 'html',
@@ -668,6 +666,8 @@ function! s:hooks.on_source(hooks)
   \}
 endfunction
 "" slimv
+let g:paredit_electric_return = 0
+let g:slimv_indent_keylists = 0
 let s:hooks = neobundle#get_hooks('slimv')
 function! s:hooks.on_source(hooks)
   let g:slimv_swank_cmd =
@@ -678,22 +678,22 @@ endfunction
 "" hello-vim
 let s:hooks = neobundle#get_hooks('hello-vim')
 function! s:hooks.on_source(hooks)
-  let g:hello_say_words="Grüezi,Vim"
-  let g:hello_say_voice="Alex"
+  let g:hello_say_words = 'Grüezi,Vim'
+  let g:hello_say_voice = 'Alex'
 endfunction
 "" pinponpanpon-vim
 let s:hooks = neobundle#get_hooks('pinponpanpon-vim')
 function! s:hooks.on_source(hooks)
-  let g:pinponpanpon_area_name="さいたま市"
+  let g:pinponpanpon_area_name = 'さいたま市'
 endfunction
 " }}}
 
 """ filesystem {{{
 " set autochdir
-" let g:netrw_browse_split=2
-let g:netrw_altv=1
-let g:netrw_winsize=""
-let g:netrw_bufsettings="noma nomod nu nobl nowrap ro"
+" let g:netrw_browse_split = 2
+let g:netrw_altv = 1
+let g:netrw_winsize = ''
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 "" samba ;-(
 " augroup on_samba
   " autocmd!
@@ -713,13 +713,13 @@ nnoremap [[ [m
 "" ctags
 if s:os_type == 'osx'
   "" via brew
-  let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+  let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 else
-  let Tlist_Ctags_Cmd='/usr/bin/ctags'
+  let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 end
-let Tlist_Show_One_File=1
-let Tlist_Use_Horiz_Window=1
-let Tlist_Exit_OnlyWindow=1
+let Tlist_Show_One_File = 1
+let Tlist_Use_Horiz_Window = 1
+let Tlist_Exit_OnlyWindow = 1
 "" white space
 nnoremap <Leader>ss ma:%s/  *$//<CR>`a<ESC>
 " augroup replace_white_space
