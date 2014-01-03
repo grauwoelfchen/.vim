@@ -231,6 +231,8 @@ end
 NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex'
 "" mercurial
 NeoBundleLazy 'https://bitbucket.org/kovisoft/slimv'
+let g:paredit_electric_return=0
+let g:slimv_indent_keylists=0
 augroup slimv
   autocmd!
   autocmd FileType lisp NeoBundleSource slimv
