@@ -1,4 +1,4 @@
-" Last Change: 06.Sep.2013
+" Last Change: 04.Jan.2014
 scriptencoding utf-8
 
 """ basic {{{
@@ -323,8 +323,8 @@ function! s:tab_label(n)
 endfunction
 function! MakeTabLine()
   let labels = map(range(1, tabpagenr('$')), 's:tab_label(v:val)')
-  let separator = " | "
-  let tabs = ' ' . join(labels, separator).separator."%#TablineFill#%T"
+  let separator = ' | '
+  let tabs = ' ' . join(labels, separator).separator.'%#TablineFill#%T'
   let info = fnamemodify(getcwd(), ':~').' « '.hostname().' » '
   return tabs.'%='.info
 endfunction
