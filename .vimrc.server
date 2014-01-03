@@ -1,4 +1,4 @@
-" Last Change: 21.Oct.2013
+" Last Change: 04.Jan.2014
 scriptencoding utf-8
 
 """ basic {{{
@@ -33,11 +33,6 @@ if &runtimepath !~ '/neobundle.vim'
   set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
 call neobundle#rc(expand("$HOME/.vim/bundle/"))
-NeoBundle 'basyura/unite-rails', {
-\  'depends': [
-\   'Shougo/unite.vim',
-\  ]
-\}
 NeoBundle 'deris/columnjump'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'ervandew/supertab'
@@ -49,32 +44,17 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'Shougo/neocomplcache', {
 \ 'depends': [
 \   'Shougo/vimproc',
 \ ]
 \}
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline', {
-\  'depends': [
-\   'Shougo/unite.vim',
-\  ]
-\}
 NeoBundle 'Shougo/vimproc', {
 \  'build': {
 \    'unix': 'make -f make_unix.mak'
 \  }
 \}
-NeoBundleLazy 'Shougo/vimfiler', {
-\  'autoload' : {
-\    'commands' : [ 'VimFilerBufferDir' ]
-\  },
-\  'depends': [
-\    'Shougo/unite.vim'
-\  ],
-\ }
 NeoBundleLazy 'Shougo/vimshell', {
 \  'autoload' : {
 \    'commands' : [ 'VimShell' ]
@@ -88,11 +68,6 @@ augroup vim-slim
   autocmd!
   autocmd FileType slim NeoBundleSource vim-slim
 augroup END
-NeoBundle 'tacroe/unite-mark', {
-\  'depends': [
-\    'Shougo/unite.vim',
-\  ]
-\}
 NeoBundle 'tpope/vim-fugitive'
 NeoBundleLazy 'tpope/vim-haml'
 augroup vim-haml
@@ -111,13 +86,11 @@ augroup vim-markdown
   autocmd FileType markdown NeoBundleSource vim-markdown
 augroup END
 NeoBundle 'thinca/vim-guicolorscheme'
-NeoBundle 'rhysd/open-pdf.vim'
 NeoBundleLazy 'vim-ruby/vim-ruby'
 augroup vim-ruby
   autocmd!
   autocmd FileType ruby NeoBundleSource vim-ruby
 augroup END
-NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'wlangstroth/vim-racket'
 NeoBundleLazy 'wavded/vim-stylus'
 augroup vim-stylus
@@ -129,11 +102,8 @@ NeoBundle 'buftabs'
 NeoBundle 'smartchr'
 NeoBundle 'sudo.vim'
 NeoBundle 'YankRing.vim'
-NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'taglist.vim'
 NeoBundle 'MultipleSearch'
-"" source forge
-NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex'
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
@@ -221,8 +191,8 @@ function! s:tab_label(n)
 endfunction
 function! MakeTabLine()
   let labels = map(range(1, tabpagenr('$')), 's:tab_label(v:val)')
-  let separator = " | "
-  let tabs = ' ' . join(labels, separator).separator."%#TablineFill#%T"
+  let separator = ' | '
+  let tabs = ' ' . join(labels, separator).separator.'%#TablineFill#%T'
   let host = hostname()
   let info = fnamemodify(getcwd(), ':~').' « '.host.' » '
   return tabs.'%='.info
@@ -354,26 +324,26 @@ nmap ss <Plug>Yssurround
 "" smartchr
 inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
 "" neocomplcache
-let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_skip_completion_time=0.3
-let g:neocomplcache_auto_completion_start_length=3
-let g:neocomplcache_keyword_completion_start_length=3
-let g:neocomplcache_enable_camel_case_completion=1
-let g:neocomplcache_enable_underbar_completion=1
-let g:neocomplcache_min_keyword_length=3
-let g:neocomplcache_min_syntax_length=3
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_max_list=20
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_skip_completion_time = 0.3
+let g:neocomplcache_auto_completion_start_length = 3
+let g:neocomplcache_keyword_completion_start_length = 3
+let g:neocomplcache_enable_camel_case_completion  = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_min_keyword_length = 3
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_max_list = 20
 if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns={}
+  let g:neocomplcache_omni_patterns = {}
 endif
 " let g:neocomplcache_omni_patterns={
 " \  'ruby' : '[^.*\t]\.\w*\|\h\w*::'
 " \}
 if !exists('g:neocomplcache_dictionary_filetype_lists')
-  let g:neocomplcache_dictionary_filetype_lists={}
+  let g:neocomplcache_dictionary_filetype_lists = {}
 endif
-let g:neocomplcache_dictionary_filetype_lists={
+let g:neocomplcache_dictionary_filetype_lists = {
 \  'default'  : '',
 \  'vimshell' : $HOME.'/.vimshell/command/history',
 \  'ruby'     : $HOME.'/.vim/dict/ruby.dict',
@@ -382,26 +352,21 @@ let g:neocomplcache_dictionary_filetype_lists={
 inoremap <expr><C-x><Return> neocomplcache#smart_close_popup()."\<Return>"
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()bs
-let g:buftabs_only_basename=1
-let g:buftabs_in_statusline=1
-let g:buftabs_active_highlight_group="Visual"
+let g:buftabs_only_basename = 1
+let g:buftabs_in_statusline = 1
+let g:buftabs_active_highlight_group = 'Visual'
 noremap <Leader>bp :bprev<Return>
 noremap <Leader>bn :bnext<Return>
 "" yankring
 noremap <silent> <F7> :YRShow<Return>
-let g:yankring_history_dir=expand('$HOME/.vim/')
-let g:yankring_history_file='.yankring_history'
-let g:yankring_replace_n_pkey='<M-p>'
-let g:yankring_replace_n_nkey='<M-n>'
-let g:yankring_max_history=10
+let g:yankring_history_dir = expand('$HOME/.vim/')
+let g:yankring_history_file = '.yankring_history'
+let g:yankring_replace_n_pkey = '<M-p>'
+let g:yankring_replace_n_nkey = '<M-n>'
+let g:yankring_max_history = 10
 "" 2M
-let g:yankring_max_element_length=1048576
-let g:yankring_window_height=13
-"" vim-latex
-let g:Tex_CompileRule_dvi = 'latex $*'
-let g:Tex_ViewRule_dvi = 'xdvi'
-"" vimfiler
-nnoremap <silent> <leader>fd :<C-u>VimFilerBufferDir -quit<Return>
+let g:yankring_max_element_length = 1048576
+let g:yankring_window_height = 13
 "" fugitive
 nnoremap <silent> <Leader>gd :<C-u>Gdiff<Return>
 nnoremap <silent> <Leader>gs :<C-u>Gstatus<Return>
@@ -409,17 +374,17 @@ nnoremap <silent> <Leader>gl :<C-u>Glog<Return>
 nnoremap <silent> <Leader>gb :<C-u>Gbrowse<Return>
 nnoremap <silent> <Leader>gg :<C-u>Ggrep<Return>
 ""ctrlp
-let g:ctrlp_custom_ignore=
+let g:ctrlp_custom_ignore =
 \ '\v[\/]\.(git|hg|svn|bundle)'
 \ .'|node_modules|components$'
 " }}}
 
 """ filesystem {{{
 " set autochdir
-" let g:netrw_browse_split=2
-let g:netrw_altv=1
-let g:netrw_winsize=""
-let g:netrw_bufsettings="noma nomod nu nobl nowrap ro"
+" let g:netrw_browse_split = 2
+let g:netrw_altv = 1
+let g:netrw_winsize = ''
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 "" samba ;-(
 " augroup on_samba
   " autocmd!
@@ -437,10 +402,10 @@ set cinwords=if,else,while,do,for,switch,case
 nnoremap ]] ]m
 nnoremap [[ [m
 "" ctags
-let Tlist_Ctags_Cmd='/usr/bin/ctags'
-let Tlist_Show_One_File=1
-let Tlist_Use_Horiz_Window=1
-let Tlist_Exit_OnlyWindow=1
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+let Tlist_Show_One_File = 1
+let Tlist_Use_Horiz_Window = 1
+let Tlist_Exit_OnlyWindow = 1
 "" white space
 nnoremap <Leader>ss ma:%s/  *$//<CR>`a<ESC>
 " augroup replace_white_space
