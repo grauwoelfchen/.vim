@@ -1,4 +1,4 @@
-" Last Change: 04.Jan.2014
+" Last Change: 07.Jan.2014
 scriptencoding utf-8
 
 """ basic {{{
@@ -491,7 +491,7 @@ nmap <C-x> <plug>(neosnippet_expand_or_jump)
 "" pep8
 let g:pep8_map = '<F8>'
 "" unite
-" let g:unite_enable_start_insert=1
+let g:unite_enable_start_insert = 1
 let g:unite_split_rule = "botright"
 nnoremap <silent> ,b :<C-u>Unite buffer<Return>
 nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<Return>
