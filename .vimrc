@@ -74,12 +74,17 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundleLazy 'kovisoft/slimv', {
+\  'autoload' : {
+\    'filetypes' : [ 'lisp' ]
+\  }
+\}
 NeoBundle 'kmnk/vim-unite-giti'
-NeoBundleLazy 'mattn/emmet-vim'
-augroup emmet-vim
-  autocmd!
-  autocmd FileType html NeoBundleSource emmet-vim
-augroup END
+NeoBundleLazy 'mattn/emmet-vim', {
+\  'autoload' : {
+\    'filetypes' : [ 'html' ]
+\  }
+\}
 NeoBundleLazy 'mattn/togetter-vim', {
 \  'autoload' : {
 \    'commands' : [ 'TogetterRecent', 'TogetterHot' ]
@@ -161,33 +166,33 @@ NeoBundleLazy 'Shougo/vimshell', {
 \    'Shougo/vimproc',
 \  ]
 \}
-NeoBundleLazy 'slim-template/vim-slim'
-augroup vim-slim
-  autocmd!
-  autocmd FileType slim NeoBundleSource vim-slim
-augroup END
+NeoBundleLazy 'slim-template/vim-slim', {
+\  'autoload' : {
+\    'filetypes' : [ 'slim' ]
+\  }
+\}
 NeoBundle 'tacroe/unite-mark', {
 \  'depends': [
 \    'Shougo/unite.vim',
 \  ]
 \}
 NeoBundle 'tpope/vim-fugitive'
-NeoBundleLazy 'tpope/vim-haml'
-augroup vim-haml
-  autocmd!
-  autocmd FileType haml NeoBundleSource vim-haml
-augroup END
-NeoBundleLazy 'tpope/vim-rails'
-augroup vim-rails
-  autocmd!
-  autocmd FileType ruby NeoBundleSource vim-rails
-augroup END
+NeoBundleLazy 'tpope/vim-haml', {
+\  'autoload' : {
+\    'filetypes' : [ 'haml' ]
+\  }
+\}
+NeoBundleLazy 'tpope/vim-rails', {
+\  'autoload' : {
+\    'filetypes' : [ 'ruby' ]
+\  }
+\}
 NeoBundle 'tpope/vim-surround'
-NeoBundleLazy 'tpope/vim-markdown'
-augroup vim-markdown
-  autocmd!
-  autocmd FileType markdown NeoBundleSource vim-markdown
-augroup END
+NeoBundleLazy 'tpope/vim-markdown', {
+\  'autoload' : {
+\    'filetypes' : [ 'markdown' ]
+\  }
+\}
 NeoBundle 'thinca/vim-guicolorscheme'
 NeoBundle 'thinca/vim-quickrun', {
 \  'depends': [
@@ -203,18 +208,22 @@ NeoBundle 'tsukkee/unite-help', {
 \}
 NeoBundle 'rhysd/open-pdf.vim'
 NeoBundle 'tyru/open-browser.vim'
-NeoBundleLazy 'vim-ruby/vim-ruby'
-augroup vim-ruby
-  autocmd!
-  autocmd FileType ruby NeoBundleSource vim-ruby
-augroup END
+NeoBundleLazy 'vim-ruby/vim-ruby', {
+\  'autoload' : {
+\    'filetypes' : [ 'ruby' ]
+\  }
+\}
 NeoBundle 'vim-jp/vimdoc-ja'
-NeoBundle 'wlangstroth/vim-racket'
-NeoBundleLazy 'wavded/vim-stylus'
-augroup vim-stylus
-  autocmd!
-  autocmd FileType stylus NeoBundleSource vim-stylus
-augroup END
+NeoBundle 'wlangstroth/vim-racket', {
+\  'autoload' : {
+\    'filetypes' : [ 'scheme', 'racket' ]
+\  }
+\}
+NeoBundleLazy 'wavded/vim-stylus', {
+\  'autoload' : {
+\    'filetypes' : [ 'stylus' ]
+\  }
+\}
 "" vim-scripts
 NeoBundle 'buftabs'
 NeoBundle 'smartchr'
@@ -229,12 +238,6 @@ if s:os_type == 'osx'
 end
 "" source forge
 NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex'
-"" mercurial
-NeoBundleLazy 'https://bitbucket.org/kovisoft/slimv'
-augroup slimv
-  autocmd!
-  autocmd FileType lisp NeoBundleSource slimv
-augroup END
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
@@ -666,12 +669,15 @@ function! s:hooks.on_source(hooks)
   \}
 endfunction
 "" slimv
-let g:paredit_electric_return = 0
-let g:slimv_indent_keylists = 0
 let s:hooks = neobundle#get_hooks('slimv')
 function! s:hooks.on_source(hooks)
+  let g:paredit_electric_return = 0
+  let g:slimv_indent_keylists = 0
+  let g:slimv_repl_simple_compl = 1
+  let g:slimv_repl_name = 'repl'
+  let g:slimv_repl_split = 0 "separate buffer
   let g:slimv_swank_cmd =
-  \  '!screen -dmS eval clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp'
+  \  '!screen -dmS lisp clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp'
   "\  '!xterm -e clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
 endfunction
 "" my plugins :)
