@@ -15,6 +15,7 @@ hi Normal           guifg=#fffff0     guibg=black       gui=NONE      ctermfg=NO
 hi NonText          guifg=#070707     guibg=black       gui=NONE      ctermfg=black       ctermbg=NONE        cterm=NONE
 hi Cursor           guifg=black       guibg=white       gui=NONE      ctermfg=black       ctermbg=white       cterm=reverse
 hi LineNr           guifg=darkgray    guibg=black       gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
+hi CursorLineNr     guifg=gray        guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 hi VertSplit        guifg=#202020     guibg=#202020     gui=NONE      ctermfg=darkgray    ctermbg=darkgray    cterm=NONE
 hi StatusLine       guifg=white       guibg=#444444     gui=NONE      ctermfg=gray        ctermbg=darkgray    cterm=NONE
 hi StatusLineNC     guifg=darkgray    guibg=black       gui=NONE      ctermfg=gray        ctermbg=darkgray    cterm=NONE
@@ -32,8 +33,9 @@ hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=wh
 " Message displayed in lower left, such as --INSERT--
 hi ModeMsg          guifg=gray        guibg=NONE        gui=BOLD      ctermfg=gray        ctermbg=NONE        cterm=BOLD
 
-hi CursorLine       guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
-hi CursorColumn     guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
+hi CursorLine       guifg=NONE        guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=underline
+hi CursorColumn     guifg=NONE        guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
+hi ColorColumn      guifg=red         guibg=NONE        gui=NONE      ctermfg=red         ctermbg=NONE        cterm=NONE
 hi MatchParen       guifg=#f6f3e8     guibg=#857b6f     gui=BOLD      ctermfg=white       ctermbg=darkgray    cterm=NONE
 hi Pmenu            guifg=#f6f3e8     guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 hi PmenuSel         guifg=black       guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
