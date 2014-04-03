@@ -58,9 +58,9 @@ NeoBundleLazy 'grauwoelfchen/hello-vim', {
 \    'commands' : [ 'Say' ]
 \  },
 \}
-NeoBundleLazy 'grauwoelfchen/pinponpanpon-vim', {
+NeoBundleLazy 'grauwoelfchen/pingpongpangpong-vim', {
 \  'autoload' : {
-\    'commands' : [ 'PinponPanpon' ]
+\    'commands' : [ 'PingPongPangPong' ]
 \  },
 \  'depends': [
 \    'mattn/webapi-vim'
@@ -334,6 +334,7 @@ endfunction
 set showtabline=2
 set tabline=%!MakeTabLine()
 set number
+"set relativenumber
 " set t_Co=256
 set listchars=tab:^_,trail:_
 " set list
@@ -360,7 +361,8 @@ set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
 set statusline+=\ %m%r%{fugitive#head()}
 set statusline+=\ %03l,%02v\ %P
 set laststatus=2
-" set colorcolumn=80
+set colorcolumn=80
+set cursorline
 augroup highlight_over_length
   autocmd BufEnter *
   \  highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
@@ -581,7 +583,7 @@ let g:quickrun_config['ruby.rspec'] = {
 \}
 let g:quickrun_config['lisp'] = {
 \  'command' : 'clisp',
-\  'cmdopt'  : "--silent",
+\  'cmdopt'  : "",
 \  'exec'    : "%c %o %s",
 \}
 let g:quickrun_config['racket'] = {
@@ -672,10 +674,11 @@ endfunction
 let s:hooks = neobundle#get_hooks('slimv')
 function! s:hooks.on_source(hooks)
   let g:paredit_electric_return = 0
+  let g:slimv_keybindings = 1
   let g:slimv_indent_keylists = 0
   let g:slimv_repl_simple_compl = 1
   let g:slimv_repl_name = 'repl'
-  let g:slimv_repl_split = 0 "separate buffer
+  let g:slimv_repl_split = 1 "separate buffer
   let g:slimv_swank_cmd =
   \  '!screen -dmS lisp clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp'
   "\  '!xterm -e clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
@@ -687,10 +690,10 @@ function! s:hooks.on_source(hooks)
   let g:hello_say_words = 'Grüezi,Vim'
   let g:hello_say_voice = 'Alex'
 endfunction
-"" pinponpanpon-vim
-let s:hooks = neobundle#get_hooks('pinponpanpon-vim')
+"" pingpongpangpong
+let s:hooks = neobundle#get_hooks('pingpongpangpong-vim')
 function! s:hooks.on_source(hooks)
-  let g:pinponpanpon_area_name = 'さいたま市'
+  let g:pingpongpangpong_area_name = 'さいたま市'
 endfunction
 " }}}
 
