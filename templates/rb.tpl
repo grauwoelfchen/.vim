@@ -1,3 +1,8 @@
-#!/usr/bin/env ruby
-# encoding: utf-8
+require "lib"
 
+module Module
+  class Class < SuperClass
+    def method(args)
+    end
+  end
+end
