@@ -745,19 +745,19 @@ augroup END
 " }}}
 
 """ filetype {{{
-augroup handle_as_markdown
+augroup treat_as_markdown
   autocmd!
   autocmd BufNewFile,BufRead *.md,*.markdown,*.mkd setlocal filetype=markdown
 augroup END
-augroup handle_as_lisp
+augroup treat_as_lisp
   autocmd!
   autocmd BufNewFile,BufRead .stumpwmrc,.clisprc setlocal filetype=lisp
 augroup END
-augroup handle_as_spec
+augroup treat_as_spec
   autocmd!
   autocmd BufNewFile,BufRead *_spec.rb setlocal filetype=ruby.rspec
 augroup END
-augroup handle_as_arduino
+augroup treat_as_arduino
   autocmd!
   autocmd BufNewFile,BufRead *.pde setlocal filetype=arduino
 augroup END
