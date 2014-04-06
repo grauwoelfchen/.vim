@@ -739,7 +739,7 @@ nnoremap <Leader>ss ma:%s/  *$//<CR>`a<ESC>
 augroup highlight_trailing_spaces
   autocmd!
   autocmd VimEnter,WinEnter,ColorScheme *
-  \  highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
+  \  highlight TrailingSpaces term=underline guibg=red ctermbg=red
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
 " }}}
