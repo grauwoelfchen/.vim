@@ -650,6 +650,7 @@ let g:ctrlp_custom_ignore =
 \ .'|node_modules|components$'
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
+let g:ctrlp_prompt_mappings = { 'AcceptSelection("t")': ['<c-t>', '<c-T>'] }
 "" ctrlp-gist
 nnoremap <C-g> :<C-u>CtrlPGist<Return>
 "" ctrlp-launcher
