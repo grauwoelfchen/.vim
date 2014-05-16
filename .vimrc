@@ -1,4 +1,4 @@
-" Last Change: 07.Jan.2014
+" Last Change: 07.May.2014
 scriptencoding utf-8
 
 """ basic {{{
@@ -235,6 +235,7 @@ NeoBundle 'taglist.vim'
 NeoBundle 'MultipleSearch'
 if s:os_type == 'osx'
   NeoBundle 'msanders/cocoa.vim'
+  NeoBundle 'b4winckler/vim-objc'
 end
 "" source forge
 NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex'
@@ -716,15 +717,10 @@ set cinwords=if,else,while,do,for,switch,case
 nnoremap ]] ]m
 nnoremap [[ [m
 "" ctags
-if s:os_type == 'osx'
-  "" via brew
-  let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-else
-  let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-end
-let Tlist_Show_One_File = 1
-let Tlist_Use_Horiz_Window = 1
-let Tlist_Exit_OnlyWindow = 1
+let g:Tlist_Ctags_Cmd = '/usr/bin/ctags'
+let g:Tlist_Show_One_File = 1
+let g:Tlist_Use_Horiz_Window = 1
+let g:Tlist_Exit_OnlyWindow = 1
 "" white space
 nnoremap <Leader>ss ma:%s/  *$//<CR>`a<ESC>
 " augroup replace_white_space
