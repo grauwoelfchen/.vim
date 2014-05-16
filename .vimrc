@@ -126,6 +126,7 @@ NeoBundle 'mattn/unite-advent_calendar', {
 \    'tyru/open-browser.vim',
 \  ]
 \}
+NeoBundle 'maxbrunsfeld/vim-yankstack'
 "NeoBundle 'motemen/git-vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'Shougo/neocomplcache', {
@@ -229,7 +230,6 @@ NeoBundle 'buftabs'
 NeoBundle 'smartchr'
 NeoBundle 'pep8'
 NeoBundle 'sudo.vim'
-NeoBundle 'YankRing.vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'taglist.vim'
 NeoBundle 'MultipleSearch'
@@ -544,16 +544,11 @@ let g:buftabs_in_statusline = 1
 let g:buftabs_active_highlight_group = 'Visual'
 noremap <Leader>bp :bprev<Return>
 noremap <Leader>bn :bnext<Return>
-"" yankring
-noremap <silent> <F7> :YRShow<Return>
-let g:yankring_history_dir = expand('$HOME/.vim/')
-let g:yankring_history_file = '.yankring_history'
-let g:yankring_replace_n_pkey = '<M-p>'
-let g:yankring_replace_n_nkey = '<M-n>'
-let g:yankring_max_history = 10
-"" 2M
-let g:yankring_max_element_length = 1048576
-let g:yankring_window_height = 13
+"" yankstack
+noremap <silent> <F7> :Yanks<Return>
+let g:yankstack_map_keys = 0
+nmap <M-p> <plug>yankstack_substitute_older_paste
+nmap <M-n> <plug>yankstack_substitute_newer_paste
 "" vim-latex
 let g:Tex_CompileRule_dvi = 'latex $*'
 let g:Tex_ViewRule_dvi = 'xdvi'
