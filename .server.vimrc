@@ -1,4 +1,4 @@
-" Last Change: 04.Jan.2014
+" Last Change: 07.May.2014
 scriptencoding utf-8
 
 """ basic {{{
@@ -34,7 +34,6 @@ if &runtimepath !~ '/neobundle.vim'
 endif
 call neobundle#rc(expand("$HOME/.vim/bundle/"))
 NeoBundle 'deris/columnjump'
-NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'kana/vim-gf-user'
@@ -42,7 +41,6 @@ NeoBundle 'kana/vim-gf-diff'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
-NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'Shougo/neocomplcache', {
@@ -63,45 +61,13 @@ NeoBundleLazy 'Shougo/vimshell', {
 \    'Shougo/vimproc',
 \  ]
 \}
-NeoBundleLazy 'slim-template/vim-slim'
-augroup vim-slim
-  autocmd!
-  autocmd FileType slim NeoBundleSource vim-slim
-augroup END
 NeoBundle 'tpope/vim-fugitive'
-NeoBundleLazy 'tpope/vim-haml'
-augroup vim-haml
-  autocmd!
-  autocmd FileType haml NeoBundleSource vim-haml
-augroup END
-NeoBundleLazy 'tpope/vim-rails'
-augroup vim-rails
-  autocmd!
-  autocmd FileType ruby NeoBundleSource vim-rails
-augroup END
 NeoBundle 'tpope/vim-surround'
-NeoBundleLazy 'tpope/vim-markdown'
-augroup vim-markdown
-  autocmd!
-  autocmd FileType markdown NeoBundleSource vim-markdown
-augroup END
 NeoBundle 'thinca/vim-guicolorscheme'
-NeoBundleLazy 'vim-ruby/vim-ruby'
-augroup vim-ruby
-  autocmd!
-  autocmd FileType ruby NeoBundleSource vim-ruby
-augroup END
-NeoBundle 'wlangstroth/vim-racket'
-NeoBundleLazy 'wavded/vim-stylus'
-augroup vim-stylus
-  autocmd!
-  autocmd FileType stylus NeoBundleSource vim-stylus
-augroup END
 "" vim-scripts
 NeoBundle 'buftabs'
 NeoBundle 'smartchr'
 NeoBundle 'sudo.vim'
-NeoBundle 'YankRing.vim'
 NeoBundle 'taglist.vim'
 NeoBundle 'MultipleSearch'
 if neobundle#exists_not_installed_bundles()
@@ -337,17 +303,12 @@ let g:neocomplcache_max_list = 20
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-" let g:neocomplcache_omni_patterns={
-" \  'ruby' : '[^.*\t]\.\w*\|\h\w*::'
-" \}
 if !exists('g:neocomplcache_dictionary_filetype_lists')
   let g:neocomplcache_dictionary_filetype_lists = {}
 endif
 let g:neocomplcache_dictionary_filetype_lists = {
 \  'default'  : '',
-\  'vimshell' : $HOME.'/.vimshell/command/history',
-\  'ruby'     : $HOME.'/.vim/dict/ruby.dict',
-\  'php'      : $HOME.'/.vim/dict/php.dict'
+\  'vimshell' : $HOME.'/.vimshell/command/history'
 \}
 inoremap <expr><C-x><Return> neocomplcache#smart_close_popup()."\<Return>"
 inoremap <expr><C-g> neocomplcache#undo_completion()
@@ -357,16 +318,6 @@ let g:buftabs_in_statusline = 1
 let g:buftabs_active_highlight_group = 'Visual'
 noremap <Leader>bp :bprev<Return>
 noremap <Leader>bn :bnext<Return>
-"" yankring
-noremap <silent> <F7> :YRShow<Return>
-let g:yankring_history_dir = expand('$HOME/.vim/')
-let g:yankring_history_file = '.yankring_history'
-let g:yankring_replace_n_pkey = '<M-p>'
-let g:yankring_replace_n_nkey = '<M-n>'
-let g:yankring_max_history = 10
-"" 2M
-let g:yankring_max_element_length = 1048576
-let g:yankring_window_height = 13
 "" fugitive
 nnoremap <silent> <Leader>gd :<C-u>Gdiff<Return>
 nnoremap <silent> <Leader>gs :<C-u>Gstatus<Return>
@@ -401,11 +352,6 @@ set cindent
 set cinwords=if,else,while,do,for,switch,case
 nnoremap ]] ]m
 nnoremap [[ [m
-"" ctags
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-let Tlist_Show_One_File = 1
-let Tlist_Use_Horiz_Window = 1
-let Tlist_Exit_OnlyWindow = 1
 "" white space
 nnoremap <Leader>ss ma:%s/  *$//<CR>`a<ESC>
 " augroup replace_white_space
@@ -419,28 +365,6 @@ augroup highlight_trailing_spaces
   \  highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
-" }}}
-
-""" filetype {{{
-augroup handle_as_markdown
-  autocmd!
-  autocmd BufNewFile,BufRead *.md,*.markdown,*.mkd setlocal filetype=markdown
-augroup END
-augroup handle_as_lisp
-  autocmd!
-  autocmd BufNewFile,BufRead .stumpwmrc,.clisprc setlocal filetype=lisp
-augroup END
-augroup handle_as_spec
-  autocmd!
-  autocmd BufNewFile,BufRead *_spec.rb setlocal filetype=ruby.rspec
-augroup END
-"" coffee
-"" ruby
-"" python
-"" php
-"" objc
-"" arduino
-"" svn
 " }}}
 
 """ vim {{{
