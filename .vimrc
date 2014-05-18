@@ -1,4 +1,4 @@
-" Last Change: 07.May.2014
+" Last Change: 19.May.2014
 scriptencoding utf-8
 
 """ basic {{{
@@ -7,14 +7,14 @@ set showmode
 set showcmd
 set autoread
 set ttyfast
-set vb t_vb= "nobeep
-set hidden "buffer
+set vb t_vb=
+set hidden
 set writebackup
 set backup
 set backupdir=$HOME/.vim/.backup
 set directory=$HOME/.vim/.swap
-" set nobackup
-" set noswapfile
+"set nobackup
+"set noswapfile
 "" IME
 set noimcmdline
 set iminsert=0
@@ -23,11 +23,6 @@ noremap : ;
 " completion
 set wildmode=list:longest
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar.gz,*.tgz
-if has('unix') && system('uname') =~ 'Darwin'
-  let s:os_type = 'osx'
-else
-  let s:os_type = 'linux'
-endif
 " }}}
 
 """ bundle {{{
@@ -37,150 +32,81 @@ if &runtimepath !~ '/neobundle.vim'
   set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
 call neobundle#rc(expand('$HOME/.vim/bundle/'))
-NeoBundle 'basyura/unite-rails', {
-\  'depends': [
-\   'Shougo/unite.vim',
-\  ]
-\}
-NeoBundle 'choplin/unite-vim_hacks', {
-\  'depends': [
-\    'mattn/webapi-vim',
-\    'mattn/wwwrenderer-vim',
-\    'thinca/vim-openbuf'
-\  ]
-\}
-NeoBundle 'danchoi/ri.vim'
 NeoBundle 'deris/columnjump'
-NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'ervandew/supertab'
-NeoBundleLazy 'grauwoelfchen/hello-vim', {
-\  'autoload' : {
-\    'commands' : [ 'Say' ]
-\  },
-\}
-NeoBundleLazy 'grauwoelfchen/pingpongpangpong-vim', {
-\  'autoload' : {
-\    'commands' : [ 'PingPongPangPong' ]
-\  },
-\  'depends': [
-\    'mattn/webapi-vim'
-\  ]
-\}
 NeoBundle 'h1mesuke/vim-alignta'
+
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
 NeoBundle 'kana/vim-smartinput'
+NeoBundle 'smartchr'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
-NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'tpope/vim-surround'
+
 NeoBundle 'kien/ctrlp.vim'
+NeoBundleLazy 'mattn/ctrlp-launcher', {
+\  'autoload' : {
+\    'commands' : [ 'CtrlPLauncher' ]
+\  },
+\  'depends': [ 'kien/ctrlp.vim' ]
+\}
+
+NeoBundleLazy 'mattn/gist-vim', {
+\  'autoload' : {
+\    'commands' : [ 'Gist' ]
+\  },
+\  'depends': [ 'mattn/webapi-vim' ]
+\}
+
 NeoBundleLazy 'kovisoft/slimv', {
 \  'autoload' : {
 \    'filetypes' : [ 'lisp' ]
 \  }
 \}
-NeoBundle 'kmnk/vim-unite-giti'
-NeoBundleLazy 'mattn/emmet-vim', {
+NeoBundleLazy 'grauwoelfchen/pingpongpangpong-vim', {
 \  'autoload' : {
-\    'filetypes' : [ 'html', 'eruby' ]
-\  }
-\}
-NeoBundleLazy 'mattn/togetter-vim', {
-\  'autoload' : {
-\    'commands' : [ 'TogetterRecent', 'TogetterHot' ]
+\    'commands' : [ 'PingPongPangPong' ]
 \  },
-\  'depends': [
-\    'mattn/webapi-vim'
-\  ]
+\  'depends': [ 'mattn/webapi-vim' ]
 \}
-NeoBundle 'mattn/webapi-vim'
-NeoBundleLazy 'mattn/ctrlp-gist', {
-\  'autoload' : {
-\    'commands' : [ 'CtrlPGist' ]
-\  },
-\  'depends': [
-\    'kien/ctrlp.vim',
-\    'mattn/webapi-vim',
-\    'mattn/gist-vim'
-\  ]
-\}
-NeoBundleLazy 'mattn/ctrlp-launcher', {
-\  'autoload' : {
-\    'commands' : [ 'CtrlPLauncher' ]
-\  },
-\  'depends': [
-\    'kien/ctrlp.vim',
-\  ]
-\}
-NeoBundleLazy 'mattn/gist-vim', {
-\  'autoload' : {
-\    'commands' : [ 'Gist' ]
-\  },
-\  'depends': [
-\    'mattn/webapi-vim'
-\  ]
-\}
-NeoBundle 'mattn/unite-advent_calendar', {
-\  'depends': [
-\    'mattn/webapi-vim',
-\    'tyru/open-browser.vim',
-\  ]
-\}
+
 NeoBundle 'maxbrunsfeld/vim-yankstack'
-"NeoBundle 'motemen/git-vim'
-NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'Shougo/neocomplcache', {
-\ 'depends': [
-\   'Shougo/vimproc',
-\ ]
+\ 'depends': [ 'Shougo/vimproc' ]
 \}
-NeoBundle 'Shougo/neosnippet', {
-\  'depends': [
-\    'Shougo/neocomplcache',
-\  ]
-\}
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline', {
-\  'depends': [
-\   'Shougo/unite.vim',
-\  ]
-\}
-NeoBundle 'Shougo/vimproc', {
-\  'build': {
-\    'unix': 'make -f make_unix.mak',
-\    'mac' : 'make -f make_mac.mak'
-\  }
-\}
-NeoBundleLazy 'Shougo/vimfiler', {
-\  'autoload' : {
-\    'commands' : [ 'VimFilerBufferDir' ]
-\  },
-\  'depends': [
-\    'Shougo/unite.vim'
-\  ],
-\ }
+
+NeoBundle 'buftabs'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'thinca/vim-guicolorscheme'
+
 NeoBundleLazy 'Shougo/vimshell', {
 \  'autoload' : {
 \    'commands' : [ 'VimShell' ]
 \  },
-\  'depends': [
-\    'Shougo/vimproc',
-\  ]
+\  'depends': [ 'Shougo/vimproc' ]
 \}
-NeoBundleLazy 'slim-template/vim-slim', {
+
+NeoBundle 'thinca/vim-quickrun', {
+\  'depends': [ 'Shougo/vimproc' ]
+\}
+NeoBundle 'rhysd/open-pdf.vim'
+NeoBundle 'tyru/open-browser.vim'
+
+NeoBundle 'wlangstroth/vim-racket', {
 \  'autoload' : {
-\    'filetypes' : [ 'slim' ]
+\    'filetypes' : [ 'scheme', 'racket' ]
 \  }
 \}
-NeoBundle 'tacroe/unite-mark', {
-\  'depends': [
-\    'Shougo/unite.vim',
-\  ]
-\}
-NeoBundle 'tpope/vim-fugitive'
-NeoBundleLazy 'tpope/vim-haml', {
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundleLazy 'wavded/vim-stylus', {
 \  'autoload' : {
-\    'filetypes' : [ 'haml' ]
+\    'filetypes' : [ 'stylus' ]
+\  }
+\}
+NeoBundle 'digitaltoad/vim-jade'
+NeoBundleLazy 'vim-ruby/vim-ruby', {
+\  'autoload' : {
+\    'filetypes' : [ 'ruby' ]
 \  }
 \}
 NeoBundleLazy 'tpope/vim-rails', {
@@ -188,62 +114,47 @@ NeoBundleLazy 'tpope/vim-rails', {
 \    'filetypes' : [ 'ruby' ]
 \  }
 \}
-NeoBundle 'tpope/vim-surround'
+NeoBundleLazy 'slim-template/vim-slim', {
+\  'autoload' : {
+\    'filetypes' : [ 'slim' ]
+\  }
+\}
+NeoBundleLazy 'tpope/vim-haml', {
+\  'autoload' : {
+\    'filetypes' : [ 'haml' ]
+\  }
+\}
+NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex'
 NeoBundleLazy 'tpope/vim-markdown', {
 \  'autoload' : {
 \    'filetypes' : [ 'markdown' ]
 \  }
 \}
-NeoBundle 'thinca/vim-guicolorscheme'
-NeoBundle 'thinca/vim-quickrun', {
-\  'depends': [
-\    'Shougo/vimproc',
-\  ]
+NeoBundleLazy 'mattn/emmet-vim', {
+\  'autoload' : {
+\    'filetypes' : [ 'html', 'eruby' ]
+\  }
 \}
+
+NeoBundle 'danchoi/ri.vim'
 NeoBundle 'thinca/vim-ref'
-NeoBundle 'tsukkee/unite-help', {
-\  'depends': [
-\    'Shougo/unite.vim',
-\    'tyru/open-browser.vim',
-\  ]
-\}
-NeoBundle 'rhysd/open-pdf.vim'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundleLazy 'vim-ruby/vim-ruby', {
-\  'autoload' : {
-\    'filetypes' : [ 'ruby' ]
-\  }
-\}
 NeoBundle 'vim-jp/vimdoc-ja'
-NeoBundle 'wlangstroth/vim-racket', {
-\  'autoload' : {
-\    'filetypes' : [ 'scheme', 'racket' ]
-\  }
-\}
-NeoBundleLazy 'wavded/vim-stylus', {
-\  'autoload' : {
-\    'filetypes' : [ 'stylus' ]
-\  }
-\}
-"" vim-scripts
-NeoBundle 'buftabs'
-NeoBundle 'smartchr'
-NeoBundle 'pep8'
-NeoBundle 'sudo.vim'
-NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'taglist.vim'
-NeoBundle 'MultipleSearch'
-if s:os_type == 'osx'
-  NeoBundle 'msanders/cocoa.vim'
-  NeoBundle 'b4winckler/vim-objc'
-end
-"" source forge
-NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex'
+NeoBundle 'pep8'
+
+NeoBundle 'Shougo/vimproc', {
+\  'build': {
+\    'unix': 'make -f make_unix.mak',
+\    'mac' : 'make -f make_mac.mak'
+\  }
+\}
+NeoBundle 'sudo.vim'
+
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
   echomsg 'Please execute ":NeoBundleInstall" command.'
-"  finish
+  finish
 endif
 filetype plugin indent on
 " }}}
@@ -264,7 +175,7 @@ nnoremap N Nzzzv
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nH
 "" help
-" K man
+""" K man
 set helplang=en
 nnoremap <C-h> :<C-u>help<Space>
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><Return>
@@ -307,8 +218,8 @@ augroup END
 " }}}
 
 """ appearance {{{
-" set title
-" set ruler
+"set title
+"set ruler
 "" tabline
 function! s:tab_label(n)
   let bufnrs   = tabpagebuflist(a:n)
@@ -336,9 +247,9 @@ set showtabline=2
 set tabline=%!MakeTabLine()
 set number
 "set relativenumber
-" set t_Co=256
+"set t_Co=256
 set listchars=tab:^_,trail:_
-" set list
+"set list
 set showmatch
 set matchtime=2
 set wrap
@@ -394,11 +305,10 @@ set wildmenu
 set complete+=k
 set commentstring=\ #\ %s
 set foldlevel=0
-" set paste
 nnoremap gc `[v`]
 vnoremap gc :<C-u>normal gc<Return>
 onoremap gc :<C-u>normal gc<Return>
-" noremap <expr> qp '`['.strpart(getregtype(), 0, 1).'`]'
+"noremap <expr> qp '`['.strpart(getregtype(), 0, 1).'`]'
 set clipboard=unnamed,autoselect
 set clipboard=autoselect
 set backspace=indent,eol,start
@@ -418,22 +328,9 @@ set fileencodings=utf-8
 set fileformats=unix
 " }}}
 
-""" template {{{
-augroup apply_template
-  autocmd!
-  autocmd BufNewFile *.erl 0r $HOME/.vim/templates/erl.tpl
-  autocmd BufNewFile *.rb  0r $HOME/.vim/templates/rb.tpl
-augroup END
-" }}}
-
 """ command & other keymaps {{{
 "" rename current file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
-"" encoding
-function! PutMagicComment()
-  return "# encoding: utf-8"
-endfunction
-inoremap <Leader>## <C-r>=PutMagicComment()<Return>
 "" date
 inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
 inoremap <expr> ,dt strftime('%Y-%m-%dT%H:%M:%S')
@@ -474,9 +371,6 @@ let g:neocomplcache_max_list = 20
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-" let g:neocomplcache_omni_patterns = {
-" \  'ruby' : '[^.*\t]\.\w*\|\h\w*::'
-" \}
 if !exists('g:neocomplcache_dictionary_filetype_lists')
   let g:neocomplcache_dictionary_filetype_lists = {}
 endif
@@ -489,56 +383,8 @@ let g:neocomplcache_dictionary_filetype_lists = {
 inoremap <expr><C-x><Return> neocomplcache#smart_close_popup()."\<Return>"
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
-"" neosnippet
-let g:neosnippet#snippets_directory = $HOME.'/.vim/snippets'
-smap <C-k> <plug>(neosnippet_expand_or_jump)
-imap <C-x> <plug>(neosnippet_expand_or_jump)
-nmap <C-x> <plug>(neosnippet_expand_or_jump)
 "" pep8
 let g:pep8_map = '<F8>'
-"" unite
-let g:unite_enable_start_insert = 1
-let g:unite_split_rule = "botright"
-nnoremap <silent> ,b :<C-u>Unite buffer<Return>
-nnoremap <silent> ,r :<C-u>Unite -buffer-name=register register<Return>
-nnoremap <silent> ,f :<C-u>Unite file_mru<Return>
-nnoremap <silent> ,d :<C-u>UniteWithBufferDir -buffer-name=files file<Return>
-nnoremap <silent> ,a :<C-u>UniteWithBufferDir
-\  -buffer-name=files buffer file_mru bookmark file<Return>
-nnoremap <silent> ,h :<C-u>Unite -start-insert help<Return>
-nnoremap <silent> ,g :<C-u>UniteWithCursorWord help<Return>
-nnoremap <silent> ,m :<C-u>Unite mark<Return>
-augroup setup_unite_spilt
-  autocmd!
-  autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-k> unite#do_action('split')
-  autocmd FileType unite inoremap <silent> <buffer> <expr> <C-k> unite#do_action('split')
-  autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-h> unite#do_action('vsplit')
-  autocmd FileType unite inoremap <silent> <buffer> <expr> <C-h> unite#do_action('vsplit')
-augroup END
-augroup setup_unite_close
-  autocmd!
-  autocmd FileType unite nnoremap <silent> <buffer> <Esc><Esc> :q<Return>
-  autocmd FileType unite inoremap <silent> <buffer> <Esc><Esc> <Esc>:q<Return>
-augroup END
-"" unite-rails
-noremap ;rm :<C-u>Unite rails/model<Return>
-noremap ;rv :<C-u>Unite rails/view<Return>
-noremap ;rc :<C-u>Unite rails/controller<Return>
-noremap ;rh :<C-u>Unite rails/helper<Return>
-noremap ;rs :<C-u>Unite rails/stylesheet<Return>
-noremap ;rj :<C-u>Unite rails/javascript<Return>
-noremap ;rr :<C-u>Unite rails/route<Return>
-noremap ;rg :<C-u>Unite rails/gemfile<Return>
-noremap ;rt :<C-u>Unite rails/spec<Return>
-noremap ;ra :<C-u>Unite rails/rake<Return>
-"" nerdcommenter
-let g:NERDCreateDefaultMappings = 0
-let g:NERDSpaceDelims = 1
-map  <Leader>cc <plug>NERDCommenterToggle
-nmap <Leader>ca <plug>NERDCommenterAppend
-nmap <leader>c$ <plug>NERDCommenterToEOL
-vmap <Leader>cs <plug>NERDCommenterSexy
-vmap <Leader>cb <plug>NERDCommenterMinimal
 "" buftabs
 let g:buftabs_only_basename = 1
 let g:buftabs_in_statusline = 1
@@ -598,8 +444,6 @@ let g:quickrun_config['html'] = {
 \  'outputter' : 'browser',
 \  'exec'      : "%c %s",
 \}
-"" vimfiler
-nnoremap <silent> <leader>fd :<C-u>VimFilerBufferDir -quit<Return>
 "" ri.vim
 "" split 0 => h, 1 => v
 nnoremap ,i :call ri#OpenSearchPrompt(0)<Return>
@@ -614,11 +458,7 @@ nnoremap <silent> <Leader>gg :<C-u>Ggrep<Return>
 "" gist-vim
 let s:hooks = neobundle#get_hooks('gist-vim')
 function! s:hooks.on_source(hooks)
-  if s:os_type == 'osx'
-    let g:gist_clip_command = 'pbcopy'
-  else
-    let g:gist_clip_command = 'xclip -selection clipboard'
-  endif
+  let g:gist_clip_command = 'xclip -selection clipboard'
   let g:gist_detect_filetype = 1
   let g:gist_open_browser_after_post = 1
   let g:gist_open_browser_command = 'w3m %URL%'
@@ -644,15 +484,13 @@ function! s:hooks.on_source(hooks)
   endfunction
   command! -nargs=0 -range=% GistShowEmbedTag :call s:gist_show('embed_tag')
 endfunction
-""ctrlp
+"" ctrlp
 let g:ctrlp_custom_ignore =
 \ '\v[\/]\.(git|hg|svn|bundle)'
 \ .'|node_modules|components$'
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("t")': ['<c-t>', '<c-T>'] }
-"" ctrlp-gist
-nnoremap <C-g> :<C-u>CtrlPGist<Return>
 "" ctrlp-launcher
 nnoremap <C-e> :<C-u>CtrlPLauncher<Return>
 "" emmet-vim
@@ -682,12 +520,6 @@ function! s:hooks.on_source(hooks)
   "\  '!xterm -e clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
 endfunction
 "" my plugins :)
-"" hello-vim
-let s:hooks = neobundle#get_hooks('hello-vim')
-function! s:hooks.on_source(hooks)
-  let g:hello_say_words = 'Grüezi,Vim'
-  let g:hello_say_voice = 'Alex'
-endfunction
 "" pingpongpangpong
 let s:hooks = neobundle#get_hooks('pingpongpangpong-vim')
 function! s:hooks.on_source(hooks)
@@ -696,23 +528,23 @@ endfunction
 " }}}
 
 """ filesystem {{{
-" set autochdir
-" let g:netrw_browse_split = 2
+"set autochdir
+let g:netrw_browse_split = 2
 let g:netrw_altv = 1
 let g:netrw_winsize = ''
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 "" samba ;-(
-" augroup on_samba
-  " autocmd!
-  " autocmd BufWritePost * sleep 1
-  " autocmd BufWritePost * checktime
-  " set autoread
-" augroup END
+"augroup on_samba
+"  autocmd!
+"  autocmd BufWritePost * sleep 1
+"  autocmd BufWritePost * checktime
+"  set autoread
+"augroup END
 " }}}
 
 """ programming {{{
 set autoindent
-" set smartindent
+"set smartindent
 set cindent
 set cinwords=if,else,while,do,for,switch,case
 nnoremap ]] ]m
@@ -724,11 +556,11 @@ let g:Tlist_Use_Horiz_Window = 1
 let g:Tlist_Exit_OnlyWindow = 1
 "" white space
 nnoremap <Leader>ss ma:%s/  *$//<CR>`a<ESC>
-" augroup replace_white_space
-  " autocmd!
-  " autocmd BufWritePre * :%s/\s\+$//ge
-  " autocmd BufWritePre * :%s/\t/  /ge
-" augroup END
+"augroup replace_white_space
+"  autocmd!
+"  autocmd BufWritePre * :%s/\s\+$//ge
+"  autocmd BufWritePre * :%s/\t/  /ge
+"augroup END
 augroup highlight_trailing_spaces
   autocmd!
   autocmd VimEnter,WinEnter,ColorScheme *
@@ -738,10 +570,6 @@ augroup END
 " }}}
 
 """ filetype {{{
-augroup treat_as_markdown
-  autocmd!
-  autocmd BufNewFile,BufRead *.md,*.markdown,*.mkd setlocal filetype=markdown
-augroup END
 augroup treat_as_lisp
   autocmd!
   autocmd BufNewFile,BufRead .stumpwmrc,.clisprc setlocal filetype=lisp
@@ -750,17 +578,6 @@ augroup treat_as_spec
   autocmd!
   autocmd BufNewFile,BufRead *_spec.rb setlocal filetype=ruby.rspec
 augroup END
-augroup treat_as_arduino
-  autocmd!
-  autocmd BufNewFile,BufRead *.pde setlocal filetype=arduino
-augroup END
-"" coffee
-"" ruby
-"" python
-"" php
-"" objc
-"" arduino
-"" svn
 " }}}
 
 """ vim {{{
