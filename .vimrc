@@ -231,7 +231,8 @@ function! s:tab_label(n)
   else
     let bufs = '%#'.hl.'Number#'.bufs
   end
-  let updated = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
+  let updated = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ?
+    \ '+' : ''
   let blank = (bufs.updated) ==? '' ? '' : ' '
   let fname = pathshorten(bufname(curbufnr))
   return '%'.a:n.'T'.bufs.updated.blank.'%#'.hl.'#'.fname.'%T%#TablineFill#'
@@ -295,8 +296,8 @@ augroup END
 augroup quickfix_close
   autocmd!
   autocmd WinEnter *
-  \ if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' |
-  \ quit | endif
+  \ if (winnr('$') == 1) &&
+  \   (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 augroup END
 " }}}
 
@@ -467,7 +468,8 @@ function! s:hooks.on_source(hooks)
     if exists('b:gist')
       let info = b:gist
       if len(info) != 0
-        return '<script src="https://gist.github.com/'.info['id'].'.js?file='.info['filename'].'"></script>'
+        return '<script src="https://gist.github.com/'
+          .info['id'].'.js?file='.info['filename'].'"></script>'
       endif
     endif
   endfunction
@@ -516,7 +518,8 @@ function! s:hooks.on_source(hooks)
   let g:slimv_repl_name = 'repl'
   let g:slimv_repl_split = 1 "separate buffer
   let g:slimv_swank_cmd =
-  \  '!screen -dmS lisp clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp'
+  \  '!screen -dmS lisp clisp -i '.
+  \  '$HOME/.vim/bundle/slimv/slime/start-swank.lisp'
   "\  '!xterm -e clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
 endfunction
 "" my plugins :)
