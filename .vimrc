@@ -645,6 +645,7 @@ function! s:hooks.on_source(hooks)
   command! -nargs=0 -range=% GistShowEmbedTag :call s:gist_show('embed_tag')
 endfunction
 ""ctrlp
+let g:ctrlp_map = '<C-M-p>'
 let g:ctrlp_custom_ignore =
 \ '\v[\/]\.(git|hg|svn|bundle)'
 \ .'|node_modules|components$'
@@ -652,9 +653,9 @@ let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("t")': ['<c-t>', '<c-T>'] }
 "" ctrlp-gist
-nnoremap <C-g> :<C-u>CtrlPGist<Return>
+nnoremap <C-M-g> :<C-u>CtrlPGist<Return>
 "" ctrlp-launcher
-nnoremap <C-e> :<C-u>CtrlPLauncher<Return>
+nnoremap <C-M-l> :<C-u>CtrlPLauncher<Return>
 "" emmet-vim
 let s:hooks = neobundle#get_hooks('emmet-vim')
 function! s:hooks.on_source(hooks)
