@@ -389,6 +389,7 @@ let g:neocomplcache_dictionary_filetype_lists = {
 \  'default'  : '',
 \  'vimshell' : $HOME.'/.vimshell/command/history',
 \  'ruby'     : $HOME.'/.vim/dict/ruby.dict',
+\  'java'     : $HOME.'/.vim/dict/java.dict',
 \  'php'      : $HOME.'/.vim/dict/php.dict'
 \}
 inoremap <expr><C-x><Return> neocomplcache#smart_close_popup()."\<Return>"
