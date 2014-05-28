@@ -31,7 +31,7 @@ filetype off
 if &runtimepath !~ '/neobundle.vim'
   set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
-call neobundle#rc(expand('$HOME/.vim/bundle/'))
+call neobundle#rc(expand($HOME.'/.vim/bundle/'))
 NeoBundle 'deris/columnjump'
 NeoBundle 'h1mesuke/vim-alignta'
 
@@ -527,9 +527,8 @@ function! s:hooks.on_source(hooks)
   let g:slimv_repl_name = 'repl'
   let g:slimv_repl_split = 1 "separate buffer
   let g:slimv_swank_cmd =
-  \  '!screen -dmS lisp clisp -i '.
-  \  '$HOME/.vim/bundle/slimv/slime/start-swank.lisp'
-  "\  '!xterm -e clisp -i $HOME/.vim/bundle/slimv/slime/start-swank.lisp &'
+  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
+  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
 endfunction
 "" my plugins :)
 "" pingpongpangpong
