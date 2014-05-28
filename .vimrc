@@ -81,9 +81,7 @@ NeoBundleLazy 'grauwoelfchen/pingpongpangpong-vim', {
 \}
 
 NeoBundle 'maxbrunsfeld/vim-yankstack'
-NeoBundle 'Shougo/neocomplcache', {
-\ 'depends': [ 'Shougo/vimproc' ]
-\}
+NeoBundle 'Shougo/neocomplete'
 
 NeoBundle 'buftabs'
 NeoBundle 'tpope/vim-fugitive'
@@ -368,32 +366,30 @@ nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
 "" smartchr
 inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
-"" neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_skip_completion_time = 0.3
-let g:neocomplcache_auto_completion_start_length = 3
-let g:neocomplcache_keyword_completion_start_length = 3
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_keyword_length = 3
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_max_list = 20
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-if !exists('g:neocomplcache_dictionary_filetype_lists')
-  let g:neocomplcache_dictionary_filetype_lists = {}
-endif
-let g:neocomplcache_dictionary_filetype_lists = {
-\  'default'  : '',
+"" neocomplete
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#min_keyword_legth = 3
+let g:neocomplete#max_list = 25
+let g:neocomplete#skip_auto_completion_time = 0.4
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#sources#dictionary#dictionaries = {
+\  'default' : '',
 \  'vimshell' : $HOME.'/.vimshell/command/history',
-\  'ruby'     : $HOME.'/.vim/dict/ruby.dict',
-\  'php'      : $HOME.'/.vim/dict/php.dict'
+\  'ruby' : $HOME.'/.vim/dict/ruby.dict',
+\  'java' : $HOME.'/.vim/dict/java.dict',
+\  'php' : $HOME.'/.vim/dict/php.dict'
 \}
-inoremap <expr><C-x><Return> neocomplcache#smart_close_popup()."\<Return>"
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+inoremap <expr><C-g> neocomplete#undo_completion()
+inoremap <expr><C-l> neocomplete#complete_common_string()
+inoremap <expr><C-h> neocomplete#smart_close_popup().'\<C-h>'
+inoremap <expr><C-e> neocomplete#cancel_popup()
 "" pep8
 let g:pep8_map = '<F8>'
 "" buftabs
