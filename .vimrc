@@ -70,7 +70,7 @@ NeoBundleLazy 'mattn/gist-vim', {
 
 NeoBundleLazy 'kovisoft/slimv', {
 \  'autoload' : {
-\    'filetypes' : [ 'lisp' ]
+\    'filetypes' : [ 'lisp', 'scheme' ]
 \  }
 \}
 NeoBundleLazy 'grauwoelfchen/pingpongpangpong-vim', {
