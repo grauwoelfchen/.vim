@@ -2,6 +2,7 @@
 .netrwbook
 .backup
 .swap
+.java
 .yankring_history_v2.txt
 doc/tags
 bundle/*

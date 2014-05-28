@@ -143,6 +143,7 @@ NeoBundleLazy 'mattn/emmet-vim', {
 \    'filetypes' : [ 'html', 'eruby' ]
 \  }
 \}
+NeoBundle 'JavaImp.vim--Lee'
 
 NeoBundle 'danchoi/ri.vim'
 NeoBundle 'thinca/vim-ref'
