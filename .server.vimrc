@@ -23,7 +23,6 @@ noremap : ;
 " completion
 set wildmode=list:longest
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar.gz,*.tgz
-let s:os_type='linux'
 " }}}
 
 """ bundle {{{
@@ -32,22 +31,15 @@ filetype off
 if &runtimepath !~ '/neobundle.vim'
   set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
-call neobundle#rc(expand("$HOME/.vim/bundle/"))
+call neobundle#rc(expand($HOME.'/.vim/bundle/'))
 NeoBundle 'deris/columnjump'
-NeoBundle 'ervandew/supertab'
-NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'Shougo/neocomplcache', {
-\ 'depends': [
-\   'Shougo/vimproc',
-\ ]
-\}
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/vimproc', {
 \  'build': {
 \    'unix': 'make -f make_unix.mak'
@@ -69,7 +61,6 @@ NeoBundle 'buftabs'
 NeoBundle 'smartchr'
 NeoBundle 'sudo.vim'
 NeoBundle 'taglist.vim'
-NeoBundle 'MultipleSearch'
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
@@ -247,22 +238,9 @@ set fileencodings=utf-8
 set fileformats=unix
 " }}}
 
-""" template {{{
-augroup apply_template
-  autocmd!
-  autocmd BufNewFile *.erl 0r $HOME/.vim/templates/erl.tpl
-  autocmd BufNewFile *.rb  0r $HOME/.vim/templates/rb.tpl
-augroup END
-" }}}
-
 """ command & other keymaps {{{
 "" rename current file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
-"" encoding
-function! PutMagicComment()
-  return "# encoding: utf-8"
-endfunction
-inoremap <Leader>## <C-r>=PutMagicComment()<Return>
 "" date
 inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
 inoremap <expr> ,dt strftime('%Y-%m-%dT%H:%M:%S')
@@ -289,30 +267,30 @@ nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
 "" smartchr
 inoremap <expr> = smartchr#loop('=', ' = ', ' == ')
-"" neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_skip_completion_time = 0.3
-let g:neocomplcache_auto_completion_start_length = 3
-let g:neocomplcache_keyword_completion_start_length = 3
-let g:neocomplcache_enable_camel_case_completion  = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_keyword_length = 3
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_max_list = 20
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-if !exists('g:neocomplcache_dictionary_filetype_lists')
-  let g:neocomplcache_dictionary_filetype_lists = {}
-endif
-let g:neocomplcache_dictionary_filetype_lists = {
-\  'default'  : '',
-\  'vimshell' : $HOME.'/.vimshell/command/history'
+"" neocomplete
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#min_keyword_legth = 3
+let g:neocomplete#max_list = 25
+let g:neocomplete#skip_auto_completion_time = 0.4
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#sources#dictionary#dictionaries = {
+\  'default' : '',
+\  'vimshell' : $HOME.'/.vimshell/command/history',
+\  'scheme' : $HOME.'/.vim/dict/scheme.dict',
+\  'ruby' : $HOME.'/.vim/dict/ruby.dict'
 \}
-inoremap <expr><C-x><Return> neocomplcache#smart_close_popup()."\<Return>"
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()bs
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+inoremap <expr><C-g> neocomplete#undo_completion()
+inoremap <expr><C-l> neocomplete#complete_common_string()
+inoremap <expr><C-h> neocomplete#smart_close_popup().'\<C-h>'
+inoremap <expr><C-e> neocomplete#cancel_popup()
+"" buftabs
 let g:buftabs_only_basename = 1
 let g:buftabs_in_statusline = 1
 let g:buftabs_active_highlight_group = 'Visual'
@@ -324,10 +302,16 @@ nnoremap <silent> <Leader>gs :<C-u>Gstatus<Return>
 nnoremap <silent> <Leader>gl :<C-u>Glog<Return>
 nnoremap <silent> <Leader>gb :<C-u>Gbrowse<Return>
 nnoremap <silent> <Leader>gg :<C-u>Ggrep<Return>
-""ctrlp
+"" ctrlp
+let g:ctrlp_map = '<C-M-p>'
 let g:ctrlp_custom_ignore =
 \ '\v[\/]\.(git|hg|svn|bundle)'
 \ .'|node_modules|components$'
+let g:ctrlp_open_new_file = 't'
+let g:ctrlp_open_multiple_files = 'tj'
+let g:ctrlp_prompt_mappings = {
+\  'AcceptSelection("t")': ['<c-t>', '<c-T>', '<c-a>']
+\ }
 " }}}
 
 """ filesystem {{{
