@@ -379,6 +379,7 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries = {
 \  'default' : '',
 \  'vimshell' : $HOME.'/.vimshell/command/history',
+\  'scheme' : $HOME.'/.vim/dict/scheme.dict',
 \  'ruby' : $HOME.'/.vim/dict/ruby.dict',
 \  'java' : $HOME.'/.vim/dict/java.dict',
 \  'php' : $HOME.'/.vim/dict/php.dict'
