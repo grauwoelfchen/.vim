@@ -1,4 +1,4 @@
-" Last Change: 19.May.2014
+" Last Change: 31.May.2014
 scriptencoding utf-8
 
 """ basic {{{
@@ -501,7 +501,9 @@ let g:ctrlp_custom_ignore =
 \ .'|node_modules|components$'
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
-let g:ctrlp_prompt_mappings = { 'AcceptSelection("t")': ['<c-t>', '<c-T>'] }
+let g:ctrlp_prompt_mappings = {
+\  'AcceptSelection("t")': ['<c-t>', '<c-T>', '<c-a>']
+\ }
 "" ctrlp-gist
 nnoremap <C-M-g> :<C-u>CtrlPGist<Return>
 "" ctrlp-launcher
