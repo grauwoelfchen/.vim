@@ -525,6 +525,7 @@ endfunction
 let s:hooks = neobundle#get_hooks('slimv')
 function! s:hooks.on_source(hooks)
   let g:paredit_electric_return = 0
+  let g:swank_log = 0
   let g:slimv_keybindings = 1
   let g:slimv_indent_keylists = 0
   let g:slimv_repl_simple_compl = 1
@@ -532,6 +533,7 @@ function! s:hooks.on_source(hooks)
   let g:slimv_repl_split = 1 "separate buffer
   let g:slimv_swank_cmd =
   \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
+  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
   "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
 endfunction
 "" my plugins :)
