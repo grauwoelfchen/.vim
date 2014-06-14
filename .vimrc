@@ -323,8 +323,6 @@ inoremap <expr><C-g> neocomplete#undo_completion()
 inoremap <expr><C-l> neocomplete#complete_common_string()
 inoremap <expr><C-h> neocomplete#smart_close_popup().'\<C-h>'
 inoremap <expr><C-e> neocomplete#cancel_popup()
-"" pep8
-let g:pep8_map = '<F8>'
 "" buftabs
 let g:buftabs_only_basename = 1
 let g:buftabs_in_statusline = 1
@@ -336,9 +334,6 @@ noremap <silent> <F7> :Yanks<Return>
 let g:yankstack_map_keys = 0
 nmap <M-p> <plug>yankstack_substitute_older_paste
 nmap <M-n> <plug>yankstack_substitute_newer_paste
-"" vim-latex
-let g:Tex_CompileRule_dvi = 'latex $*'
-let g:Tex_ViewRule_dvi = 'xdvi'
 "" quickrun
 let g:quickrun_config = {}
 let g:quickrun_config['_'] = {
@@ -402,24 +397,20 @@ nnoremap <silent> <Leader>gb :<C-u>Gbrowse<Return>
 nnoremap <silent> <Leader>gg :<C-u>Ggrep<Return>
 "" ctrlp
 let g:ctrlp_map = '<C-M-p>'
-let g:ctrlp_custom_ignore =
-\ '\v[\/]\.(git|hg|svn|bundle)'
-\ .'|node_modules|components$'
-let g:ctrlp_open_new_file = 't'
-let g:ctrlp_open_multiple_files = 'tj'
-let g:ctrlp_prompt_mappings = {
-\  'AcceptSelection("t")': ['<c-t>', '<c-T>', '<c-a>']
-\ }
-"" emmet-vim
-let s:hooks = neobundle#get_hooks('emmet-vim')
+"" slimv
+let s:hooks = neobundle#get_hooks('slimv')
 function! s:hooks.on_source(hooks)
-  let g:user_emmet_mode = 'in'
-  let g:user_emmet_leader_key = '<C-y>'
-  let g:user_emmet_complete_tag = 1
-  let g:user_emmet_settings = {
-  \  'lang': 'utf-8',
-  \  'haml': {'extends': 'html'}
-  \}
+  let g:paredit_electric_return = 0
+  let g:swank_log = 0
+  let g:slimv_keybindings = 1
+  let g:slimv_indent_keylists = 0
+  let g:slimv_repl_simple_compl = 1
+  let g:slimv_repl_name = 'repl'
+  let g:slimv_repl_split = 1
+  let g:slimv_swank_cmd =
+  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
+  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
+  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
 endfunction
 "" slimv
 let s:hooks = neobundle#get_hooks('slimv')
@@ -435,6 +426,66 @@ function! s:hooks.on_source(hooks)
   \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
   "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
   "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
+endfunction
+"" slimv
+let s:hooks = neobundle#get_hooks('slimv')
+function! s:hooks.on_source(hooks)
+  let g:paredit_electric_return = 0
+  let g:swank_log = 0
+  let g:slimv_keybindings = 1
+  let g:slimv_indent_keylists = 0
+  let g:slimv_repl_simple_compl = 1
+  let g:slimv_repl_name = 'repl'
+  let g:slimv_repl_split = 1
+  let g:slimv_swank_cmd =
+  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
+  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
+  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
+endfunction
+let g:ctrlp_custom_ignore =
+\ '\v[\/]\.(git|hg|svn|bundle)'
+\ .'|node_modules|components$'
+let g:ctrlp_open_new_file = 't'
+let g:ctrlp_open_multiple_files = 'tj'
+let g:ctrlp_prompt_mappings = {
+\  'AcceptSelection("t")': ['<c-t>', '<c-T>', '<c-a>']
+\ }
+"" slimv
+let s:hooks = neobundle#get_hooks('slimv')
+function! s:hooks.on_source(hooks)
+  let g:paredit_electric_return = 0
+  let g:swank_log = 0
+  let g:slimv_keybindings = 1
+  let g:slimv_indent_keylists = 0
+  let g:slimv_repl_simple_compl = 1
+  let g:slimv_repl_name = 'repl'
+  let g:slimv_repl_split = 1
+  let g:slimv_swank_cmd =
+  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
+  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
+  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
+endfunction
+"" vim-latex
+let s:hooks = neobundle#get_hooks('vim-latex')
+function! s:hooks.on_source(hooks)
+  let g:Tex_CompileRule_dvi = 'latex $*'
+  let g:Tex_ViewRule_dvi = 'xdvi'
+endfunction
+"" pep8
+let s:hooks = neobundle#get_hooks('pep8')
+function! s:hooks.on_source(hooks)
+  let g:pep8_map = '<F8>'
+endfunction
+"" emmet-vim
+let s:hooks = neobundle#get_hooks('emmet-vim')
+function! s:hooks.on_source(hooks)
+  let g:user_emmet_mode = 'in'
+  let g:user_emmet_leader_key = '<C-y>'
+  let g:user_emmet_complete_tag = 1
+  let g:user_emmet_settings = {
+  \  'lang': 'utf-8',
+  \  'haml': {'extends': 'html'}
+  \}
 endfunction
 " }}}
 
