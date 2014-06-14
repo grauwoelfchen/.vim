@@ -1,5 +1,4 @@
-" Last Change: 31.May.2014
-scriptencoding utf-8
+" Last Change: 14.Jun.2014
 
 """ basic {{{
 set nocompatible
@@ -13,16 +12,14 @@ set writebackup
 set backup
 set backupdir=$HOME/.vim/.backup
 set directory=$HOME/.vim/.swap
-"set nobackup
-"set noswapfile
-"" IME
+"" ime
 set noimcmdline
 set iminsert=0
 noremap ; :
 noremap : ;
-" completion
+"" completion
 set wildmode=list:longest
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar.gz,*.tgz
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar.gz,*.tgz,.git/*
 " }}}
 
 """ bundle {{{
@@ -33,8 +30,8 @@ if &runtimepath !~ '/neobundle.vim'
 endif
 call neobundle#rc(expand($HOME.'/.vim/bundle/'))
 NeoBundle 'deris/columnjump'
+NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'h1mesuke/vim-alignta'
-
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
 NeoBundle 'kana/vim-smartinput'
@@ -42,123 +39,70 @@ NeoBundle 'smartchr'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'tpope/vim-surround'
-
 NeoBundle 'kien/ctrlp.vim'
-NeoBundleLazy 'mattn/ctrlp-gist', {
-\  'autoload' : {
-\    'commands' : [ 'CtrlPGist' ]
-\  },
-\  'depends': [
-\    'kien/ctrlp.vim',
-\    'mattn/webapi-vim',
-\    'mattn/gist-vim'
-\  ]
-\}
-NeoBundleLazy 'mattn/ctrlp-launcher', {
-\  'autoload' : {
-\    'commands' : [ 'CtrlPLauncher' ]
-\  },
-\  'depends': [ 'kien/ctrlp.vim' ]
-\}
-
-NeoBundleLazy 'mattn/gist-vim', {
-\  'autoload' : {
-\    'commands' : [ 'Gist' ]
-\  },
-\  'depends': [ 'mattn/webapi-vim' ]
-\}
-
-NeoBundleLazy 'kovisoft/slimv', {
-\  'autoload' : {
-\    'filetypes' : [ 'lisp', 'scheme' ]
-\  }
-\}
-NeoBundleLazy 'grauwoelfchen/pingpongpangpong-vim', {
-\  'autoload' : {
-\    'commands' : [ 'PingPongPangPong' ]
-\  },
-\  'depends': [ 'mattn/webapi-vim' ]
-\}
-
 NeoBundle 'maxbrunsfeld/vim-yankstack'
 NeoBundle 'Shougo/neocomplete'
-
 NeoBundle 'buftabs'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'thinca/vim-guicolorscheme'
-
-NeoBundleLazy 'Shougo/vimshell', {
-\  'autoload' : {
-\    'commands' : [ 'VimShell' ]
-\  },
-\  'depends': [ 'Shougo/vimproc' ]
-\}
-
-NeoBundle 'thinca/vim-quickrun', {
-\  'depends': [ 'Shougo/vimproc' ]
-\}
-NeoBundle 'rhysd/open-pdf.vim'
-NeoBundle 'tyru/open-browser.vim'
-
-NeoBundle 'wlangstroth/vim-racket', {
-\  'autoload' : {
-\    'filetypes' : [ 'scheme', 'racket' ]
-\  }
-\}
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundleLazy 'wavded/vim-stylus', {
-\  'autoload' : {
-\    'filetypes' : [ 'stylus' ]
-\  }
-\}
-NeoBundle 'digitaltoad/vim-jade'
-NeoBundleLazy 'vim-ruby/vim-ruby', {
-\  'autoload' : {
-\    'filetypes' : [ 'ruby' ]
-\  }
-\}
-NeoBundleLazy 'tpope/vim-rails', {
-\  'autoload' : {
-\    'filetypes' : [ 'ruby' ]
-\  }
-\}
-NeoBundleLazy 'slim-template/vim-slim', {
-\  'autoload' : {
-\    'filetypes' : [ 'slim' ]
-\  }
-\}
-NeoBundleLazy 'tpope/vim-haml', {
-\  'autoload' : {
-\    'filetypes' : [ 'haml' ]
-\  }
-\}
-NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex'
-NeoBundleLazy 'tpope/vim-markdown', {
-\  'autoload' : {
-\    'filetypes' : [ 'markdown' ]
-\  }
-\}
-NeoBundleLazy 'mattn/emmet-vim', {
-\  'autoload' : {
-\    'filetypes' : [ 'html', 'eruby' ]
-\  }
-\}
-NeoBundle 'JavaImp.vim--Lee'
-
 NeoBundle 'danchoi/ri.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'taglist.vim'
-NeoBundle 'pep8'
-
-NeoBundle 'Shougo/vimproc', {
-\  'build': {
-\    'unix': 'make -f make_unix.mak',
-\    'mac' : 'make -f make_mac.mak'
-\  }
-\}
 NeoBundle 'sudo.vim'
-
+NeoBundle 'rhysd/open-pdf.vim'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'rhysd/committia.vim'
+NeoBundle 'Shougo/vimproc', {
+\  'build': {'unix': 'make -f make_unix.mak'}
+\}
+NeoBundle 'thinca/vim-quickrun', {
+\  'depends': ['Shougo/vimproc']
+\}
+NeoBundleLazy 'Shougo/vimshell', {
+\  'autoload': {'commands': ['VimShell']},
+\  'depends': ['Shougo/vimproc']
+\}
+"" filetypes
+NeoBundleLazy 'kovisoft/slimv', {
+\  'autoload': {'filetypes': ['lisp', 'scheme', 'racket']}
+\}
+NeoBundleLazy 'wlangstroth/vim-racket', {
+\  'autoload': {'filetypes': ['scheme', 'racket']}
+\}
+NeoBundleLazy 'kchmck/vim-coffee-script', {
+\  'autoload': {'filetypes': ['coffee']}
+\}
+NeoBundleLazy 'wavded/vim-stylus', {
+\  'autoload': {'filetypes': ['stylus']}
+\}
+NeoBundleLazy 'digitaltoad/vim-jade', {
+\  'autoload': {'filetypes': ['jade']}
+\}
+NeoBundleLazy 'vim-ruby/vim-ruby', {
+\  'autoload': {'filetypes': ['ruby']}
+\}
+NeoBundleLazy 'tpope/vim-rails', {
+\  'autoload': {'filetypes': ['ruby']}
+\}
+NeoBundleLazy 'slim-template/vim-slim', {
+\  'autoload': {'filetypes': ['slim']}
+\}
+NeoBundleLazy 'tpope/vim-haml', {
+\  'autoload': {'filetypes': ['haml']}
+\}
+NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex', {
+\  'autoload': {'filetypes': ['latex']}
+\}
+NeoBundleLazy 'pep8', {
+\  'autoload': {'filetypes': ['python']}
+\}
+NeoBundleLazy 'mattn/emmet-vim', {
+\  'autoload': {'filetypes': ['html','eruby']}
+\}
+NeoBundleLazy 'tpope/vim-markdown', {
+\  'autoload': {'filetypes': ['markdown']}
+\}
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
@@ -184,7 +128,6 @@ nnoremap N Nzzzv
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nH
 "" help
-""" K man
 set helplang=en
 nnoremap <C-h> :<C-u>help<Space>
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><Return>
@@ -193,13 +136,10 @@ nnoremap <C-]><C-]> <C-t>
 " }}}
 
 """ motion {{{
-"" all
 noremap j gj
 noremap k gk
-"" normal
 nnoremap <C-a> <Home>
 nnoremap <C-e> <End>
-"" insert
 inoremap <C-a> <Nop>
 "" command
 cnoremap <C-a> <Home>
@@ -227,8 +167,6 @@ augroup END
 " }}}
 
 """ appearance {{{
-"set title
-"set ruler
 "" tabline
 function! s:tab_label(n)
   let bufnrs   = tabpagebuflist(a:n)
@@ -256,10 +194,8 @@ endfunction
 set showtabline=2
 set tabline=%!MakeTabLine()
 set number
-"set relativenumber
-"set t_Co=256
+set t_Co=256
 set listchars=tab:^_,trail:_
-"set list
 set showmatch
 set matchtime=2
 set wrap
@@ -277,7 +213,7 @@ augroup apply_gui_color_scheme
   autocmd ColorScheme * GuiColorScheme gr_black
 augroup END
 colorscheme gr_black
-"" right side
+"" statusline (right side)
 set statusline=%=%y\ %n\ %{pathshorten(expand('%f'))}
 set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
 set statusline+=\ %m%r%{fugitive#head()}
@@ -318,7 +254,6 @@ set foldlevel=0
 nnoremap gc `[v`]
 vnoremap gc :<C-u>normal gc<Return>
 onoremap gc :<C-u>normal gc<Return>
-"noremap <expr> qp '`['.strpart(getregtype(), 0, 1).'`]'
 set clipboard=unnamed,autoselect
 set clipboard=autoselect
 set backspace=indent,eol,start
@@ -327,34 +262,30 @@ set whichwrap=b,s,h,l,<,>,[,]
 set virtualedit+=block
 "" inc/dec
 set nrformats=
-"set nrformats+=alpha
 noremap <M-a> <C-a>
 noremap <M-d> <C-x>
 " }}}
 
 """ encoding {{{
 set encoding=utf-8
+set fileencoding=utf-8
 set fileencodings=utf-8
+set termencoding=utf-8
 set fileformats=unix
 " }}}
 
 """ command & other keymaps {{{
-"" rename current file
-command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 "" date
 inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
 inoremap <expr> ,dt strftime('%Y-%m-%dT%H:%M:%S')
-"" me
-inoremap <expr> ,mu 'grauwoelfchen'
-inoremap <expr> ,me 'grauwoelfchen@gmail.com <Yasuhiro Asaka>'
 "" umlaut & eszett (alternative keymaps)
-""" use digraph <C-k>[a,u,o]: in vim
+"" use digraph <C-k>[a,u,o]: in vim
 function! CopyChar(c)
   redir @+> | execute 'echo "'.a:c.'"' | redir END
 endfunction
-nnoremap <expr> ,ua CopyChar('ä')
-nnoremap <expr> ,uu CopyChar('ü')
-nnoremap <expr> ,uo CopyChar('ö')
+nnoremap <expr> ,:a CopyChar('ä')
+nnoremap <expr> ,:u CopyChar('ü')
+nnoremap <expr> ,:o CopyChar('ö')
 nnoremap <expr> ,ss CopyChar('ß')
 " }}}
 
@@ -377,12 +308,12 @@ let g:neocomplete#max_list = 25
 let g:neocomplete#skip_auto_completion_time = 0.4
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries = {
-\  'default' : '',
-\  'vimshell' : $HOME.'/.vimshell/command/history',
-\  'scheme' : $HOME.'/.vim/dict/scheme.dict',
-\  'ruby' : $HOME.'/.vim/dict/ruby.dict',
-\  'java' : $HOME.'/.vim/dict/java.dict',
-\  'php' : $HOME.'/.vim/dict/php.dict'
+\  'default': '',
+\  'vimshell': $HOME.'/.vimshell/command/history',
+\  'scheme': $HOME.'/.vim/dict/scheme.dict',
+\  'ruby': $HOME.'/.vim/dict/ruby.dict',
+\  'java': $HOME.'/.vim/dict/java.dict',
+\  'php': $HOME.'/.vim/dict/php.dict'
 \}
 if !exists('g:neocomplete#keyword_patterns')
   let g:neocomplete#keyword_patterns = {}
@@ -411,48 +342,53 @@ let g:Tex_ViewRule_dvi = 'xdvi'
 "" quickrun
 let g:quickrun_config = {}
 let g:quickrun_config['_'] = {
-\  'hook/time/enable'          : 1,
-\  'runner'                    : 'vimproc',
-\  'runner/vimproc/updatetime' : 10,
-\  'split'                     : 'vertical',
-\}
-let g:quickrun_config['coffee'] = {
-\  'command' : 'coffee',
-\  'cmdopt'  : '-cbp',
-\  'exec'    : "%c %o %s",
-\}
-let g:quickrun_config['markdown'] = {
-\  'command'   : 'redcarpet',
-\  'cmdopt'    : '--parse-fenced-code-blocks --parse-tables --parse-autolink',
-\  'outputter' : 'browser',
-\  'exec'      : "%c %o %s",
+\  'hook/time/enable': 1,
+\  'runner': 'vimproc',
+\  'runner/vimproc/updatetime': 10,
+\  'split': 'vertical',
 \}
 let g:quickrun_config['ruby.rspec'] = {
-\  'command' : 'rspec',
-\  'cmdopt'  : "--format progress --profile --line_number %{line('.')}",
-\  'exec'    : "bundle exec %c %o",
+\  'command': 'rspec',
+\  'cmdopt': "--format progress --profile --line_number %{line('.')}",
+\  'exec': "bundle exec %c %o",
 \}
 let g:quickrun_config['lisp'] = {
-\  'command' : 'clisp',
-\  'cmdopt'  : "",
-\  'exec'    : "%c %o %s",
+\  'command': 'clisp',
+\  'cmdopt': "",
+\  'exec': "%c %o %s",
 \}
 let g:quickrun_config['racket'] = {
-\  'command' : 'racket',
-\  'cmdopt'  : "-W info",
-\  'exec'    : "%c %o %s",
+\  'command': 'racket',
+\  'cmdopt': "-W info",
+\  'exec': "%c %o %s",
 \}
 let g:quickrun_config['python'] = {
-\  'command'   : 'pep8',
-\  'cmdopt'    : '--first',
-\  'outputter' : 'quickfix',
-\  'exec'      : "%c %o %s",
+\  'command': 'pep8',
+\  'cmdopt': '--first',
+\  'outputter': 'quickfix',
+\  'exec': "%c %o %s",
+\}
+let g:quickrun_config['coffee'] = {
+\  'command': 'coffee',
+\  'cmdopt': '-cbp',
+\  'exec': "%c %o %s",
+\}
+let g:quickrun_config['markdown'] = {
+\  'command': 'redcarpet',
+\  'cmdopt': '--parse-fenced-code-blocks --parse-tables --parse-autolink',
+\  'outputter': 'browser',
+\  'exec': "%c %o %s",
 \}
 let g:quickrun_config['html'] = {
-\  'command'   : 'cat',
-\  'outputter' : 'browser',
-\  'exec'      : "%c %s",
+\  'command': 'cat',
+\  'outputter': 'browser',
+\  'exec': "%c %s",
 \}
+"" committia
+let g:committia_hooks = {}
+function! g:committia_hooks.edit_open()
+  setlocal spell
+endfunction
 "" ri.vim
 "" split 0 => h, 1 => v
 nnoremap ,i :call ri#OpenSearchPrompt(0)<Return>
@@ -464,36 +400,6 @@ nnoremap <silent> <Leader>gs :<C-u>Gstatus<Return>
 nnoremap <silent> <Leader>gl :<C-u>Glog<Return>
 nnoremap <silent> <Leader>gb :<C-u>Gbrowse<Return>
 nnoremap <silent> <Leader>gg :<C-u>Ggrep<Return>
-"" gist-vim
-let s:hooks = neobundle#get_hooks('gist-vim')
-function! s:hooks.on_source(hooks)
-  let g:gist_clip_command = 'xclip -selection clipboard'
-  let g:gist_detect_filetype = 1
-  let g:gist_open_browser_after_post = 1
-  let g:gist_open_browser_command = 'w3m %URL%'
-  "" show embed tag of current gist
-  function! s:gist_show_embed_tag()
-    if exists('b:gist')
-      let info = b:gist
-      if len(info) != 0
-        return '<script src="https://gist.github.com/'
-          .info['id'].'.js?file='.info['filename'].'"></script>'
-      endif
-    endif
-  endfunction
-  function! s:gist_show(sbj)
-    let obj = function('s:gist_show_'.a:sbj)()
-    if len(obj) != 0
-      copen
-      setlocal buftype=nofile bufhidden=hide noswapfile
-      setlocal modifiable
-      silent %d _
-      call setline(1, obj)
-      setlocal nomodifiable
-    endif
-  endfunction
-  command! -nargs=0 -range=% GistShowEmbedTag :call s:gist_show('embed_tag')
-endfunction
 "" ctrlp
 let g:ctrlp_map = '<C-M-p>'
 let g:ctrlp_custom_ignore =
@@ -504,10 +410,6 @@ let g:ctrlp_open_multiple_files = 'tj'
 let g:ctrlp_prompt_mappings = {
 \  'AcceptSelection("t")': ['<c-t>', '<c-T>', '<c-a>']
 \ }
-"" ctrlp-gist
-nnoremap <C-M-g> :<C-u>CtrlPGist<Return>
-"" ctrlp-launcher
-nnoremap <C-M-l> :<C-u>CtrlPLauncher<Return>
 "" emmet-vim
 let s:hooks = neobundle#get_hooks('emmet-vim')
 function! s:hooks.on_source(hooks)
@@ -516,9 +418,7 @@ function! s:hooks.on_source(hooks)
   let g:user_emmet_complete_tag = 1
   let g:user_emmet_settings = {
   \  'lang': 'utf-8',
-  \  'haml': {
-  \    'extends': 'html',
-  \  }
+  \  'haml': {'extends': 'html'}
   \}
 endfunction
 "" slimv
@@ -530,17 +430,11 @@ function! s:hooks.on_source(hooks)
   let g:slimv_indent_keylists = 0
   let g:slimv_repl_simple_compl = 1
   let g:slimv_repl_name = 'repl'
-  let g:slimv_repl_split = 1 "separate buffer
+  let g:slimv_repl_split = 1
   let g:slimv_swank_cmd =
   \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
   "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
   "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
-endfunction
-"" my plugins :)
-"" pingpongpangpong
-let s:hooks = neobundle#get_hooks('pingpongpangpong-vim')
-function! s:hooks.on_source(hooks)
-  let g:pingpongpangpong_area_name = 'さいたま市'
 endfunction
 " }}}
 
@@ -550,13 +444,6 @@ let g:netrw_browse_split = 2
 let g:netrw_altv = 1
 let g:netrw_winsize = ''
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
-"" samba ;-(
-"augroup on_samba
-"  autocmd!
-"  autocmd BufWritePost * sleep 1
-"  autocmd BufWritePost * checktime
-"  set autoread
-"augroup END
 " }}}
 
 """ programming {{{

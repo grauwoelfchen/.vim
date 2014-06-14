@@ -1,5 +1,4 @@
 """ php {{{
-setlocal dictionary=$HOME/.vim/dict/php.dict
 setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 let g:php_sql_query = 1
 let g:php_htmlInStrings = 1
