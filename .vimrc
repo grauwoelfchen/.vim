@@ -522,6 +522,8 @@ augroup highlight_trailing_spaces
   \  highlight TrailingSpaces term=underline guibg=red ctermbg=red
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
+"" uppercase
+inoremap <C-u> <Esc>viwU`]a
 " }}}
 
 """ filetype {{{
