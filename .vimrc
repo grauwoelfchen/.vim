@@ -395,60 +395,60 @@ nnoremap <silent> <Leader>gs :<C-u>Gstatus<Return>
 nnoremap <silent> <Leader>gl :<C-u>Glog<Return>
 nnoremap <silent> <Leader>gb :<C-u>Gbrowse<Return>
 nnoremap <silent> <Leader>gg :<C-u>Ggrep<Return>
+"" slimv
+let s:hooks = neobundle#get_hooks('slimv')
+function! s:hooks.on_source(hooks)
+  let g:paredit_electric_return = 0
+  let g:swank_log = 0
+  let g:slimv_keybindings = 1
+  let g:slimv_indent_keylists = 0
+  let g:slimv_repl_simple_compl = 1
+  let g:slimv_repl_name = 'repl'
+  let g:slimv_repl_split = 1
+  let g:slimv_swank_cmd =
+  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
+  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
+  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
+endfunction
+"" slimv
+let s:hooks = neobundle#get_hooks('slimv')
+function! s:hooks.on_source(hooks)
+  let g:paredit_electric_return = 0
+  let g:swank_log = 0
+  let g:slimv_keybindings = 1
+  let g:slimv_indent_keylists = 0
+  let g:slimv_repl_simple_compl = 1
+  let g:slimv_repl_name = 'repl'
+  let g:slimv_repl_split = 1
+  let g:slimv_swank_cmd =
+  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
+  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
+  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
+endfunction
+"" slimv
+let s:hooks = neobundle#get_hooks('slimv')
+function! s:hooks.on_source(hooks)
+  let g:paredit_electric_return = 0
+  let g:swank_log = 0
+  let g:slimv_keybindings = 1
+  let g:slimv_indent_keylists = 0
+  let g:slimv_repl_simple_compl = 1
+  let g:slimv_repl_name = 'repl'
+  let g:slimv_repl_split = 1
+  let g:slimv_swank_cmd =
+  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
+  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
+  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
+endfunction
 "" ctrlp
-let g:ctrlp_map = '<C-M-p>'
-"" slimv
-let s:hooks = neobundle#get_hooks('slimv')
-function! s:hooks.on_source(hooks)
-  let g:paredit_electric_return = 0
-  let g:swank_log = 0
-  let g:slimv_keybindings = 1
-  let g:slimv_indent_keylists = 0
-  let g:slimv_repl_simple_compl = 1
-  let g:slimv_repl_name = 'repl'
-  let g:slimv_repl_split = 1
-  let g:slimv_swank_cmd =
-  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
-  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
-  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
-endfunction
-"" slimv
-let s:hooks = neobundle#get_hooks('slimv')
-function! s:hooks.on_source(hooks)
-  let g:paredit_electric_return = 0
-  let g:swank_log = 0
-  let g:slimv_keybindings = 1
-  let g:slimv_indent_keylists = 0
-  let g:slimv_repl_simple_compl = 1
-  let g:slimv_repl_name = 'repl'
-  let g:slimv_repl_split = 1
-  let g:slimv_swank_cmd =
-  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
-  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
-  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
-endfunction
-"" slimv
-let s:hooks = neobundle#get_hooks('slimv')
-function! s:hooks.on_source(hooks)
-  let g:paredit_electric_return = 0
-  let g:swank_log = 0
-  let g:slimv_keybindings = 1
-  let g:slimv_indent_keylists = 0
-  let g:slimv_repl_simple_compl = 1
-  let g:slimv_repl_name = 'repl'
-  let g:slimv_repl_split = 1
-  let g:slimv_swank_cmd =
-  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
-  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
-  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
-endfunction
+let g:ctrlp_map = '<C-@>'
 let g:ctrlp_custom_ignore =
 \ '\v[\/]\.(git|hg|svn|bundle)'
 \ .'|node_modules|components$'
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
 let g:ctrlp_prompt_mappings = {
-\  'AcceptSelection("t")': ['<c-t>', '<c-T>', '<c-a>']
+\  'AcceptSelection("t")': ['<C-a>']
 \ }
 "" slimv
 let s:hooks = neobundle#get_hooks('slimv')
