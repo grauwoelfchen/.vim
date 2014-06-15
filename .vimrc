@@ -60,10 +60,9 @@ NeoBundle 'thinca/vim-quickrun', {
 \  'depends': ['Shougo/vimproc']
 \}
 NeoBundleLazy 'Shougo/vimshell', {
-\  'autoload': {'commands': ['VimShell']},
-\  'depends': ['Shougo/vimproc']
+\  'depends': ['Shougo/vimproc'],
+\  'autoload': {'commands': ['VimShell']}
 \}
-"" filetypes
 NeoBundleLazy 'kovisoft/slimv', {
 \  'autoload': {'filetypes': ['lisp', 'scheme', 'racket']}
 \}
@@ -159,10 +158,8 @@ source $VIMRUNTIME/macros/matchit.vim
 "" last position
 augroup jump_to_last_pos
   autocmd!
-  autocmd BufReadPost *
-  \  if line("'\"") && line("'\"") <= line('$')
-  \  | execute 'normal! g`"'
-  \  | endif
+  autocmd BufReadPost * if line("'\"") && line("'\"") <= line('$')
+  \  | execute 'normal! g`"' | endif
 augroup END
 " }}}
 
@@ -235,14 +232,13 @@ nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 "" quickfix
 augroup quickfix_open
   autocmd!
-  autocmd QuickfixCmdPost make,grep,vimgrep
-  \  if len(getqflist()) | copen | endif
+  autocmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) | copen | endif
 augroup END
 augroup quickfix_close
   autocmd!
   autocmd WinEnter *
-  \ if (winnr('$') == 1) &&
-  \   (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
+  \  if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix'
+  \  | quit | endif
 augroup END
 " }}}
 
@@ -258,7 +254,6 @@ set clipboard=unnamed,autoselect
 set clipboard=autoselect
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
-"" visual
 set virtualedit+=block
 "" inc/dec
 set nrformats=
@@ -275,7 +270,6 @@ set fileformats=unix
 " }}}
 
 """ command & other keymaps {{{
-"" date
 inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
 inoremap <expr> ,dt strftime('%Y-%m-%dT%H:%M:%S')
 "" umlaut & eszett (alternative keymaps)
@@ -395,56 +389,11 @@ nnoremap <silent> <Leader>gs :<C-u>Gstatus<Return>
 nnoremap <silent> <Leader>gl :<C-u>Glog<Return>
 nnoremap <silent> <Leader>gb :<C-u>Gbrowse<Return>
 nnoremap <silent> <Leader>gg :<C-u>Ggrep<Return>
-"" slimv
-let s:hooks = neobundle#get_hooks('slimv')
-function! s:hooks.on_source(hooks)
-  let g:paredit_electric_return = 0
-  let g:swank_log = 0
-  let g:slimv_keybindings = 1
-  let g:slimv_indent_keylists = 0
-  let g:slimv_repl_simple_compl = 1
-  let g:slimv_repl_name = 'repl'
-  let g:slimv_repl_split = 1
-  let g:slimv_swank_cmd =
-  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
-  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
-  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
-endfunction
-"" slimv
-let s:hooks = neobundle#get_hooks('slimv')
-function! s:hooks.on_source(hooks)
-  let g:paredit_electric_return = 0
-  let g:swank_log = 0
-  let g:slimv_keybindings = 1
-  let g:slimv_indent_keylists = 0
-  let g:slimv_repl_simple_compl = 1
-  let g:slimv_repl_name = 'repl'
-  let g:slimv_repl_split = 1
-  let g:slimv_swank_cmd =
-  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
-  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
-  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
-endfunction
-"" slimv
-let s:hooks = neobundle#get_hooks('slimv')
-function! s:hooks.on_source(hooks)
-  let g:paredit_electric_return = 0
-  let g:swank_log = 0
-  let g:slimv_keybindings = 1
-  let g:slimv_indent_keylists = 0
-  let g:slimv_repl_simple_compl = 1
-  let g:slimv_repl_name = 'repl'
-  let g:slimv_repl_split = 1
-  let g:slimv_swank_cmd =
-  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
-  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
-  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
-endfunction
 "" ctrlp
 let g:ctrlp_map = '<C-@>'
 let g:ctrlp_custom_ignore =
-\ '\v[\/]\.(git|hg|svn|bundle)'
-\ .'|node_modules|components$'
+\ '\v[\/]\.(git|hg|svn|bundle)'.
+\ '|node_modules|components$'
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
 let g:ctrlp_prompt_mappings = {
@@ -461,9 +410,10 @@ function! s:hooks.on_source(hooks)
   let g:slimv_repl_name = 'repl'
   let g:slimv_repl_split = 1
   let g:slimv_swank_cmd =
-  \  '!screen -dmS lisp clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
-  "\  '!screen -dmS scheme mit-scheme --load '.$HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
-  "\  '!xterm -e clisp -i '.$HOME.'/.vim/bundle/slimv/slime/start-swank.lisp &'
+  \  '!screen -dmS lisp clisp -i '.
+  \  $HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
+  "\  '!screen -dmS scheme mit-scheme --load '.
+  "\  $HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
 endfunction
 "" vim-latex
 let s:hooks = neobundle#get_hooks('vim-latex')
