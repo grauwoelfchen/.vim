@@ -390,7 +390,7 @@ nnoremap <silent> <Leader>gl :<C-u>Glog<Return>
 nnoremap <silent> <Leader>gb :<C-u>Gbrowse<Return>
 nnoremap <silent> <Leader>gg :<C-u>Ggrep<Return>
 "" ctrlp
-let g:ctrlp_map = '<C-@>'
+let g:ctrlp_map = '<F1>'
 let g:ctrlp_custom_ignore =
 \ '\v[\/]\.(git|hg|svn|bundle)'.
 \ '|node_modules|components$'
