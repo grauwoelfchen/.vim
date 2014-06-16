@@ -473,7 +473,7 @@ augroup highlight_trailing_spaces
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
 "" uppercase
-inoremap <C-u> <Esc>viwU`]a
+inoremap <C-u> <C-o>viwU<C-o>`]<C-o>a
 " }}}
 
 """ filetype {{{
