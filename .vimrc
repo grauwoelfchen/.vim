@@ -20,6 +20,9 @@ noremap : ;
 "" completion
 set wildmode=list:longest
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar.gz,*.tgz,.git/*
+"" leader
+let g:mapleader = ","
+let g:maplocalleader = "\\"
 " }}}
 
 """ bundle {{{
@@ -270,17 +273,16 @@ set fileformats=unix
 " }}}
 
 """ command & other keymaps {{{
-inoremap <expr> ,dd strftime('%a, %d. %b. %Y')
-inoremap <expr> ,dt strftime('%Y-%m-%dT%H:%M:%S')
-"" umlaut & eszett (alternative keymaps)
-"" use digraph <C-k>[a,u,o]: in vim
+inoremap <expr> <Leader>id strftime('%a, %d. %b. %Y')
+inoremap <expr> <Leader>it strftime('%Y-%m-%dT%H:%M:%S')
+"" umlaut & eszett (alternative keymaps), use digraph <C-k>[a,u,o]: in vim
 function! CopyChar(c)
   redir @+> | execute 'echo "'.a:c.'"' | redir END
 endfunction
-nnoremap <expr> ,:a CopyChar('ä')
-nnoremap <expr> ,:u CopyChar('ü')
-nnoremap <expr> ,:o CopyChar('ö')
-nnoremap <expr> ,ss CopyChar('ß')
+nnoremap <expr> <Leader>:a CopyChar('ä')
+nnoremap <expr> <Leader>:u CopyChar('ü')
+nnoremap <expr> <Leader>:o CopyChar('ö')
+nnoremap <expr> <Leader>ss CopyChar('ß')
 " }}}
 
 """ plugin {{{
@@ -324,7 +326,7 @@ let g:buftabs_active_highlight_group = 'Visual'
 noremap <Leader>bp :bprev<Return>
 noremap <Leader>bn :bnext<Return>
 "" yankstack
-noremap <silent> <F7> :Yanks<Return>
+noremap <silent> <Leader>ys :Yanks<Return>
 let g:yankstack_map_keys = 0
 nmap <M-p> <plug>yankstack_substitute_older_paste
 nmap <M-n> <plug>yankstack_substitute_newer_paste
@@ -380,9 +382,9 @@ function! g:committia_hooks.edit_open()
 endfunction
 "" ri.vim
 "" split 0 => h, 1 => v
-nnoremap ,i :call ri#OpenSearchPrompt(0)<Return>
-nnoremap ,I :call ri#OpenSearchPrompt(1)<Return>
-nnoremap ,K :call ri#LookupNameUnderCursor()<Return>
+nnoremap <Leader>rh :call ri#OpenSearchPrompt(0)<Return>
+nnoremap <Leader>rv :call ri#OpenSearchPrompt(1)<Return>
+nnoremap <Leader>rk :call ri#LookupNameUnderCursor()<Return>
 "" fugitive
 nnoremap <silent> <Leader>gd :<C-u>Gdiff<Return>
 nnoremap <silent> <Leader>gs :<C-u>Gstatus<Return>
@@ -460,7 +462,7 @@ let g:Tlist_Show_One_File = 1
 let g:Tlist_Use_Horiz_Window = 1
 let g:Tlist_Exit_OnlyWindow = 1
 "" white space
-nnoremap <Leader>ss ma:%s/  *$//<CR>`a<ESC>
+nnoremap <Leader>ws ma:%s/  *$//<Return>`a<ESC>
 "augroup replace_white_space
 "  autocmd!
 "  autocmd BufWritePre * :%s/\s\+$//ge
@@ -489,8 +491,8 @@ augroup END
 
 """ vim {{{
 let g:vim_indent_cont = 0
-nnoremap <Space>. :<C-u>edit $MYVIMRC<Return>
-nnoremap <Space>.s :<C-u>source $MYVIMRC<Return>
+nnoremap <Leader>.e :<C-u>edit $MYVIMRC<Return>
+nnoremap <Leader>.s :<C-u>source $MYVIMRC<Return>
 augroup fold_vimrc
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
