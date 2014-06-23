@@ -279,9 +279,9 @@ iabbrev <expr> idt strftime('%Y-%m-%dT%H:%M:%S')
 function! CopyChar(c)
   redir @+> | execute 'echo "'.a:c.'"' | redir END
 endfunction
-nnoremap <expr> <Leader>:a CopyChar('ä')
-nnoremap <expr> <Leader>:u CopyChar('ü')
-nnoremap <expr> <Leader>:o CopyChar('ö')
+nnoremap <expr> <Leader>a: CopyChar('ä')
+nnoremap <expr> <Leader>u: CopyChar('ü')
+nnoremap <expr> <Leader>o: CopyChar('ö')
 nnoremap <expr> <Leader>ss CopyChar('ß')
 " }}}
 
