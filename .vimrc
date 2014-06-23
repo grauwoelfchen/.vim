@@ -273,8 +273,8 @@ set fileformats=unix
 " }}}
 
 """ command & other keymaps {{{
-inoremap <expr> <Leader>id strftime('%a, %d. %b. %Y')
-inoremap <expr> <Leader>it strftime('%Y-%m-%dT%H:%M:%S')
+iabbrev <expr> idn strftime('%a, %d. %b. %Y')
+iabbrev <expr> idt strftime('%Y-%m-%dT%H:%M:%S')
 "" umlaut & eszett (alternative keymaps), use digraph <C-k>[a,u,o]: in vim
 function! CopyChar(c)
   redir @+> | execute 'echo "'.a:c.'"' | redir END
