@@ -120,8 +120,8 @@ set history=100
 set hlsearch
 set ignorecase
 set smartcase
-nnoremap <silent> <M-h> :<C-u>nohlsearch<Return>
-nnoremap <silent> <M-l> :<C-u>nohlsearch<Return><C-l>
+nnoremap <silent> <M-h> :<C-u>nohlsearch<CR>
+nnoremap <silent> <M-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap \* nzzzv
 nnoremap \# Nzzzv
 nnoremap n nzzzv
@@ -132,7 +132,7 @@ set grepprg=grep\ -nH
 "" help
 set helplang=en
 nnoremap <C-h> :<C-u>help<Space>
-nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><Return>
+nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 nnoremap <C-t> <Nop>
 nnoremap <C-]><C-]> <C-t>
 " }}}
@@ -154,8 +154,8 @@ cnoremap <C-d> <Del>
 "" quickfix
 nnoremap Q q
 nnoremap q <Nop>
-nnoremap qj :cnext<Return>
-nnoremap qk :cprevious<Return>
+nnoremap qj :cnext<CR>
+nnoremap qk :cprevious<CR>
 "" matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 "" last position
@@ -251,8 +251,8 @@ set complete+=k
 set commentstring=\ #\ %s
 set foldlevel=0
 nnoremap gc `[v`]
-vnoremap gc :<C-u>normal gc<Return>
-onoremap gc :<C-u>normal gc<Return>
+vnoremap gc :<C-u>normal gc<CR>
+onoremap gc :<C-u>normal gc<CR>
 set clipboard=unnamed,autoselect
 set clipboard=autoselect
 set backspace=indent,eol,start
@@ -323,10 +323,10 @@ inoremap <expr><C-e> neocomplete#cancel_popup()
 let g:buftabs_only_basename = 1
 let g:buftabs_in_statusline = 1
 let g:buftabs_active_highlight_group = 'Visual'
-noremap <Leader>bp :bprev<Return>
-noremap <Leader>bn :bnext<Return>
+noremap <Leader>bp :bprev<CR>
+noremap <Leader>bn :bnext<CR>
 "" yankstack
-noremap <silent> <Leader>ys :Yanks<Return>
+noremap <silent> <Leader>ys :Yanks<CR>
 let g:yankstack_map_keys = 0
 nmap <M-p> <plug>yankstack_substitute_older_paste
 nmap <M-n> <plug>yankstack_substitute_newer_paste
@@ -382,15 +382,15 @@ function! g:committia_hooks.edit_open()
 endfunction
 "" ri.vim
 "" split 0 => h, 1 => v
-nnoremap <Leader>rh :call ri#OpenSearchPrompt(0)<Return>
-nnoremap <Leader>rv :call ri#OpenSearchPrompt(1)<Return>
-nnoremap <Leader>rk :call ri#LookupNameUnderCursor()<Return>
+nnoremap <Leader>rh :call ri#OpenSearchPrompt(0)<CR>
+nnoremap <Leader>rv :call ri#OpenSearchPrompt(1)<CR>
+nnoremap <Leader>rk :call ri#LookupNameUnderCursor()<CR>
 "" fugitive
-nnoremap <silent> <Leader>gd :<C-u>Gdiff<Return>
-nnoremap <silent> <Leader>gs :<C-u>Gstatus<Return>
-nnoremap <silent> <Leader>gl :<C-u>Glog<Return>
-nnoremap <silent> <Leader>gb :<C-u>Gbrowse<Return>
-nnoremap <silent> <Leader>gg :<C-u>Ggrep<Return>
+nnoremap <silent> <Leader>gd :<C-u>Gdiff<CR>
+nnoremap <silent> <Leader>gs :<C-u>Gstatus<CR>
+nnoremap <silent> <Leader>gl :<C-u>Glog<CR>
+nnoremap <silent> <Leader>gb :<C-u>Gbrowse<CR>
+nnoremap <silent> <Leader>gg :<C-u>Ggrep<CR>
 "" ctrlp
 let g:ctrlp_map = '<F1>'
 let g:ctrlp_custom_ignore =
@@ -461,7 +461,7 @@ let g:Tlist_Show_One_File = 1
 let g:Tlist_Use_Horiz_Window = 1
 let g:Tlist_Exit_OnlyWindow = 1
 "" white space
-nnoremap <Leader>ws ma:%s/  *$//<Return>`a<ESC>
+nnoremap <Leader>ws ma:%s/  *$//<CR>`a<ESC>
 "augroup replace_white_space
 "  autocmd!
 "  autocmd BufWritePre * :%s/\s\+$//ge
@@ -490,8 +490,8 @@ augroup END
 
 """ vim {{{
 let g:vim_indent_cont = 0
-nnoremap <Leader>.e :<C-u>edit $MYVIMRC<Return>
-nnoremap <Leader>.s :<C-u>source $MYVIMRC<Return>
+nnoremap <Leader>.e :<C-u>edit $MYVIMRC<CR>
+nnoremap <Leader>.s :<C-u>source $MYVIMRC<CR>
 augroup fold_vimrc
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
