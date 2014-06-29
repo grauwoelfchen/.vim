@@ -140,8 +140,16 @@ nnoremap <C-]><C-]> <C-t>
 """ motion {{{
 noremap j gj
 noremap k gk
+nnoremap <Up> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
 nnoremap <C-a> <Home>
 nnoremap <C-e> <End>
+inoremap <Up> <Nop>
+inoremap <Right> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
 inoremap <C-a> <Nop>
 "" command
 cnoremap <C-a> <Home>
