@@ -67,7 +67,7 @@ NeoBundleLazy 'Shougo/vimshell', {
 \  'autoload': {'commands': ['VimShell']}
 \}
 NeoBundleLazy 'kovisoft/slimv', {
-\  'autoload': {'filetypes': ['lisp', 'scheme', 'racket']}
+\  'autoload': {'filetypes': ['lisp']}
 \}
 NeoBundleLazy 'wlangstroth/vim-racket', {
 \  'autoload': {'filetypes': ['scheme', 'racket']}
@@ -353,12 +353,17 @@ let g:quickrun_config['ruby.rspec'] = {
 \}
 let g:quickrun_config['lisp'] = {
 \  'command': 'clisp',
-\  'cmdopt': "",
+\  'cmdopt': '',
+\  'exec': "%c %o %s",
+\}
+let g:quickrun_config['scheme'] = {
+\  'command': 'gosh',
+\  'cmdopt': '-b',
 \  'exec': "%c %o %s",
 \}
 let g:quickrun_config['racket'] = {
 \  'command': 'racket',
-\  'cmdopt': "-W info",
+\  'cmdopt': '-W info',
 \  'exec': "%c %o %s",
 \}
 let g:quickrun_config['python'] = {
