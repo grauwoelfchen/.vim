@@ -341,7 +341,7 @@ nmap <M-n> <plug>yankstack_substitute_newer_paste
 "" quickrun
 let g:quickrun_config = {}
 let g:quickrun_config['_'] = {
-\  'hook/time/enable': 1,
+\  'hook/time/enable': 0,
 \  'runner': 'vimproc',
 \  'runner/vimproc/updatetime': 10,
 \  'split': 'vertical',
