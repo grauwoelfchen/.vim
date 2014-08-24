@@ -93,6 +93,9 @@ NeoBundleLazy 'slim-template/vim-slim', {
 NeoBundleLazy 'tpope/vim-haml', {
 \  'autoload': {'filetypes': ['haml']}
 \}
+NeoBundleLazy 'dag/vim2hs', {
+\  'autoload': {'filetypes': ['haskell']}
+\}
 NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex', {
 \  'autoload': {'filetypes': ['latex']}
 \}
