@@ -273,6 +273,9 @@ set virtualedit+=block
 set nrformats=
 noremap <M-a> <C-a>
 noremap <M-d> <C-x>
+"" surrond
+vnoremap ' <Esc>`>a'<Esc>`<i'<Esc>`>2l
+vnoremap " <Esc>`>a"<Esc>`<i"<Esc>`>2l
 " }}}
 
 """ encoding {{{
@@ -477,7 +480,7 @@ let g:Tlist_Show_One_File = 1
 let g:Tlist_Use_Horiz_Window = 1
 let g:Tlist_Exit_OnlyWindow = 1
 "" white space
-nnoremap <Leader>ws ma:%s/  *$//<CR>`a<ESC>
+nnoremap <Leader>ws ma:%s/  *$//<CR>`a<Esc>
 "augroup replace_white_space
 "  autocmd!
 "  autocmd BufWritePre * :%s/\s\+$//ge
