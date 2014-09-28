@@ -143,6 +143,11 @@ nnoremap <C-]><C-]> <C-t>
 """ motion {{{
 noremap j gj
 noremap k gk
+"" esc
+inoremap hl <Esc>
+inoremap jk <Esc>
+inoremap <Esc> <Nop>
+"" arrows
 nnoremap <Up> <Nop>
 nnoremap <Right> <Nop>
 nnoremap <Down> <Nop>
