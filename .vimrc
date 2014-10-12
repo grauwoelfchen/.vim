@@ -486,7 +486,8 @@ let g:Tlist_Show_One_File = 1
 let g:Tlist_Use_Horiz_Window = 1
 let g:Tlist_Exit_OnlyWindow = 1
 "" white space
-nnoremap <Leader>ws ma:%s/  *$//<CR>`a<Esc>
+nnoremap <Leader>W match:%s/\v\s+$//<CR>
+nnoremap <Leader>w :match Error /\v\s+$/<CR>
 "augroup replace_white_space
 "  autocmd!
 "  autocmd BufWritePre * :%s/\s\+$//ge
