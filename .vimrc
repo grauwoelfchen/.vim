@@ -12,14 +12,13 @@ set writebackup
 set backup
 set backupdir=$HOME/.vim/.backup
 set directory=$HOME/.vim/.swap
-"" ime
 set noimcmdline
 set iminsert=0
-noremap ; :
-noremap : ;
 "" completion
 set wildmode=list:longest
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar.gz,*.tgz,.git/*
+noremap ; :
+noremap : ;
 "" leader
 let g:mapleader = ","
 let g:maplocalleader = "\\"
@@ -57,57 +56,40 @@ NeoBundle 'rhysd/open-pdf.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'rhysd/committia.vim'
 NeoBundle 'Shougo/vimproc', {
-\  'build': {'unix': 'make -f make_unix.mak'}
-\}
+\  'build': {'unix': 'make -f make_unix.mak'}}
 NeoBundle 'thinca/vim-quickrun', {
-\  'depends': ['Shougo/vimproc']
-\}
+\  'depends': ['Shougo/vimproc']}
 NeoBundleLazy 'Shougo/vimshell', {
 \  'depends': ['Shougo/vimproc'],
-\  'autoload': {'commands': ['VimShell']}
-\}
+\  'autoload': {'commands': ['VimShell']}}
 NeoBundleLazy 'kovisoft/slimv', {
-\  'autoload': {'filetypes': ['lisp']}
-\}
+\  'autoload': {'filetypes': ['lisp']}}
 NeoBundleLazy 'wlangstroth/vim-racket', {
-\  'autoload': {'filetypes': ['scheme', 'racket']}
-\}
+\  'autoload': {'filetypes': ['scheme', 'racket']}}
 NeoBundleLazy 'kchmck/vim-coffee-script', {
-\  'autoload': {'filetypes': ['coffee']}
-\}
+\  'autoload': {'filetypes': ['coffee']}}
 NeoBundleLazy 'wavded/vim-stylus', {
-\  'autoload': {'filetypes': ['stylus']}
-\}
+\  'autoload': {'filetypes': ['stylus']}}
 NeoBundleLazy 'digitaltoad/vim-jade', {
-\  'autoload': {'filetypes': ['jade']}
-\}
+\  'autoload': {'filetypes': ['jade']}}
 NeoBundleLazy 'vim-ruby/vim-ruby', {
-\  'autoload': {'filetypes': ['ruby']}
-\}
+\  'autoload': {'filetypes': ['ruby']}}
 NeoBundleLazy 'tpope/vim-rails', {
-\  'autoload': {'filetypes': ['ruby']}
-\}
+\  'autoload': {'filetypes': ['ruby']}}
 NeoBundleLazy 'slim-template/vim-slim', {
-\  'autoload': {'filetypes': ['slim']}
-\}
+\  'autoload': {'filetypes': ['slim']}}
 NeoBundleLazy 'tpope/vim-haml', {
-\  'autoload': {'filetypes': ['haml']}
-\}
+\  'autoload': {'filetypes': ['haml']}}
 NeoBundleLazy 'dag/vim2hs', {
-\  'autoload': {'filetypes': ['haskell']}
-\}
+\  'autoload': {'filetypes': ['haskell']}}
 NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex', {
-\  'autoload': {'filetypes': ['latex']}
-\}
+\  'autoload': {'filetypes': ['latex']}}
 NeoBundleLazy 'pep8', {
-\  'autoload': {'filetypes': ['python']}
-\}
+\  'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'mattn/emmet-vim', {
-\  'autoload': {'filetypes': ['html','eruby']}
-\}
+\  'autoload': {'filetypes': ['html','eruby']}}
 NeoBundleLazy 'tpope/vim-markdown', {
-\  'autoload': {'filetypes': ['markdown']}
-\}
+\  'autoload': {'filetypes': ['markdown']}}
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
@@ -133,6 +115,7 @@ nnoremap N Nzzzv
 "" grep
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nH
+nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 "" help
 set helplang=en
 nnoremap <C-h> :<C-u>help<Space>
@@ -295,14 +278,6 @@ set fileformats=unix
 """ command & other keymaps {{{
 inoremap <expr> <Leader>ds strftime('%a, %d. %b. %Y')
 inoremap <expr> <Leader>dt strftime('%Y-%m-%dT%H:%M:%S')
-"" umlaut & eszett (alternative keymaps), use digraph <C-k>[a,u,o]: in vim
-function! CopyChar(c)
-  redir @+> | execute 'echo "'.a:c.'"' | redir END
-endfunction
-nnoremap <expr> <Leader>a: CopyChar('ä')
-nnoremap <expr> <Leader>u: CopyChar('ü')
-nnoremap <expr> <Leader>o: CopyChar('ö')
-nnoremap <expr> <Leader>ss CopyChar('ß')
 " }}}
 
 """ plugin {{{
@@ -405,11 +380,6 @@ let g:committia_hooks = {}
 function! g:committia_hooks.edit_open()
   setlocal spell
 endfunction
-"" ri.vim
-"" split 0 => h, 1 => v
-nnoremap <Leader>rh :call ri#OpenSearchPrompt(0)<CR>
-nnoremap <Leader>rv :call ri#OpenSearchPrompt(1)<CR>
-nnoremap <Leader>rk :call ri#LookupNameUnderCursor()<CR>
 "" fugitive
 nnoremap <silent> <Leader>gd :<C-u>Gdiff<CR>
 nnoremap <silent> <Leader>gs :<C-u>Gstatus<CR>
@@ -438,8 +408,6 @@ function! s:hooks.on_source(hooks)
   let g:slimv_swank_cmd =
   \  '!screen -dmS lisp clisp -i '.
   \  $HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
-  "\  '!screen -dmS scheme mit-scheme --load '.
-  "\  $HOME.'/.vim/bundle/slimv/slime/contrib/swank-mit-scheme.scm'
 endfunction
 "" vim-latex
 let s:hooks = neobundle#get_hooks('vim-latex')
@@ -466,7 +434,6 @@ endfunction
 " }}}
 
 """ filesystem {{{
-"set autochdir
 let g:netrw_browse_split = 2
 let g:netrw_altv = 1
 let g:netrw_winsize = ''
@@ -475,7 +442,6 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 """ programming {{{
 set autoindent
-"set smartindent
 set cindent
 set cinwords=if,else,while,do,for,switch,case
 nnoremap ]] ]m
