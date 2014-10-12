@@ -125,6 +125,7 @@ set ignorecase
 set smartcase
 nnoremap <silent> <M-h> :<C-u>nohlsearch<CR>
 nnoremap <silent> <M-l> :<C-u>nohlsearch<CR><C-l>
+nnoremap / /\v
 nnoremap \* nzzzv
 nnoremap \# Nzzzv
 nnoremap n nzzzv
