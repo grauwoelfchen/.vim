@@ -1,4 +1,4 @@
-" Last Change: 14.Jun.2014
+" Last Change: 12. Oct. 2014
 
 """ basic {{{
 set nocompatible
