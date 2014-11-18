@@ -30,7 +30,8 @@ filetype off
 if &runtimepath !~ '/neobundle.vim'
   set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
-call neobundle#rc(expand($HOME.'/.vim/bundle/'))
+call neobundle#begin(expand($HOME.'/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'deris/columnjump'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'h1mesuke/vim-alignta'
@@ -96,7 +97,9 @@ if neobundle#exists_not_installed_bundles()
   echomsg 'Please execute ":NeoBundleInstall" command.'
   finish
 endif
+call neobundle#end()
 filetype plugin indent on
+NeoBundleCheck
 " }}}
 
 """ search {{{
