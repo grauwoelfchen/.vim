@@ -392,7 +392,8 @@ nnoremap <silent> <Leader>gg :<C-u>Ggrep<CR>
 "" ctrlp
 let g:ctrlp_map = '<F1>'
 let g:ctrlp_custom_ignore =
-\ '\v[\/]\.(git|hg|svn|bundle|swap|backup)|node_modules|components|vendor$'
+\ '\v[\/]\.(git|hg|svn|bundle|swap|backup)|'.
+\ 'venv|__\w+__|node_modules|components|vendor$'
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
 let g:ctrlp_prompt_mappings = {
