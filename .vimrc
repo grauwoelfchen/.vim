@@ -48,7 +48,6 @@ NeoBundle 'Shougo/neocomplete'
 NeoBundle 'buftabs'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'thinca/vim-guicolorscheme'
-NeoBundle 'danchoi/ri.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'taglist.vim'
@@ -73,6 +72,8 @@ NeoBundleLazy 'wavded/vim-stylus', {
 \  'autoload': {'filetypes': ['stylus']}}
 NeoBundleLazy 'digitaltoad/vim-jade', {
 \  'autoload': {'filetypes': ['jade']}}
+NeoBundleLazy 'danchoi/ri.vim', {
+\  'autoload': {'filetypes': ['ruby']}}
 NeoBundleLazy 'vim-ruby/vim-ruby', {
 \  'autoload': {'filetypes': ['ruby']}}
 NeoBundleLazy 'tpope/vim-rails', {
