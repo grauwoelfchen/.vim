@@ -1,4 +1,6 @@
 """ basic {{{
+" tiny
+if !1 | finish | endif
 set nocompatible
 set showmode
 set showcmd
