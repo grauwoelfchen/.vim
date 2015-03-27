@@ -7,6 +7,7 @@ Personal .vimrc, color schema and settings
 ```
 % git clone git@github.com:grauwoelfchen/.vim.git
 % cd .vim
+% mkdir .{backup,swap}
 % git submodule update --init
 % vim
 :NeoBundleInstall
