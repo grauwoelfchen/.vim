@@ -50,9 +50,9 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'taglist.vim'
 NeoBundle 'sudo.vim'
+NeoBundle 'rhysd/committia.vim'
 NeoBundle 'rhysd/open-pdf.vim'
 NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'rhysd/committia.vim'
 NeoBundle 'Shougo/vimproc', {
 \  'build': {'unix': 'make -f make_unix.mak'}}
 NeoBundle 'thinca/vim-quickrun', {
@@ -60,6 +60,7 @@ NeoBundle 'thinca/vim-quickrun', {
 NeoBundleLazy 'Shougo/vimshell', {
 \  'depends': ['Shougo/vimproc'],
 \  'autoload': {'commands': ['VimShell']}}
+" lang, implementation and template
 NeoBundleLazy 'kovisoft/slimv', {
 \  'autoload': {'filetypes': ['lisp']}}
 NeoBundleLazy 'wlangstroth/vim-racket', {
@@ -116,7 +117,8 @@ nnoremap N Nzzzv
 "" grep
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nH
-nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
+nnoremap <leader>g :silent execute "grep! -R " .
+\ shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 "" help
 set helplang=en
 nnoremap <C-h> :<C-u>help<Space>
@@ -478,7 +480,7 @@ augroup treat_as_lisp
   autocmd!
   autocmd BufNewFile,BufRead .stumpwmrc,.clisprc setlocal filetype=lisp
 augroup END
-augroup treat_as_spec
+augroup treat_as_rspec
   autocmd!
   autocmd BufNewFile,BufRead *_spec.rb setlocal filetype=ruby.rspec
 augroup END
