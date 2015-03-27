@@ -391,6 +391,8 @@ nnoremap <silent> <Leader>gg :<C-u>Ggrep<CR>
 let g:ctrlp_map = '<F1>'
 let g:ctrlp_custom_ignore =
 \ '\v[\/]\.(git|hg|svn|bundle|swap|backup)|'.
+\ '\.(pyc|egg)|'.
+\ 'build|dist|'.
 \ 'venv|__\w+__|node_modules|components|vendor$'
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
