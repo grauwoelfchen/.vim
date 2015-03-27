@@ -1,5 +1,3 @@
-" Last Change: 12. Oct. 2014
-
 """ basic {{{
 set nocompatible
 set showmode
