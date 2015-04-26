@@ -482,6 +482,10 @@ augroup treat_as_lisp
   autocmd!
   autocmd BufNewFile,BufRead .stumpwmrc,.clisprc setlocal filetype=lisp
 augroup END
+augroup treat_as_ruby
+  autocmd!
+  autocmd BufNewFile,BufRead Gemfile.rock setlocal filetype=ruby
+augroup END
 augroup treat_as_rspec
   autocmd!
   autocmd BufNewFile,BufRead *_spec.rb setlocal filetype=ruby.rspec
