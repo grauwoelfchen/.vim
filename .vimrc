@@ -73,7 +73,7 @@ NeoBundleLazy 'wavded/vim-stylus', {
 \  'autoload': {'filetypes': ['stylus']}}
 NeoBundleLazy 'digitaltoad/vim-jade', {
 \  'autoload': {'filetypes': ['jade']}}
-NeoBundleLazy 'danchoi/ri.vim', {
+NeoBundleLazy 'yuku-t/vim-ref-ri', {
 \  'autoload': {'filetypes': ['ruby']}}
 NeoBundleLazy 'vim-ruby/vim-ruby', {
 \  'autoload': {'filetypes': ['ruby']}}
@@ -403,6 +403,11 @@ let g:ctrlp_open_multiple_files = 'tj'
 let g:ctrlp_prompt_mappings = {
 \  'AcceptSelection("t")': ['<C-a>']
 \ }
+"" vim-ref
+let g:ref_use_vimproc = 1
+let g:ref_open = 'split'
+let g:ref_cache_dir = expand('/tmp/vim_ref_cache/')
+nmap <Leader>k <Plug>(ref-keyword)
 "" slimv
 let s:hooks = neobundle#get_hooks('slimv')
 function! s:hooks.on_source(hooks)
