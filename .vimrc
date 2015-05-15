@@ -119,7 +119,7 @@ nnoremap N Nzzzv
 "" grep
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nH
-nnoremap <leader>g :silent execute "grep! -R " .
+nnoremap <Leader>g :silent execute "grep! -R " .
 \ shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 "" help
 set helplang=en
@@ -328,8 +328,8 @@ noremap <Leader>bn :bnext<CR>
 "" yankstack
 noremap <silent> <Leader>ys :Yanks<CR>
 let g:yankstack_map_keys = 0
-nmap <M-p> <plug>yankstack_substitute_older_paste
-nmap <M-n> <plug>yankstack_substitute_newer_paste
+nmap <M-p> <Plug>yankstack_substitute_older_paste
+nmap <M-n> <Plug>yankstack_substitute_newer_paste
 "" quickrun
 let g:quickrun_config = {}
 let g:quickrun_config['_'] = {
