@@ -1,6 +1,12 @@
 # .vim
 
-Personal .vimrc, color schema and settings
+Personal .vimrc, color schema, script and settings.
+
+```
+# lines count is kept < 500
+% wc -l .vimrc
+483 .vimrc
+```
 
 ## Setup
 
@@ -15,6 +21,6 @@ Personal .vimrc, color schema and settings
 
 ## License
 
-[GPL 2.0](http://www.gnu.org/licenses/gpl-2.0.txt)
+[GPL v2.0](http://www.gnu.org/licenses/gpl-2.0.txt)
 
 Yasuhiro Asaka <grauwoelfchen@gmail.com>
