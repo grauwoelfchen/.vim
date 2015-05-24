@@ -38,9 +38,9 @@ NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
 NeoBundle 'kana/vim-smartinput'
-NeoBundle 'smartchr'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'smartchr'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'maxbrunsfeld/vim-yankstack'
@@ -172,32 +172,8 @@ augroup END
 " }}}
 
 """ appearance {{{
-"" tabline
-function! s:tab_label(n)
-  let bufnrs   = tabpagebuflist(a:n)
-  let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]
-  let hl = a:n ==? tabpagenr() ? 'TabLineSel' : 'TabLine'
-  let bufs = len(bufnrs)
-  if bufs == 1
-    let bufs = ''
-  else
-    let bufs = '%#'.hl.'Number#'.bufs
-  end
-  let updated = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ?
-    \ '+' : ''
-  let blank = (bufs.updated) ==? '' ? '' : ' '
-  let fname = pathshorten(bufname(curbufnr))
-  return '%'.a:n.'T'.bufs.updated.blank.'%#'.hl.'#'.fname.'%T%#TablineFill#'
-endfunction
-function! MakeTabLine()
-  let labels = map(range(1, tabpagenr('$')), 's:tab_label(v:val)')
-  let separator = ' | '
-  let tabs = ' ' . join(labels, separator).separator.'%#TablineFill#%T'
-  let info = fnamemodify(getcwd(), ':~').' « '.hostname().' » '
-  return tabs.'%='.info
-endfunction
 set showtabline=2
-set tabline=%!MakeTabLine()
+set tabline=%!misc#tabline#make()
 set number
 set t_Co=256
 set listchars=tab:^_,trail:_
@@ -418,8 +394,7 @@ function! s:hooks.on_source(hooks)
   let g:slimv_repl_simple_compl = 1
   let g:slimv_repl_name = 'repl'
   let g:slimv_repl_split = 1
-  let g:slimv_swank_cmd =
-  \  '!screen -dmS lisp clisp -i '.
+  let g:slimv_swank_cmd = '!screen -dmS lisp clisp -i '.
   \  $HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
 endfunction
 "" vim-latex
