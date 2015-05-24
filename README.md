@@ -5,7 +5,7 @@ Personal .vimrc, color schema, script and settings.
 ```
 # lines count is kept < 500
 % wc -l .vimrc
-483 .vimrc
+485 .vimrc
 ```
 
 ## Setup

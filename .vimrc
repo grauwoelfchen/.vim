@@ -73,6 +73,8 @@ NeoBundleLazy 'wavded/vim-stylus', {
 \  'autoload': {'filetypes': ['stylus']}}
 NeoBundleLazy 'digitaltoad/vim-jade', {
 \  'autoload': {'filetypes': ['jade']}}
+NeoBundleLazy 'danchoi/ri.vim', {
+\  'autoload': {'filetypes': ['ruby']}}
 NeoBundleLazy 'yuku-t/vim-ref-ri', {
 \  'autoload': {'filetypes': ['ruby']}}
 NeoBundleLazy 'vim-ruby/vim-ruby', {
