@@ -63,6 +63,8 @@ NeoBundleLazy 'Shougo/vimshell', {
 \  'depends': ['Shougo/vimproc'],
 \  'autoload': {'commands': ['VimShell']}}
 " lang, implementation and template
+NeoBundleLazy 'oscarh/vimerl', {
+\  'autoload': {'filetypes': ['erlang']}}
 NeoBundleLazy 'kovisoft/slimv', {
 \  'autoload': {'filetypes': ['lisp']}}
 NeoBundleLazy 'wlangstroth/vim-racket', {
@@ -463,6 +465,10 @@ inoremap <C-u> <C-o>viwU<C-o>`]<C-o>a
 augroup treat_as_lisp
   autocmd!
   autocmd BufNewFile,BufRead .stumpwmrc,.clisprc setlocal filetype=lisp
+augroup END
+augroup treat_as_erlang
+  autocmd!
+  autocmd BufNewFile,BufRead .rebar.config,*.app.src setlocal filetype=erlang
 augroup END
 augroup treat_as_ruby
   autocmd!
