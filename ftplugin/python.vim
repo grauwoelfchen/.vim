@@ -4,3 +4,8 @@ setlocal shiftwidth=4
 setlocal softtabstop=4
 setlocal textwidth=80
 setlocal omnifunc=pythoncomplete#Complete
+
+augroup comment_out_keymap
+  autocmd!
+  autocmd FileType python nnoremap <buffer> <localleader>c I# esc>
+augroup END
