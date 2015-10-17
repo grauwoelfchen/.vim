@@ -63,6 +63,7 @@ NeoBundleLazy 'Shougo/vimshell', {
 \  'depends': ['Shougo/vimproc'],
 \  'autoload': {'commands': ['VimShell']}}
 " lang, implementation and template
+NeoBundle 'pbrisbin/vim-syntax-shakespeare'
 NeoBundleLazy 'oscarh/vimerl', {
 \  'autoload': {'filetypes': ['erlang']}}
 NeoBundleLazy 'kovisoft/slimv', {
