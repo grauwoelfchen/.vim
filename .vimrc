@@ -478,6 +478,10 @@ augroup treat_as_rspec
   autocmd!
   autocmd BufNewFile,BufRead *_spec.rb setlocal filetype=ruby.rspec
 augroup END
+augroup treat_as_js
+  autocmd!
+  autocmd BufNewFile,BufRead *.js.* setlocal filetype=javascript
+augroup END
 " }}}
 
 """ vim {{{
