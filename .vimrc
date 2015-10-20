@@ -50,7 +50,6 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'thinca/vim-guicolorscheme'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'vim-jp/vimdoc-ja'
-NeoBundle 'taglist.vim'
 NeoBundle 'sudo.vim'
 NeoBundle 'rhysd/committia.vim'
 NeoBundle 'rhysd/open-pdf.vim'
@@ -264,6 +263,11 @@ set fileformats=unix
 """ command & other keymaps {{{
 inoremap <expr> <Leader>ds strftime('%a, %d. %b. %Y')
 inoremap <expr> <Leader>dt strftime('%Y-%m-%dT%H:%M:%S')
+" }}}
+
+""" dict & thesaurus {{{
+set thesaurus+=$HOME/.vim/thesaurus/mthesaur.txt
+inoremap <C-X><C-X> <C-X><C-T>
 " }}}
 
 """ plugin {{{
