@@ -96,7 +96,7 @@ NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex', {
 NeoBundleLazy 'pep8', {
 \  'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'mattn/emmet-vim', {
-\  'autoload': {'filetypes': ['html','eruby']}}
+\  'autoload': {'filetypes': ['html']}}
 NeoBundleLazy 'tpope/vim-markdown', {
 \  'autoload': {'filetypes': ['markdown']}}
 if neobundle#exists_not_installed_bundles()
@@ -395,41 +395,6 @@ let g:ref_use_vimproc = 1
 let g:ref_open = 'split'
 let g:ref_cache_dir = expand('/tmp/vim_ref_cache/')
 nmap <Leader>k <Plug>(ref-keyword)
-"" slimv
-let s:hooks = neobundle#get_hooks('slimv')
-function! s:hooks.on_source(hooks)
-  let g:paredit_electric_return = 0
-  let g:swank_log = 0
-  let g:slimv_keybindings = 1
-  let g:slimv_indent_keylists = 0
-  let g:slimv_repl_simple_compl = 1
-  let g:slimv_repl_name = 'repl'
-  let g:slimv_repl_split = 1
-  let g:slimv_swank_cmd = '!screen -dmS lisp clisp -i '.
-  \  $HOME.'/.vim/bundle/slimv/slime/start-swank.lisp'
-endfunction
-"" vim-latex
-let s:hooks = neobundle#get_hooks('vim-latex')
-function! s:hooks.on_source(hooks)
-  let g:Tex_CompileRule_dvi = 'latex $*'
-  let g:Tex_ViewRule_dvi = 'xdvi'
-endfunction
-"" pep8
-let s:hooks = neobundle#get_hooks('pep8')
-function! s:hooks.on_source(hooks)
-  let g:pep8_map = '<F8>'
-endfunction
-"" emmet-vim
-let s:hooks = neobundle#get_hooks('emmet-vim')
-function! s:hooks.on_source(hooks)
-  let g:user_emmet_mode = 'in'
-  let g:user_emmet_leader_key = '<C-y>'
-  let g:user_emmet_complete_tag = 1
-  let g:user_emmet_settings = {
-  \  'lang': 'utf-8',
-  \  'haml': {'extends': 'html'}
-  \}
-endfunction
 " }}}
 
 """ filesystem {{{
