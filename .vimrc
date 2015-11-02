@@ -87,6 +87,8 @@ NeoBundleLazy 'slim-template/vim-slim', {
 \  'autoload': {'filetypes': ['slim']}}
 NeoBundleLazy 'tpope/vim-haml', {
 \  'autoload': {'filetypes': ['haml']}}
+NeoBundleLazy 'eagletmt/ghcmod-vim', {
+\  'autoload': {'filetypes': ['haskell']}}
 NeoBundleLazy 'dag/vim2hs', {
 \  'autoload': {'filetypes': ['haskell']}}
 NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex', {
