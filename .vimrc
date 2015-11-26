@@ -336,9 +336,9 @@ let g:quickrun_config['lisp'] = {
 \  'exec': "%c %o %s",
 \}
 let g:quickrun_config['scheme'] = {
-\  'command': 'gosh',
-\  'cmdopt': '-b',
-\  'exec': "%c %o %s",
+\  'command': 'scheme',
+\  'cmdopt': '--quiet --nocore',
+\  'exec': "%c %o < %s",
 \}
 let g:quickrun_config['racket'] = {
 \  'command': 'racket',
