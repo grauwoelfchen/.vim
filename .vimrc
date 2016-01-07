@@ -296,11 +296,12 @@ let g:neocomplete#skip_auto_completion_time = 0.4
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries = {
 \  'default': '',
-\  'vimshell': $HOME.'/.vimshell/command/history',
-\  'scheme': $HOME.'/.vim/dict/scheme.dict',
-\  'ruby': $HOME.'/.vim/dict/ruby.dict',
+\  'haskell': $HOME.'/.vim/dict/haskell.dict',
 \  'java': $HOME.'/.vim/dict/java.dict',
-\  'php': $HOME.'/.vim/dict/php.dict'
+\  'php': $HOME.'/.vim/dict/php.dict',
+\  'ruby': $HOME.'/.vim/dict/ruby.dict',
+\  'scheme': $HOME.'/.vim/dict/scheme.dict',
+\  'vimshell': $HOME.'/.vimshell/command/history',
 \}
 if !exists('g:neocomplete#keyword_patterns')
   let g:neocomplete#keyword_patterns = {}
