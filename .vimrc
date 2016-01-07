@@ -91,7 +91,7 @@ NeoBundleLazy 'eagletmt/ghcmod-vim', {
 \  'autoload': {'filetypes': ['haskell']}}
 NeoBundleLazy 'dag/vim2hs', {
 \  'autoload': {'filetypes': ['haskell']}}
-NeoBundleLazy 'git://git.code.sf.net/p/vim-latex/vim-latex', {
+NeoBundleLazy 'vim-latex/vim-latex', {
 \  'autoload': {'filetypes': ['latex']}}
 NeoBundleLazy 'pep8', {
 \  'autoload': {'filetypes': ['python']}}
