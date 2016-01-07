@@ -69,6 +69,10 @@ NeoBundleLazy 'kovisoft/slimv', {
 \  'autoload': {'filetypes': ['lisp']}}
 NeoBundleLazy 'wlangstroth/vim-racket', {
 \  'autoload': {'filetypes': ['scheme', 'racket']}}
+NeoBundleLazy 'pangloss/vim-javascript', {
+\  'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'myhere/vim-nodejs-complete', {
+\  'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'kchmck/vim-coffee-script', {
 \  'autoload': {'filetypes': ['coffee']}}
 NeoBundleLazy 'wavded/vim-stylus', {
@@ -452,7 +456,7 @@ augroup treat_as_rspec
 augroup END
 augroup treat_as_js
   autocmd!
-  autocmd BufNewFile,BufRead *.js.* setlocal filetype=javascript
+  autocmd BufNewFile,BufRead *.js.erb setlocal filetype=javascript
 augroup END
 " }}}
 
