@@ -1,10 +1,5 @@
 """ ruby {{{
 setlocal dictionary=$HOME/.vim/dict/ruby.dict
-"setlocal omnifunc=rubycomplete#Complete
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
-let g:ruby_fold = 1
 "" ri.vim
 "" split 0 => h, 1 => v
 nnoremap <Leader>rh :call ri#OpenSearchPrompt(0)<CR>
