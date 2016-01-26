@@ -99,6 +99,8 @@ NeoBundleLazy 'vim-latex/vim-latex', {
 \  'autoload': {'filetypes': ['latex']}}
 NeoBundleLazy 'pep8', {
 \  'autoload': {'filetypes': ['python']}}
+NeoBundleLazy 'fatih/vim-go', {
+\  'autoload': {'filetypes': ['go']}}
 NeoBundleLazy 'mattn/emmet-vim', {
 \  'autoload': {'filetypes': ['html']}}
 NeoBundleLazy 'tpope/vim-markdown', {
@@ -415,11 +417,6 @@ set cindent
 set cinwords=if,else,while,do,for,switch,case
 nnoremap ]] ]m
 nnoremap [[ [m
-"" ctags
-let g:Tlist_Ctags_Cmd = '/usr/bin/ctags'
-let g:Tlist_Show_One_File = 1
-let g:Tlist_Use_Horiz_Window = 1
-let g:Tlist_Exit_OnlyWindow = 1
 "" white space
 nnoremap <Leader>W match:%s/\v\s+$//<CR>
 nnoremap <Leader>w :match Error /\v\s+$/<CR>
