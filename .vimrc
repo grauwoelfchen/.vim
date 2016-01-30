@@ -352,12 +352,6 @@ let g:quickrun_config['racket'] = {
 \  'cmdopt': '-W info',
 \  'exec': "%c %o %s",
 \}
-let g:quickrun_config['python'] = {
-\  'command': 'pep8',
-\  'cmdopt': '--first',
-\  'outputter': 'quickfix',
-\  'exec': "%c %o %s",
-\}
 let g:quickrun_config['coffee'] = {
 \  'command': 'coffee',
 \  'cmdopt': '-cbp',
