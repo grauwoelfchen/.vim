@@ -147,7 +147,6 @@ noremap k gk
 "" esc
 inoremap hl <Esc>
 inoremap jk <Esc>
-inoremap <Esc> <Nop>
 "" arrows
 nnoremap <Up> <Nop>
 nnoremap <Right> <Nop>
@@ -370,8 +369,13 @@ let g:quickrun_config['html'] = {
 \}
 "" committia
 let g:committia_hooks = {}
-function! g:committia_hooks.edit_open()
+function! g:committia_hooks.edit_open(info)
   setlocal spell
+  if a:info.vcs ==# 'git' && getline(1) ==# ''
+    startinsert
+  end
+  imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+  imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
 endfunction
 "" fugitive
 nnoremap <silent> <Leader>gd :<C-u>Gdiff<CR>
@@ -383,9 +387,9 @@ nnoremap <silent> <Leader>gg :<C-u>Ggrep<CR>
 let g:ctrlp_map = '<F1>'
 let g:ctrlp_custom_ignore =
 \ '\v[\/]\.(git|hg|svn|bundle|swap|backup)|'.
-\ '\.(pyc|egg)|'.
-\ 'build|dist|'.
-\ 'venv|__\w+__|node_modules|components|vendor$'
+\ '\.(pyc|egg)|__\w+__|'.
+\ 'build|dist|pkg|'.
+\ 'env|venv|node_modules|components|vendor$'
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
 let g:ctrlp_prompt_mappings = {
