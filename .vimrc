@@ -53,6 +53,7 @@ NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'sudo.vim'
 NeoBundle 'rhysd/committia.vim'
 NeoBundle 'rhysd/open-pdf.vim'
+NeoBundle 'rhysd/devdocs.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'thinca/vim-quickrun', {
@@ -396,6 +397,11 @@ function! g:committia_hooks.edit_open(info)
   imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
   imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
 endfunction
+"" devdocs
+let g:devdocs_host = 'localhost:9292'
+let g:devdocs_filetype_map = {
+\  '*': ''
+\ }
 "" fugitive
 nnoremap <silent> <Leader>gd :<C-u>Gdiff<CR>
 nnoremap <silent> <Leader>gs :<C-u>Gstatus<CR>
