@@ -294,8 +294,8 @@ inoremap <C-X><C-X> <C-X><C-T>
 
 """ plugin {{{
 "" columnjump
-nmap <C-k> <Plug>(columnjump-backward)
-nmap <C-j> <Plug>(columnjump-forward)
+nmap <M-k> <Plug>(columnjump-backward)
+nmap <M-j> <Plug>(columnjump-forward)
 "" airline
 let g:airline_theme = 'badwolf'
 let g:airline#extensions#tabline#enabled = 0
