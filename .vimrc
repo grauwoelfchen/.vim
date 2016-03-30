@@ -71,6 +71,10 @@ NeoBundleLazy 'kana/vim-textobj-fold', {
 \ 'depends': 'kana/vim-textobj-user',
 \ 'autoload': {'mappings': [
 \   ['xo', 'az'], ['xo', 'iz']]}}
+NeoBundleLazy 'kana/vim-textobj-function', {
+\ 'depends': 'kana/vim-textobj-user',
+\ 'autoload': {'mappings': [
+\   ['xo', 'af'], ['xo', 'if']]}}
 NeoBundleLazy 'rhysd/vim-textobj-wiw', {
 \ 'depends': 'kana/vim-textobj-user',
 \ 'autoload': {'mappings': [
