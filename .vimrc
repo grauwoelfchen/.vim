@@ -34,6 +34,8 @@ call neobundle#begin(expand($HOME.'/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'deris/columnjump'
 NeoBundle 'rhysd/clever-f.vim'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
@@ -219,10 +221,10 @@ augroup apply_gui_color_scheme
 augroup END
 colorscheme gr_black
 "" statusline (right side)
-set statusline=%=%y\ %n\ %{pathshorten(expand('%f'))}
-set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
-set statusline+=\ %m%r%{fugitive#head()}
-set statusline+=\ %03l,%02v\ %P
+"set statusline=%=%y\ %n\ %{pathshorten(expand('%f'))}
+"set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
+"set statusline+=\ %m%r%{fugitive#head()}
+"set statusline+=\ %03l,%02v\ %P
 set laststatus=2
 set colorcolumn=80
 set cursorline
@@ -294,6 +296,10 @@ inoremap <C-X><C-X> <C-X><C-T>
 "" columnjump
 nmap <C-k> <Plug>(columnjump-backward)
 nmap <C-j> <Plug>(columnjump-forward)
+"" airline
+let g:airline_theme = 'badwolf'
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
 "" surround
 nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
@@ -327,7 +333,7 @@ inoremap <expr><C-h> neocomplete#smart_close_popup().'\<C-h>'
 inoremap <expr><C-e> neocomplete#cancel_popup()
 "" buftabs
 let g:buftabs_only_basename = 1
-let g:buftabs_in_statusline = 1
+let g:buftabs_in_statusline = 0
 let g:buftabs_active_highlight_group = 'Visual'
 noremap <Leader>bp :bprev<CR>
 noremap <Leader>bn :bnext<CR>
