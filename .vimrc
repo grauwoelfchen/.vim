@@ -75,10 +75,6 @@ NeoBundleLazy 'kana/vim-textobj-function', {
 \ 'depends': 'kana/vim-textobj-user',
 \ 'autoload': {'mappings': [
 \   ['xo', 'af'], ['xo', 'if']]}}
-NeoBundleLazy 'rhysd/vim-textobj-wiw', {
-\ 'depends': 'kana/vim-textobj-user',
-\ 'autoload': {'mappings': [
-\   ['xo', 'am'], ['xo', 'im']]}}
 NeoBundleLazy 'Shougo/vimshell', {
 \  'depends': ['Shougo/vimproc'],
 \  'autoload': {'commands': ['VimShell']}}
