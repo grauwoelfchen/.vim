@@ -6,3 +6,4 @@ doc/tags
 bundle/*
 !bundle/neobundle.vim
 dict/*.dict
+/view
