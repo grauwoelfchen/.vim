@@ -38,8 +38,6 @@ NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
 NeoBundle 'kana/vim-smartinput'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'smartchr'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kien/ctrlp.vim'
@@ -54,10 +52,27 @@ NeoBundle 'sudo.vim'
 NeoBundle 'rhysd/committia.vim'
 NeoBundle 'rhysd/open-pdf.vim'
 NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'Shougo/vimproc', {
-\  'build': {'unix': 'make -f make_unix.mak'}}
+NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'thinca/vim-quickrun', {
 \  'depends': ['Shougo/vimproc']}
+NeoBundle 'Shougo/vimproc', {
+\  'build': {'unix': 'make -f make_unix.mak'}}
+NeoBundleLazy 'kana/vim-textobj-indent', {
+\ 'depends': 'kana/vim-textobj-user',
+\ 'autoload': {'mappings': [
+\   ['xo', 'ai'], ['xo', 'aI'], ['xo', 'ii'], ['xo', 'iI']]}}
+NeoBundleLazy 'kana/vim-textobj-line', {
+\ 'depends': 'kana/vim-textobj-user',
+\ 'autoload': {'mappings': [
+\   ['xo', 'al'], ['xo', 'il']]}}
+NeoBundleLazy 'kana/vim-textobj-fold', {
+\ 'depends': 'kana/vim-textobj-user',
+\ 'autoload': {'mappings': [
+\   ['xo', 'az'], ['xo', 'iz']]}}
+NeoBundleLazy 'rhysd/vim-textobj-wiw', {
+\ 'depends': 'kana/vim-textobj-user',
+\ 'autoload': {'mappings': [
+\   ['xo', 'am'], ['xo', 'im']]}}
 NeoBundleLazy 'Shougo/vimshell', {
 \  'depends': ['Shougo/vimproc'],
 \  'autoload': {'commands': ['VimShell']}}
