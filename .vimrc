@@ -56,6 +56,7 @@ NeoBundle 'rhysd/open-pdf.vim'
 NeoBundle 'rhysd/devdocs.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'beloglazov/vim-online-thesaurus'
 NeoBundle 'thinca/vim-quickrun', {
 \  'depends': ['Shougo/vimproc']}
 NeoBundle 'Shougo/vimproc', {
@@ -290,7 +291,7 @@ inoremap <expr> <Leader>dt strftime('%Y-%m-%dT%H:%M:%S')
 
 """ dict & thesaurus {{{
 set thesaurus+=$HOME/.vim/thesaurus/mthesaur.txt
-inoremap <C-X><C-X> <C-X><C-T>
+inoremap <Leader>lt <C-x><C-t>
 " }}}
 
 """ plugin {{{
@@ -332,6 +333,9 @@ inoremap <expr><C-g> neocomplete#undo_completion()
 inoremap <expr><C-l> neocomplete#complete_common_string()
 inoremap <expr><C-h> neocomplete#smart_close_popup().'\<C-h>'
 inoremap <expr><C-e> neocomplete#cancel_popup()
+"" vim-online-thesaurus
+let g:online_thesaurus_map_keys = 0
+nnoremap <Leader>ot :OnlineThesaurusCurrentWord<CR>
 "" buftabs
 let g:buftabs_only_basename = 1
 let g:buftabs_in_statusline = 0
@@ -477,7 +481,7 @@ augroup treat_as_rspec
 augroup END
 augroup treat_as_js
   autocmd!
-  autocmd BufNewFile,BufRead *.js.erb setlocal filetype=javascript
+  autocmd BufNewFile,BufRead *.js.erb,.conkerorrc setlocal filetype=javascript
 augroup END
 " }}}
 
