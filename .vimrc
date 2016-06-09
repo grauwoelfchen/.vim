@@ -41,6 +41,7 @@ NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'smartchr'
+NeoBundle 'Shougo/echodoc.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'maxbrunsfeld/vim-yankstack'
@@ -241,6 +242,9 @@ set splitright
 "" resize
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+" }}}
+
+""" buffer {{{
 "" quickfix
 augroup quickfix_open
   autocmd!
@@ -252,7 +256,12 @@ augroup quickfix_close
   \  if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix'
   \  | quit | endif
 augroup END
-" }}}
+"" complete
+set completeopt+=menuone
+set completeopt-=preview
+"" echo area
+set cmdheight=2
+""" }}}
 
 """ edit {{{
 set wildmenu
@@ -333,6 +342,8 @@ inoremap <expr><C-g> neocomplete#undo_completion()
 inoremap <expr><C-l> neocomplete#complete_common_string()
 inoremap <expr><C-h> neocomplete#smart_close_popup().'\<C-h>'
 inoremap <expr><C-e> neocomplete#cancel_popup()
+"" echodoc
+let g:echodoc_enable_at_startup = 1
 "" vim-online-thesaurus
 let g:online_thesaurus_map_keys = 0
 nnoremap <Leader>ot :OnlineThesaurusCurrentWord<CR>
