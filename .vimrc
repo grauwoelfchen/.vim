@@ -117,6 +117,8 @@ NeoBundleLazy 'dag/vim2hs', {
 \  'autoload': {'filetypes': ['haskell']}}
 NeoBundleLazy 'vim-latex/vim-latex', {
 \  'autoload': {'filetypes': ['latex']}}
+NeoBundleLazy 'davidhalter/jedi-vim', {
+\  'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'pep8', {
 \  'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'fatih/vim-go', {

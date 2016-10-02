@@ -16,4 +16,11 @@ let s:hooks = neobundle#get_hooks('pep8')
 function! s:hooks.on_source(hooks)
   let g:pep8_map = '<F8>'
 endfunction
+"" jedi-vim
+let s:hooks = neobundle#get_hooks('jedi-vim')
+function! s:hooks.on_source(hooks)
+  let g:jedi#usages_command = '<leader>U'
+  let g:jedi#rename_command = '<leader>R'
+  setlocal completeopt-=preview
+endfunction
 " }}}
