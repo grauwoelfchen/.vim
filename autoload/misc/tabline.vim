@@ -23,7 +23,6 @@ function! misc#tabline#make()
   let labels = map(range(1, tabpagenr('$')), 's:tab_label(v:val)')
   let separator = ' | '
   let tabs = ' ' . join(labels, separator).separator.'%#TablineFill#%T'
-  let info = fnamemodify(getcwd(), ':~').' « '.hostname().' » '
-  return tabs.'%='.info
+  return tabs.'%=» '.hostname().' '
 endfunction
 " }}}
