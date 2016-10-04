@@ -121,6 +121,8 @@ NeoBundleLazy 'davidhalter/jedi-vim', {
 \  'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'pep8', {
 \  'autoload': {'filetypes': ['python']}}
+NeoBundleLazy 'lepture/vim-jinja', {
+\  'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'fatih/vim-go', {
 \  'autoload': {'filetypes': ['go']}}
 NeoBundleLazy 'mattn/emmet-vim', {
