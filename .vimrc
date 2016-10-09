@@ -129,6 +129,8 @@ NeoBundleLazy 'mattn/emmet-vim', {
 \  'autoload': {'filetypes': ['html']}}
 NeoBundleLazy 'tpope/vim-markdown', {
 \  'autoload': {'filetypes': ['markdown']}}
+NeoBundleLazy 'rhysd/vim-gfm-syntax', {
+\  'autoload': {'filetypes': ['markdown']}}
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
@@ -421,6 +423,9 @@ let g:devdocs_host = 'localhost:9292'
 let g:devdocs_filetype_map = {
 \  '*': ''
 \ }
+"" vim-gfm-syntax
+let g:gfm_syntax_highlight_mention = 0
+let g:markdown_fenced_languages = ['python', 'ruby', 'zsh']
 "" fugitive
 nnoremap <silent> <Leader>gd :<C-u>Gdiff<CR>
 nnoremap <silent> <Leader>gs :<C-u>Gstatus<CR>
