@@ -121,8 +121,10 @@ NeoBundleLazy 'davidhalter/jedi-vim', {
 \  'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'pep8', {
 \  'autoload': {'filetypes': ['python']}}
+NeoBundleLazy 'sophacles/vim-bundle-mako', {
+\  'autoload': {'filetypes': ['mako']}}
 NeoBundleLazy 'lepture/vim-jinja', {
-\  'autoload': {'filetypes': ['python']}}
+\  'autoload': {'filetypes': ['jinja2']}}
 NeoBundleLazy 'fatih/vim-go', {
 \  'autoload': {'filetypes': ['go']}}
 NeoBundleLazy 'mattn/emmet-vim', {
@@ -495,10 +497,6 @@ augroup END
 augroup treat_as_erlang
   autocmd!
   autocmd BufNewFile,BufRead .rebar.config,*.app.src setlocal filetype=erlang
-augroup END
-augroup treat_as_ruby
-  autocmd!
-  autocmd BufNewFile,BufRead Gemfile.rock setlocal filetype=ruby
 augroup END
 augroup treat_as_rspec
   autocmd!
