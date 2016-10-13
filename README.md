@@ -2,15 +2,9 @@
 
 Personal .vimrc, color schema, script and settings.
 
-```
-# lines count is kept < 500
-% wc -l .vimrc
-485 .vimrc
-```
-
 ## Setup
 
-```
+```zsh
 % git clone git@github.com:grauwoelfchen/.vim.git
 % cd .vim
 % mkdir .{backup,swap}
