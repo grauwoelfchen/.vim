@@ -323,7 +323,7 @@ let g:airline#extensions#whitespace#enabled = 0
 nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
 "" smartchr
-inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
+"inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
 "" neocomplete
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
