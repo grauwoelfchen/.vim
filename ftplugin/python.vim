@@ -20,6 +20,7 @@ let s:hooks = neobundle#get_hooks('jedi-vim')
 function! s:hooks.on_source(hooks)
   let g:jedi#usages_command = '<leader>U'
   let g:jedi#rename_command = '<leader>R'
+  let g:jedi#use_tabs_not_buffers = 1
   setlocal completeopt-=preview
 endfunction
 " }}}
