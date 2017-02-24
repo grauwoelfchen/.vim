@@ -23,7 +23,6 @@ noremap : ;
 let g:mapleader = ","
 let g:maplocalleader = "\\"
 " }}}
-
 """ bundle {{{
 filetype off
 "" neobundle
@@ -34,8 +33,6 @@ call neobundle#begin(expand($HOME.'/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'deris/columnjump'
 NeoBundle 'rhysd/clever-f.vim'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-gf-diff'
@@ -143,7 +140,6 @@ call neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
 " }}}
-
 """ search {{{
 set incsearch
 set history=100
@@ -168,7 +164,6 @@ nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 nnoremap <C-t> <Nop>
 nnoremap <C-]><C-]> <C-t>
 " }}}
-
 """ motion {{{
 "" esc
 inoremap hl <Esc>
@@ -207,7 +202,6 @@ augroup jump_to_last_pos
   \  | execute 'normal! g`"' | endif
 augroup END
 " }}}
-
 """ appearance {{{
 set showtabline=2
 set tabline=%!misc#tabline#make()
@@ -232,10 +226,10 @@ augroup apply_gui_color_scheme
 augroup END
 colorscheme gr_black
 "" statusline (right side)
-"set statusline=%=%y\ %n\ %{pathshorten(expand('%f'))}
-"set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
-"set statusline+=\ %m%r%{fugitive#head()}
-"set statusline+=\ %03l,%02v\ %P
+set statusline=%=%y\ %n\ %{pathshorten(expand('%f'))}
+set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
+set statusline+=\ %m%r%{fugitive#head()}
+set statusline+=\ %03l,%02v\ %P
 set laststatus=2
 set colorcolumn=80
 set cursorline
@@ -251,7 +245,6 @@ set splitright
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 " }}}
-
 """ buffer {{{
 "" quickfix
 augroup quickfix_open
@@ -270,7 +263,6 @@ set completeopt-=preview
 "" echo area
 set cmdheight=2
 """ }}}
-
 """ edit {{{
 set wildmenu
 set complete+=k
@@ -292,7 +284,6 @@ noremap <M-d> <C-x>
 vnoremap ' <Esc>`>a'<Esc>`<i'<Esc>`>2l
 vnoremap " <Esc>`>a"<Esc>`<i"<Esc>`>2l
 " }}}
-
 """ encoding {{{
 set encoding=utf-8
 set fileencoding=utf-8
@@ -300,30 +291,21 @@ set fileencodings=utf-8
 set termencoding=utf-8
 set fileformats=unix
 " }}}
-
 """ command & other keymaps {{{
 inoremap <expr> <Leader>ds strftime('%a, %d. %b. %Y')
 inoremap <expr> <Leader>dt strftime('%Y-%m-%dT%H:%M:%S')
 " }}}
-
 """ dict & thesaurus {{{
 set thesaurus+=$HOME/.vim/thesaurus/mthesaur.txt
 inoremap <Leader>lt <C-x><C-t>
 " }}}
-
 """ plugin {{{
 "" columnjump
 nmap <M-k> <Plug>(columnjump-backward)
 nmap <M-j> <Plug>(columnjump-forward)
-"" airline
-let g:airline_theme = 'badwolf'
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#whitespace#enabled = 0
 "" surround
 nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
-"" smartchr
-"inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
 "" neocomplete
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
@@ -457,14 +439,12 @@ let g:ref_open = 'split'
 let g:ref_cache_dir = expand('/tmp/vim_ref_cache/')
 nmap <Leader>k <Plug>(ref-keyword)
 " }}}
-
 """ filesystem {{{
 let g:netrw_browse_split = 2
 let g:netrw_altv = 1
 let g:netrw_winsize = ''
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 " }}}
-
 """ programming {{{
 set autoindent
 set cindent
@@ -474,11 +454,6 @@ nnoremap [[ [m
 "" white space
 nnoremap <Leader>W match:%s/\v\s+$//<CR>
 nnoremap <Leader>w :match Error /\v\s+$/<CR>
-"augroup replace_white_space
-"  autocmd!
-"  autocmd BufWritePre * :%s/\s\+$//ge
-"  autocmd BufWritePre * :%s/\t/  /ge
-"augroup END
 augroup highlight_trailing_spaces
   autocmd!
   autocmd VimEnter,WinEnter,ColorScheme *
@@ -488,7 +463,6 @@ augroup END
 "" uppercase
 inoremap <C-u> <C-o>viwU<C-o>`]<C-o>a
 " }}}
-
 """ filetype {{{
 augroup treat_as_lisp
   autocmd!
@@ -507,7 +481,6 @@ augroup treat_as_js
   autocmd BufNewFile,BufRead *.js.erb,.conkerorrc setlocal filetype=javascript
 augroup END
 " }}}
-
 """ vim {{{
 let g:vim_indent_cont = 0
 nnoremap <Leader>.e :<C-u>edit $MYVIMRC<CR>
