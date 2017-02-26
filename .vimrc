@@ -55,6 +55,7 @@ NeoBundle 'rhysd/devdocs.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'beloglazov/vim-online-thesaurus'
+NeoBundle 'w0rp/ale'
 NeoBundle 'thinca/vim-quickrun', {
 \  'depends': ['Shougo/vimproc']}
 NeoBundle 'Shougo/vimproc', {
@@ -230,6 +231,7 @@ set statusline=%=%y\ %n\ %{pathshorten(expand('%f'))}
 set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
 set statusline+=\ %m%r%{fugitive#head()}
 set statusline+=\ %03l,%02v\ %P
+set statusline+=\ %{ALEGetStatusLine()}
 set laststatus=2
 set colorcolumn=80
 set cursorline
@@ -348,6 +350,10 @@ noremap <silent> <Leader>ys :Yanks<CR>
 let g:yankstack_map_keys = 0
 nmap <M-p> <Plug>yankstack_substitute_older_paste
 nmap <M-n> <Plug>yankstack_substitute_newer_paste
+"" ale
+let g:ale_statusline_format = ['x %d', '! %d', '♡ ok']
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'W'
 "" quickrun
 let g:quickrun_config = {}
 let g:quickrun_config['_'] = {
