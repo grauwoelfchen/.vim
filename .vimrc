@@ -51,6 +51,7 @@ NeoBundle 'sudo.vim'
 NeoBundle 'rhysd/committia.vim'
 NeoBundle 'rhysd/open-pdf.vim'
 NeoBundle 'rhysd/devdocs.vim'
+NeoBundle 'vimwiki/vimwiki'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'beloglazov/vim-online-thesaurus'
@@ -412,6 +413,8 @@ let g:devdocs_host = 'localhost:9292'
 let g:devdocs_filetype_map = {
 \  '*': ''
 \ }
+"" vimwiki
+let g:vimwiki_list = [{'path': '~/.atelier/opt/.sync/share/wiki'}]
 "" vim-gfm-syntax
 let g:gfm_syntax_highlight_mention = 0
 let g:markdown_fenced_languages = ['python', 'ruby', 'zsh']
