@@ -488,6 +488,10 @@ augroup treat_as_js
   autocmd!
   autocmd BufNewFile,BufRead *.js.erb,.conkerorrc setlocal filetype=javascript
 augroup END
+augroup treat_as_changelog
+  autocmd!
+  autocmd BufNewFile,BufRead CHANGELOG setlocal filetype=changelog
+augroup END
 " }}}
 """ vim {{{
 let g:vim_indent_cont = 0
