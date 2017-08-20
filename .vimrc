@@ -412,7 +412,7 @@ endfunction
 let g:devdocs_host = 'localhost:9292'
 let g:devdocs_filetype_map = {
 \  '*': ''
-\ }
+\}
 "" vimwiki
 let g:vimwiki_list = [{'path': '~/.atelier/opt/.sync/share/wiki'}]
 "" vim-gfm-syntax
@@ -440,7 +440,7 @@ let g:ctrlp_prompt_mappings = {
 \  'PrtSelectMove("k")':   ['<C-u>'],
 \  'AcceptSelection("t")': ['<C-a>'],
 \  'PrtExit()':            ['<Esc>', '<C-g>']
-\ }
+\}
 "" vim-ref
 let g:ref_use_vimproc = 1
 let g:ref_open = 'split'
