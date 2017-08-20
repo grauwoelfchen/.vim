@@ -436,11 +436,11 @@ let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
 "" skk takes <C-j>
 let g:ctrlp_prompt_mappings = {
-\  'PrtClear()':           ['<C-c>'],
-\  'PrtSelectMove("j")':   ['<C-k>'],
-\  'PrtSelectMove("k")':   ['<C-u>'],
-\  'AcceptSelection("t")': ['<C-a>'],
-\  'PrtExit()':            ['<Esc>', '<C-g>']
+\ 'PrtClear()': ['<C-c>'],
+\ 'PrtSelectMove("j")': ['<C-k>'],
+\ 'PrtSelectMove("k")': ['<C-u>'],
+\ 'AcceptSelection("t")': ['<C-a>'],
+\ 'PrtExit()': ['<Esc>', '<C-g>']
 \}
 "" vim-ref
 let g:ref_use_vimproc = 1
