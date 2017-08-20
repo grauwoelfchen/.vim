@@ -56,6 +56,7 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'beloglazov/vim-online-thesaurus'
 NeoBundle 'w0rp/ale'
+NeoBundle 'deton/eblook.vim'
 NeoBundle 'thinca/vim-quickrun', {
 \  'depends': ['Shougo/vimproc']}
 NeoBundle 'Shougo/vimproc', {
@@ -473,6 +474,9 @@ inoremap <C-u> <C-o>viwU<C-o>`]<C-o>a
 " }}}
 """ filetype {{{
 call misc#filetype#setup()
+" }}}
+""" dict {{{
+call misc#dict#setup()
 " }}}
 """ vim {{{
 let g:vim_indent_cont = 0
