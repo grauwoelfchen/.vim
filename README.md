@@ -1,11 +1,17 @@
 # .vim
 
-Personal .vimrc, color schema, script and settings.
+Personal `.vimrc`, color schema, scripts and settings.
+
+
+## Repository
+
+https://gitlab.com/grauwoelfchen/DotVim
+
 
 ## Setup
 
 ```zsh
-% git clone git@github.com:grauwoelfchen/.vim.git
+% git clone git@gitlab.com:grauwoelfchen/dotvimperator.git
 % cd .vim
 % mkdir .{backup,swap}
 % git submodule update --init
@@ -13,8 +19,14 @@ Personal .vimrc, color schema, script and settings.
 :NeoBundleInstall
 ```
 
+
 ## License
 
-[GPL v2.0](http://www.gnu.org/licenses/gpl-2.0.txt)
+Copyright (c) 2010-2017 Yasuhiro Asaka
 
-Yasuhiro Asaka <grauwoelfchen@gmail.com>
+This is free software:  
+You can redistribute it and/or modify it under the terms of
+the GUN General Public License as published by the
+Free Software Foundation.
+
+See [LICENSE](LICENSE). (`GPL-2.0`)
