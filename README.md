@@ -11,7 +11,8 @@ https://gitlab.com/grauwoelfchen/DotVim
 ## Setup
 
 ```zsh
-% git clone git@gitlab.com:grauwoelfchen/dotvimperator.git
+% cd
+% git clone git@gitlab.com:grauwoelfchen/dotvim.git .vim
 % cd .vim
 % mkdir .{backup,swap}
 % git submodule update --init
