@@ -388,6 +388,12 @@ let g:quickrun_config['coffee'] = {
 \  'cmdopt': '-cbp',
 \  'exec': "%c %o %s",
 \}
+let g:quickrun_config['asciidoc'] = {
+\  'command': 'asciidoc',
+\  'cmdopt': '--out-file="-" --theme="volnitsky"',
+\  'outputter': 'browser',
+\  'exec': "%c %o %s",
+\}
 let g:quickrun_config['markdown'] = {
 \  'command': 'redcarpet',
 \  'cmdopt': '--parse-fenced-code-blocks --parse-tables --parse-autolink',
