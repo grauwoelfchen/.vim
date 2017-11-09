@@ -390,9 +390,9 @@ let g:quickrun_config['coffee'] = {
 \}
 let g:quickrun_config['asciidoc'] = {
 \  'command': 'asciidoc',
-\  'cmdopt': '--out-file="-" --theme="volnitsky"',
+\  'cmdopt': '--out-file="-" --theme="volnitsky" --backend=html5',
 \  'outputter': 'browser',
-\  'exec': "%c %o %s",
+\  'exec': "/usr/bin/python2.7 /usr/bin/asciidoc.py %o %s",
 \}
 let g:quickrun_config['markdown'] = {
 \  'command': 'redcarpet',
