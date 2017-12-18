@@ -3,7 +3,11 @@
 .backup
 .swap
 doc/tags
-bundle/*
-!bundle/neobundle.vim
 dict/*.dict
 /view
+
+autoload/plug.vim
+plugged/*
+
+bundle/*
+!bundle/neobundle.vim

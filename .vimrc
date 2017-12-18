@@ -25,6 +25,16 @@ let g:maplocalleader = "\\"
 " }}}
 """ bundle {{{
 filetype off
+"" vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf', {'do': './install --all'}
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
+      " dep: vimproc
+Plug 'tpope/vim-sensible'
+Plug 'thinca/vim-quickrun'
+      " dep: vimproc
+call plug#end()
 "" neobundle
 if &runtimepath !~ '/neobundle.vim'
   set runtimepath+=$HOME/.vim/bundle/neobundle.vim
@@ -58,10 +68,6 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'beloglazov/vim-online-thesaurus'
 NeoBundle 'w0rp/ale'
 NeoBundle 'deton/eblook.vim'
-NeoBundle 'thinca/vim-quickrun', {
-\  'depends': ['Shougo/vimproc']}
-NeoBundle 'Shougo/vimproc', {
-\  'build': {'unix': 'make -f make_unix.mak'}}
 NeoBundleLazy 'kana/vim-textobj-indent', {
 \ 'depends': 'kana/vim-textobj-user',
 \ 'autoload': {'mappings': [
@@ -78,9 +84,6 @@ NeoBundleLazy 'kana/vim-textobj-function', {
 \ 'depends': 'kana/vim-textobj-user',
 \ 'autoload': {'mappings': [
 \   ['xo', 'af'], ['xo', 'if']]}}
-NeoBundleLazy 'Shougo/vimshell', {
-\  'depends': ['Shougo/vimproc'],
-\  'autoload': {'commands': ['VimShell']}}
 " lang, implementation and template
 NeoBundle 'pbrisbin/vim-syntax-shakespeare'
 NeoBundleLazy 'oscarh/vimerl', {
