@@ -31,6 +31,7 @@ if &runtimepath !~ '/neobundle.vim'
 endif
 call neobundle#begin(expand($HOME.'/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'b4winckler/vim-objc'
 NeoBundle 'deris/columnjump'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'h1mesuke/vim-alignta'
