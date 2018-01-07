@@ -34,6 +34,7 @@ Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
 Plug 'tpope/vim-sensible'
 Plug 'thinca/vim-quickrun'
       " dep: vimproc
+Plug 'purescript-contrib/purescript-vim'
 call plug#end()
 "" neobundle
 if &runtimepath !~ '/neobundle.vim'
