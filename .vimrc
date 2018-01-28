@@ -35,6 +35,8 @@ Plug 'tpope/vim-sensible'
 Plug 'thinca/vim-quickrun'
       " dep: vimproc
 Plug 'purescript-contrib/purescript-vim'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'hsanson/vim-android'
 call plug#end()
 "" neobundle
 if &runtimepath !~ '/neobundle.vim'
