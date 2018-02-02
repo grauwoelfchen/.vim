@@ -31,6 +31,7 @@ Plug 'junegunn/fzf', {'do': './install --all'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
       " dep: vimproc
+Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-sensible'
 Plug 'thinca/vim-quickrun'
       " dep: vimproc
