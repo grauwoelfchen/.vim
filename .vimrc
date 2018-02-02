@@ -32,6 +32,7 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
       " dep: vimproc
 Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
 Plug 'tpope/vim-sensible'
 Plug 'thinca/vim-quickrun'
       " dep: vimproc
