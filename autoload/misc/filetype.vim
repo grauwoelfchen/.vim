@@ -26,5 +26,9 @@ function! misc#filetype#setup()
     autocmd!
     autocmd BufNewFile,BufRead CHANGELOG setlocal filetype=changelog
   augroup END
+  augroup treat_as_jinja
+    autocmd!
+    autocmd BufNewFile,BufRead *.tera setlocal filetype=jinja
+  augroup END
 endfunction
 "}}}
