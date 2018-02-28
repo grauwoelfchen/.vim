@@ -445,7 +445,7 @@ let g:ctrlp_map = '<F1>'
 let g:ctrlp_custom_ignore =
 \ '\v[\/]\.(git|hg|svn|bundle|swap|backup|cache)|'.
 \ '\.(pyc|egg)|*.egg-info|'.
-\ 'build|dist|pkg|'.
+\ 'build|dist|pkg|target|'.
 \ 'tmp|*sdk*'.
 \ 'env|venv*|node_modules|components|vendor$'
 let g:ctrlp_open_new_file = 't'
