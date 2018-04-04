@@ -26,7 +26,7 @@ let g:maplocalleader = "\\"
 """ bundle {{{
 filetype off
 "" vim-plug
-call plug#begin('~/.vim/plugged')
+call plug#begin(expand($HOME.'/.vim/plugged'))
 Plug 'junegunn/fzf', {'do': './install --all'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
