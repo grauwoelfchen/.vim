@@ -2,7 +2,6 @@
 " tiny
 if !1 | finish | endif
 set nocompatible
-set showmode
 set showcmd
 set autoread
 set ttyfast
@@ -274,6 +273,7 @@ augroup END
 set completeopt+=menuone
 set completeopt-=preview
 "" echo area
+set noshowmode
 set cmdheight=2
 """ }}}
 """ edit {{{
