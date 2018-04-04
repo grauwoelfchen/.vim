@@ -2,7 +2,6 @@
 " tiny
 if !1 | finish | endif
 set nocompatible
-set showmode
 set showcmd
 set autoread
 set ttyfast
@@ -26,19 +25,72 @@ let g:maplocalleader = "\\"
 """ bundle {{{
 filetype off
 "" vim-plug
-call plug#begin('~/.vim/plugged')
+call plug#begin(expand($HOME.'/.vim/plugged'))
+Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
+Plug 'b4winckler/vim-objc', {'for': 'objc'}
+Plug 'beloglazov/vim-online-thesaurus'
+Plug 'cespare/vim-toml'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'dag/vim2hs', {'for': 'haskell'}
+Plug 'danchoi/ri.vim', {'for': 'ruby'}
+Plug 'deton/eblook.vim'
+Plug 'deris/columnjump'
+Plug 'digitaltoad/vim-jade', {'for': 'jade'}
+Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
+Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'hsanson/vim-android'
+Plug 'h1mesuke/vim-alignta'
 Plug 'junegunn/fzf', {'do': './install --all'}
+Plug 'kana/vim-gf-diff'
+Plug 'kana/vim-gf-user'
+Plug 'kana/vim-smartinput'
+Plug 'kana/vim-smartchr'
+Plug 'kana/vim-textobj-user'
+Plug 'kien/ctrlp.vim'
+Plug 'kovisoft/slimv', {'for': 'lisp'}
+Plug 'lepture/vim-jinja', {'for': 'jinja2'}
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'myhere/vim-nodejs-complete', {'for': 'javascript'}
+Plug 'oscarh/vimerl', {'for': 'erlang'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'pbrisbin/vim-syntax-shakespeare'
+Plug 'purescript-contrib/purescript-vim', {'for': 'purescript'}
+Plug 'racer-rust/vim-racer', {'for': 'rust'}
+Plug 'rhysd/devdocs.vim'
+Plug 'rhysd/clever-f.vim'
+Plug 'rhysd/committia.vim'
+Plug 'rhysd/open-pdf.vim'
+Plug 'rhysd/vim-gfm-syntax', {'for': 'markdown'}
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/neocomplete'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
       " dep: vimproc
-Plug 'rust-lang/rust.vim'
-Plug 'cespare/vim-toml'
-Plug 'tpope/vim-sensible'
+Plug 'slim-template/vim-slim', {'for': 'slim'}
+Plug 'sophacles/vim-bundle-mako', {'for': 'mako'}
 Plug 'thinca/vim-quickrun'
       " dep: vimproc
-Plug 'purescript-contrib/purescript-vim'
-Plug 'artur-shaik/vim-javacomplete2'
-Plug 'hsanson/vim-android'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-haml', {'for': 'haml'}
+Plug 'tpope/vim-markdown', {'for': 'markdown'}
+Plug 'tpope/vim-rails', {'for': 'ruby'}
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'thinca/vim-guicolorscheme'
+Plug 'thinca/vim-ref'
+Plug 'tyru/open-browser.vim'
+Plug 'vimwiki/vimwiki'
+Plug 'vim-latex/vim-latex', {'for': 'latex'}
+Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
+Plug 'vim-scripts/buftabs'
+Plug 'vim-scripts/pep8', {'for': 'python'}
+Plug 'vim-scripts/sudo.vim'
+Plug 'wavded/vim-stylus', {'for': 'stylus'}
+Plug 'wlangstroth/vim-racket', {'for': 'racket'}
+Plug 'w0rp/ale'
+Plug 'yuku-t/vim-ref-ri', {'for': 'ruby'}
 call plug#end()
 "" neobundle
 if &runtimepath !~ '/neobundle.vim'
@@ -46,33 +98,6 @@ if &runtimepath !~ '/neobundle.vim'
 endif
 call neobundle#begin(expand($HOME.'/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'b4winckler/vim-objc'
-NeoBundle 'deris/columnjump'
-NeoBundle 'rhysd/clever-f.vim'
-NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'kana/vim-gf-user'
-NeoBundle 'kana/vim-gf-diff'
-NeoBundle 'kana/vim-smartinput'
-NeoBundle 'smartchr'
-NeoBundle 'Shougo/echodoc.vim'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'maxbrunsfeld/vim-yankstack'
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'buftabs'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'thinca/vim-guicolorscheme'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'sudo.vim'
-NeoBundle 'rhysd/committia.vim'
-NeoBundle 'rhysd/open-pdf.vim'
-NeoBundle 'rhysd/devdocs.vim'
-NeoBundle 'vimwiki/vimwiki'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'beloglazov/vim-online-thesaurus'
-NeoBundle 'w0rp/ale'
-NeoBundle 'deton/eblook.vim'
 NeoBundleLazy 'kana/vim-textobj-indent', {
 \ 'depends': 'kana/vim-textobj-user',
 \ 'autoload': {'mappings': [
@@ -89,58 +114,6 @@ NeoBundleLazy 'kana/vim-textobj-function', {
 \ 'depends': 'kana/vim-textobj-user',
 \ 'autoload': {'mappings': [
 \   ['xo', 'af'], ['xo', 'if']]}}
-" lang, implementation and template
-NeoBundle 'pbrisbin/vim-syntax-shakespeare'
-NeoBundleLazy 'oscarh/vimerl', {
-\  'autoload': {'filetypes': ['erlang']}}
-NeoBundleLazy 'kovisoft/slimv', {
-\  'autoload': {'filetypes': ['lisp']}}
-NeoBundleLazy 'wlangstroth/vim-racket', {
-\  'autoload': {'filetypes': ['scheme', 'racket']}}
-NeoBundleLazy 'pangloss/vim-javascript', {
-\  'autoload': {'filetypes': ['javascript']}}
-NeoBundleLazy 'myhere/vim-nodejs-complete', {
-\  'autoload': {'filetypes': ['javascript']}}
-NeoBundleLazy 'kchmck/vim-coffee-script', {
-\  'autoload': {'filetypes': ['coffee']}}
-NeoBundleLazy 'wavded/vim-stylus', {
-\  'autoload': {'filetypes': ['stylus']}}
-NeoBundleLazy 'digitaltoad/vim-jade', {
-\  'autoload': {'filetypes': ['jade']}}
-NeoBundleLazy 'danchoi/ri.vim', {
-\  'autoload': {'filetypes': ['ruby']}}
-NeoBundleLazy 'yuku-t/vim-ref-ri', {
-\  'autoload': {'filetypes': ['ruby']}}
-NeoBundleLazy 'vim-ruby/vim-ruby', {
-\  'autoload': {'filetypes': ['ruby']}}
-NeoBundleLazy 'tpope/vim-rails', {
-\  'autoload': {'filetypes': ['ruby']}}
-NeoBundleLazy 'slim-template/vim-slim', {
-\  'autoload': {'filetypes': ['slim']}}
-NeoBundleLazy 'tpope/vim-haml', {
-\  'autoload': {'filetypes': ['haml']}}
-NeoBundleLazy 'eagletmt/ghcmod-vim', {
-\  'autoload': {'filetypes': ['haskell']}}
-NeoBundleLazy 'dag/vim2hs', {
-\  'autoload': {'filetypes': ['haskell']}}
-NeoBundleLazy 'vim-latex/vim-latex', {
-\  'autoload': {'filetypes': ['latex']}}
-NeoBundleLazy 'davidhalter/jedi-vim', {
-\  'autoload': {'filetypes': ['python']}}
-NeoBundleLazy 'pep8', {
-\  'autoload': {'filetypes': ['python']}}
-NeoBundleLazy 'sophacles/vim-bundle-mako', {
-\  'autoload': {'filetypes': ['mako']}}
-NeoBundleLazy 'lepture/vim-jinja', {
-\  'autoload': {'filetypes': ['jinja2']}}
-NeoBundleLazy 'fatih/vim-go', {
-\  'autoload': {'filetypes': ['go']}}
-NeoBundleLazy 'mattn/emmet-vim', {
-\  'autoload': {'filetypes': ['html']}}
-NeoBundleLazy 'tpope/vim-markdown', {
-\  'autoload': {'filetypes': ['markdown']}}
-NeoBundleLazy 'rhysd/vim-gfm-syntax', {
-\  'autoload': {'filetypes': ['markdown']}}
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
   \  string(neobundle#get_not_installed_bundle_names())
@@ -232,16 +205,24 @@ set shortmess+=I
 syntax enable
 augroup apply_gui_color_scheme
   autocmd!
-  runtime! bundle/vim-guicolorscheme/plugin/guicolorscheme.vim
+  runtime! plugged/vim-guicolorscheme/plugin/guicolorscheme.vim
   autocmd ColorScheme * GuiColorScheme gr_black
 augroup END
 colorscheme gr_black
 "" statusline (right side)
+function! LinterStatus() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:errors = l:counts.error + l:counts.style_error
+  let l:warnings = l:counts.total - l:errors
+  return l:counts.total == 0 ? 'OK': printf(
+  \  '%dW %dE', warnings, errors
+  \)
+endfunction
 set statusline=%=%y\ %n\ %{pathshorten(expand('%f'))}
 set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
 set statusline+=\ %m%r%{fugitive#head()}
 set statusline+=\ %03l,%02v\ %P
-set statusline+=\ %{ALEGetStatusLine()}
+set statusline+=\ %{LinterStatus()}
 set laststatus=2
 set colorcolumn=80
 set cursorline
@@ -273,6 +254,7 @@ augroup END
 set completeopt+=menuone
 set completeopt-=preview
 "" echo area
+set noshowmode
 set cmdheight=2
 """ }}}
 """ edit {{{
@@ -430,7 +412,7 @@ let g:devdocs_filetype_map = {
 \  '*': ''
 \}
 "" vimwiki
-let g:vimwiki_list = [{'path': '~/.atelier/opt/.sync/share/wiki'}]
+let g:vimwiki_list = [{'path': $HOME.'/.atelier/opt/.sync/share/wiki'}]
 "" vim-gfm-syntax
 let g:gfm_syntax_highlight_mention = 0
 let g:markdown_fenced_languages = ['python', 'ruby', 'zsh']
