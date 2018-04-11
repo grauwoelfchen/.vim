@@ -1,2 +1,7 @@
+11 Apr 2018 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
+  * Replace raw path with $HOME in ftplugin/rust.vim
+
+...
+
 06 Oct 2017 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
   * Add CHANGELOG ;)
