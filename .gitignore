@@ -4,7 +4,6 @@
 .swap
 doc/tags
 dict/*.dict
-/view
 
 autoload/plug.vim
 plugged/*
