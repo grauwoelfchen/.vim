@@ -9,18 +9,12 @@ iabbrev  <buffer> iff if:hli
 " }}}
 """ plugin {{{
 "" pep8
-let s:hooks = neobundle#get_hooks('pep8')
-function! s:hooks.on_source(hooks)
-  let g:pep8_map = '<F8>'
-endfunction
+let g:pep8_map = '<F8>'
 "" jedi-vim
-let s:hooks = neobundle#get_hooks('jedi-vim')
-function! s:hooks.on_source(hooks)
-  let g:jedi#usages_command = '<leader>U'
-  let g:jedi#rename_command = '<leader>R'
-  let g:jedi#use_tabs_not_buffers = 1
-  setlocal completeopt-=preview
-endfunction
+let g:jedi#usages_command = '<leader>U'
+let g:jedi#rename_command = '<leader>R'
+let g:jedi#use_tabs_not_buffers = 1
+setlocal completeopt-=preview
 "" ale
 let g:ale_linters = {
 \ 'python': ['pylint']
