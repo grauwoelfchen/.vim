@@ -42,7 +42,7 @@ above command.
 
 ```
 .vim
-Copyright (c) 2010-2017 Yasuhiro Asaka
+Copyright (c) 2010-2018 Yasuhiro Asaka
 ```
 
 This is free software:  
