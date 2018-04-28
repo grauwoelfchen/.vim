@@ -5,6 +5,7 @@ setlocal shiftwidth=4
 setlocal softtabstop=4
 setlocal textwidth=80
 " }}}
+
 """ plugin {{{
 "" omnisharp-vim
 "" dev-lang/mono or use embedded mono into server (set use_mono as 0)
