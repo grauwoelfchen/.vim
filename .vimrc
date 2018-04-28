@@ -46,6 +46,14 @@ Plug 'kana/vim-gf-user'
 Plug 'kana/vim-smartinput'
 Plug 'kana/vim-smartchr'
 Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+  " dep: vim-textobj-user
+Plug 'kana/vim-textobj-line'
+  " dep: vim-textobj-user
+Plug 'kana/vim-textobj-fold'
+  " dep: vim-textobj-user
+Plug 'kana/vim-textobj-function'
+  " dep: vim-textobj-user
 Plug 'kien/ctrlp.vim'
 Plug 'kovisoft/slimv', {'for': 'lisp'}
 Plug 'lepture/vim-jinja', {'for': 'jinja2'}
@@ -67,11 +75,11 @@ Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/neocomplete'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
-      " dep: vimproc
+  " dep: vimproc
 Plug 'slim-template/vim-slim', {'for': 'slim'}
 Plug 'sophacles/vim-bundle-mako', {'for': 'mako'}
 Plug 'thinca/vim-quickrun'
-      " dep: vimproc
+  " dep: vimproc
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-haml', {'for': 'haml'}
 Plug 'tpope/vim-markdown', {'for': 'markdown'}
@@ -92,37 +100,7 @@ Plug 'wlangstroth/vim-racket', {'for': 'racket'}
 Plug 'w0rp/ale'
 Plug 'yuku-t/vim-ref-ri', {'for': 'ruby'}
 call plug#end()
-"" neobundle
-if &runtimepath !~ '/neobundle.vim'
-  set runtimepath+=$HOME/.vim/bundle/neobundle.vim
-endif
-call neobundle#begin(expand($HOME.'/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundleLazy 'kana/vim-textobj-indent', {
-\ 'depends': 'kana/vim-textobj-user',
-\ 'autoload': {'mappings': [
-\   ['xo', 'ai'], ['xo', 'aI'], ['xo', 'ii'], ['xo', 'iI']]}}
-NeoBundleLazy 'kana/vim-textobj-line', {
-\ 'depends': 'kana/vim-textobj-user',
-\ 'autoload': {'mappings': [
-\   ['xo', 'al'], ['xo', 'il']]}}
-NeoBundleLazy 'kana/vim-textobj-fold', {
-\ 'depends': 'kana/vim-textobj-user',
-\ 'autoload': {'mappings': [
-\   ['xo', 'az'], ['xo', 'iz']]}}
-NeoBundleLazy 'kana/vim-textobj-function', {
-\ 'depends': 'kana/vim-textobj-user',
-\ 'autoload': {'mappings': [
-\   ['xo', 'af'], ['xo', 'if']]}}
-if neobundle#exists_not_installed_bundles()
-  echomsg 'Not installed bundles : ' .
-  \  string(neobundle#get_not_installed_bundle_names())
-  echomsg 'Please execute ":NeoBundleInstall" command.'
-  finish
-endif
-call neobundle#end()
 filetype plugin indent on
-NeoBundleCheck
 " }}}
 """ search {{{
 set incsearch

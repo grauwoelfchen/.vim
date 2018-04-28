@@ -8,6 +8,3 @@ dict/*.dict
 
 autoload/plug.vim
 plugged/*
-
-bundle/*
-!bundle/neobundle.vim
