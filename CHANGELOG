@@ -1,2 +1,7 @@
+28 Apr 2018 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
+  * Remove neobundle hooks
+  * Deinit neobundle (submodule)
+  * Move textobj plugins to vim-plug
+
 06 Oct 2017 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
   * Add CHANGELOG ;)
