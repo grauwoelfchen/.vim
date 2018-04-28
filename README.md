@@ -2,8 +2,6 @@
 
 Personal `.vimrc`, color schema, scripts and settings.
 
-> Currently, under transition to vim-plug from neobundle
-
 
 ## Repository
 
@@ -35,22 +33,6 @@ above command.
 ```
 % vim
 :PlugInstall
-```
-
-### neobundle
-
-Setup neobundle as submodule.
-
-```zsh
-% git submodule update --init
-```
-
-And then, install all dependencies via `neobundle` which is installed as
-submodule.
-
-```
-% vim
-:NeoBundleInstall
 ```
 
 
