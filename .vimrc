@@ -60,6 +60,7 @@ Plug 'lepture/vim-jinja', {'for': 'jinja2'}
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'myhere/vim-nodejs-complete', {'for': 'javascript'}
+Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
 Plug 'oscarh/vimerl', {'for': 'erlang'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'pbrisbin/vim-syntax-shakespeare'
@@ -76,6 +77,7 @@ Plug 'Shougo/neocomplete'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
   " dep: vimproc
+Plug 'SirVer/ultisnips'
 Plug 'slim-template/vim-slim', {'for': 'slim'}
 Plug 'sophacles/vim-bundle-mako', {'for': 'mako'}
 Plug 'thinca/vim-quickrun'
@@ -86,6 +88,7 @@ Plug 'tpope/vim-markdown', {'for': 'markdown'}
 Plug 'tpope/vim-rails', {'for': 'ruby'}
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dispatch'
 Plug 'thinca/vim-guicolorscheme'
 Plug 'thinca/vim-ref'
 Plug 'tyru/open-browser.vim'
