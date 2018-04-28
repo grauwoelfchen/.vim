@@ -1,4 +1,6 @@
 28 Apr 2018 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Add configurations for cs (csharp) filetype
+    (omnisharp-vim, ultisnips, and vim-dispatch)
   * Remove neobundle hooks
   * Deinit neobundle (submodule)
   * Move textobj plugins to vim-plug
