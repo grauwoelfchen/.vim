@@ -1,16 +1,17 @@
 """ rust {{{
 " see also after/filetype/rust.vim
 " }}}
+
 """ plugin {{{
 " vim-racer
-let g:racer_cmd = "$HOME/.cargo/bin/racer"
+let g:racer_cmd = $HOME."/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 augroup vim_racer_mappings
   autocmd!
-  autocmd FileType rust nmap rf <Plug>(rust-def)
-  autocmd FileType rust nmap rs <Plug>(rust-def-split)
-  autocmd FileType rust nmap rv <Plug>(rust-def-vertical)
-  autocmd FileType rust nmap <leader>rd <Plug>(rust-doc)
+  nnoremap rf <Plug>(rust-def)
+  nnoremap rs <Plug>(rust-def-split)
+  nnoremap rv <Plug>(rust-def-vertical)
+  nnoremap <leader>rd <Plug>(rust-doc)
 augroup END
 
 " rust.vim
