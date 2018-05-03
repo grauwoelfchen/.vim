@@ -30,5 +30,9 @@ function! misc#filetype#setup()
     autocmd!
     autocmd BufNewFile,BufRead *.tera setlocal filetype=jinja
   augroup END
+  augroup treat_as_xml
+    autocmd!
+    autocmd BufNewFile,BufRead *.xaml setlocal filetype=xml
+  augroup END
 endfunction
 "}}}
