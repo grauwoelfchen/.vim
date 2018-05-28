@@ -409,9 +409,10 @@ let g:ctrlp_custom_ignore =
 \ '\v[\/]'.
 \ '\.(pyc|egg)|(*.egg-info)|'.
 \ '\.(git|hg|svn|bundle|swap|backup|cache)\/*|'.
-\ '^(build|dist|pkg|release|target)\/*|'.
-\ '^(tmp|log)\/*|'.
-\ '^(env|venv*|node_modules|components|vendor|packages)\/*|'.
+\ '\A(build|dist|pkg|release|target)\/*|'.
+\ '\A(tmp|log)\/*|'.
+\ '\A(env|venv*|node_modules|components|vendor)|'.
+\ '\A([Pp]ackages)\/*|'.
 \ '**\/*\/([Oo]bj|[Dd]ebug|[Bb]uild|[Rr]elease)\/*$'
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
