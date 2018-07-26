@@ -411,8 +411,8 @@ let g:ctrlp_custom_ignore =
 \ '\.(git|hg|svn|bundle|swap|backup|cache)\/*|'.
 \ '(build|dist|pkg|release|target)\/*|'.
 \ '(tmp|log|lib)\/*|'.
-\ '(env|venv*|node_modules|components|vendor|packages)\/*|'.
-\ '**\/*\/([Oo]bj|[Dd]ebug|[Bb]uild|[Rr]elease)\/*$'
+\ '(env|venv*|node_modules|components|vendor)\/*|'.
+\ '**\/*\/([Oo]bj|[Dd]ebug|[Bb]uild|[Rr]elease|[Pp]ackages)\/*$'
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
 "" skk takes <C-j>
