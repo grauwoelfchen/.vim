@@ -409,9 +409,9 @@ let g:ctrlp_custom_ignore =
 \ '\v[\/]'.
 \ '\.(pyc|egg)|(*.egg-info)|'.
 \ '\.(git|hg|svn|bundle|swap|backup|cache)\/*|'.
-\ '^(build|dist|pkg|release|target)\/*|'.
-\ '^(tmp|log)\/*|'.
-\ '^(env|venv*|node_modules|components|vendor|packages)\/*|'.
+\ '(build|dist|pkg|release|target)\/*|'.
+\ '(tmp|log|lib)\/*|'.
+\ '(env|venv*|node_modules|components|vendor|packages)\/*|'.
 \ '**\/*\/([Oo]bj|[Dd]ebug|[Bb]uild|[Rr]elease)\/*$'
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tj'
