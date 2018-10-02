@@ -313,10 +313,9 @@ let g:echodoc_enable_at_startup = 1
 let g:online_thesaurus_map_keys = 0
 nnoremap <Leader>ot :OnlineThesaurusCurrentWord<CR>
 "" open-browser
-augroup open_current_file
-  command!
-  command OpenBrowserCurrent execute "OpenBrowser"
-\ "file:///" . expand('%:p:gs?\\?/?')
+augroup open_browser_current
+  command! OpenBrowserCurrent execute 'OpenBrowser' 'file:///'.
+  \ expand('%:p:gs?\\?/?')
 augroup END
 "" buftabs
 let g:buftabs_only_basename = 1
