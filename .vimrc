@@ -377,6 +377,11 @@ let g:quickrun_config['markdown'] = {
 \  'outputter': 'browser',
 \  'exec': "%c %o %s",
 \}
+let g:quickrun_config['rst'] = {
+\  'command': 'rst2html5.py',
+\  'outputter': 'browser',
+\  'exec': "%c %o %s",
+\}
 let g:quickrun_config['html'] = {
 \  'command': 'cat',
 \  'outputter': 'browser',
