@@ -404,6 +404,7 @@ let g:devdocs_filetype_map = {
 \}
 "" vimwiki
 let g:vimwiki_list = [{'path': $HOME.'/.atelier/opt/.sync/share/wiki'}]
+let g:vimwiki_folding = 'list'
 "" vim-gfm-syntax
 let g:gfm_syntax_highlight_mention = 0
 let g:markdown_fenced_languages = ['python', 'ruby', 'zsh']
