@@ -71,9 +71,12 @@ Plug 'rhysd/clever-f.vim'
 Plug 'rhysd/committia.vim'
 Plug 'rhysd/open-pdf.vim'
 Plug 'rhysd/vim-gfm-syntax', {'for': 'markdown'}
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/neocomplete'
+"Plug 'Shougo/neocomplete'
+Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
   " dep: vimproc
@@ -281,33 +284,15 @@ nmap <M-j> <Plug>(columnjump-forward)
 "" surround
 nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
-"" neocomplete
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#min_keyword_legth = 3
-let g:neocomplete#max_list = 25
-let g:neocomplete#skip_auto_completion_time = 0.4
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplete#sources#dictionary#dictionaries = {
-\  'default': '',
-\  'haskell': $HOME.'/.vim/dict/haskell.dict',
-\  'java': $HOME.'/.vim/dict/java.dict',
-\  'php': $HOME.'/.vim/dict/php.dict',
-\  'ruby': $HOME.'/.vim/dict/ruby.dict',
-\  'scheme': $HOME.'/.vim/dict/scheme.dict',
-\  'vimshell': $HOME.'/.vimshell/command/history',
-\}
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-inoremap <expr><C-g> neocomplete#undo_completion()
-inoremap <expr><C-l> neocomplete#complete_common_string()
-inoremap <expr><C-h> neocomplete#smart_close_popup().'\<C-h>'
-inoremap <expr><C-e> neocomplete#cancel_popup()
-"" echodoc
+"" nvim-yarp
+let g:python3_host_prog = '/usr/bin/python3.6'
+"" deoplete
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+\ 'auto_complete_delay': 200,
+\ 'smart_case': v:true,
+\ 'yarp': v:true,
+\ })
 let g:echodoc_enable_at_startup = 1
 "" vim-online-thesaurus
 let g:online_thesaurus_map_keys = 0
