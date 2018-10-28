@@ -292,7 +292,8 @@ call deoplete#custom#option({
 \ 'auto_complete_delay': 200,
 \ 'smart_case': v:true,
 \ 'yarp': v:true,
-\ })
+\})
+"" echodoc
 let g:echodoc_enable_at_startup = 1
 "" vim-online-thesaurus
 let g:online_thesaurus_map_keys = 0
