@@ -376,7 +376,7 @@ let g:quickrun_config['html'] = {
 "" committia
 let g:committia_hooks = {}
 function! g:committia_hooks.edit_open(info)
-  setlocal spell
+  setlocal spell spelllang=en_gb
   if a:info.vcs ==# 'git' && getline(1) ==# ''
     startinsert
   end
