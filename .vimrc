@@ -56,6 +56,7 @@ Plug 'kana/vim-textobj-function'
   " dep: vim-textobj-user
 Plug 'kien/ctrlp.vim'
 Plug 'kovisoft/slimv', {'for': 'lisp'}
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'lepture/vim-jinja', {'for': 'jinja2'}
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'mattn/emmet-vim', {'for': 'html'}
