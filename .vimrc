@@ -84,6 +84,7 @@ Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
 Plug 'SirVer/ultisnips'
 Plug 'slim-template/vim-slim', {'for': 'slim'}
 Plug 'sophacles/vim-bundle-mako', {'for': 'mako'}
+Plug 'sheerun/vim-polyglot'
 Plug 'thinca/vim-quickrun'
   " dep: vimproc
 Plug 'tpope/vim-fugitive'
