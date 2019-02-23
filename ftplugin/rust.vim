@@ -3,7 +3,8 @@
 " see also after/filetype/rust.vim
 augroup fix_rust_indents
   autocmd!
-  autocmd BufEnter * syntax match spaces /  / conceal cchar= 
+  autocmd BufEnter * syntax match spaces /  / conceal cchar=˙
+  hi! conceal ctermfg=darkgray ctermbg=none cterm=none
 augroup END
 set concealcursor=nvi
 set conceallevel=1
