@@ -33,19 +33,20 @@ let g:go_template_test_file = "hello_world_test.go"
 
 let g:go_auto_type_info = 1
 
-" deoplete
-let g:deoplete#sources#go#package_dot = 1
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class = [
-\  'package',
-\  'func',
-\  'type',
-\  'var',
-\  'const'
-\]
-" augroup set_omni_patterns
-"   autocmd!
-"   autocmd Bufread *.go :call deoplete#custom#option(
-"   \ 'omni_patterns', {'go': '[^. *\t]\.\w*'
-"   \ })
-" augroup END
+"" deoplete
+"let g:deoplete#sources#go#package_dot = 1
+"let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+"let g:deoplete#sources#go#sort_class = [
+"\  'package',
+"\  'func',
+"\  'type',
+"\  'var',
+"\  'const'
+"\]
+
+"augroup omni_patterns
+"  autocmd!
+"  autocmd Bufread *.go :call deoplete#custom#option(
+"  \ 'omni_patterns', {'go': '[^. *\t]\.\w*'
+"  \ })
+"augroup END
