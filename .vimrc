@@ -78,6 +78,7 @@ Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'Shougo/echodoc.vim'
 "Plug 'Shougo/neocomplete'
 Plug 'Shougo/deoplete.nvim'
+Plug 'deoplete-plugins/deoplete-go', {'do': 'make'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
   " dep: vimproc
@@ -287,11 +288,11 @@ nmap <M-j> <Plug>(columnjump-forward)
 nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
 "" nvim-yarp
-let g:python3_host_prog = '/usr/bin/python3.6'
+" let g:python3_host_prog = '/usr/bin/python3.6'
 "" deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
-\ 'auto_complete_delay': 200,
+\ 'auto_complete_delay': 180,
 \ 'smart_case': v:true,
 \ 'yarp': v:true,
 \})
