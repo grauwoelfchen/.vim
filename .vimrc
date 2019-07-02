@@ -297,7 +297,7 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#min_keyword_legth = 3
 let g:neocomplete#max_list = 25
-let g:neocomplete#skip_auto_completion_time = 0.4
+"let g:neocomplete#skip_auto_completion_time = 0.4
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries = {
 \  'default': '',
