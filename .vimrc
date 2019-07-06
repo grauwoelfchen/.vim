@@ -6,6 +6,7 @@ set showcmd
 set autoread
 set ttyfast
 set vb t_vb=
+set belloff+=ctrlg
 set hidden
 set writebackup
 set backup
@@ -56,6 +57,7 @@ Plug 'kana/vim-textobj-function'
   " dep: vim-textobj-user
 Plug 'kien/ctrlp.vim'
 Plug 'kovisoft/slimv', {'for': 'lisp'}
+Plug 'lifepillar/vim-mucomplete'
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'lepture/vim-jinja', {'for': 'jinja2'}
 Plug 'maxbrunsfeld/vim-yankstack'
@@ -76,9 +78,6 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/neocomplete'
-"Plug 'Shougo/deoplete.nvim'
-"Plug 'deoplete-plugins/deoplete-go', {'do': 'make'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
   " dep: vimproc
@@ -188,6 +187,7 @@ set softtabstop=2
 set shiftwidth=2
 set textwidth=0
 "" starting message
+set shortmess+=c
 set shortmess+=I
 syntax enable
 augroup apply_gui_color_scheme
@@ -240,9 +240,8 @@ augroup END
 "" complete
 set completeopt+=menuone
 set completeopt-=preview
-" (deoplete)
 "set completeopt+=noinsert
-"set completeopt+=noselect
+set completeopt+=noselect
 "" echo area
 set noshowmode
 set cmdheight=2
@@ -290,40 +289,15 @@ nmap <M-j> <Plug>(columnjump-forward)
 "" surround
 nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
-"" neocomplete
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#min_keyword_legth = 3
-let g:neocomplete#max_list = 25
-"let g:neocomplete#skip_auto_completion_time = 0.4
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplete#sources#dictionary#dictionaries = {
-\  'default': '',
-\  'haskell': $HOME.'/.vim/dict/haskell.dict',
-\  'java': $HOME.'/.vim/dict/java.dict',
-\  'scheme': $HOME.'/.vim/dict/scheme.dict',
-\  'vimshell': $HOME.'/.vimshell/command/history',
-\}
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-inoremap <expr><C-g> neocomplete#undo_completion()
-inoremap <expr><C-l> neocomplete#complete_common_string()
-inoremap <expr><C-h> neocomplete#smart_close_popup().'\<C-h>'
-inoremap <expr><C-e> neocomplete#cancel_popup()
-" (deoplete)
-"" nvim-yarp
-" let g:python3_host_prog = '/usr/bin/python3.6'
-"" deoplete
-"let g:deoplete#enable_at_startup = 1
-"call deoplete#custom#option({
-"\ 'auto_complete_delay': 180,
-"\ 'smart_case': v:true,
-"\ 'yarp': v:true,
-"\})
+" mucomplete
+imap <Unique> <C-j> <Plug>(MUcompleteFwd)
+imap <Unique> <C-k> <Plug>(MUcompleteBwd)
+inoremap <Silent> <Plug>(MUcompleteFwdKey) <M-j>
+call mucomplete#map('imap', '<M-j>', '<Plug>(MUcompleteCycFwd)')
+inoremap <Silent> <Plug>(MUcompleteBwdKey) <M-h>
+call mucomplete#map('imap', '<M-h>', '<Plug>(MUcompleteCycBwd)')
+let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#completion_delay = 0
 "" echodoc
 let g:echodoc_enable_at_startup = 1
 "" vim-online-thesaurus
@@ -462,6 +436,13 @@ let g:netrw_browse_split = 2
 let g:netrw_altv = 1
 let g:netrw_winsize = ''
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+"" smartinput
+"let g:smartinput_no_default_key_mappings = 1
+call smartinput#define_rule({
+\ 'at': '\s\+\%#',
+\ 'char': '<CR>',
+\ 'input': "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
+\ })
 " }}}
 """ programming {{{
 set autoindent
