@@ -33,6 +33,16 @@ let g:go_template_test_file = "hello_world_test.go"
 
 let g:go_auto_type_info = 1
 
+"" vim-lsp
+if executable('go-langserver')
+  au User lsp_setup call lsp#register_server({
+  \ 'name': 'go-langserver',
+  \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
+  \ 'whitelist': ['go'],
+  \ })
+  autocmd BufWritePre *.go LspDocumentFormatSync
+endif
+
 "" deoplete
 "let g:deoplete#sources#go#package_dot = 1
 "let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
