@@ -67,8 +67,10 @@ Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
 Plug 'oscarh/vimerl', {'for': 'erlang'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'pbrisbin/vim-syntax-shakespeare'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
 Plug 'purescript-contrib/purescript-vim', {'for': 'purescript'}
-Plug 'racer-rust/vim-racer', {'for': 'rust'}
+"Plug 'racer-rust/vim-racer', {'for': 'rust'}
 Plug 'rhysd/devdocs.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'rhysd/committia.vim'

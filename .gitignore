@@ -5,5 +5,5 @@
 doc/tags
 dict/*.dict
 
-autoload/plug.vim
+autoload/plug.vim*
 plugged/*
