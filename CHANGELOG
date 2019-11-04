@@ -1,12 +1,15 @@
-28 Apr 2018 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
+05 Nov 2019 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Enable some lsp servers integration via vim-lsp
+
+28 Apr 2018 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Add configurations for cs (csharp) filetype
     (omnisharp-vim, ultisnips, and vim-dispatch)
   * Remove neobundle hooks
   * Deinit neobundle (submodule)
   * Move textobj plugins to vim-plug
 
-11 Apr 2018 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
+11 Apr 2018 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
   * Replace raw path with $HOME in ftplugin/rust.vim
 
-06 Oct 2017 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
+06 Oct 2017 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
   * Add CHANGELOG ;)
