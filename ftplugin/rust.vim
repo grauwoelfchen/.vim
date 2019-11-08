@@ -13,6 +13,7 @@ set conceallevel=1
 """ plugin {{{
 " vim-lsp
 if executable('rls')
+	" rustup component add rls rust-analysis rust-src
   au User lsp_setup call lsp#register_server({
   \ 'name': 'rls',
   \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
@@ -20,6 +21,9 @@ if executable('rls')
   \ 'whitelist': ['rust'],
   \ })
 endif
+" asyncomplete-racer.vim
+autocmd User asyncomplete_setup call asyncomplete#register_source(
+  \ asyncomplete#sources#racer#get_source_options())
 " vim-racer
 let g:racer_cmd = $HOME."/.cargo/bin/racer"
 let g:racer_experimental_completer = 0

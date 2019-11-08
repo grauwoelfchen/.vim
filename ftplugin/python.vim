@@ -10,11 +10,14 @@ iabbrev  <buffer> iff if:hli
 """ plugin {{{
 "" pep8
 let g:pep8_map = '<F8>'
-"" jedi-vim
-let g:jedi#usages_command = '<leader>U'
-let g:jedi#rename_command = '<leader>R'
-let g:jedi#use_tabs_not_buffers = 1
-setlocal completeopt-=preview
+"" vim-lsp
+if executable('pyls')
+	au User lsp_setup call lsp#register_server({
+	\ 'name': 'pyls',
+	\ 'cmd': {server_info->['pyls']},
+	\ 'whitelist': ['python'],
+	\ })
+endif
 "" ale
 let g:ale_linters = {
 \ 'python': ['pylint']
