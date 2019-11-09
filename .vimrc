@@ -418,6 +418,7 @@ nnoremap <silent> <Leader>gs :<C-u>Gstatus<CR>
 nnoremap <silent> <Leader>gl :<C-u>Glog<CR>
 nnoremap <silent> <Leader>gb :<C-u>Gbrowse<CR>
 nnoremap <silent> <Leader>gg :<C-u>Ggrep<CR>
+setlocal tags=./.git/tags
 " ctrlp
 let g:ctrlp_map = '<F1>'
 let g:ctrlp_custom_ignore =
