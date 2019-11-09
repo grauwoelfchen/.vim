@@ -23,7 +23,6 @@ noremap : ;
 let g:mapleader = ","
 let g:maplocalleader = "\\"
 " }}}
-
 """ bundle {{{
 filetype off
 " vim-plug
@@ -111,7 +110,6 @@ Plug 'yuku-t/vim-ref-ri', {'for': 'ruby'}
 call plug#end()
 filetype plugin indent on
 " }}}
-
 """ search {{{
 set incsearch
 set history=100
@@ -136,7 +134,6 @@ nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 nnoremap <C-t> <Nop>
 nnoremap <C-]><C-]> <C-t>
 " }}}
-
 """ motion {{{
 " esc
 inoremap hl <Esc>
@@ -175,7 +172,6 @@ augroup jump_to_last_pos
   \  | execute 'normal! g`"' | endif
 augroup END
 " }}}
-
 """ appearance {{{
 set showtabline=2
 set tabline=%!misc#tabline#make()
@@ -229,7 +225,6 @@ set splitright
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 " }}}
-
 """ buffer {{{
 " quickfix
 augroup quickfix_open
@@ -250,7 +245,6 @@ set completeopt+=noselect
 set noshowmode
 set cmdheight=2
 " }}}
-
 """ edit {{{
 set wildmenu
 set complete+=k
@@ -272,7 +266,6 @@ noremap <M-d> <C-x>
 vnoremap ' <Esc>`>a'<Esc>`<i'<Esc>`>2l
 vnoremap " <Esc>`>a"<Esc>`<i"<Esc>`>2l
 " }}}
-
 """ encoding {{{
 set encoding=utf-8
 set fileencoding=utf-8
@@ -280,17 +273,14 @@ set fileencodings=utf-8
 set termencoding=utf-8
 set fileformats=unix
 " }}}
-
 """ command & other keymaps {{{
 inoremap <expr> <Leader>ds strftime('%a, %d. %b. %Y')
 inoremap <expr> <Leader>dt strftime('%Y-%m-%dT%H:%M:%S')
 " }}}
-
 """ dict & thesaurus {{{
 set thesaurus+=$HOME/.vim/thesaurus/mthesaur.txt
 inoremap <Leader>lt <C-x><C-t>
 " }}}
-
 """ plugin {{{
 " columnjump
 nmap <M-k> <Plug>(columnjump-backward)
@@ -445,7 +435,6 @@ let g:ref_open = 'split'
 let g:ref_cache_dir = expand('/tmp/vim_ref_cache/')
 nmap <Leader>k <Plug>(ref-keyword)
 " }}}
-
 """ filesystem {{{
 let g:netrw_browse_split = 2
 let g:netrw_altv = 1
@@ -461,7 +450,6 @@ call smartinput#define_rule({
 \ ")<CR><CR>",
 \ })
 " }}}
-
 """ programming {{{
 set autoindent
 set cindent
@@ -480,15 +468,12 @@ augroup END
 " uppercase
 inoremap <C-u> <C-o>viwU<C-o>`]<C-o>a
 " }}}
-
 """ filetype {{{
 call misc#filetype#setup()
 " }}}
-
 """ dict {{{
 call misc#dict#setup()
 " }}}
-
 """ vim {{{
 let g:vim_indent_cont = 0
 nnoremap <Leader>.e :<C-u>edit $MYVIMRC<CR>
