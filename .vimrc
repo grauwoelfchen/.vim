@@ -64,11 +64,11 @@ Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
 Plug 'oscarh/vimerl', {'for': 'erlang'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'pbrisbin/vim-syntax-shakespeare'
+Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'keremc/asyncomplete-racer.vim', {'for': 'rust'}
 Plug 'prabirshrestha/asyncomplete-tags.vim'
-Plug 'prabirshrestha/async.vim'
+Plug 'keremc/asyncomplete-racer.vim', {'for': 'rust'}
 Plug 'prabirshrestha/vim-lsp'
 Plug 'purescript-contrib/purescript-vim', {'for': 'purescript'}
 Plug 'rhysd/devdocs.vim'
@@ -288,6 +288,15 @@ nmap <M-j> <Plug>(columnjump-forward)
 " surround
 nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
+" lsp
+let g:lsp_fold_enabled = 0
+let g:lsp_highlight_references_enabled = 1
+let g:lsp_signs_enabled = 1
+let g:lsp_signs_error = {'text': 'e'}
+let g:lsp_signs_warning = {'text': 'w'}
+let g:lsp_signs_hint = {'text': 'h'}
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
 " asyncomplete.vim
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "<Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "<CR>"
