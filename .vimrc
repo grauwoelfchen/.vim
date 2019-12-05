@@ -297,6 +297,8 @@ let g:lsp_signs_warning = {'text': 'w'}
 let g:lsp_signs_hint = {'text': 'h'}
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
+" (fix)
+let g:lsp_text_edit_enabled = 0
 " asyncomplete.vim
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "<Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "<CR>"
