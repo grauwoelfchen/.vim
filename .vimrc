@@ -37,6 +37,7 @@ Plug 'deton/eblook.vim'
 Plug 'deris/columnjump'
 Plug 'digitaltoad/vim-jade', {'for': 'jade'}
 Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'hsanson/vim-android'
 Plug 'h1mesuke/vim-alignta'
 Plug 'junegunn/fzf', {'do': './install --all'}
