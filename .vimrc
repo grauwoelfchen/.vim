@@ -27,6 +27,7 @@ let g:maplocalleader = "\\"
 filetype off
 " vim-plug
 call plug#begin(expand($HOME.'/.vim/plugged'))
+Plug 'Aliou/bats.vim', {'for': 'bats'}
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'b4winckler/vim-objc', {'for': 'objc'}
 Plug 'beloglazov/vim-online-thesaurus'
@@ -54,6 +55,7 @@ Plug 'kana/vim-textobj-fold'
   " dep: vim-textobj-user
 Plug 'kana/vim-textobj-function'
   " dep: vim-textobj-user
+Plug 'keremc/asyncomplete-racer.vim', {'for': 'rust'}
 Plug 'kien/ctrlp.vim'
 Plug 'kovisoft/slimv', {'for': 'lisp'}
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
@@ -69,7 +71,6 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-tags.vim'
-Plug 'keremc/asyncomplete-racer.vim', {'for': 'rust'}
 Plug 'prabirshrestha/vim-lsp'
 Plug 'purescript-contrib/purescript-vim', {'for': 'purescript'}
 Plug 'rhysd/devdocs.vim'
