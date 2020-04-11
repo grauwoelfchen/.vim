@@ -410,8 +410,19 @@ let g:devdocs_filetype_map = {
 \  '*': ''
 \}
 " vimwiki
-let g:vimwiki_list = [{'path': $HOME.'/.atelier/opt/.sync/share/wiki'}]
+let g:vimwiki_list = [{
+\ 'path': $HOME.'/.atelier/opt/.sync/share/wiki',
+\ 'syntax': 'default', 'ext': '.txt',
+\ 'auto_tags': 1, 'auto_diary_index': 1,
+\}]
 let g:vimwiki_folding = 'list'
+let g:vimwiki_hl_headers = 1
+let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_global_ext = 0
+let g:vimwiki_diary_months = {
+\ 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun',
+\ 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'
+\}
 " vim-gfm-syntax
 let g:gfm_syntax_highlight_mention = 0
 let g:markdown_fenced_languages = ['python', 'ruby', 'zsh']
