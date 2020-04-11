@@ -1,11 +1,12 @@
 """ rust {{{
 " display 4 spaces as 2 spaces
 " see also after/filetype/rust.vim
-augroup fix_rust_indents
-  autocmd!
-  autocmd BufEnter * syntax match spaces /  / conceal cchar=˙
-  hi! conceal ctermfg=darkgray ctermbg=none cterm=none
-augroup END
+" NOTE: this doesn't work well for completions for now :'(
+" augroup fix_rust_indents
+"   autocmd!
+"   autocmd BufEnter * syntax match spaces /  / conceal cchar=˙
+"   hi! conceal ctermfg=darkgray ctermbg=none cterm=none
+" augroup END
 set concealcursor=nvi
 set conceallevel=1
 " }}}
