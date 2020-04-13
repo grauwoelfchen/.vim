@@ -27,7 +27,7 @@ let g:maplocalleader = "\\"
 filetype off
 " vim-plug
 call plug#begin(expand($HOME.'/.vim/plugged'))
-Plug 'Aliou/bats.vim', {'for': 'bats'}
+Plug 'aliou/bats.vim', {'for': 'bats'}
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'b4winckler/vim-objc', {'for': 'objc'}
 Plug 'beloglazov/vim-online-thesaurus'
