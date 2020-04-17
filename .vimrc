@@ -411,12 +411,10 @@ let g:devdocs_filetype_map = {
 \}
 " vimwiki
 let g:vimwiki_list = [{
-\ 'path': $HOME.'/.atelier/opt/.sync/share/wiki',
-\ 'syntax': 'default', 'ext': '.txt',
-\ 'auto_tags': 1, 'auto_diary_index': 1,
+\ 'path': $HOME.'/.atelier/opt/.sync/share/wiki', 'syntax': 'default',
+\ 'ext': '.txt', 'diary_index': 'index', 'auto_tags': 1, 'auto_diary_index': 1,
 \}]
 let g:vimwiki_folding = 'list'
-let g:vimwiki_hl_headers = 1
 let g:vimwiki_hl_cb_checked = 1
 let g:vimwiki_global_ext = 0
 let g:vimwiki_diary_months = {
