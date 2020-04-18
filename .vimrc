@@ -347,11 +347,6 @@ let g:quickrun_config['_'] = {
 \  'runner/vimproc/updatetime': 10,
 \  'split': 'vertical',
 \}
-let g:quickrun_config['ruby.rspec'] = {
-\  'command': 'rspec',
-\  'cmdopt': "--format progress --profile --line_number %{line('.')}",
-\  'exec': "bundle exec %c %o",
-\}
 let g:quickrun_config['lisp'] = {
 \  'command': 'clisp',
 \  'cmdopt': '',
@@ -367,16 +362,11 @@ let g:quickrun_config['racket'] = {
 \  'cmdopt': '-W info',
 \  'exec': "%c %o %s",
 \}
-let g:quickrun_config['coffee'] = {
-\  'command': 'coffee',
-\  'cmdopt': '-cbp',
-\  'exec': "%c %o %s",
-\}
 let g:quickrun_config['asciidoc'] = {
 \  'command': 'asciidoc',
 \  'cmdopt': '--out-file="-" --theme="volnitsky" --backend=html5',
 \  'outputter': 'browser',
-\  'exec': "/usr/bin/python2.7 /usr/bin/asciidoc.py %o %s",
+\  'exec': "/usr/bin/python3.6 /usr/bin/asciidoc.py %o %s",
 \}
 let g:quickrun_config['markdown'] = {
 \  'command': 'redcarpet',
@@ -406,9 +396,7 @@ function! g:committia_hooks.edit_open(info)
 endfunction
 " devdocs
 let g:devdocs_host = 'localhost:9292'
-let g:devdocs_filetype_map = {
-\  '*': ''
-\}
+let g:devdocs_filetype_map = {'*': ''}
 " vimwiki
 let g:vimwiki_list = [{
 \ 'path': $HOME.'/.atelier/opt/.sync/share/wiki', 'syntax': 'default',
