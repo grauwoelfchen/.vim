@@ -1,11 +1,15 @@
 # .vim
 
-Personal `.vimrc`, color schema, scripts and settings.
+This contains my personal `.vimrc`, color schema, scripts and
+settings by using _autoload_ and _ftplugin_ etc.
+
+The main `.vimrc` is kept maintaining under less than 500 lines.
 
 
-## Repository
+## Repositories
 
-https://gitlab.com/grauwoelfchen/DotVim
+* [GitLab.com](https://gitlab.com/grauwoelfchen/DotVim)
+* [GitHub](https://gitlab.com/grauwoelfchen/.vim)
 
 
 ## Setup
@@ -42,7 +46,7 @@ above command.
 
 ```
 .vim
-Copyright (c) 2010-2018 Yasuhiro Asaka
+Copyright (c) 2010-2020 Yasuhiro Яша Asaka
 ```
 
 This is free software:  
