@@ -10,7 +10,7 @@ The main `.vimrc` is kept maintaining under less than 500 lines.
 
 * [GitLab.com](https://gitlab.com/grauwoelfchen/DotVim)
 * [GitHub](https://gitlab.com/grauwoelfchen/.vim)
-
+* [Sourcehut](https://git.sr.ht/~grauwoelfchen/.vim)
 
 ## Setup
 
