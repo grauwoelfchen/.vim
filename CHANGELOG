@@ -1,3 +1,7 @@
+25 Apr 2020 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Update README.md
+	* Add VimwikiLinkHandler function for a custom `vim` schema
+
 05 Nov 2019 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Enable some lsp servers integration via vim-lsp
 
