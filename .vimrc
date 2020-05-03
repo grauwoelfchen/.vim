@@ -83,7 +83,6 @@ Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/vimshell.vim', {'on': 'VimShell'}
   " dep: vimproc
-Plug 'SirVer/ultisnips'
 Plug 'slim-template/vim-slim', {'for': 'slim'}
 Plug 'sophacles/vim-bundle-mako', {'for': 'mako'}
 Plug 'sheerun/vim-polyglot'
