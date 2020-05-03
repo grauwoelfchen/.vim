@@ -40,7 +40,8 @@ hi IncSearch        guifg=red       guibg=#444444  gui=NONE ctermfg=NONE  ctermb
 hi TabLineNumber    guifg=red       guibg=NONE     gui=NONE ctermfg=NONE  ctermbg=NONE     cterm=NONE
 hi TabLineSelNumber guifg=red       guibg=NONE     gui=NONE ctermfg=NONE  ctermbg=NONE     cterm=NONE
 hi TabLine          guifg=gray      guibg=NONE     gui=NONE ctermfg=NONE  ctermbg=NONE     cterm=NONE
-hi TabLineSel       guifg=white     guibg=darkgray gui=NONE ctermfg=NONE  ctermbg=NONE     cterm=NONE
+hi TabLineFill      guifg=NONE      guibg=NONE     gui=NONE ctermfg=NONE  ctermbg=NONE     cterm=NONE
+hi TabLineSel       guifg=#f2f2f2   guibg=#444444  gui=NONE ctermfg=NONE  ctermbg=NONE     cterm=NONE
 
 "" syntax highlighting
 hi Comment     guifg=#7C7C7C guibg=NONE gui=NONE ctermfg=darkgray  ctermbg=NONE cterm=NONE
