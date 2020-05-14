@@ -1,4 +1,5 @@
 25 Apr 2020 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Add `g:dotsync` and `g:python_single_target`
 	* Update README.md
 	* Add VimwikiLinkHandler function for a custom `vim` schema
 
@@ -7,13 +8,13 @@
 
 28 Apr 2018 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Add configurations for cs (csharp) filetype
-    (omnisharp-vim, ultisnips, and vim-dispatch)
-  * Remove neobundle hooks
-  * Deinit neobundle (submodule)
-  * Move textobj plugins to vim-plug
+		(omnisharp-vim, ultisnips, and vim-dispatch)
+	* Remove neobundle hooks
+	* Deinit neobundle (submodule)
+	* Move textobj plugins to vim-plug
 
 11 Apr 2018 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
-  * Replace raw path with $HOME in ftplugin/rust.vim
+	* Replace raw path with $HOME in ftplugin/rust.vim
 
 06 Oct 2017 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
-  * Add CHANGELOG ;)
+	* Add CHANGELOG ;)

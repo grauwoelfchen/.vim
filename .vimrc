@@ -283,6 +283,9 @@ set thesaurus+=$HOME/.vim/thesaurus/mthesaur.txt
 inoremap <Leader>lt <C-x><C-t>
 " }}}
 """ plugin {{{
+" shared
+let g:dotsync = $HOME . '/.atelier/opt/.sync'
+let g:python_single_target = '/usr/bin/python3.6'
 " columnjump
 nmap <M-k> <Plug>(columnjump-backward)
 nmap <M-j> <Plug>(columnjump-forward)
@@ -365,7 +368,7 @@ let g:quickrun_config['asciidoc'] = {
 \  'command': 'asciidoc',
 \  'cmdopt': '--out-file="-" --theme="volnitsky" --backend=html5',
 \  'outputter': 'browser',
-\  'exec': "/usr/bin/python3.6 /usr/bin/asciidoc.py %o %s",
+\  'exec': g:python_single_target . " /usr/bin/asciidoc.py %o %s",
 \}
 let g:quickrun_config['markdown'] = {
 \  'command': 'redcarpet',
@@ -398,8 +401,9 @@ let g:devdocs_host = 'localhost:9292'
 let g:devdocs_filetype_map = {'*': ''}
 " vimwiki
 let g:vimwiki_list = [{
-\ 'path': $HOME.'/.atelier/opt/.sync/share/wiki', 'syntax': 'default',
-\ 'ext': '.txt', 'diary_index': 'index', 'auto_tags': 1, 'auto_diary_index': 1,
+\ 'path': g:dotsync . '/share/wiki', 'syntax': 'default', 'ext': '.txt',
+\ 'diary_rel_path': 'journal', 'diary_index': 'index',
+\ 'diary_header': 'Journal', 'auto_diary_index': 1, 'auto_tags': 1,
 \}]
 " slow :'(
 "let g:vimwiki_folding = 'list'
