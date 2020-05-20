@@ -64,6 +64,7 @@ Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'myhere/vim-nodejs-complete', {'for': 'javascript'}
 Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
+Plug 'ojroques/vim-scrollstatus'
 Plug 'oscarh/vimerl', {'for': 'erlang'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'pbrisbin/vim-syntax-shakespeare'
@@ -210,7 +211,8 @@ set statusline=%=%y\ %n\ %{pathshorten(expand('%f'))}
 set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
 set statusline+=\ %m%r%{fugitive#head()}
 set statusline+=\ %03l,%02v\ %P
-set statusline+=\ %{LinterStatus()}
+set statusline+=\ %{ScrollStatus()}
+set statusline+=\ %{LinterStatus()}%{'\ '}
 set laststatus=2
 set colorcolumn=80
 set cursorline
