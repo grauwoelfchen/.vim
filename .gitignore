@@ -1,9 +1,10 @@
 .netrwhist
 .netrwbook
-.backup
-.swap
-doc/tags
-dict/*.dict
+/.backup
+/.swap
+/.undo
+/doc/tags
+/dict/*.dict
 
 autoload/plug.vim*
 plugged/*

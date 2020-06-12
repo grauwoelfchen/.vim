@@ -10,8 +10,10 @@ set belloff+=ctrlg
 set hidden
 set writebackup
 set backup
+set undofile
 set backupdir=$HOME/.vim/.backup
 set directory=$HOME/.vim/.swap
+set undodir=$HOME/.vim/.undo
 set noimcmdline
 set iminsert=0
 " completion
