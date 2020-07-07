@@ -279,7 +279,7 @@ set termencoding=utf-8
 set fileformats=unix
 " }}}
 """ command & other keymaps {{{
-inoremap <expr> <Leader>ds strftime('%a, %d. %b. %Y')
+inoremap <expr> <Leader>ds strftime('%a %d %b %Y')
 inoremap <expr> <Leader>dt strftime('%Y-%m-%dT%H:%M:%S')
 " }}}
 """ dict & thesaurus {{{
