@@ -1,4 +1,4 @@
-""" eblook {{{
+""" dict {{{
 if exists('g:loaded_dict') && g:loaded_dict
   finish
 endif

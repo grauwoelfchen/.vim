@@ -1,5 +1,4 @@
 """ basic {{{
-" tiny
 if !1 | finish | endif
 set nocompatible
 set showcmd
@@ -223,7 +222,6 @@ augroup highlight_over_length
   \  highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
   autocmd BufEnter * match OverLength /\%81v.\+/
 augroup END
-" split
 set splitbelow
 set splitright
 " resize
@@ -308,7 +306,6 @@ let g:lsp_signs_warning = {'text': 'w'}
 let g:lsp_signs_hint = {'text': 'h'}
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
-" (fix)
 let g:lsp_text_edit_enabled = 0
 " asyncomplete.vim
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "<Tab>"
@@ -412,8 +409,7 @@ let g:vimwiki_list = [{
 \ 'diary_rel_path': 'journal', 'diary_index': 'index',
 \ 'diary_header': 'Journal', 'auto_diary_index': 1, 'auto_tags': 1,
 \}]
-" slow :'(
-"let g:vimwiki_folding = 'list'
+"let g:vimwiki_folding = 'list' ... this make opening file slow :'(
 let g:vimwiki_hl_cb_checked = 1
 let g:vimwiki_global_ext = 0
 let g:vimwiki_diary_months = {
@@ -465,7 +461,6 @@ let g:netrw_altv = 1
 let g:netrw_winsize = ''
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 " smartinput
-"let g:smartinput_no_default_key_mappings = 1
 call smartinput#define_rule({
 \ 'at': '\s\+\%#',
 \ 'char': '<CR>',
@@ -499,11 +494,5 @@ call misc#filetype#setup()
 call misc#dict#setup()
 " }}}
 """ vim {{{
-let g:vim_indent_cont = 0
-nnoremap <Leader>.e :<C-u>edit $MYVIMRC<CR>
-nnoremap <Leader>.s :<C-u>source $MYVIMRC<CR>
-augroup fold_vimrc
-  autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
-augroup END
+call misc#vim#setup()
 " }}}

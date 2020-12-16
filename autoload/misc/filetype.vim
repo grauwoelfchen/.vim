@@ -1,4 +1,4 @@
-""" filetypes {{{
+""" filetype {{{
 if exists('g:loaded_filetype') && g:loaded_filetype
   finish
 endif
