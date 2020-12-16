@@ -281,6 +281,9 @@ set fileformats=unix
 """ command & other keymaps {{{
 inoremap <expr> <Leader>ds strftime('%a %d %b %Y')
 inoremap <expr> <Leader>dt strftime('%Y-%m-%dT%H:%M:%S')
+inoremap <expr> <Leader>dz strftime('%FT%T%z')
+inoremap <expr> <Leader>ts strftime('%I:%M %p')
+inoremap <expr> <Leader>tt strftime('%T')
 " }}}
 """ dict & thesaurus {{{
 set thesaurus+=$HOME/.vim/thesaurus/mthesaur.txt
