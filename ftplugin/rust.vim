@@ -14,7 +14,7 @@ set conceallevel=1
 """ plugin {{{
 " vim-lsp (rls)
 if executable('rls')
-	" rustup component add rls rust-analysis rust-src
+  " rustup component add rls rust-analysis rust-src
   au User lsp_setup call lsp#register_server({
   \ 'name': 'rls',
   \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
@@ -24,7 +24,7 @@ if executable('rls')
 endif
 " vim-lsp (rust-analyzer)
 if executable('rust-analyzer')
-	" rustup component add rls rust-analysis rust-src
+  " see `setup-rust-analyzer` script in gitlab.com/grauwoelfchen/toolbelt
   au User lsp_setup call lsp#register_server({
   \ 'name': 'rust-analyzer',
   \ 'cmd': {server_info->['rust-analyzer']},
