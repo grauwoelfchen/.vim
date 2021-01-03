@@ -39,6 +39,17 @@ above command.
 :PlugInstall
 ```
 
+### Other plugins
+
+Some lsp related plugins or scripts require external binaries and/or source
+code etc. So, setup them.
+
+* `rust-analyzer`, `rust-src`
+* `rls` (rustup)
+* `gopls`, `go-langserver`
+* `typescript-language-server`
+* `pyls`
+
 
 ## License
 
@@ -46,12 +57,12 @@ above command.
 
 ```
 .vim
-Copyright (c) 2010-2020 Yasuhiro Яша Asaka
-```
+Copyright (c) 2010-2021 Yasuhiro Яша Asaka
 
-This is free software:  
+This is free software:
 You can redistribute it and/or modify it under the terms of
 the GUN General Public License as published by the
 Free Software Foundation.
+```
 
 See [LICENSE](LICENSE).
