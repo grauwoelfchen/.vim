@@ -14,6 +14,10 @@ noremap <leader>a :cclose<CR>
 " }}}
 
 """ plugin {{{
+" vim-go
+let g:go_highlight_structs = 0
+let g:go_highlight_interfaces = 0
+let g:go_highlight_operators = 0
 " vim-lsp
 "if executable('go-langserver')
 "  au User lsp_setup call lsp#register_server({
