@@ -346,6 +346,7 @@ let g:ale_statusline_format = ['x %d', '! %d', '♡ ok']
 let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'W'
 " quickrun
+nnoremap <silent> <Leader>r :QuickRun<CR>
 let g:quickrun_config = {}
 let g:quickrun_config['_'] = {
 \  'hook/time/enable': 0,
