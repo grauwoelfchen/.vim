@@ -48,4 +48,7 @@ augroup vim_racer_mappings
 augroup END
 " rust.vim
 let g:autofmt_autosave = 1
+" rust-doc.vim
+" use rustup (this variable is not used)
+let g:rust_doc#downloaded_rust_doc_dir = 'none'
 " }}}
