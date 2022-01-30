@@ -40,6 +40,7 @@ Plug 'deris/columnjump'
 Plug 'digitaltoad/vim-jade', {'for': 'jade'}
 Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+Plug 'grauwoelfchen/vim-margin'
 Plug 'hsanson/vim-android'
 Plug 'h1mesuke/vim-alignta'
 Plug 'junegunn/fzf', {'do': './install --all'}
@@ -298,6 +299,11 @@ nmap <M-j> <Plug>(columnjump-forward)
 " surround
 nmap s  <Plug>Ysurround
 nmap ss <Plug>Yssurround
+" margin
+nmap mk <Plug>(margin-top)
+nmap ml <Plug>(margin-right)
+nmap mj <Plug>(margin-bottom)
+nmap mh <Plug>(margin-left)
 " lsp
 let g:lsp_fold_enabled = 0
 let g:lsp_highlight_references_enabled = 1
