@@ -6,7 +6,7 @@ endif
 let g:loaded_tabline = 1
 
 function! s:tab_label(n)
-  let bufnrs   = tabpagebuflist(a:n)
+  let bufnrs = tabpagebuflist(a:n)
   let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]
   let hl = a:n ==? tabpagenr() ? 'TabLineSel' : 'TabLine'
   let bufc = len(bufnrs)
