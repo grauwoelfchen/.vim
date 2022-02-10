@@ -163,11 +163,6 @@ cnoremap <C-n> <Down>
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <C-d> <Del>
-" quickfix
-nnoremap Q q
-nnoremap q <Nop>
-nnoremap qj :cnext<CR>
-nnoremap qk :cprevious<CR>
 " matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 " last position
@@ -232,16 +227,7 @@ nnoremap <silent> <Leader>- :execute 'resize ' . (winheight(0) * 2/3)<CR>
 " }}}
 """ buffer {{{
 " quickfix
-augroup quickfix_open
-  autocmd!
-  autocmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) | copen | endif
-augroup END
-augroup quickfix_close
-  autocmd!
-  autocmd WinEnter *
-  \  if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix'
-  \  | quit | endif
-augroup END
+call misc#quickfix#setup()
 " complete
 set completeopt+=menuone
 set completeopt+=preview
@@ -292,7 +278,6 @@ inoremap <Leader>lt <C-x><C-t>
 """ plugin {{{
 " shared
 let g:dotsync = $HOME . '/.atelier/opt/.sync'
-let g:python_single_target = '/usr/bin/python3.6'
 " columnjump
 nmap <M-k> <Plug>(columnjump-backward)
 nmap <M-j> <Plug>(columnjump-forward)
@@ -380,7 +365,7 @@ let g:quickrun_config['asciidoc'] = {
 \  'command': 'asciidoc',
 \  'cmdopt': '--out-file="-" --theme="volnitsky" --backend=html5',
 \  'outputter': 'browser',
-\  'exec': g:python_single_target . " /usr/bin/asciidoc.py %o %s",
+\  'exec': "/usr/bin/python3.6 /usr/bin/asciidoc.py %o %s",
 \}
 let g:quickrun_config['markdown'] = {
 \  'command': 'redcarpet',
@@ -443,7 +428,7 @@ let g:ctrlp_custom_ignore =
 \ '\v[\/]('.
 \ '\.(pyc|egg*)|'.
 \ '\.(git|hg|svn|bundle|swap|backup|cache)|'.
-\ '(build|dist|pkg|release|target)\/*|'.
+\ '(build|dist|dst|pkg|release|target)\/*|'.
 \ '(env|venv*|node_modules|components|vendor)\/*|'.
 \ '**\/*\/([Oo]bj|[Dd]ebug|[Bb]uild|[Rr]elease|[Pp]ackages)\/*'.
 \ ')$'
@@ -473,8 +458,7 @@ call smartinput#define_rule({
 \ 'at': '\s\+\%#',
 \ 'char': '<CR>',
 \ 'input': "<C-o>:call setline(".
-\   "'.', substitute(getline('.'), '\\s\\+$', '', '')".
-\ ")<CR><CR>",
+\   "'.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
 \ })
 " }}}
 """ programming {{{
@@ -495,12 +479,8 @@ augroup END
 " uppercase
 inoremap <C-u> <C-o>viwU<C-o>`]<C-o>a
 " }}}
-""" filetype {{{
+""" others {{{
 call misc#filetype#setup()
-" }}}
-""" dict {{{
 call misc#dict#setup()
-" }}}
-""" vim {{{
 call misc#vim#setup()
 " }}}
