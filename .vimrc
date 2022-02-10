@@ -227,8 +227,8 @@ augroup END
 set splitbelow
 set splitright
 " resize
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <Leader>+ :execute 'resize ' . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :execute 'resize ' . (winheight(0) * 2/3)<CR>
 " }}}
 """ buffer {{{
 " quickfix
