@@ -31,7 +31,6 @@ call plug#begin(expand($HOME.'/.vim/plugged'))
 Plug 'aliou/bats.vim', {'for': 'bats'}
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'b4winckler/vim-objc', {'for': 'objc'}
-Plug 'beloglazov/vim-online-thesaurus'
 Plug 'cespare/vim-toml'
 Plug 'dag/vim2hs', {'for': 'haskell'}
 Plug 'danchoi/ri.vim', {'for': 'ruby'}
@@ -314,9 +313,6 @@ au User asyncomplete_setup call
 \ }))
 " echodoc
 let g:echodoc_enable_at_startup = 1
-" vim-online-thesaurus
-let g:online_thesaurus_map_keys = 0
-nnoremap <Leader>ot :OnlineThesaurusCurrentWord<CR>
 " open-browser
 augroup open_browser_current
   command! OpenBrowserCurrent execute 'OpenBrowser' 'file:///'.
