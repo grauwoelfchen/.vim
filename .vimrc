@@ -68,6 +68,7 @@ Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
 Plug 'ojroques/vim-scrollstatus'
 Plug 'oscarh/vimerl', {'for': 'erlang'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'pelodelfuego/vim-swoop'
 Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -443,6 +444,12 @@ let g:ref_use_vimproc = 1
 let g:ref_open = 'split'
 let g:ref_cache_dir = expand('/tmp/vim_ref_cache/')
 nmap <Leader>k <Plug>(ref-keyword)
+" vim-swoop
+let g:swoopUseDefaultKeyMap = 0
+let g:swoopAutoInsertMode = 0
+let g:defaultWinSwoopHeight = 9
+nnoremap <Leader>s :call SwoopMulti()<CR>
+vnoremap <Leader>s :call SwoopMultiSelection()<CR>
 " }}}
 """ filesystem {{{
 let g:netrw_browse_split = 2
