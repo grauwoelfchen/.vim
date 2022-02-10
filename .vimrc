@@ -272,8 +272,10 @@ inoremap <expr> <Leader>ts strftime('%I:%M %p')
 inoremap <expr> <Leader>tt strftime('%T')
 " }}}
 """ dict & thesaurus {{{
+call misc#dict#setup()
 set thesaurus+=$HOME/.vim/thesaurus/mthesaur.txt
-inoremap <Leader>lt <C-x><C-t>
+inoremap <C-z> <C-t>
+inoremap <Leader>h <C-x><C-t>
 " }}}
 """ plugin {{{
 " shared
@@ -484,6 +486,5 @@ inoremap <C-u> <C-o>viwU<C-o>`]<C-o>a
 " }}}
 """ others {{{
 call misc#filetype#setup()
-call misc#dict#setup()
 call misc#vim#setup()
 " }}}
