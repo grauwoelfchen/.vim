@@ -8,9 +8,7 @@ let colors_name = "gr_black"
 "" general colors
 hi Normal       guifg=#fffff0  guibg=black   gui=NONE ctermfg=NONE     ctermbg=NONE     cterm=NONE
 hi NonText      guifg=#070707  guibg=black   gui=NONE ctermfg=black    ctermbg=NONE     cterm=NONE
-hi Cursor       guifg=black    guibg=white   gui=NONE ctermfg=black    ctermbg=white    cterm=reverse
 hi LineNr       guifg=darkgray guibg=black   gui=NONE ctermfg=darkgray ctermbg=NONE     cterm=NONE
-hi CursorLineNr guifg=gray     guibg=NONE    gui=NONE ctermfg=NONE     ctermbg=NONE     cterm=NONE
 hi VertSplit    guifg=#202020  guibg=#202020 gui=NONE ctermfg=darkgray ctermbg=darkgray cterm=NONE
 hi StatusLine   guifg=white    guibg=#444444 gui=NONE ctermfg=gray     ctermbg=darkgray cterm=NONE
 hi StatusLineNC guifg=darkgray guibg=black   gui=NONE ctermfg=gray     ctermbg=darkgray cterm=NONE
@@ -21,16 +19,18 @@ hi SpecialKey   guifg=#808080  guibg=#343434 gui=NONE ctermfg=NONE     ctermbg=N
 hi WildMenu     guifg=green    guibg=yellow  gui=NONE ctermfg=black    ctermbg=yellow   cterm=NONE
 hi PmenuSbar    guifg=black    guibg=white   gui=NONE ctermfg=black    ctermbg=white    cterm=NONE
 hi Ignore       guifg=gray     guibg=black   gui=NONE ctermfg=NONE     ctermbg=NONE     cterm=NONE
-
-"" undercurl color
+"" cursor
+hi Cursor       guifg=NONE guibg=NONE    gui=NONE ctermfg=NONE ctermbg=NONE     cterm=reverse
+hi CursorLineNr guifg=gray guibg=NONE    gui=NONE ctermfg=gray ctermbg=NONE     cterm=NONE
+hi CursorLine   guifg=NONE guibg=#1d1d1d gui=NONE ctermfg=NONE ctermbg=NONE     cterm=underline
+hi CursorColumn guifg=NONE guibg=#1d1d1d gui=NONE ctermfg=NONE ctermbg=darkgray cterm=NONE
+"" error
 hi Error      guifg=NONE  guibg=NONE    gui=undercurl ctermfg=white ctermbg=red cterm=NONE guisp=#FF6C60
 hi ErrorMsg   guifg=white guibg=#FF6C60 gui=bold      ctermfg=white ctermbg=red cterm=NONE
 hi WarningMsg guifg=white guibg=#FF6C60 gui=bold      ctermfg=white ctermbg=red cterm=NONE
 
 "" message displayed in lower left, such as --INSERT--
 hi ModeMsg          guifg=gray      guibg=NONE     gui=bold ctermfg=gray  ctermbg=NONE     cterm=bold
-hi CursorLine       guifg=NONE      guibg=NONE     gui=NONE ctermfg=NONE  ctermbg=NONE     cterm=underline
-hi CursorColumn     guifg=NONE      guibg=NONE     gui=NONE ctermfg=NONE  ctermbg=NONE     cterm=bold
 hi ColorColumn      guifg=red       guibg=NONE     gui=NONE ctermfg=red   ctermbg=NONE     cterm=NONE
 hi MatchParen       guifg=#f6f3e8   guibg=#857b6f  gui=bold ctermfg=white ctermbg=darkgray cterm=NONE
 hi Pmenu            guifg=#f6f3e8   guibg=#444444  gui=NONE ctermfg=NONE  ctermbg=NONE     cterm=NONE
