@@ -212,8 +212,9 @@ set statusline+=\ %03l,%02v\ %P
 set statusline+=\ %{ScrollStatus()}
 set statusline+=\ %{LinterStatus()}%{'\ '}
 set laststatus=2
-set colorcolumn=80
 set cursorline
+set cursorcolumn
+set colorcolumn=80
 augroup highlight_over_length
   autocmd BufEnter *
   \  highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
