@@ -135,3 +135,13 @@ hi link pythonEscape Keyword
 
 "" csharp:link
 hi link csXmlTag Keyword
+
+"" todo.txt
+hi TodoDone      guifg=#685E57 guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi TodoDate      guifg=#d4d4d4 guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi TodoPriorityA guifg=#FF0066 guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi TodoPriorityB guifg=#FF6600 guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi TodoPriorityC guifg=#FF9966 guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi TodoPriorityD guifg=#FFCCCC guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi TodoProject   guifg=#5B89E5 guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+hi TodoContext   guifg=#66CC66 guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
