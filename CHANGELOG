@@ -1,3 +1,6 @@
+14 Feb 2022 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Add todo.txt syntax highlighting support
+
 25 Apr 2020 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Add `g:dotsync` and `g:python_single_target`
 	* Update README.md
