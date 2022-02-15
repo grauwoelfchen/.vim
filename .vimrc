@@ -249,6 +249,7 @@ set clipboard=autoselect
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
 set virtualedit+=block
+nnoremap <Leader>b :buffers<CR>:buffer<Space>
 " inc/dec
 set nrformats=
 noremap <M-a> <C-a>
