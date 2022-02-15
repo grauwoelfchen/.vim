@@ -1,3 +1,6 @@
+16 Feb 2022 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Create ftplugin/help.vim for resolving a mapping conflict
+
 14 Feb 2022 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Add todo.txt syntax highlighting support
 

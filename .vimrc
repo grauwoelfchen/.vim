@@ -137,7 +137,6 @@ set helplang=en
 nnoremap <C-h> :<C-u>help<Space>
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 nnoremap <C-t> <Nop>
-nnoremap <C-]><C-]> <C-t>
 " }}}
 """ motion {{{
 " esc
