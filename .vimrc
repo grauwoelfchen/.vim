@@ -206,7 +206,7 @@ function! LinterStatus() abort
 endfunction
 set statusline=%=%y\ %n\ %{pathshorten(expand('%f'))}
 set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}
-set statusline+=\ %m%r%{fugitive#head()}
+set statusline+=\ %m%r%{FugitiveHead()}
 set statusline+=\ %03l,%02v\ %P
 set statusline+=\ %{ScrollStatus()}
 set statusline+=\ %{LinterStatus()}%{'\ '}

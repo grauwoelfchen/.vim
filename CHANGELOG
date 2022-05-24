@@ -1,3 +1,6 @@
+25 May 2022 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Replace fugitive#head() as FugitiveHead() in .vimrc (deprecated)
+
 16 Feb 2022 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Create ftplugin/help.vim for resolving a mapping conflict
 
