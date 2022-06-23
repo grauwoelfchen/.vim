@@ -1,0 +1,3 @@
+" yaml {{{
+setlocal foldmethod=marker
+" }}}
