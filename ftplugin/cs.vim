@@ -1,9 +1,9 @@
 """ csharp {{{
 setlocal expandtab
-setlocal tabstop=4
-setlocal shiftwidth=4
-setlocal softtabstop=4
 setlocal textwidth=80
+setlocal tabstop=2
+setlocal shiftwidth=2
+setlocal softtabstop=2
 " }}}
 
 """ plugin {{{
@@ -11,10 +11,19 @@ setlocal textwidth=80
 "" dev-lang/mono or use embedded mono into server (set use_mono as 0)
 "" https://github.com/OmniSharp/omnisharp-roslyn
 let g:OmniSharp_server_use_mono = 1
+let g:OmniSharp_server_use_net6 = 1
 "" must be `http` variant
+let g:OmniSharp_server_studio = 0
+let g:OmniSharp_server_path = ""
+let g:OmniSharp_server_use_net6 = 1
+" let g:OmniSharp_server_path = $HOME.'/.cache/omnisharp-vim/'.
+" \ 'omnisharp-roslyn/OmniSharp.exe'
 let g:OmniSharp_server_path = $HOME.'/.atelier/usr/local/lib/'.
 \ 'omnisharp.http-linux-x64/omnisharp/OmniSharp.exe'
+
 let g:OmniSharp_selector_ui = 'ctrlp'
+let g:OmniSharp_diagnostic_showid = 1
+
 setlocal completeopt-=preview
 augroup omnisharp_commands
   autocmd!
