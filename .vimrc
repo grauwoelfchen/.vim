@@ -38,6 +38,7 @@ Plug 'deton/eblook.vim'
 Plug 'deris/columnjump'
 Plug 'digitaltoad/vim-jade', {'for': 'jade'}
 Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
+Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'grauwoelfchen/vim-margin'
 Plug 'hsanson/vim-android'
@@ -337,6 +338,8 @@ nmap <M-n> <Plug>yankstack_substitute_newer_paste
 let g:ale_statusline_format = ['x %d', '! %d', '♡ ok']
 let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'W'
+" editorconfig-vim
+au FileType gitcommit let b:EditorConfig_disable = 1
 " quickrun
 nnoremap <silent> <Leader>r :QuickRun<CR>
 let g:quickrun_config = {}
