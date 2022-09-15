@@ -30,7 +30,16 @@ if executable('rust-analyzer')
   \ 'cmd': {server_info->['rust-analyzer']},
   \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
   \ 'whitelist': ['rust'],
-  \ })
+  \ 'initialization_options': {
+  \   'cargo': {
+  \      'buildScripts': {
+  \        'enable': v:true,
+  \      },
+  \   },
+  \   'procMacro': {
+  \      'enable': v:true,
+  \    },
+  \ }})
 endif
 " asyncomplete-racer.vim
 autocmd User asyncomplete_setup call asyncomplete#register_source(
