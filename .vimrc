@@ -57,7 +57,6 @@ Plug 'kana/vim-textobj-fold'
   " dep: vim-textobj-user
 Plug 'kana/vim-textobj-function'
   " dep: vim-textobj-user
-Plug 'keremc/asyncomplete-racer.vim', {'for': 'rust'}
 Plug 'kien/ctrlp.vim'
 Plug 'kovisoft/slimv', {'for': 'lisp'}
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
@@ -306,6 +305,9 @@ let g:lsp_text_edit_enabled = 0
 " asyncomplete.vim
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "<Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "<CR>"
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_popup_delay = 200
 " asyncomplete-tags.vim
 au User asyncomplete_setup call
 \ asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({

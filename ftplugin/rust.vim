@@ -41,20 +41,6 @@ if executable('rust-analyzer')
   \    },
   \ }})
 endif
-" asyncomplete-racer.vim
-autocmd User asyncomplete_setup call asyncomplete#register_source(
-  \ asyncomplete#sources#racer#get_source_options())
-" vim-racer
-let g:racer_cmd = $HOME."/.cargo/bin/racer"
-let g:racer_experimental_completer = 0
-let g:racer_insert_paren = 0
-augroup vim_racer_mappings
-  autocmd!
-  "nmap gf <Plug>(rust-def)
-  nmap gs <Plug>(rust-def-split)
-  nmap gv <Plug>(rust-def-vertical)
-  nmap gd <Plug>(rust-doc)
-augroup END
 " rust.vim
 let g:autofmt_autosave = 1
 " rust-doc.vim
