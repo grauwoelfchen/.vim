@@ -1,10 +1,16 @@
 """ basic {{{
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set termencoding=utf-8
+scriptencoding utf8
+set fileformats=unix
 if !1 | finish | endif
-set nocompatible
+"set nocompatible
 set showcmd
 set autoread
 set ttyfast
-set vb t_vb=
+set visualbell t_vb=
 set belloff+=ctrlg
 set hidden
 set writebackup
@@ -15,14 +21,12 @@ set directory=$HOME/.vim/.swap
 set undodir=$HOME/.vim/.undo
 set noimcmdline
 set iminsert=0
-" completion
 set wildmode=list:longest
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar.gz,*.tgz,.git/*
 noremap ; :
 noremap : ;
-" leader
-let g:mapleader = ","
-let g:maplocalleader = "\\"
+let g:mapleader = ','
+let g:maplocalleader = '\'
 " }}}
 """ bundle {{{
 filetype off
@@ -260,13 +264,6 @@ noremap <M-d> <C-x>
 vnoremap ' <Esc>`>a'<Esc>`<i'<Esc>`>2l
 vnoremap " <Esc>`>a"<Esc>`<i"<Esc>`>2l
 " }}}
-""" encoding {{{
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
-set termencoding=utf-8
-set fileformats=unix
-" }}}
 """ command & other keymaps {{{
 inoremap <expr> <Leader>ds strftime('%a %d %b %Y')
 inoremap <expr> <Leader>dt strftime('%Y-%m-%dT%H:%M:%S')
@@ -311,15 +308,17 @@ let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
 let g:asyncomplete_popup_delay = 200
 " asyncomplete-tags.vim
-au User asyncomplete_setup call
-\ asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
-\ 'name': 'tags',
-\ 'whitelist': ['c'],
-\ 'completor': function('asyncomplete#sources#tags#completor'),
-\ 'config': {
-\    'max_file_size': 50000000,
-\  },
-\ }))
+augroup asyncomplete_setup
+  autocmd User asyncomplete_setup call
+  \ asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+  \ 'name': 'tags',
+  \ 'whitelist': ['c'],
+  \ 'completor': function('asyncomplete#sources#tags#completor'),
+  \ 'config': {
+  \    'max_file_size': 50000000,
+  \  },
+  \ }))
+augroup END
 " echodoc
 let g:echodoc_enable_at_startup = 1
 " open-browser
@@ -343,7 +342,9 @@ let g:ale_statusline_format = ['x %d', '! %d', '♡ ok']
 let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'W'
 " editorconfig-vim
-au FileType gitcommit let b:EditorConfig_disable = 1
+augroup editorconfig_vim
+  autocmd FileType gitcommit let b:EditorConfig_disable = 1
+augroup END
 " quickrun
 nnoremap <silent> <Leader>r :QuickRun<CR>
 let g:quickrun_config = {}
@@ -356,39 +357,39 @@ let g:quickrun_config['_'] = {
 let g:quickrun_config['lisp'] = {
 \  'command': 'clisp',
 \  'cmdopt': '',
-\  'exec': "%c %o %s",
+\  'exec': '%c %o %s',
 \}
 let g:quickrun_config['scheme'] = {
 \  'command': 'scheme',
 \  'cmdopt': '--quiet --nocore',
-\  'exec': "%c %o < %s",
+\  'exec': '%c %o < %s',
 \}
 let g:quickrun_config['racket'] = {
 \  'command': 'racket',
 \  'cmdopt': '-W info',
-\  'exec': "%c %o %s",
+\  'exec': '%c %o %s',
 \}
 let g:quickrun_config['asciidoc'] = {
 \  'command': 'asciidoc',
 \  'cmdopt': '--out-file="-" --theme="volnitsky" --backend=html5',
 \  'outputter': 'browser',
-\  'exec': "/usr/bin/python3.6 /usr/bin/asciidoc.py %o %s",
+\  'exec': '/usr/bin/python3.6 /usr/bin/asciidoc.py %o %s',
 \}
 let g:quickrun_config['markdown'] = {
 \  'command': 'redcarpet',
 \  'cmdopt': '--parse-fenced-code-blocks --parse-tables --parse-autolink',
 \  'outputter': 'browser',
-\  'exec': "%c %o %s",
+\  'exec': '%c %o %s',
 \}
 let g:quickrun_config['rst'] = {
 \  'command': 'rst2html5.py',
 \  'outputter': 'browser',
-\  'exec': "%c %o %s",
+\  'exec': '%c %o %s',
 \}
 let g:quickrun_config['html'] = {
 \  'command': 'cat',
 \  'outputter': 'browser',
-\  'exec': "%c %s",
+\  'exec': '%c %s',
 \}
 " committia
 let g:committia_hooks = {}
@@ -470,7 +471,7 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 call smartinput#define_rule({
 \ 'at': '\s\+\%#',
 \ 'char': '<CR>',
-\ 'input': "<C-o>:call setline(".
+\ 'input': '<C-o>:call setline('.
 \   "'.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
 \ })
 " }}}

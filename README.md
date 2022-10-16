@@ -5,6 +5,9 @@ settings by using _autoload_ and _ftplugin_ etc.
 
 The main `.vimrc` is kept maintaining under less than 500 lines.
 
+```zsh
+% make lint
+```
 
 ## Repositories
 
