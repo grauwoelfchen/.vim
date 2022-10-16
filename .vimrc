@@ -44,6 +44,7 @@ Plug 'grauwoelfchen/vim-margin'
 Plug 'hsanson/vim-android'
 Plug 'h1mesuke/vim-alignta'
 Plug 'junegunn/fzf', {'do': './install --all'}
+Plug 'junegunn/vader.vim', {'for': 'vim'}
 Plug 'kana/vim-gf-diff'
 Plug 'kana/vim-gf-user'
 Plug 'kana/vim-smartinput'
