@@ -104,6 +104,7 @@ Plug 'thinca/vim-guicolorscheme'
 Plug 'thinca/vim-ref'
 Plug 'tyru/open-browser.vim'
 Plug 'vimwiki/vimwiki'
+Plug 'Vimjas/vint', {'for': 'vim'}
 Plug 'vim-latex/vim-latex', {'for': 'latex'}
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
 Plug 'vim-scripts/buftabs'
