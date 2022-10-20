@@ -51,5 +51,7 @@ let g:autofmt_autosave = 1
 " use rustup (this variable is not used)
 let g:rust_doc#downloaded_rust_doc_dir = 'none'
 " ale
-let g:ale_linters = {'rust': ['analyzer']}
+let g:ale_linters = {
+\ 'rust': ['analyzer'],
+\ }
 " }}}

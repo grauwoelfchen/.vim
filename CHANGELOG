@@ -1,6 +1,7 @@
 21 Oct 2022 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	Update settings for Rust
 
+	* .vimrc: Add rhysd/vim-lsp-ale
 	* .vimrc: Rename w0rp/ale to dense-analysis/ale
 	* ftplugin/rust.vim: Add augroup for autocmd(s)
 	* ftplugin/rust.vim: Enable setup only for rust-analyzer (disable the

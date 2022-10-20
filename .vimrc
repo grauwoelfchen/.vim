@@ -87,6 +87,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'rhysd/committia.vim'
 Plug 'rhysd/open-pdf.vim'
 Plug 'rhysd/vim-gfm-syntax', {'for': 'markdown'}
+Plug 'rhysd/vim-lsp-ale'
 Plug 'rhysd/rust-doc.vim', {'for': 'rust'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'Shougo/echodoc.vim'
