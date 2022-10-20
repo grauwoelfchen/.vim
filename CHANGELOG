@@ -1,3 +1,11 @@
+21 Oct 2022 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	Update settings for Rust
+
+	* .vimrc: Rename w0rp/ale to dense-analysis/ale
+	* ftplugin/rust.vim: Add augroup for autocmd(s)
+	* ftplugin/rust.vim: Enable setup only for rust-analyzer (disable the
+		one for rls)
+
 25 May 2022 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Replace fugitive#head() as FugitiveHead() in .vimrc (deprecated)
 
