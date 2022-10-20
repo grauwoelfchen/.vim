@@ -1,4 +1,8 @@
 21 Oct 2022 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	Update LSP settings (Change keybindings etc.)
+
+	* autload/misc/lsp.vim: Create a misc function for lps settings
+
 	Update settings for Go
 
 	* ftplugin/go.vim: Specify linters for ale (g:ale_linters)

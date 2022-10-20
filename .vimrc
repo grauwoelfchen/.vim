@@ -137,8 +137,8 @@ nnoremap N Nzzzv
 " grep
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nH
-nnoremap <Leader>g :silent execute "grep! -R " .
-\ shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
+nnoremap <Leader>p :silent execute 'grep! -R ' .
+\ shellescape(expand("<cWORD>")) . ' .'<cr>:copen<cr>
 " help
 set helplang=en
 nnoremap <C-h> :<C-u>help<Space>
@@ -236,9 +236,7 @@ nnoremap <silent> <Leader>- :execute 'resize ' . (winheight(0) * 2/3)<CR>
 " quickfix
 call misc#quickfix#setup()
 " complete
-set completeopt+=menuone
-set completeopt+=preview
-set completeopt+=noselect
+set completeopt=menuone,noinsert,noselect,preview
 " echo area
 set noshowmode
 set cmdheight=2
@@ -292,16 +290,6 @@ nmap mk <Plug>(margin-top)
 nmap ml <Plug>(margin-right)
 nmap mj <Plug>(margin-bottom)
 nmap mh <Plug>(margin-left)
-" lsp
-let g:lsp_fold_enabled = 0
-let g:lsp_highlight_references_enabled = 1
-let g:lsp_signs_enabled = 1
-let g:lsp_signs_error = {'text': 'e'}
-let g:lsp_signs_warning = {'text': 'w'}
-let g:lsp_signs_hint = {'text': 'h'}
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_text_edit_enabled = 0
 " asyncomplete.vim
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "<Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "<CR>"
@@ -425,11 +413,11 @@ nnoremap <Leader>wn :<C-u>VimwikiDiaryNextDay<CR>
 let g:gfm_syntax_highlight_mention = 0
 let g:markdown_fenced_languages = ['python', 'ruby', 'zsh']
 " fugitive
-nnoremap <silent> <Leader>gd :<C-u>Gdiff<CR>
-nnoremap <silent> <Leader>gs :<C-u>Gstatus<CR>
-nnoremap <silent> <Leader>gl :<C-u>Glog<CR>
-nnoremap <silent> <Leader>gb :<C-u>Gbrowse<CR>
-nnoremap <silent> <Leader>gg :<C-u>Ggrep<CR>
+nnoremap <silent> <Leader>fd :<C-u>Gdiff<CR>
+nnoremap <silent> <Leader>fs :<C-u>Gstatus<CR>
+nnoremap <silent> <Leader>fl :<C-u>Glog<CR>
+nnoremap <silent> <Leader>fb :<C-u>Gbrowse<CR>
+nnoremap <silent> <Leader>fg :<C-u>Ggrep<CR>
 setlocal tags=./.git/tags
 " ctrlp
 let g:ctrlp_map = '<F1>'
@@ -496,5 +484,6 @@ inoremap <C-u> <C-o>viwU<C-o>`]<C-o>a
 " }}}
 """ others {{{
 call misc#filetype#setup()
+call misc#lsp#setup()
 call misc#vim#setup()
 " }}}
