@@ -1,4 +1,8 @@
 21 Oct 2022 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	Update settings for Go
+
+	* ftplugin/go.vim: Specify linters for ale (g:ale_linters)
+
 	Update settings for Rust
 
 	* .vimrc: Add rhysd/vim-lsp-ale
