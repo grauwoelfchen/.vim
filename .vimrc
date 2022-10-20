@@ -38,6 +38,7 @@ Plug 'b4winckler/vim-objc', {'for': 'objc'}
 Plug 'cespare/vim-toml'
 Plug 'dag/vim2hs', {'for': 'haskell'}
 Plug 'danchoi/ri.vim', {'for': 'ruby'}
+Plug 'dense-analysis/ale'
 Plug 'deton/eblook.vim'
 Plug 'deris/columnjump'
 Plug 'digitaltoad/vim-jade', {'for': 'jade'}
@@ -116,7 +117,6 @@ Plug 'vim-scripts/pep8', {'for': 'python'}
 Plug 'vim-scripts/sudo.vim'
 Plug 'wavded/vim-stylus', {'for': 'stylus'}
 Plug 'wlangstroth/vim-racket', {'for': 'racket'}
-Plug 'w0rp/ale'
 Plug 'yuku-t/vim-ref-ri', {'for': 'ruby'}
 call plug#end()
 filetype plugin indent on
