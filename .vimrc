@@ -183,7 +183,7 @@ set showtabline=2
 set tabline=%!misc#tabline#make()
 set number
 set t_Co=256
-set listchars=tab:^_,trail:_
+set listchars=eol:¬,tab:≯\ ,trail:_
 set showmatch
 set matchtime=2
 set wrap
