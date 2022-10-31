@@ -6,7 +6,7 @@ set termencoding=utf-8
 scriptencoding utf8
 set fileformats=unix
 if !1 | finish | endif
-"set nocompatible
+set nocompatible
 set showcmd
 set autoread
 set ttyfast

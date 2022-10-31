@@ -23,6 +23,7 @@ The main `.vimrc` is kept maintaining under less than 500 lines.
 % cd .vim
 % mkdir .{backup,swap}
 % ln -s ~/.vim/.vimrc ~/.vimrc
+% ln -s ~/.vim/.vintrc.yaml ~/.vintrc.yaml
 ```
 
 ### vim-plug
