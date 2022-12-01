@@ -1,5 +1,6 @@
 """ go {{{
 set nolist
+" In addition to `$HOME/.go/bin/`
 set runtimepath+=$GOPATH/src/golang.org/x/lint/misc/vim
 set autowrite
 map <C-n> :cnext<CR>
@@ -18,6 +19,7 @@ noremap <leader>a :cclose<CR>
 let g:go_highlight_structs = 0
 let g:go_highlight_interfaces = 0
 let g:go_highlight_operators = 0
+let g:go_metalinter_command = 'golangci-lint'
 " vim-lsp
 "if executable('go-langserver')
 "  augroup lsp_setup_go_langserver
@@ -40,7 +42,8 @@ if executable('gopls')
 	augroup END
 endif
 " ale
+let g:ale_linters_explicit = 1
 let g:ale_linters = {
-\ 'go': ['golint'],
+\ 'go': ['golangci-lint'],
 \ }
 " }}}
