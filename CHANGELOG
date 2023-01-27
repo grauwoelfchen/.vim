@@ -1,3 +1,8 @@
+28 Jan 2023 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	Update LSP settings for Java
+
+	* ftplugin/java.vim: Update a path to Jar in packages from eclipse
+
 21 Oct 2022 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	Update LSP settings (Change keybindings etc.)
 
