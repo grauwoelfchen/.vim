@@ -12,11 +12,14 @@ iabbrev  <buffer> iff if:hli
 let g:pep8_map = '<F8>'
 "" vim-lsp
 if executable('pyls')
-	au User lsp_setup call lsp#register_server({
-	\ 'name': 'pyls',
-	\ 'cmd': {server_info->['pyls']},
-	\ 'whitelist': ['python'],
-	\ })
+  augroup lsp_setup_python
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+    \ 'name': 'pyls',
+    \ 'cmd': {server_info->['pyls']},
+    \ 'whitelist': ['python'],
+    \ })
+  augroup END
 endif
 "" ale
 let g:ale_linters = {

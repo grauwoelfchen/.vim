@@ -2,6 +2,7 @@
 set tags=$HOME/.ctags/java
 setlocal foldmethod=syntax
 " }}}
+
 """ plugin {{{
 let g:gradle_set_classpath = 1
 let g:gradle_path = $GRADLE_PATH

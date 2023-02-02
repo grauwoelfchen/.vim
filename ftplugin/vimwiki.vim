@@ -13,7 +13,7 @@ function! VimwikiLinkHandler(link)
     return 0
   endif
   let link_info = vimwiki#base#resolve_link(link)
-  if link_info.filename == ''
+  if link_info.filename ==# ''
     echomsg 'Vimwiki Error: Unable to resolve the link'
     return 0
   else

@@ -23,18 +23,21 @@ vnoremap ,pp :call PhpDocRange()<CR>
 " vim-lsp
 if executable('intelephense')
   " # update `PATH_TO_GLOBAL_NODE_MODULES` and `PATH_TO_TEMP_FOLDER`
-	" npm root -g (
-  au User lsp_setup call lsp#register_server({
-  \ 'name': 'intelephense',
-  \ 'cmd': {server_info->[
-  \    'node',
-  \     expand('PATH_TO_GLOBAL_NODE_MODULES/intelephense/lib/intelephense.js'),
-  \    '--stdio'
-  \ ]},
-  \ 'initialization_options': {
-  \    "storagePath": "PATH_TO_TEMP_FOLDER/intelephense"
-  \ },
-  \ 'whitelist': ['php'],
-  \ })
+  " npm root -g (
+  augroup lsp_setup_php
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+    \ 'name': 'intelephense',
+    \ 'cmd': {server_info->[
+    \    'node',
+    \     expand('PATH_TO_GLOBAL_NODE_MODULES/intelephense/lib/intelephense.js'),
+    \    '--stdio'
+    \ ]},
+    \ 'initialization_options': {
+    \    "storagePath": "PATH_TO_TEMP_FOLDER/intelephense"
+    \ },
+    \ 'whitelist': ['php'],
+    \ })
+  augroup END
 endif
 " }}}

@@ -23,6 +23,7 @@ let g:go_metalinter_command = 'golangci-lint'
 " vim-lsp
 "if executable('go-langserver')
 "  augroup lsp_setup_go_langserver
+"    autocmd!
 "    autocmd User lsp_setup call lsp#register_server({
 "    \ 'name': 'go-langserver',
 "    \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
@@ -32,14 +33,15 @@ let g:go_metalinter_command = 'golangci-lint'
 "  augroup END
 "endif
 if executable('gopls')
-	augroup lsp_setup_gopls
-		autocmd User lsp_setup call lsp#register_server({
-			\ 'name': 'gopls',
-			\ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-			\ 'whitelist': ['go'],
-			\ })
-		autocmd BufWritePre *.go LspDocumentFormatSync
-	augroup END
+  augroup lsp_setup_gopls
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+      \ 'name': 'gopls',
+      \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+      \ 'whitelist': ['go'],
+      \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
+  augroup END
 endif
 " ale
 let g:ale_linters_explicit = 1
