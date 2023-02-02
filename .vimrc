@@ -426,6 +426,7 @@ let g:ctrlp_custom_ignore =
 \ '\.(git|hg|svn|bundle|swap|backup|cache)|'.
 \ '(build|dist|dst|pkg|release|target)\/*|'.
 \ '(env|venv*|node_modules|components|vendor)\/*|'.
+\ '(.gradle|.metadata|jdt.ls-java-project)|'.
 \ '**\/*\/([Oo]bj|[Dd]ebug|[Bb]uild|[Rr]elease|[Pp]ackages)\/*'.
 \ ')$'
 let g:ctrlp_open_new_file = 't'
