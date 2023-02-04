@@ -354,7 +354,7 @@ let g:quickrun_config['scheme'] = {
 \}
 let g:quickrun_config['racket'] = {
 \  'command': 'racket',
-\  'cmdopt': '-W info',
+\  'cmdopt': '-f',
 \  'exec': '%c %o %s',
 \}
 let g:quickrun_config['asciidoc'] = {
