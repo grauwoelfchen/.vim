@@ -443,6 +443,7 @@ let g:ctrlp_prompt_mappings = {
 let g:ref_use_vimproc = 1
 let g:ref_open = 'split'
 let g:ref_cache_dir = expand('/tmp/vim_ref_cache/')
+let g:ref_no_default_key_mappings = 1
 nmap <Leader>k <Plug>(ref-keyword)
 " vim-swoop
 let g:swoopUseDefaultKeyMap = 0
