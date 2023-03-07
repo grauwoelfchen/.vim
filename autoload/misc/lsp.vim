@@ -11,13 +11,19 @@ function! s:on_lsp_buffer_enabled() abort
   " \ foldexpr=lsp#ui#vim#folding#foldexpr()
   " \ foldtext=lsp#ui#vim#folding#foldtext()
   let g:lsp_highlight_references_enabled = 1
+  let g:lsp_document_highlight_enabled = 1
+  let g:lsp_text_edit_enabled = 0
   let g:lsp_signs_enabled = 1
   let g:lsp_signs_error = {'text': 'e'}
   let g:lsp_signs_warning = {'text': 'w'}
   let g:lsp_signs_hint = {'text': 'h'}
+  let g:lsp_signcolumn = 1
   let g:lsp_diagnostics_enabled = 1
   let g:lsp_diagnostics_echo_cursor = 1
-  let g:lsp_text_edit_enabled = 0
+  let g:lsp_diagnostics_signs_enabled = 0
+  let g:lsp_diagnostics_virtual_text_enabled = 0
+  let g:lsp_diagnostics_highlights_insert_mode_enabled = 0
+  let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 0
   setlocal omnifunc=lsp#complete
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
   nmap <buffer> <Leader>gd <Plug>(lsp-definition)
