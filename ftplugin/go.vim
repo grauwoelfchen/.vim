@@ -16,6 +16,8 @@ noremap <leader>a :cclose<CR>
 
 """ plugin {{{
 " vim-go
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
 let g:go_highlight_structs = 0
 let g:go_highlight_interfaces = 0
 let g:go_highlight_operators = 0
@@ -38,7 +40,11 @@ if executable('gopls')
     autocmd User lsp_setup call lsp#register_server({
       \ 'name': 'gopls',
       \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-      \ 'whitelist': ['go'],
+      \ 'initialization_options': {
+      \    'buildFlags': ['-tags', '-tags=integration'],
+      \    'matcher': 'fuzzy',
+      \  },
+      \ 'allowlist': ['go'],
       \ })
     autocmd BufWritePre *.go LspDocumentFormatSync
   augroup END

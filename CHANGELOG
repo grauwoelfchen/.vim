@@ -1,4 +1,5 @@
 07 Mar 2023 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	Update Go LSP settings (gopls)
 	Update LSP settings for diagnostics virtual texts
 
 09 Feb 2023 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
