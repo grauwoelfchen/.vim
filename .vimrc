@@ -45,7 +45,7 @@ Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'grauwoelfchen/vim-margin'
-Plug 'grauwoelfchen/vim-q'
+Plug 'grauwoelfchen/vim-q', {'for': 'q'}
 Plug 'hsanson/vim-android'
 Plug 'h1mesuke/vim-alignta'
 Plug 'hrsh7th/vim-vsnip'
@@ -280,7 +280,7 @@ inoremap <Leader>h <C-x><C-t>
 " }}}
 """ plugin {{{
 " shared
-let g:dotsync = $HOME . '/.atelier/opt/.sync'
+let g:dotsync = $HOME.'/.atelier/opt/.sync'
 " columnjump
 nmap <M-k> <Plug>(columnjump-backward)
 nmap <M-j> <Plug>(columnjump-forward)
@@ -381,6 +381,11 @@ let g:quickrun_config['html'] = {
 \  'command': 'cat',
 \  'outputter': 'browser',
 \  'exec': '%c %s',
+\}
+let g:quickrun_config['q'] = {
+\  'command': $HOME.'/.atelier/bin/q',
+\  'cmdopt': '',
+\  'exec': '%c %o %s',
 \}
 " committia
 let g:committia_hooks = {}
