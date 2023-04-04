@@ -45,6 +45,7 @@ Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'grauwoelfchen/vim-margin'
+Plug 'grauwoelfchen/vim-q'
 Plug 'hsanson/vim-android'
 Plug 'h1mesuke/vim-alignta'
 Plug 'hrsh7th/vim-vsnip'
