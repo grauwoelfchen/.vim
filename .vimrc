@@ -47,6 +47,8 @@ Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'grauwoelfchen/vim-margin'
 Plug 'hsanson/vim-android'
 Plug 'h1mesuke/vim-alignta'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'junegunn/fzf', {'do': './install --all'}
 Plug 'junegunn/vader.vim', {'for': 'vim'}
 Plug 'kana/vim-gf-diff'
