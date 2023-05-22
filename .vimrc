@@ -80,6 +80,8 @@ Plug 'pelodelfuego/vim-swoop'
 Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-tags.vim'
 Plug 'prabirshrestha/vim-lsp'
@@ -292,24 +294,6 @@ nmap mk <Plug>(margin-top)
 nmap ml <Plug>(margin-right)
 nmap mj <Plug>(margin-bottom)
 nmap mh <Plug>(margin-left)
-" asyncomplete.vim
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "<Tab>"
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "<CR>"
-let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_auto_completeopt = 0
-let g:asyncomplete_popup_delay = 200
-" asyncomplete-tags.vim
-augroup asyncomplete_setup
-  autocmd User asyncomplete_setup call
-  \ asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
-  \ 'name': 'tags',
-  \ 'whitelist': ['c'],
-  \ 'completor': function('asyncomplete#sources#tags#completor'),
-  \ 'config': {
-  \    'max_file_size': 50000000,
-  \  },
-  \ }))
-augroup END
 " echodoc
 let g:echodoc_enable_at_startup = 1
 " open-browser
@@ -492,6 +476,7 @@ augroup END
 inoremap <C-u> <C-o>viwU<C-o>`]<C-o>a
 " }}}
 """ others {{{
+call misc#complete#setup()
 call misc#filetype#setup()
 call misc#lsp#setup()
 call misc#vim#setup()

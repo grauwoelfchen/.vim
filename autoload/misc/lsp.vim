@@ -24,7 +24,13 @@ function! s:on_lsp_buffer_enabled() abort
   let g:lsp_diagnostics_virtual_text_enabled = 0
   let g:lsp_diagnostics_highlights_insert_mode_enabled = 0
   let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 0
+  let g:lsp_format_sync_timeout = 900
+  augroup lsp_documet_format_sync
+    autocmd!
+    autocmd BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+  augroup END
   setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
   nmap <buffer> <Leader>gd <Plug>(lsp-definition)
   nmap <buffer> <Leader>gi <Plug>(lsp-implementation)
@@ -32,6 +38,8 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <Leader>gs <Plug>(lsp-workspace-symbol-search)
   inoremap <buffer> <expr><C-d> lsp#scroll(+3)
   inoremap <buffer> <expr><C-f> lsp#scroll(-3)
+  nnoremap <buffer> <expr><C-d> lsp#scroll(+3)
+  nnoremap <buffer> <expr><C-f> lsp#scroll(-3)
 endfunction
 
 function! misc#lsp#setup()
