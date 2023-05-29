@@ -32,7 +32,7 @@ if executable('rust-analyzer')
     \ 'name': 'rust-analyzer',
     \ 'cmd': {server_info->['rust-analyzer']},
     \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
-    \ 'whitelist': ['rust'],
+    \ 'allowlist': ['rust'],
     \ 'initialization_options': {
     \   'cargo': {
     \      'buildScripts': {
@@ -46,7 +46,7 @@ if executable('rust-analyzer')
   augroup END
 endif
 " rust.vim
-let g:autofmt_autosave = 1
+let g:autofmt_autosave = 0
 " rust-doc.vim
 " use rustup (this variable is not used)
 let g:rust_doc#downloaded_rust_doc_dir = 'none'
