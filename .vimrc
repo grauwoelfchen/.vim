@@ -43,6 +43,7 @@ Plug 'deris/columnjump'
 Plug 'digitaltoad/vim-jade', {'for': 'jade'}
 Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
 Plug 'editorconfig/editorconfig-vim'
+Plug 'elm-tooling/elm-vim'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'grauwoelfchen/vim-margin'
 Plug 'grauwoelfchen/vim-q', {'for': 'q'}
