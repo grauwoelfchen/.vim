@@ -38,8 +38,6 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <Leader>gs <Plug>(lsp-workspace-symbol-search)
   inoremap <buffer> <expr><C-d> lsp#scroll(+3)
   inoremap <buffer> <expr><C-f> lsp#scroll(-3)
-  nnoremap <buffer> <expr><C-d> lsp#scroll(+3)
-  nnoremap <buffer> <expr><C-f> lsp#scroll(-3)
 endfunction
 
 function! misc#lsp#setup()
