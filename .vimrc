@@ -387,8 +387,8 @@ let g:devdocs_host = 'localhost:9292'
 let g:devdocs_filetype_map = {'*': ''}
 " vimwiki
 let g:vimwiki_list = [{
-\ 'path': g:dotsync . '/share/wiki', 'syntax': 'default', 'ext': '.txt',
-\ 'diary_rel_path': 'journal/logbook', 'diary_index': 'index',
+\ 'path': g:dotsync . '/share/journal', 'syntax': 'default', 'ext': '.txt',
+\ 'diary_rel_path': 'src/logbook', 'diary_index': 'index',
 \ 'diary_header': 'Logbook', 'auto_diary_index': 1, 'auto_tags': 1,
 \}]
 "let g:vimwiki_folding = 'list' ... this make opening file slow :'(
