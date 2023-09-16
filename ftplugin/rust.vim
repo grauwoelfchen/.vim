@@ -1,6 +1,7 @@
+scriptencoding utf-8
 """ rust {{{
 " display 4 spaces as 2 spaces
-" see also after/filetype/rust.vim
+" see also after/ftplugin/rust.vim
 " NOTE: this doesn't work well for completions for now :'(
 " augroup fix_rust_indents
 "   autocmd!
@@ -35,18 +36,28 @@ if executable('rust-analyzer')
     \ 'allowlist': ['rust'],
     \ 'initialization_options': {
     \   'cargo': {
-    \      'buildScripts': {
-    \        'enable': v:true,
-    \      },
+    \     'buildScripts': {
+    \       'enable': v:true,
+    \     },
     \   },
     \   'procMacro': {
-    \      'enable': v:true,
-    \    },
+    \     'enable': v:true,
+    \   },
+    \   'rustfmt' : {
+    \     'extraArgs': [],
+    \     'overrideCommand' : v:null,
+    \     'rangeFormatting': {
+    \       'enable': v:true,
+    \     },
+    \   },
     \ }})
   augroup END
 endif
 " rust.vim
-let g:autofmt_autosave = 0
+let g:rustfmt_autosave = 0
+let g:rustfmt_autosave_if_config_present = 0
+let g:rustfmt_emit_files = 0
+let g:rustfmt_fail_silently = 0
 " rust-doc.vim
 " use rustup (this variable is not used)
 let g:rust_doc#downloaded_rust_doc_dir = 'none'

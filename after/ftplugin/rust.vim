@@ -1,5 +1,6 @@
 " NOTE: by default, 4 spaces intent, 99 textwidth
-setlocal tabstop=4
-setlocal softtabstop=4
-setlocal shiftwidth=4
-setlocal textwidth=80
+" Respect settings in .rustfmt.toml per project directory
+" setlocal tabstop=2
+" setlocal softtabstop=2
+" setlocal shiftwidth=2
+" setlocal textwidth=80
