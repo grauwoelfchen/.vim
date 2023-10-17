@@ -6,6 +6,7 @@ let g:loaded_vimwiki_link_handler = 1
 
 setlocal foldlevel=1
 setlocal foldenable
+setlocal nowrap
 
 "let g:vimwiki_folding = 'list' ... this make opening file slow :'(
 let g:vimwiki_hl_cb_checked = 1
