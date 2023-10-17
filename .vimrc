@@ -226,10 +226,10 @@ set laststatus=2
 set cursorline
 set cursorcolumn
 set colorcolumn=80
-augroup highlight_over_length
+augroup highlight_chars_over_length
   autocmd BufEnter *
   \  highlight OverLength term=NONE cterm=NONE ctermfg=gray ctermbg=black
-  autocmd BufEnter * match OverLength /\%81v.\+/
+  autocmd BufEnter *\(.txt\)\@<! match OverLength /\%81v.\+/
 augroup END
 set splitbelow
 set splitright
