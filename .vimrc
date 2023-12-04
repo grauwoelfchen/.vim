@@ -429,6 +429,11 @@ let g:ctrlp_prompt_mappings = {
 \ 'AcceptSelection("t")': ['<C-a>'],
 \ 'PrtExit()': ['<Esc>', '<C-g>']
 \}
+" vim-polyglot
+augroup disable_reindent
+  autocmd!
+  autocmd BufEnter * set indentexpr=
+augroup END
 " vim-ref
 let g:ref_use_vimproc = 1
 let g:ref_open = 'split'
