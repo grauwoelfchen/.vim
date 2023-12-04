@@ -47,6 +47,7 @@ Plug 'elm-tooling/elm-vim'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'grauwoelfchen/vim-margin'
 Plug 'grauwoelfchen/vim-q', {'for': 'q'}
+Plug 'grauwoelfchen/vim-uiua', {'for': 'uiua'}
 Plug 'hsanson/vim-android'
 Plug 'h1mesuke/vim-alignta'
 Plug 'hrsh7th/vim-vsnip'
